@@ -1,0 +1,92 @@
+import { View, Text, StyleSheet, Platform } from 'react-native'
+import React from 'react'
+import Box from '@commom/Box'
+import { colors } from '@theme/colors'
+import { useTheme } from '@hooks/index';
+
+interface Props {
+    title: string;
+    size?: number;
+    color?: string;
+    font?: any;
+    size2?: any;
+    bottom?: any;
+    numberOfLines?: any;
+}
+
+const BoxLine = ({
+    title,
+    size = 12,
+    size2,
+    color = colors.gray5,
+    font = null,
+    bottom = -2,
+    numberOfLines = 10,
+}: Props) => {
+    const theme = useTheme()
+
+    return (
+        <Box>
+            <View style={styles.txtContent}>
+                <Text
+                    style={{
+                        fontSize: size,
+                        color: 'white',
+                        // position: 'absolute',
+                    }}
+                    numberOfLines={numberOfLines}
+                >
+                    {title}
+                </Text>
+            </View>
+
+            <View style={[styles.txtContent2, { backgroundColor: theme.bg}]}>
+                <Text
+                    style={{
+                        fontSize: size,
+                        color: 'white',
+                        opacity: 0,
+                        // position: 'absolute',
+                    }}
+                >
+                    {title}
+                </Text>
+                <Text
+                    style={{
+                        fontSize: size2 || size,
+                        color: color,
+                        position: 'absolute',
+                        bottom: bottom,
+                        fontFamily: font,
+                    }}
+                    numberOfLines={numberOfLines}
+                >
+                    {title}
+                </Text>
+            </View>
+        </Box>
+    )
+}
+
+export default BoxLine
+
+const styles = StyleSheet.create({
+    txtContent: {
+        borderStyle: 'dashed',
+        borderWidth: 1,
+        borderBottomWidth: 1,
+        // width: '100%',
+        height: 15,
+        borderColor: colors.gray5,
+        position: 'absolute',
+        left: Platform.OS === 'android' ? 1 : 0
+    },
+    txtContent2: {
+        backgroundColor: 'white',
+        marginTop: -1,
+        height: 15,
+        paddingHorizontal: Platform.OS === 'android' ? 2 : 0,
+        paddingRight: 2, // 2,
+        alignSelf: 'flex-start'
+    }
+})

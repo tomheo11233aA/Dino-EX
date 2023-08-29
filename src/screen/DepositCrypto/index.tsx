@@ -1,0 +1,108 @@
+import Box from '@commom/Box'
+import Btn from '@commom/Btn'
+import Icon from '@commom/Icon'
+import Txt from '@commom/Txt'
+import { useTheme } from '@hooks/index'
+import { useRoute } from '@react-navigation/native'
+import KeyBoardSafe from '@reuse/KeyBoardSafe'
+import { createWallet } from '@service/fundingService'
+import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
+import { width } from '@util/responsive'
+import React, { useEffect, useState } from 'react'
+import { Alert } from 'react-native'
+import Header from './Header'
+import ModalNetwork from './ModalNetwork'
+import { useTranslation } from 'react-i18next'
+
+const DepositCrypto = () => {
+    const theme = useTheme()
+    const route = useRoute<any>()
+    const { coin } = route.params
+    const { t } = useTranslation()
+    const [network, setNetWork] = useState<any>({})
+    const [address, setAddress] = useState<string>('')
+    const [isShowModalNetwork, setShowModalNetWork] = useState<boolean>(true)
+
+    useEffect(() => {
+        if (network.name) {
+            handleCreateWallet()
+        }
+    }, [network])
+
+    const handleCreateWallet = async () => {
+        const res = await createWallet(coin.wallet)
+        if (res.status) {
+            setAddress(res.data.address)
+        }
+    }
+
+    return (
+        <KeyBoardSafe>
+            <Header {...{ coin, network, theme, address, t }} />
+            <Box height={1} backgroundColor={theme.gray2} marginTop={40} />
+            <Box padding={30}>
+                <Btn alignCenter={false} marginBottom={30}>
+                    <Txt color={colors.gray5} size={16}>
+                        {t('Wallet address')}
+                    </Txt>
+                    <Box row justifySpaceBetween alignCenter>
+                        <Txt
+                            marginLeft={1}
+                            fontFamily={fonts.AS}
+                            size={17}
+                            width={width * 70 / 100}
+                            color={theme.black}
+                        >
+                            {network.name ? '0x3d8999b00ee8324dd0f22ac8be859cc10f50e9cb' : '--'}
+                        </Txt>
+                        <Icon
+                            source={require('@images/wallet/copy.png')}
+                            size={20}
+                        />
+                    </Box>
+                </Btn>
+
+                <Btn
+                    alignCenter={false}
+                    marginBottom={30}
+                    onPress={() => setShowModalNetWork(true)}
+                >
+                    <Txt color={colors.gray5} size={16}>{t('Network')}</Txt>
+                    <Box row justifySpaceBetween alignCenter>
+                        <Txt marginLeft={1} fontFamily={fonts.AS} size={17} color={theme.black}>
+                            {network.name || '--'}
+                        </Txt>
+                        <Icon
+                            size={25}
+                            resizeMode={'contain'}
+                            source={require('@images/wallet/convert.png')}
+                        />
+                    </Box>
+                </Btn>
+
+                <Btn alignCenter={false} marginBottom={30}>
+                    <Box row alignCenter>
+                        <Txt color={colors.gray5} size={16}>{t('Selected Wallet')}</Txt>
+                        <Icon
+                            source={require('@images/future/info.png')}
+                            size={15}
+                            marginLeft={10}
+                        />
+                    </Box>
+
+                    <Txt marginLeft={1} fontFamily={fonts.AS} size={17} color={theme.black}>
+                        Spot Wallet
+                    </Txt>
+                </Btn>
+            </Box>
+            <ModalNetwork
+                show={isShowModalNetwork}
+                setShow={setShowModalNetWork}
+                setNetWork={setNetWork}
+            />
+        </KeyBoardSafe>
+    )
+}
+
+export default DepositCrypto
