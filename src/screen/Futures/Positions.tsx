@@ -8,15 +8,13 @@ import NotPosition from '@reuse/NotPosition'
 import { coinsFuturesChartSelector } from '@selector/futuresSelector'
 import { profileUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
-import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
-import { Alert, ScrollView } from 'react-native'
+import { useTranslation } from 'react-i18next'
+import { ScrollView } from 'react-native'
 import { IPositions } from 'src/model/futuresModel'
 import { Profile } from 'src/model/userModel'
 import ItemPosition from './ItemPosition'
-import { useTranslation } from 'react-i18next'
-import { alertCannotConnect, cannotConnect } from '@method/alert'
 
 interface Props {
     positions: IPositions[];
@@ -65,9 +63,9 @@ const Positions = ({ positions }: Props) => {
                                 width={14}
                                 height={14}
                                 radius={50}
-                                borderColor={theme.gray7}
                                 borderWidth={1}
                                 marginRight={10}
+                                borderColor={theme.gray7}
                                 backgroundColor={theme.gray2}
                             />
                             <Txt color={theme.black}>{t('Hide Other Symbols')}</Txt>
@@ -84,7 +82,11 @@ const Positions = ({ positions }: Props) => {
                             </Txt>
                         </Btn>
                     </Box>
-                    <ScrollView contentContainerStyle={{ backgroundColor: theme.bg }}>
+                    <ScrollView
+                        contentContainerStyle={{ 
+                            backgroundColor: theme.bg,
+                        }}
+                    >
                         {positions.map((item: IPositions) =>
                             <ItemPosition
                                 t={t}

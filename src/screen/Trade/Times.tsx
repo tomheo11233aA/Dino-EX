@@ -36,7 +36,7 @@ const Times = () => {
     }, [])
 
     return (
-        <View style={{ zIndex: 1 }}>
+        <View style={{ zIndex: 1, marginBottom: 7 }}>
             <View style={{ flexDirection: 'row', paddingHorizontal: 10, alignItems: 'flex-end' }}>
                 <Text style={{ color: '#707781', marginRight: 10 }}>
                     {t('Line')}
@@ -115,7 +115,7 @@ const Times = () => {
                     <Image
                         source={require('@images/trade/volume.png')}
                         resizeMode='contain'
-                        style={{ width: 19, height: 19 }}
+                        style={{ width: 17, height: 17 }}
                     />
                 </TouchableOpacity>
             </View>
@@ -151,8 +151,7 @@ const styles = StyleSheet.create({
     },
     time: {
         fontFamily: fonts.M17,
-        fontSize: 15,
-        color: '#707781',
+        fontSize: 14,
     },
     timeStr: {
         fontFamily: fonts.IBMPR,

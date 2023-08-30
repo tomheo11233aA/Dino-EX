@@ -10,6 +10,7 @@ import Box from '@commom/Box'
 import LoadingYellow from '@reuse/LoadingYellow'
 import { checkTransactionDepositVndThunk } from '@asyncThunk/fundingAsyncThunk'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 
 const DepositVND = () => {
   const dispatch = useAppDispatch()
@@ -26,7 +27,7 @@ const DepositVND = () => {
   return (
     <>
       {loading ?
-        <KeyBoardSafe paddingBottom={0}>
+        <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
           <Box flex={1} alignCenter justifyCenter>
             <LoadingYellow />
           </Box>

@@ -1,7 +1,7 @@
 import Box from '@commom/Box'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { delay } from '@method/alert'
-import { styles } from '@navigation/Container'
+import { HEIGHT_BOTTOM_TAB, styles } from '@navigation/Container'
 import { useNavigation } from '@react-navigation/native'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import LoadingYellow from '@reuse/LoadingYellow'
@@ -15,6 +15,7 @@ import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
+import { height } from '@util/responsive'
 
 const Trades = () => {
   const theme = useTheme()
@@ -45,7 +46,7 @@ const Trades = () => {
         <Box flex={1}>
           {!loading ?
             <>
-              <Box flex={1}>
+              <Box height={height - HEIGHT_BOTTOM_TAB}>
                 <ToastTop ref={toastTopRef} />
                 <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
                   <Header drawerRef={drawerRef} />

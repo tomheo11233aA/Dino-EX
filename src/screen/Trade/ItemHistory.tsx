@@ -1,4 +1,5 @@
 import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 
@@ -9,8 +10,8 @@ const ItemHistory = ({ history, t, theme }: any) => {
                 style={{
                     color: history.id === 0 ? theme.black : colors.grayBlue,
                     marginHorizontal: 5,
-                    fontWeight: 'bold',
-                    fontSize: 16,
+                    fontFamily: fonts.IBMPM,
+                    fontSize: 14.5,
                 }}
             >
                 {t(history.name)}
@@ -19,7 +20,7 @@ const ItemHistory = ({ history, t, theme }: any) => {
                 <View
                     style={{
                         width: 30,
-                        height: 4,
+                        height: 3,
                         backgroundColor: colors.yellow,
                         marginTop: 5,
                     }}

@@ -18,12 +18,14 @@ const ItemMoment = ({ item, t }: any) => {
             </Text>
             <Text
                 style={{
-                    color: item.value >= 0 ? colors.greenCan : colors.redCan,
                     fontSize: 12,
-                    fontFamily: fonts.FSCR,
-                    fontWeight: '400',
+                    fontFamily: fonts.M17,
+                    color: item.value >= 0 ? colors.greenCan : colors.redCan,
                 }}>
-                {item.value}%
+                {item.value}
+                <Text style={{ fontFamily: fonts.IBMPM, fontSize: 10 }}>
+                    {'%'}
+                </Text>
             </Text>
         </View>
     )

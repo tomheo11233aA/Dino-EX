@@ -12,6 +12,7 @@ import { isLoginUserSelector } from '@selector/userSelector'
 import React, { useRef, useState } from 'react'
 import Login from './Login'
 import Tab from './Tab'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 const Wallet = () => {
   const theme = useTheme()
   const toastTopRef = useRef(null)
@@ -24,7 +25,7 @@ const Wallet = () => {
         <Login /> :
         <Box flex={1}>
           <ToastTop ref={toastTopRef} />
-          <KeyBoardSafe bg={theme.gray2} paddingBottom={0}>
+          <KeyBoardSafe bg={theme.gray2} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
             <Tab {...{ tab, setTab }} />
             <Box
               flex={1}

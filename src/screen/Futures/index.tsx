@@ -14,7 +14,8 @@ import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
 import { useNavigation } from '@react-navigation/native'
-import { styles } from '@navigation/Container'
+import { HEIGHT_BOTTOM_TAB, styles } from '@navigation/Container'
+import { height } from '@util/responsive'
 
 const Futures = () => {
   const theme = useTheme()
@@ -43,7 +44,7 @@ const Futures = () => {
         <Box flex={1}>
           {!loading ?
             <>
-              <Box flex={1}>
+              <Box height={height - HEIGHT_BOTTOM_TAB}>
                 <ToastTop ref={toastTopRef} />
                 <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
                   <Header drawerRef={drawerRef} />

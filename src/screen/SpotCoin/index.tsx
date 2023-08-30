@@ -12,6 +12,7 @@ import History from './History'
 import TradeBuySellCrypto from './TradeBuySellCrypto'
 import TradeSpot from './TradeSpot'
 import { useTranslation } from 'react-i18next'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 
 const SpotCoin = () => {
   const theme = useTheme()
@@ -22,7 +23,7 @@ const SpotCoin = () => {
   hideBottomTab()
 
   return (
-    <KeyBoardSafe bg={theme.gray10} paddingBottom={0}>
+    <KeyBoardSafe bg={theme.gray10} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
       <Box height={height}>
         <Header {...{ theme, coin }} />
         <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>

@@ -24,6 +24,11 @@ export default () => {
   hideBottomTab()
 
   useEffect(() => {
+    console.log('abc')
+    dispatch(tradeSlice.actions.setLoading(true))
+  }, [])
+
+  useEffect(() => {
     if (loading) {
       delay(1000).then(() => dispatch(tradeSlice.actions.setLoading(false)))
     }

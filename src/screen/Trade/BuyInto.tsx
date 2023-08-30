@@ -45,20 +45,9 @@ const BuyInto = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Text style={{ marginTop: 10, marginBottom: 11, color: colors.grayBlue }}>
+            <Text style={{ marginTop: 10, marginBottom: 11, color: colors.grayBlue, fontSize: 12 }}>
                 {t('Bid')}
             </Text>
-            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View style={{ width: '20%' }}>
-                    <Text style={styles.txtTitle}>{t('Total')}</Text>
-                </View>
-                <View style={{ width: '40%', alignItems: 'center' }}>
-                    <Text style={styles.txtTitle}>{t('Amount')}</Text>
-                </View>
-                <View style={{ width: '40%', alignItems: 'flex-end' }}>
-                    <Text style={styles.txtTitle}>{t('Price')}</Text>
-                </View>
-            </View> */}
             {buys.map((buy: BuySell, index: number) =>
                 <Buy key={index} buy={buy} theme={theme} />
             )}
@@ -73,11 +62,6 @@ const Buy = ({ buy, theme }: { buy: BuySell, theme: any }) => {
         <View style={{ alignItems: 'flex-end' }}>
             <View style={[styles.slider, { width: rndInt + '%', backgroundColor: theme.green2 }]} />
             <View style={styles.content}>
-                {/* <View style={{ width: '25%' }}>
-                    <Text style={styles.txtTotal} numberOfLines={1}>
-                        {buy.totalUsdt || buy.totalUSDT}
-                    </Text>
-                </View> */}
                 <View>
                     <Text style={styles.txtTotal} numberOfLines={1}>
                         {numberCommasDot(buy?.amount?.toFixed(5))}
@@ -98,12 +82,12 @@ export default BuyInto
 const styles = StyleSheet.create({
     txtTotal: {
         fontFamily: fonts.M17,
-        fontSize: 15,
+        fontSize: 13,
         color: colors.grayBlue,
     },
     txtPrice: {
         fontFamily: fonts.M17,
-        fontSize: 15,
+        fontSize: 13,
         color: colors.greenCan,
     },
     content: {

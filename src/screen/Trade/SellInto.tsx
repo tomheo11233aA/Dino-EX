@@ -53,7 +53,7 @@ const SellInto = () => {
                     justifyContent: 'space-between',
                 }}
             >
-                <Text style={{ marginVertical: 10, color: colors.grayBlue }}>
+                <Text style={{ marginVertical: 10, color: colors.grayBlue, fontSize: 12 }}>
                     {t('Ask')}
                 </Text>
                 <View
@@ -65,7 +65,7 @@ const SellInto = () => {
                         borderRadius: 5,
                     }}
                 >
-                    <Text style={{ fontSize: 12, color: colors.grayBlue, fontWeight: '500' }}>
+                    <Text style={{ fontSize: 10, color: colors.grayBlue, fontWeight: '500' }}>
                         0.0001
                     </Text>
                     <Img
@@ -76,17 +76,6 @@ const SellInto = () => {
                     />
                 </View>
             </View>
-            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View style={{ width: '40%' }}>
-                    <Text style={styles.txtTitle}>{t('Price')}</Text>
-                </View>
-                <View style={{ width: '40%' }}>
-                    <Text style={styles.txtTitle}>{t('Amount')}</Text>
-                </View>
-                <View style={{ width: '20%', alignItems: 'flex-end' }}>
-                    <Text style={styles.txtTitle}>{t('Total')}</Text>
-                </View>
-            </View> */}
             {sells.map((sell: BuySell, index: number) =>
                 <Sell key={index} sell={sell} theme={theme} />
             )}
@@ -121,12 +110,12 @@ export default SellInto
 const styles = StyleSheet.create({
     txtTotal: {
         fontFamily: fonts.M17,
-        fontSize: 15,
+        fontSize: 13,
         color: colors.grayBlue,
     },
     txtPrice: {
         fontFamily: fonts.M17,
-        fontSize: 15,
+        fontSize: 13,
         color: colors.redCan,
     },
     content: {

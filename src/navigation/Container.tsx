@@ -59,6 +59,8 @@ const tabs: ITab[] = [
     },
 ]
 
+export const HEIGHT_BOTTOM_TAB = 70
+
 const Tab = createBottomTabNavigator()
 
 const Container = () => {
@@ -72,9 +74,13 @@ const Container = () => {
                     headerShown: false,
                     tabBarShowLabel: false,
                     tabBarStyle: {
-                        height: 70,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
                         paddingTop: 10,
                         borderTopWidth: 0,
+                        position: "absolute",
+                        height: HEIGHT_BOTTOM_TAB,
                         backgroundColor: theme.bg,
                     }
                 }}
@@ -112,13 +118,15 @@ export default Container
 
 export const styles = StyleSheet.create({
     container: {
-        height: 70,
+        left: 0,
+        right: 0,
+        bottom: 0,
         paddingTop: 10,
         borderTopWidth: 0,
+        position: "absolute",
+        height: HEIGHT_BOTTOM_TAB,
     },
     noneContainer: {
-        height: 0,
-        position: 'absolute',
-        bottom: -100,
+        display: 'none'
     }
 })

@@ -1,6 +1,6 @@
 import Box from '@commom/Box'
 import { useAppSelector, useTheme } from '@hooks/index'
-import { styles } from '@navigation/Container'
+import { HEIGHT_BOTTOM_TAB, styles } from '@navigation/Container'
 import { useNavigation } from '@react-navigation/native'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import { isLoginUserSelector } from '@selector/userSelector'
@@ -33,7 +33,7 @@ const Home = () => {
   }, [theme])
 
   return (
-    <KeyBoardSafe paddingBottom={0}>
+    <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
       <Box paddingHorizontal={15} paddingTop={10}>
         <Header />
         {!isLogin && <Login />}

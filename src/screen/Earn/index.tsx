@@ -5,6 +5,7 @@ import Header from './Header'
 import Box from '@commom/Box'
 import Options from './Options'
 import ListCoin from './ListCoin'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 
 const Earn = () => {
   const theme = useTheme()
@@ -12,7 +13,7 @@ const Earn = () => {
   hideBottomTab()
 
   return (
-    <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
+    <KeyBoardSafe bg={theme.gray5} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
       <Header />
       <Box
         flex={1}

@@ -11,6 +11,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { setStep } from '@slice/kycSlice'
 import contants from '@util/contants'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 
 const DocumentVerification = () => {
   const theme = useTheme()
@@ -19,7 +20,7 @@ const DocumentVerification = () => {
 
   return (
     <Box flex={1} paddingHorizontal={15} backgroundColor={theme.bg}>
-      <KeyBoardSafe paddingBottom={0}>
+      <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
         <Header />
         <Txt marginTop={25} color={theme.black}>
           Document Type

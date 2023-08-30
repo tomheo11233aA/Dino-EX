@@ -36,20 +36,20 @@ const Statistical = () => {
                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Text style={[styles.textSmall, { color: theme.black }]}>
                         {'≈ '}
-                        <Text style={[styles.textSmall, { color: theme.black, fontFamily: fonts.M17, fontSize: 16 }]}>
+                        <Text style={[styles.textSmall, { color: theme.black, fontFamily: fonts.M24, fontSize: 15 }]}>
                             {numberCommasDot(close)}
                         </Text>
-                        <Text style={{ fontFamily: fonts.LR, fontSize: 14 }}>
+                        <Text style={{ fontFamily: fonts.IBMPM, fontSize: 12 }}>
                             {' $'}
                         </Text>
                     </Text>
-                    <Text style={[styles.textSmall, { marginLeft: 10, fontFamily: fonts.M17, fontSize: 15 }]}>
-                        {percentChange}
+                    <Text style={[styles.textSmall, { marginLeft: 10, fontFamily: fonts.M24, fontSize: 14 }]}>
+                        {numberCommasDot(1.73)}
                         <Text style={[styles.textSmall]}>{'%'}</Text>
                     </Text>
                 </View>
                 <View style={[styles.defiContainer, { backgroundColor: theme.yellow5 }]}>
-                    <Text style={{ color: colors.yellow, fontSize: 11 }}>{'DeFi >'}</Text>
+                    <Text style={{ color: colors.yellowBold, fontSize: 11 }}>{'DeFi >'}</Text>
                 </View>
             </View>
 
@@ -92,15 +92,18 @@ const styles = StyleSheet.create({
     },
     textSmall: {
         fontWeight: '500',
-        fontSize: 14,
+        fontSize: 13,
         color: colors.greenCan,
         fontFamily: fonts.FSCR
     },
     textLagre: {
         color: colors.redCan,
         fontWeight: 'bold',
-        fontFamily: fonts.M24,
+        fontFamily: fonts.M31,
         fontSize: 24,
+        transform: [
+            {scaleY: 1.1}
+        ]
     },
     container: {
         flexDirection: 'row',

@@ -1,10 +1,8 @@
 import Img from '@commom/Img'
 import { useAppDispatch, useTheme } from '@hooks/index'
 import { navigate } from '@navigation/navigationRef'
-import futuresSlice from '@slice/futuresSlice'
 import { setSide } from '@slice/spotSlice'
 import { colors } from '@theme/colors'
-import { theme } from '@theme/index'
 import { height } from '@util/responsive'
 import { screen } from '@util/screens'
 import React from 'react'
@@ -70,14 +68,15 @@ const Option = ({ icon, title }: IOption) => {
     return (
         <TouchableOpacity style={{ alignItems: 'center' }}>
             <Img
-                source={icon}
                 width={15}
                 height={15}
+                source={icon}
+                marginBottom={6}
                 resizeMode={'contain'}
             />
             <Text
                 numberOfLines={1}
-                style={{ color: colors.grayBlue, fontSize: 11 }}
+                style={{ color: colors.grayBlue, fontSize: 9 }}
             >
                 {title}
             </Text>
@@ -90,25 +89,25 @@ export default Footer
 const styles = StyleSheet.create({
     option: {
         flex: 1,
+        marginTop: 14,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 14,
     },
     buySellText: {
         color: 'white',
         fontWeight: 'bold',
     },
     buySellButton: {
+        margin: 5,
         height: 40,
         width: 100,
-        margin: 5,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
     },
     footer: {
+        padding: 10,
         flexDirection: 'row',
         height: height * 11 / 100,
-        padding: 10,
     }
 })

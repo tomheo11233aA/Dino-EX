@@ -11,6 +11,7 @@ import ModalListCoin from './ModalListCoin'
 import ToCoin from './ToCoin'
 import { ICoins } from 'src/model/futuresModel'
 import ModalPreviewConversion from './ModalPreviewConversion'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 
 const ConvertTrades = () => {
     const theme = useTheme()
@@ -76,7 +77,7 @@ const ConvertTrades = () => {
     }
 
     return (
-        <KeyBoardSafe bg={theme.bg} paddingBottom={0}>
+        <KeyBoardSafe bg={theme.bg} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
             <Box flex={1} paddingHorizontal={15}>
                 <Header />
                 <MarketAndLimit />

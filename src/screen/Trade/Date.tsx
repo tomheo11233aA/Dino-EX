@@ -29,7 +29,7 @@ const Date = () => {
                         style={{ marginHorizontal: 10 }}
                     >
                         <Text style={[
-                            { color: type === item ? theme.black : '#707781' }
+                            { color: type === item ? theme.black : '#707781', fontSize: 12 }
                         ]}>
                             {item}
                         </Text>
@@ -62,8 +62,9 @@ export default Date
 
 const styles = StyleSheet.create({
     content: {
+        paddingVertical: 5,
         flexDirection: 'row',
         borderBottomWidth: 1,
-        paddingVertical: 5,
+        justifyContent: 'space-around',
     }
 })
