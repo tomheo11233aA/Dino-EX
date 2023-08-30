@@ -176,6 +176,7 @@ const Balance = ({ spot }: Props) => {
                     <Txt fontFamily={fonts.IBMPM} size={13} color={theme.black}>{t('Withdraw')}</Txt>
                 </Btn>
                 <Btn
+                    onPress={() => navigate(screen.COIN_LIST_WITHDRAW)}
                     style={styles.button}
                     backgroundColor={theme.gray2}
                 >

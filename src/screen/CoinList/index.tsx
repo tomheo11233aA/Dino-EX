@@ -10,6 +10,7 @@ import Tab from './Tab'
 import Trending from './Trending'
 import { useTheme } from '@hooks/index'
 import { useTranslation } from 'react-i18next'
+import ComingSoon from '@screen/ComingSoon'
 
 const CoinList = () => {
     const theme = useTheme()
@@ -29,21 +30,23 @@ const CoinList = () => {
     }
 
     return (
-        <KeyBoardSafe>
-            <Box paddingHorizontal={10}>
-                <Header {...{ theme, t }} />
-                <Tab {...{ tab, setTab, theme }} />
-                {tab === 'Crypto' ?
-                    <Box>
-                        <SearchHistory {...{ coins, theme, t }} />
-                        <Trending {...{ coins, theme, t }} />
-                        <Coins {...{ coins, theme }} />
-                    </Box>
-                    :
-                    <></>
-                }
-            </Box>
-        </KeyBoardSafe>
+        // <KeyBoardSafe>
+        //     <Box paddingHorizontal={10}>
+        //         <Header {...{ theme, t }} />
+        //         <Tab {...{ tab, setTab, theme }} />
+        //         {tab === 'Crypto' ?
+        //             <Box>
+        //                 <SearchHistory {...{ coins, theme, t }} />
+        //                 <Trending {...{ coins, theme, t }} />
+        //                 <Coins {...{ coins, theme }} />
+        //             </Box>
+        //             :
+        //             <></>
+        //         }
+        //     </Box>
+        // </KeyBoardSafe>
+
+        <ComingSoon />
     )
 }
 

@@ -2,6 +2,7 @@ import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 import { navigate } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
 import { screen } from '@util/screens'
@@ -11,7 +12,12 @@ import { useTranslation } from 'react-i18next'
 const Login = () => {
   const { t } = useTranslation()
   return (
-    <Box flex={1} backgroundColor={colors.white} paddingHorizontal={10}>
+    <Box
+      flex={1}
+      backgroundColor={colors.white}
+      paddingHorizontal={10}
+      paddingBottom={HEIGHT_BOTTOM_TAB}
+    >
       <Box flex={1} alignCenter justifyCenter marginTop={40}>
         <Box backgroundColor={colors.gray2} width={170} height={170} radius={170} alignCenter justifyCenter>
           <Img

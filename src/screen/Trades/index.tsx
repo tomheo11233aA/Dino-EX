@@ -16,6 +16,7 @@ import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
 import { height } from '@util/responsive'
+import ComingSoon from '@screen/ComingSoon'
 
 const Trades = () => {
   const theme = useTheme()
@@ -41,30 +42,32 @@ const Trades = () => {
   }, [loading])
 
   return (
-    <>
-      {isLogin ?
-        <Box flex={1}>
-          {!loading ?
-            <>
-              <Box height={height - HEIGHT_BOTTOM_TAB}>
-                <ToastTop ref={toastTopRef} />
-                <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
-                  <Header drawerRef={drawerRef} />
-                  <Transaction toastTopRef={toastTopRef} />
-                </KeyBoardSafe>
-                <OpenCloseChart />
-              </Box>
-              <Drawer ref={drawerRef} />
-            </> :
-            <Box flex={1} alignCenter justifyCenter backgroundColor={theme.bg}>
-              <LoadingYellow />
-            </Box>
-          }
-        </Box>
-        :
-        <Login />
-      }
-    </>
+    // <>
+    //   {isLogin ?
+    //     <Box flex={1}>
+    //       {!loading ?
+    //         <>
+    //           <Box height={height - HEIGHT_BOTTOM_TAB}>
+    //             <ToastTop ref={toastTopRef} />
+    //             <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
+    //               <Header drawerRef={drawerRef} />
+    //               <Transaction toastTopRef={toastTopRef} />
+    //             </KeyBoardSafe>
+    //             <OpenCloseChart />
+    //           </Box>
+    //           <Drawer ref={drawerRef} />
+    //         </> :
+    //         <Box flex={1} alignCenter justifyCenter backgroundColor={theme.bg}>
+    //           <LoadingYellow />
+    //         </Box>
+    //       }
+    //     </Box>
+    //     :
+    //     <Login />
+    //   }
+    // </>
+
+    <ComingSoon />
   )
 }
 

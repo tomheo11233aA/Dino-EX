@@ -13,6 +13,7 @@ import KYCStatus from './KYCStatus'
 import Login from './Login'
 import Options from './Options'
 import TypeCoin from './TypeCoin'
+import ComingSoon from '@screen/ComingSoon'
 
 const Home = () => {
   const theme = useTheme()
@@ -38,7 +39,7 @@ const Home = () => {
         <Header />
         {!isLogin && <Login />}
         {isLogin && <Balance />}
-        <KYCStatus />
+        {/* <KYCStatus /> */}
         <Options />
         <Funding />
         <TypeCoin />

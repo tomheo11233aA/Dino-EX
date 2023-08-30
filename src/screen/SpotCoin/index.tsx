@@ -13,6 +13,7 @@ import TradeBuySellCrypto from './TradeBuySellCrypto'
 import TradeSpot from './TradeSpot'
 import { useTranslation } from 'react-i18next'
 import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
+import ComingSoon from '@screen/ComingSoon'
 
 const SpotCoin = () => {
   const theme = useTheme()
@@ -20,22 +21,24 @@ const SpotCoin = () => {
   const { coin } = route.params
   const { t } = useTranslation()
   
-  hideBottomTab()
+  // hideBottomTab()
 
   return (
-    <KeyBoardSafe bg={theme.gray10} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
-      <Box height={height}>
-        <Header {...{ theme, coin }} />
-        <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>
-          <Balance {...{ theme, coin, t }} />
-          <Available {...{ theme, coin, t }} />
-          <TradeBuySellCrypto />
-          <Earn {...{ theme, t }} />
-          <TradeSpot {...{ theme, t }} />
-          <History {...{ coin }} />
-        </Box>
-      </Box>
-    </KeyBoardSafe>
+    // <KeyBoardSafe bg={theme.gray10} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+    //   <Box height={height}>
+    //     <Header {...{ theme, coin }} />
+    //     <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>
+    //       <Balance {...{ theme, coin, t }} />
+    //       <Available {...{ theme, coin, t }} />
+    //       <TradeBuySellCrypto />
+    //       <Earn {...{ theme, t }} />
+    //       <TradeSpot {...{ theme, t }} />
+    //       <History {...{ coin }} />
+    //     </Box>
+    //   </Box>
+    // </KeyBoardSafe>
+    
+    <ComingSoon />
   )
 }
 

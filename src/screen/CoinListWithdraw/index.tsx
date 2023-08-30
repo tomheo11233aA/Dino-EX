@@ -10,6 +10,7 @@ import Header from './Header'
 import SearchHistory from './SearchHistory'
 import Tab from './Tab'
 import Trending from './Trending'
+import ComingSoon from '@screen/ComingSoon'
 
 const CoinListWithdraw = () => {
     const theme = useTheme()
@@ -29,21 +30,23 @@ const CoinListWithdraw = () => {
     }
 
     return (
-        <KeyBoardSafe>
-            <Box paddingHorizontal={10}>
-                <Header {...{ theme, t }} />
-                <Tab {...{ tab, setTab, theme, t }} />
-                {tab === 'Crypto' ?
-                    <Box>
-                        <SearchHistory {...{ coins, theme, t }} />
-                        <Trending {...{ coins, theme, t }} />
-                        <Coins {...{ coins, theme }} />
-                    </Box>
-                    :
-                    <></>
-                }
-            </Box>
-        </KeyBoardSafe>
+        // <KeyBoardSafe>
+        //     <Box paddingHorizontal={10}>
+        //         <Header {...{ theme, t }} />
+        //         <Tab {...{ tab, setTab, theme, t }} />
+        //         {tab === 'Crypto' ?
+        //             <Box>
+        //                 <SearchHistory {...{ coins, theme, t }} />
+        //                 <Trending {...{ coins, theme, t }} />
+        //                 <Coins {...{ coins, theme }} />
+        //             </Box>
+        //             :
+        //             <></>
+        //         }
+        //     </Box>
+        // </KeyBoardSafe>
+
+        <ComingSoon />
     )
 }
 

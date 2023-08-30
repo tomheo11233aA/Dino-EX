@@ -18,6 +18,8 @@ const Options = () => {
     const handle = () => {
         if (!isLogin) {
             navigate(screen.LOGIN)
+        } else {
+            navigate(screen.EARN)
         }
     }
 

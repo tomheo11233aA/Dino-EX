@@ -16,7 +16,7 @@ import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 const Wallet = () => {
   const theme = useTheme()
   const toastTopRef = useRef(null)
-  const [tab, setTab] = useState('Overview')
+  const [tab, setTab] = useState('Spot')
   const isLogin = useAppSelector(isLoginUserSelector)
 
   return (
