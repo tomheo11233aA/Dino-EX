@@ -4,6 +4,7 @@ import CoinList from '@screen/CoinList'
 import CoinListWithdraw from '@screen/CoinListWithdraw'
 import Convert from '@screen/Convert'
 import DepositCrypto from '@screen/DepositCrypto'
+import FuturesHistory from '@screen/FuturesHistory'
 import SendUSDT from '@screen/SendUSDT'
 import SpotCoin from '@screen/SpotCoin'
 import Wallet from '@screen/Wallet'
@@ -25,6 +26,7 @@ const WalletStack = () => {
         <Stack.Screen name={screen.SPOT_COIN} component={SpotCoin} />
         <Stack.Screen name={screen.SEND_USDT} component={SendUSDT} />
         <Stack.Screen name={screen.CHANGE_BALANCE_HISTORY} component={ChangeBalanceHistory} />
+        <Stack.Screen name={screen.FUTURES_HISTORY} component={FuturesHistory} />
     </Stack.Navigator>
   )
 }

@@ -22,7 +22,7 @@ const Hello = ({ navigation }: any) => {
             i18n.changeLanguage(lng)
 
             // set theme color
-            const theme = await AsyncStorage.getItem(contants.THEME) || 'light'
+            const theme = await AsyncStorage.getItem(contants.THEME) || 'dark'
             dispatch(userSlice.actions.setTheme(theme))
 
             const token = await AsyncStorage.getItem(contants.TOKEN) || null

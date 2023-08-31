@@ -35,6 +35,7 @@ export const screen = {
     WITHDRAW_CRYPTO: 'WithdrawCrypto',
     CHANGE_LANGUAGE: 'ChangeLanguage',
     SHARE_POSITIONS: 'SharePositions',
+    FUTURES_HISTORY: 'FuturesHistory',
     COIN_LIST_WITHDRAW: 'CoinListWithdraw',
     CHANGE_BALANCE_HISTORY: 'ChangeBalanceHistory',
 }

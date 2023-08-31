@@ -22,6 +22,7 @@ interface Props {
     onClosePosition?: Function;
     onSetClosePosition?: Function;
     onSetShowModalCore?: Function;
+    onShowModalStopProfit?: Function;
 }
 
 const ItemPosition = ({
@@ -33,6 +34,7 @@ const ItemPosition = ({
     onClosePosition,
     onSetClosePosition,
     onSetShowModalCore,
+    onShowModalStopProfit,
 }: Props) => {
 
     position = converPostirions(position, coins, profile.balance)
@@ -59,7 +61,7 @@ const ItemPosition = ({
                         </Txt>
                     </Box>
                     <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
-                        {`${position.symbol} ${t('Perpetual')}` } 
+                        {`${position.symbol} ${t('Perpetual')}`}
                     </Txt>
                     <Txt size={12} fontFamily={fonts.RM} color={colors.gray5} marginLeft={10}>
                         {capitalizeFirst(position.regime)}
@@ -198,6 +200,9 @@ const ItemPosition = ({
                         </Txt>
                     </Btn>
                     <Btn
+                        onPress={() => {
+                            if (onShowModalStopProfit) onShowModalStopProfit()
+                        }}
                         height={35}
                         backgroundColor={theme.gray8}
                         flex={1}

@@ -4,10 +4,12 @@ import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { numberCommasDot } from '@method/format'
+import { navigate } from '@navigation/navigationRef'
 import { showBalanceSelector } from '@selector/userSelector'
 import userSlice from '@slice/userSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
+import { screen } from '@util/screens'
 import React, { useEffect, useState } from 'react'
 
 interface Props {
@@ -48,11 +50,13 @@ const Balance = ({ balance, t }: Props) => {
                     </Box>
                 </Box>
 
-                <Icon
-                    size={18}
-                    resizeMode={'contain'}
-                    source={require('@images/future/page-oclock.png')}
-                />
+                <Btn onPress={() => navigate(screen.FUTURES_HISTORY)}>
+                    <Icon
+                        size={18}
+                        resizeMode={'contain'}
+                        source={require('@images/future/page-oclock.png')}
+                    />
+                </Btn>
             </Box>
 
             <Box row alignCenter>

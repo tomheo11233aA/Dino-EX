@@ -53,6 +53,12 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
+    const handleShowModalStopProfit = async () => {
+        dispatch(futuresSlice.actions.setStopProfit({
+            showModal: true,
+        }))
+    }
+
     return (
         <>
             {positions.length > 0 ?
@@ -98,6 +104,7 @@ const Positions = ({ positions }: Props) => {
                                 onClosePosition={handleClosePosition}
                                 onSetClosePosition={handleSetClosePosition}
                                 onSetShowModalCore={handleSetShowModalCore}
+                                onShowModalStopProfit={handleShowModalStopProfit}
                             />
                         )}
                     </ScrollView>

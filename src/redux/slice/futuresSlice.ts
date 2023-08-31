@@ -48,6 +48,9 @@ interface IfuturesSlice {
     listTimeLimit: ITimeLimit[];
     closeTimestamp: number;
     countDown: number;
+    stopProfit: {
+        showModal: boolean;
+    }
 }
 
 const initialState: IfuturesSlice = {
@@ -90,6 +93,9 @@ const initialState: IfuturesSlice = {
     countCandles: 0,
     closeTimestamp: 0,
     countDown: 0,
+    stopProfit: {
+        showModal: false
+    }
 }
 
 const futuresSlice = createSlice({
@@ -244,6 +250,9 @@ const futuresSlice = createSlice({
                 ma25: dPathMA25,
                 ma99: dPathMA99,
             }
+        },
+        setStopProfit: (state, { payload }) => {
+            state.stopProfit = payload
         }
     },
     extraReducers: builder => {
