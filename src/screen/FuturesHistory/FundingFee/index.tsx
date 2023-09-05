@@ -4,7 +4,7 @@ import React from 'react'
 const FundingFee = () => {
   return (
     <View>
-      <Text>FundingFee</Text>
+
     </View>
   )
 }

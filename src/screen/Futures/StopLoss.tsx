@@ -73,7 +73,7 @@ const StopLoss = ({ theme, t }: Props) => {
                         font={fonts.RM}
                         color={theme.black}
                         textAlign={'center'}
-                        hint={'Market Price'}
+                        hint={t('Market Price')}
                         hintColor={colors.grayBlue}
                     />
                 </Box>
@@ -136,7 +136,7 @@ const StopLoss = ({ theme, t }: Props) => {
                 backgroundColor={theme.gray}
             >
                 <Txt color={colors.gray2} fontFamily={fonts.RM}>
-                    Confirm
+                    {t('Confirm')}
                 </Txt>
             </Btn>
         </Box>

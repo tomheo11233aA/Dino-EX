@@ -9,7 +9,11 @@ import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Header = () => {
+interface Props {
+    setShowFilter: Function;
+}
+
+const Header = ({ setShowFilter }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
 
@@ -23,7 +27,9 @@ const Header = () => {
             <Txt fontFamily={fonts.AS} size={16} color={theme.black}>
                 {t('USDⓢ-M Futures History')}
             </Txt>
-            <Btn>
+            <Btn
+                onPress={() => setShowFilter(true)}
+            >
                 <Icon
                     size={17}
                     tintColor={colors.grayBlue}

@@ -26,7 +26,7 @@ const Earn = () => {
     //   </Box>
     // </KeyBoardSafe>
 
-    <ComingSoon />
+    <ComingSoon marginTop={40} flex={0} />
   )
 }
 

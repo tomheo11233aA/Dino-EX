@@ -1,15 +1,17 @@
-import { View, Text } from 'react-native'
-import React from 'react'
 import Box from '@commom/Box';
 import Txt from '@commom/Txt';
 import { colors } from '@theme/colors';
 import { fonts } from '@theme/fonts';
+import React from 'react';
 
 interface Props {
     t: any;
     item: any;
     theme: any;
 }
+
+const SIZE = 16
+const FONTS = fonts.M24
 
 const Item = ({
     t,
@@ -45,7 +47,7 @@ const Item = ({
                 <Txt color={colors.grayBlue}>
                     {t('Price')}
                 </Txt>
-                <Txt color={theme.black}>
+                <Txt color={theme.black} fontFamily={FONTS} size={SIZE}>
                     {item.price}
                 </Txt>
             </Box>
@@ -54,7 +56,7 @@ const Item = ({
                 <Txt color={colors.grayBlue}>
                     {'Amount BTC'}
                 </Txt>
-                <Txt color={theme.black}>
+                <Txt color={theme.black} fontFamily={FONTS} size={SIZE}>
                     {item.amount}
                 </Txt>
             </Box>
@@ -85,7 +87,7 @@ const Item = ({
                     <Txt color={colors.grayBlue}>(USDT)</Txt>
                 </Box>
 
-                <Txt color={theme.black} fontFamily={fonts.M24} size={15}>
+                <Txt color={theme.black} fontFamily={fonts.M24} size={SIZE}>
                     {item.profit}
                 </Txt>
             </Box>

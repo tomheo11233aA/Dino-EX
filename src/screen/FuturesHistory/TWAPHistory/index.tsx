@@ -4,7 +4,6 @@ import React from 'react'
 const TWAPHistory = () => {
   return (
     <View>
-      <Text>TWAPHistory</Text>
     </View>
   )
 }

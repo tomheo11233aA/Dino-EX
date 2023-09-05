@@ -10,13 +10,16 @@ import TWAPHistory from './TWAPHistory'
 import FundingFee from './FundingFee'
 import OpenOrders from './OpenOrders'
 import TradeHistory from './TradeHistory'
+import ModalFilter from './ModalFilter'
 
 const FuturesHistory = () => {
   const theme = useTheme()
   const [tab, setTab] = useState<string>('Open Orders')
+  const [showFilter, setShowFilter] = useState<boolean>(false)
+
   return (
     <KeyBoardSafe bg={theme.bg} paddingHorizontal={15}>
-      <Header />
+      <Header {...{ setShowFilter }} />
       <Tabs {...{ tab, setTab }} />
       {tab === 'Open Orders' ?
         <OpenOrders /> : tab === 'Order History' ?
@@ -26,6 +29,10 @@ const FuturesHistory = () => {
                 <TWAPHistory /> : tab === 'Transaction History' ?
                   <TransactionHistory /> : <FundingFee />
       }
+      <ModalFilter
+        show={showFilter}
+        setShow={setShowFilter}
+      />
     </KeyBoardSafe>
   )
 }

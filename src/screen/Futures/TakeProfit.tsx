@@ -71,7 +71,7 @@ const TakeProfit = ({ theme, t }: Props) => {
                         font={fonts.RM}
                         color={theme.black}
                         textAlign={'center'}
-                        hint={'Market Price'}
+                        hint={t('Market Price')}
                         hintColor={colors.grayBlue}
                     />
                 </Box>

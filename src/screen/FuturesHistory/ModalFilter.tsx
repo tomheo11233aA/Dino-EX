@@ -3,13 +3,12 @@ import { useAppDispatch, useTheme } from '@hooks/index';
 import Modality from '@reuse/Modality';
 import { height, width } from '@util/responsive';
 import React from 'react';
-import CloseStopProfit from './CloseStopProfit';
 import { useTranslation } from 'react-i18next';
-import OpenStopProfit from './OpenStopProfit';
+import CloseModalFilter from './CloseModalFilter';
 import { Pressable } from 'react-native';
-import futuresSlice from '@slice/futuresSlice';
-import TakeProfit from './TakeProfit';
-import StopLoss from './StopLoss';
+import Time from './Time';
+import Status from './Status';
+import Side from './Side';
 
 interface Props {
     show: boolean;
@@ -18,7 +17,7 @@ interface Props {
 
 const RADIUS_CONTENT = 10
 
-const ModalStopFrofit = ({ show = true, setShow }: Props) => {
+const ModalFilter = ({ show = true, setShow }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
@@ -28,12 +27,7 @@ const ModalStopFrofit = ({ show = true, setShow }: Props) => {
             show={show}
             setShow={setShow}
         >
-            <Pressable onPress={() =>
-                dispatch(futuresSlice.actions.setStopProfit({
-                    showModal: false,
-                }))
-            }
-            >
+            <Pressable onPress={() => setShow(false)}>
                 <Box width={width} height={height} opacity={0} />
             </Pressable>
             <Box
@@ -47,13 +41,13 @@ const ModalStopFrofit = ({ show = true, setShow }: Props) => {
                 borderTopLeftRadius={RADIUS_CONTENT}
                 borderTopRightRadius={RADIUS_CONTENT}
             >
-                <CloseStopProfit  {...{ dispatch, theme, t }} />
-                <OpenStopProfit {...{ theme, t }} />
-                <TakeProfit {...{ theme, t }} />
-                <StopLoss  {...{ theme, t }} />
+                <CloseModalFilter setShow={setShow} />
+                <Time />
+                <Status />
+                <Side />
             </Box>
         </Modality>
     )
 }
 
-export default ModalStopFrofit
+export default ModalFilter
