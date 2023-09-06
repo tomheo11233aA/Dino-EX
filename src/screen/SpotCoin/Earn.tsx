@@ -17,19 +17,19 @@ export default ({ theme, t }: any) => {
                 colors={[theme.gray2, theme.yellow4]}
                 start={{ x: 0.2, y: 0.5 }} end={{ x: 1, y: 0 }}
                 style={{
-                    width: '100%',
-                    marginTop: 12,
                     padding: 13,
+                    marginTop: 12,
+                    width: '100%',
+                    borderRadius: 5,
                     flexDirection: 'row',
                     alignItems: 'center',
-                    borderRadius: 5
                 }}
             >
                 <Icon
-                    source={require('@images/wallet/hand-money.png')}
-                    resizeMode={'contain'}
                     size={24}
                     marginRight={10}
+                    resizeMode={'contain'}
+                    source={require('@images/wallet/hand-money.png')}
                 />
                 <Box alignStart>
                     <Txt fontFamily={fonts.RM} size={11} color={theme.black}>

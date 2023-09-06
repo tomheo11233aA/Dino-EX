@@ -68,7 +68,7 @@ const Item = ({ item, t, theme }: Props) => {
 
             <Box row justifySpaceBetween marginTop={15}>
                 <Box>
-                    <Txt color={colors.grayBlue}>PNL đóng</Txt>
+                    <Txt color={colors.grayBlue}>PNL close</Txt>
                     <Txt color={color} fontFamily={fonts.M24} size={16}>
                         {item.PNL}
                     </Txt>
