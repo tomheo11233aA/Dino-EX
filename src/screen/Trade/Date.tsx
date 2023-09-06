@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import ItemMoment from './ItemMoment'
+import { fonts } from '@theme/fonts'
 
 const types = ['MA', 'EMA', 'BOLL', 'VOL', 'MACD', 'RSI', 'KDJ', 'OBV']
 
@@ -28,9 +29,11 @@ const Date = () => {
                         key={item}
                         style={{ marginHorizontal: 10 }}
                     >
-                        <Text style={[
-                            { color: type === item ? theme.black : '#707781', fontSize: 12 }
-                        ]}>
+                        <Text style={{
+                            fontSize: 11,
+                            fontFamily: fonts.IBMPR,
+                            color: type === item ? theme.black : '#707781',
+                        }}>
                             {item}
                         </Text>
                     </TouchableOpacity>

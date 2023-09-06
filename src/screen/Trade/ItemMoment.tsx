@@ -9,7 +9,7 @@ const ItemMoment = ({ item, t }: any) => {
             <Text
                 style={{
                     color: colors.grayBlue,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontFamily: fonts.FSCR,
                     fontWeight: '400',
                 }}
@@ -18,7 +18,7 @@ const ItemMoment = ({ item, t }: any) => {
             </Text>
             <Text
                 style={{
-                    fontSize: 12,
+                    fontSize: 10,
                     fontFamily: fonts.M17,
                     color: item.value >= 0 ? colors.greenCan : colors.redCan,
                 }}>

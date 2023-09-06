@@ -53,25 +53,26 @@ const SellInto = () => {
                     justifyContent: 'space-between',
                 }}
             >
-                <Text style={{ marginVertical: 10, color: colors.grayBlue, fontSize: 12 }}>
+                <Text style={{ marginVertical: 10, color: colors.grayBlue, fontSize: 11 }}>
                     {t('Ask')}
                 </Text>
                 <View
                     style={{
+                        borderRadius: 3,
+                        paddingVertical: 2,
                         flexDirection: 'row',
                         alignItems: 'center',
+                        paddingHorizontal: 5,
                         backgroundColor: theme.white2,
-                        padding: 4,
-                        borderRadius: 5,
                     }}
                 >
-                    <Text style={{ fontSize: 10, color: colors.grayBlue, fontWeight: '500' }}>
+                    <Text style={{ fontSize: 11, color: colors.grayBlue, fontWeight: '500', fontFamily: fonts.M17 }}>
                         0.0001
                     </Text>
                     <Img
                         source={require('@images/trade/more.png')}
-                        width={15}
-                        height={15}
+                        width={13}
+                        height={13}
                         marginLeft={5}
                     />
                 </View>

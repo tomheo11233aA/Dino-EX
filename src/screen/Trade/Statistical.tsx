@@ -49,7 +49,7 @@ const Statistical = () => {
                     </Text>
                 </View>
                 <View style={[styles.defiContainer, { backgroundColor: theme.yellow5 }]}>
-                    <Text style={{ color: colors.yellowBold, fontSize: 11 }}>{'DeFi >'}</Text>
+                    <Text style={{ color: colors.yellowBold, fontSize: 9 }}>{'DeFi >'}</Text>
                 </View>
             </View>
 
@@ -109,5 +109,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 10,
+        marginTop: -10,
     }
 })

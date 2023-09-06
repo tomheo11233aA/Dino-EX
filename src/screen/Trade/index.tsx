@@ -24,7 +24,6 @@ export default () => {
   hideBottomTab()
 
   useEffect(() => {
-    console.log('abc')
     dispatch(tradeSlice.actions.setLoading(true))
   }, [])
 

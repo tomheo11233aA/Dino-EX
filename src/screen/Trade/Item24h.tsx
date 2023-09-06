@@ -13,7 +13,7 @@ const Item24h = ({ title, value, topValue = 0 }: Props) => {
     const theme = useTheme()
     return (
         <View style={{ marginVertical: 5 }}>
-            <Text style={{ color: '#7c828e', fontSize: 11, }}>
+            <Text style={{ color: '#7c828e', fontSize: 9, }}>
                 {title}
             </Text>
             <Text

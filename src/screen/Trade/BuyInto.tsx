@@ -45,7 +45,7 @@ const BuyInto = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <Text style={{ marginTop: 10, marginBottom: 11, color: colors.grayBlue, fontSize: 12 }}>
+            <Text style={{ marginTop: 10, marginBottom: 11, color: colors.grayBlue, fontSize: 11 }}>
                 {t('Bid')}
             </Text>
             {buys.map((buy: BuySell, index: number) =>

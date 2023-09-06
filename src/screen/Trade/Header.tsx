@@ -1,3 +1,4 @@
+import Box from '@commom/Box'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
 import { useAppSelector, useTheme } from '@hooks/index'
@@ -16,15 +17,22 @@ const Header = () => {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Img
                         source={require('@images/trade/convert.png')}
-                        width={23}
-                        height={23}
+                        width={20}
+                        height={20}
                         resizeMode={'contain'}
                         marginRight={10}
                         tintColor={theme.black}
                     />
-                    <Txt color={theme.black} bold size={16}>
+                    {/* <Txt color={theme.black} bold size={16}>
                         {coinChoose.currency + '/USDT'}
-                    </Txt>
+                    </Txt> */}
+                    <Box row alignCenter>
+                        <Txt color={theme.black} bold size={16}>
+                            {coinChoose.currency}
+                        </Txt>
+                        <Txt bold size={13}>{'/'}</Txt>
+                        <Txt color={theme.black} bold size={16}>USDT</Txt>
+                    </Box>
                 </View>
             </View>
 
@@ -32,8 +40,8 @@ const Header = () => {
                 <TouchableOpacity onPress={() => goBack()}>
                     <Img
                         source={require('@images/back.png')}
-                        width={20}
-                        height={20}
+                        width={16}
+                        height={16}
                     />
                 </TouchableOpacity>
 
@@ -41,15 +49,15 @@ const Header = () => {
                     <TouchableOpacity>
                         <Img
                             source={require('@images/trade/share.png')}
-                            width={20}
-                            height={20}
+                            width={12}
+                            height={12}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <Img
                             source={require('@images/trade/box.png')}
-                            width={25}
-                            height={25}
+                            width={14}
+                            height={14}
                             resizeMode={'contain'}
                             marginHorizontal={15}
                         />
@@ -57,8 +65,8 @@ const Header = () => {
                     <TouchableOpacity>
                         <Img
                             source={require('@images/trade/star.png')}
-                            width={25}
-                            height={25}
+                            width={16}
+                            height={16}
                         />
                     </TouchableOpacity>
                 </View>
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: 30
+        height: 30,
     },
     container: {
         padding: 10,

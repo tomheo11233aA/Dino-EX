@@ -68,8 +68,8 @@ const Option = ({ icon, title }: IOption) => {
     return (
         <TouchableOpacity style={{ alignItems: 'center' }}>
             <Img
-                width={15}
-                height={15}
+                width={14}
+                height={14}
                 source={icon}
                 marginBottom={6}
                 resizeMode={'contain'}
@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     },
     buySellButton: {
         margin: 5,
-        height: 40,
+        height: 38,
         width: 100,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 5,
+        borderRadius: 4,
     },
     footer: {
         padding: 10,

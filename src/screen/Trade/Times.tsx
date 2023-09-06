@@ -38,8 +38,15 @@ const Times = () => {
     return (
         <View style={{ zIndex: 1, marginBottom: 7 }}>
             <View style={{ flexDirection: 'row', paddingHorizontal: 10, alignItems: 'flex-end' }}>
-                <Text style={{ color: '#707781', marginRight: 10 }}>
-                    {t('Line')}
+                <Text
+                    style={{
+                        color: '#707781',
+                        marginRight: 10,
+                        fontSize: 10,
+                        transform: [{scaleY: 1.1}]
+                    }}
+                >
+                    {t('Đường')}
                 </Text>
                 {listTimeLimit.slice(0, 5).map((time: ITimeLimit) => {
                     const timeNumber = time?.timeString?.slice(0, time?.timeString?.length - 1)
@@ -145,17 +152,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     text: {
-        fontFamily: fonts.FSCR,
-        fontWeight: '400',
+        fontSize: 11,
         color: '#707781',
+        fontWeight: '400',
     },
     time: {
         fontFamily: fonts.M17,
-        fontSize: 14,
+        fontSize: 13,
     },
     timeStr: {
         fontFamily: fonts.IBMPR,
-        fontSize: 12,
+        fontSize: 11,
         color: '#707781',
     }
 })
