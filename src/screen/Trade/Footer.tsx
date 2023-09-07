@@ -3,6 +3,7 @@ import { useAppDispatch, useTheme } from '@hooks/index'
 import { navigate } from '@navigation/navigationRef'
 import { setSide } from '@slice/spotSlice'
 import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
 import { height } from '@util/responsive'
 import { screen } from '@util/screens'
 import React from 'react'
@@ -20,7 +21,7 @@ const Footer = () => {
     const dispatch = useAppDispatch()
 
     return (
-        <View style={[styles.footer, { backgroundColor: theme.white5}]}>
+        <View style={[styles.footer, { backgroundColor: theme.white5 }]}>
             <View style={styles.option}>
                 <Option
                     title={t('More')}
@@ -76,7 +77,12 @@ const Option = ({ icon, title }: IOption) => {
             />
             <Text
                 numberOfLines={1}
-                style={{ color: colors.grayBlue, fontSize: 9 }}
+                style={{
+                    fontFamily: fonts.IBMPR,
+                    color: colors.grayBlue,
+                    fontSize: 9,
+                    transform: [{ scaleX: 0.9 }]
+                }}
             >
                 {title}
             </Text>
@@ -89,7 +95,7 @@ export default Footer
 const styles = StyleSheet.create({
     option: {
         flex: 1,
-        marginTop: 14,
+        marginTop: 10,
         flexDirection: 'row',
         justifyContent: 'space-around',
     },

@@ -17,8 +17,8 @@ const Header = () => {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Img
                         source={require('@images/trade/convert.png')}
-                        width={20}
-                        height={20}
+                        width={19}
+                        height={19}
                         resizeMode={'contain'}
                         marginRight={10}
                         tintColor={theme.black}
@@ -27,11 +27,11 @@ const Header = () => {
                         {coinChoose.currency + '/USDT'}
                     </Txt> */}
                     <Box row alignCenter>
-                        <Txt color={theme.black} bold size={16}>
+                        <Txt color={theme.black} bold size={15}>
                             {coinChoose.currency}
                         </Txt>
                         <Txt bold size={13}>{'/'}</Txt>
-                        <Txt color={theme.black} bold size={16}>USDT</Txt>
+                        <Txt color={theme.black} bold size={15}>USDT</Txt>
                     </Box>
                 </View>
             </View>
@@ -40,8 +40,8 @@ const Header = () => {
                 <TouchableOpacity onPress={() => goBack()}>
                     <Img
                         source={require('@images/back.png')}
-                        width={16}
-                        height={16}
+                        width={15}
+                        height={15}
                     />
                 </TouchableOpacity>
 

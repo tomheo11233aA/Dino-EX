@@ -44,7 +44,7 @@ const Statistical = () => {
                         </Text>
                     </Text>
                     <Text style={[styles.textSmall, { marginLeft: 10, fontFamily: fonts.M24, fontSize: 14 }]}>
-                        {numberCommasDot(1.73)}
+                        {numberCommasDot(percentChange)}
                         <Text style={[styles.textSmall]}>{'%'}</Text>
                     </Text>
                 </View>
@@ -74,6 +74,7 @@ const Statistical = () => {
                     <Item24h
                         title={'24h Vol(USDT)'}
                         value={'6,13M'}
+                        topValue={-1}
                     />
                 </View>
             </View>

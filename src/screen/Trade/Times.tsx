@@ -40,13 +40,14 @@ const Times = () => {
             <View style={{ flexDirection: 'row', paddingHorizontal: 10, alignItems: 'flex-end' }}>
                 <Text
                     style={{
-                        color: '#707781',
-                        marginRight: 10,
                         fontSize: 10,
-                        transform: [{scaleY: 1.1}]
+                        marginRight: 10,
+                        color: '#707781',
+                        fontFamily: fonts.IBMPR,
+                        transform: [{scaleY: 1}]
                     }}
                 >
-                    {t('Đường')}
+                    {t('Line')}
                 </Text>
                 {listTimeLimit.slice(0, 5).map((time: ITimeLimit) => {
                     const timeNumber = time?.timeString?.slice(0, time?.timeString?.length - 1)
@@ -82,8 +83,8 @@ const Times = () => {
                         <Text style={styles.text}>{t('More')}</Text>
                         <Img
                             source={require('@images/trade/more.png')}
-                            width={16}
-                            height={16}
+                            width={13}
+                            height={13}
                         />
                     </TouchableOpacity>
 
@@ -152,9 +153,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     text: {
-        fontSize: 11,
+        fontSize: 10,
         color: '#707781',
         fontWeight: '400',
+        fontFamily: fonts.IBMPR,
     },
     time: {
         fontFamily: fonts.M17,

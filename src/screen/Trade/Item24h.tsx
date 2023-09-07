@@ -1,7 +1,7 @@
 import { useTheme } from '@hooks/index'
 import { fonts } from '@theme/fonts'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
 interface Props {
     title: any | string,
@@ -11,15 +11,34 @@ interface Props {
 
 const Item24h = ({ title, value, topValue = 0 }: Props) => {
     const theme = useTheme()
+
+    const number = title.slice(0, 2)
+    const text = title.slice(2, title.length)
+
     return (
         <View style={{ marginVertical: 5 }}>
-            <Text style={{ color: '#7c828e', fontSize: 9, }}>
-                {title}
+            <Text
+                style={{
+                    fontSize: 11,
+                    fontFamily: fonts.M17,
+                    color: '#7c828e',
+                }}
+            >
+                {number}
+                <Text
+                    style={{
+                        fontSize: 9,
+                        fontFamily: fonts.IBMPR,
+                        color: '#7c828e',
+                    }}
+                >
+                    {text}
+                </Text>
             </Text>
             <Text
                 style={{
+                    fontSize: 10,
                     color: theme.black,
-                    fontSize: 11,
                     fontFamily: fonts.M23,
                     marginTop: topValue + 3,
                 }}

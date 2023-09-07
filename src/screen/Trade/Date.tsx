@@ -8,12 +8,12 @@ import { fonts } from '@theme/fonts'
 const types = ['MA', 'EMA', 'BOLL', 'VOL', 'MACD', 'RSI', 'KDJ', 'OBV']
 
 const dates = [
-    { day: 'Today', value: 2.27 },
-    { day: '7 Days', value: 2.22 },
-    { day: '30 Days', value: 50.38 },
-    { day: '90 Days', value: 49.08 },
-    { day: '180 Days', value: -19.71 },
-    { day: '1 Year', value: -82.45 },
+    { day: 'Today ', value: 2.27 },
+    { day: '7 days', value: 2.22 },
+    { day: '30 days', value: 50.38 },
+    { day: '90 days', value: 49.08 },
+    { day: '180 days', value: -19.71 },
+    { day: '1 year', value: -82.45 },
 ]
 
 const Date = () => {
@@ -31,7 +31,7 @@ const Date = () => {
                     >
                         <Text style={{
                             fontSize: 11,
-                            fontFamily: fonts.IBMPR,
+                            fontFamily: type === item ? fonts.IBMPM : fonts.IBMPR,
                             color: type === item ? theme.black : '#707781',
                         }}>
                             {item}
