@@ -49,7 +49,7 @@ export default ({
                 key={'text_max_chart'}
                 y={y_line_max}
                 x={x_line_max + gap_x1_x2_line_max}
-                fontSize={10}
+                fontSize={8}
                 fill={colors.grayBlue}
                 textAnchor={gap_x1_x2_line_max < 0 ? 'end' : 'start'}
             >
@@ -67,7 +67,7 @@ export default ({
             />
             <TextSVG
                 key={'text_min_chart'}
-                fontSize={10}
+                fontSize={8}
                 fill={colors.grayBlue}
                 x={x_line_min + gap_x1_x2_line_min}
                 y={y_line_min}

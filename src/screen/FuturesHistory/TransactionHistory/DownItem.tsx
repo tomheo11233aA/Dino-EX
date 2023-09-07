@@ -23,13 +23,14 @@ const DownItem = ({
     return (
         <Box row alignCenter marginRight={marginRight}>
             <Txt
-                fontFamily={fonts.AS}
+                size={13}
+                fontFamily={fonts.IBMPM}
                 color={colors.grayBlue}
             >
                 {t(title) + t(value)}
             </Txt>
             <Icon
-                size={15}
+                size={14}
                 source={require('@images/trade/more.png')}
             />
         </Box>

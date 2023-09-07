@@ -1,6 +1,7 @@
 import { numberCommasDot } from "@method/format";
 import { IChart } from "@screen/Futures/Chart";
 import { colors } from "@theme/colors";
+import { fonts } from "@theme/fonts";
 import { width } from "@util/responsive";
 import moment from "moment";
 import { G, Line, Text as TextSVG } from "react-native-svg";
@@ -57,7 +58,7 @@ export default ({
                 x1={width}
                 y1={closeSVG + 15}
                 x2={width - 50}
-                y2={closeSVG + 15}
+                y2={closeSVG + 13}
                 stroke={theme.yellow6}
                 strokeWidth={15}
             />
@@ -67,7 +68,7 @@ export default ({
                 x={width - 4}
                 y={closeSVG + 17}
                 textAnchor={'end'}
-                fontSize={10}
+                fontSize={8}
             >
                 {moment.utc(moment.duration(countDown, 's').asMilliseconds()).format('HH:mm:ss') }
             </TextSVG>
@@ -77,17 +78,18 @@ export default ({
                 x={width - 4}
                 y={closeSVG + 4}
                 textAnchor={'end'}
-                fontSize={10}
+                fontSize={8}
             >
                 {numberCommasDot(Number(lastChart.close).toFixed(2))}
             </TextSVG>
             <TextSVG
                 key={'text_MA7'}
-                fill={colors.yellowBold}
+                fill={colors.yellow}
                 x={x_text_ma7}
                 y={12}
                 textAnchor={'start'}
-                fontSize={9}
+                fontSize={8}
+                fontFamily={fonts.IBMPM}
             >
                 {`MA(7): ${ma7}`}
             </TextSVG>
@@ -97,7 +99,8 @@ export default ({
                 x={x_text_ma7 + 90}
                 y={12}
                 textAnchor={'start'}
-                fontSize={9}
+                fontFamily={fonts.IBMPM}
+                fontSize={8}
             >
                 {`MA(25): ${ma25}`}
             </TextSVG>
@@ -107,7 +110,8 @@ export default ({
                 x={x_text_ma7 + 185}
                 y={12}
                 textAnchor={'start'}
-                fontSize={9}
+                fontFamily={fonts.IBMPM}
+                fontSize={8}
             >
                 {`MA(99): ${ma99}`}
             </TextSVG>

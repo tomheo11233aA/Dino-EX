@@ -21,8 +21,8 @@ const Coins = () => {
 
     const handleMoveTrade = (coin: Coin) => {
         dispatch(setCoinChoosed(coin))
-        // navigation.navigate(screen.TRADE)
-        navigation.navigate(screen.EARN)
+        navigation.navigate(screen.TRADE)
+        // navigation.navigate(screen.EARN)
     }
 
     return (

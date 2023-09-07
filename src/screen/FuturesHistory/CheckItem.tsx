@@ -31,7 +31,7 @@ const CheckItem = ({ title }: Props) => {
                 </Txt>
             </Box>
 
-            <Txt color={theme.white} fontFamily={fonts.SGM}>
+            <Txt color={theme.white} fontFamily={fonts.IBMPR} size={13}>
                 {t(title)}
             </Txt>
         </Box>

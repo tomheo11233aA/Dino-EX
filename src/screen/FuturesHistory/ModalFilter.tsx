@@ -1,14 +1,13 @@
 import Box from '@commom/Box';
-import { useAppDispatch, useTheme } from '@hooks/index';
+import { useTheme } from '@hooks/index';
 import Modality from '@reuse/Modality';
 import { height, width } from '@util/responsive';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import CloseModalFilter from './CloseModalFilter';
 import { Pressable } from 'react-native';
-import Time from './Time';
-import Status from './Status';
+import CloseModalFilter from './CloseModalFilter';
 import Side from './Side';
+import Status from './Status';
+import Time from './Time';
 
 interface Props {
     show: boolean;
@@ -19,8 +18,6 @@ const RADIUS_CONTENT = 10
 
 const ModalFilter = ({ show = true, setShow }: Props) => {
     const theme = useTheme()
-    const { t } = useTranslation()
-    const dispatch = useAppDispatch()
 
     return (
         <Modality

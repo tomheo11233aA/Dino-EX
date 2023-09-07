@@ -20,7 +20,7 @@ export default () => {
         if (!isLogin) {
             navigate(screen.LOGIN)
         } else {
-            navigate(screen.EARN)
+            // navigate(screen.EARN)
         }
     }
 
@@ -35,8 +35,7 @@ export default () => {
                 if (!isLogin) {
                     navigate(screen.LOGIN)
                 } else {
-                    // navigate(screen.P2P_TAB)
-                    navigate(screen.EARN)
+                    navigate(screen.P2P_TAB)
                 }
             }}>
                 <LinearGradient
@@ -65,8 +64,7 @@ export default () => {
                     if (!isLogin) {
                         navigate(screen.LOGIN)
                     } else {
-                        // navigate(screen.DEPOSIT_VND)
-                        navigate(screen.EARN)
+                        navigate(screen.DEPOSIT_VND)
                     }
                 }}
                 marginHorizontal={10}

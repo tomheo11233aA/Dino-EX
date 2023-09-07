@@ -5,9 +5,11 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 import CheckItem from './CheckItem'
+import { useTranslation } from 'react-i18next'
 
 const Status = () => {
     const theme = useTheme()
+    const { t } = useTranslation()
 
     return (
         <Box>
@@ -16,8 +18,8 @@ const Status = () => {
                 borderBottomWidth={1}
                 borderColor={theme.gray2}
             >
-                <Txt color={colors.grayBlue} size={16} fontFamily={fonts.AS}>
-                    Status
+                <Txt color={colors.grayBlue} fontFamily={fonts.AS}>
+                    {t('Status')}
                 </Txt>
             </Box>
 

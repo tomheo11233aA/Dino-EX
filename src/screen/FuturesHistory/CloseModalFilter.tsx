@@ -18,7 +18,7 @@ const CloseModalFilter = ({ setShow }: any) => {
             justifySpaceBetween
         >
             <Txt></Txt>
-            <Txt fontFamily={fonts.AS} size={18} color={theme.black}>
+            <Txt fontFamily={fonts.AS} size={16} color={theme.black}>
                 {t('Filter')}
             </Txt>
             <Btn onPress={() => setShow(false)}>

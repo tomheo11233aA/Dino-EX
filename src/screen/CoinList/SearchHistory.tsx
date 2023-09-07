@@ -17,7 +17,7 @@ interface Props {
 const SearchHistory = ({ coins, theme, t }: Props) => {
     return (
         <Box>
-            <Txt fontFamily={fonts.AS} size={18} marginTop={20} color={theme.black}>
+            <Txt fontFamily={fonts.AS} size={16} marginTop={20} color={theme.black}>
                 {t('Search History')}
             </Txt>
             <Box row wrap marginTop={20}>
@@ -31,7 +31,13 @@ const SearchHistory = ({ coins, theme, t }: Props) => {
                         backgroundColor={theme.gray3}
                         onPress={() => navigate(screen.DEPOSIT_CRYPTO, { coin })}
                     >
-                        <Txt color={colors.grayBlue3} fontFamily={fonts.AS}>{coin.currency}</Txt>
+                        <Txt
+                            size={13}
+                            fontFamily={fonts.AS}
+                            color={colors.grayBlue3}
+                        >
+                            {coin.currency}
+                        </Txt>
                     </Btn>
                 )}
             </Box>

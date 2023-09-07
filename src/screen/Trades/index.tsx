@@ -10,13 +10,12 @@ import Login from '@screen/Wallet/Login'
 import { loadingSpotSelector } from '@selector/spotSelector'
 import { isLoginUserSelector } from '@selector/userSelector'
 import { setLoading } from '@slice/spotSlice'
+import { height } from '@util/responsive'
 import React, { useEffect, useRef } from 'react'
 import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
-import { height } from '@util/responsive'
-import ComingSoon from '@screen/ComingSoon'
 
 const Trades = () => {
   const theme = useTheme()
@@ -42,32 +41,30 @@ const Trades = () => {
   }, [loading])
 
   return (
-    // <>
-    //   {isLogin ?
-    //     <Box flex={1}>
-    //       {!loading ?
-    //         <>
-    //           <Box height={height - HEIGHT_BOTTOM_TAB}>
-    //             <ToastTop ref={toastTopRef} />
-    //             <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
-    //               <Header drawerRef={drawerRef} />
-    //               <Transaction toastTopRef={toastTopRef} />
-    //             </KeyBoardSafe>
-    //             <OpenCloseChart />
-    //           </Box>
-    //           <Drawer ref={drawerRef} />
-    //         </> :
-    //         <Box flex={1} alignCenter justifyCenter backgroundColor={theme.bg}>
-    //           <LoadingYellow />
-    //         </Box>
-    //       }
-    //     </Box>
-    //     :
-    //     <Login />
-    //   }
-    // </>
-
-    <ComingSoon />
+    <>
+      {isLogin ?
+        <Box flex={1}>
+          {!loading ?
+            <>
+              <Box height={height - HEIGHT_BOTTOM_TAB}>
+                <ToastTop ref={toastTopRef} />
+                <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
+                  <Header drawerRef={drawerRef} />
+                  <Transaction toastTopRef={toastTopRef} />
+                </KeyBoardSafe>
+                <OpenCloseChart />
+              </Box>
+              <Drawer ref={drawerRef} />
+            </> :
+            <Box flex={1} alignCenter justifyCenter backgroundColor={theme.bg}>
+              <LoadingYellow />
+            </Box>
+          }
+        </Box>
+        :
+        <Login />
+      }
+    </>
   )
 }
 

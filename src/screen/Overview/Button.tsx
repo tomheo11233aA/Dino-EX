@@ -20,7 +20,9 @@ const Button = ({ t }: any) => {
                     backgroundColor={theme.gray2}
                     onPress={() => navigate(screen.COIN_LIST)}
                 >
-                    <Txt fontFamily={fonts.IBMPM} color={theme.black}>{t('Deposit')}</Txt>
+                    <Txt fontFamily={fonts.IBMPM} color={theme.black}>
+                        {t('Deposit')}
+                    </Txt>
                 </Btn>
 
                 <Btn

@@ -19,7 +19,7 @@ const Options = () => {
         if (!isLogin) {
             navigate(screen.LOGIN)
         } else {
-            navigate(screen.EARN)
+            // navigate(screen.EARN)
         }
     }
 

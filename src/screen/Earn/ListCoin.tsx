@@ -37,16 +37,16 @@ const ListCoin = () => {
                         >
                             <Box row alignCenter>
                                 <Icon
-                                    size={27}
+                                    size={24}
                                     resizeMode={'contain'}
                                     source={{ uri: contants.HOSTING + '/' + coin.image }}
                                     marginRight={15}
                                 />
-                                <Txt color={theme.black} fontFamily={fonts.AS} size={16}>
+                                <Txt color={theme.black} fontFamily={fonts.AS}>
                                     {coin.currency}
                                 </Txt>
                             </Box>
-                            <Txt color={color} fontFamily={fonts.M24} size={17}>
+                            <Txt color={color} fontFamily={fonts.M24} size={15}>
                                 {coin.percentChange}
                                 <Txt color={color} size={15} fontFamily={fonts.AS}>%</Txt>
                             </Txt>

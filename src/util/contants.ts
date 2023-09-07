@@ -1,5 +1,5 @@
 const contants = { 
-    HOSTING: 'https://binance.dk-tech.vn',
+    HOSTING: 'https://trade.dk-tech.vn',
     TOKEN: 'token',
     NOT_KYC: 'NOT_KYC',
     KYC_PENDING: 'PENDING',

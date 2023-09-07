@@ -4,8 +4,8 @@ import React from 'react'
 import { Text, View } from 'react-native'
 
 const ItemMoment = ({ item, t }: any) => {
-    const number = item.day.substr(0, item.day.indexOf(" "))
-    const text = item.day.substr(item.day.indexOf(" "), item.day.length)
+    const number = item.day.slice(0, item.day.indexOf(" "))
+    const text = item.day.slice(item.day.indexOf(" "), item.day.length)
     const n = Number.isNaN(number / 2)
 
     return (

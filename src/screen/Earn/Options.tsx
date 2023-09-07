@@ -2,6 +2,7 @@ import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { useTheme } from '@hooks/index'
+import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -54,7 +55,7 @@ const Options = () => {
                         source={option.icon}
                         resizeMode={'contain'}
                     />
-                    <Txt color={theme.black} size={11}>
+                    <Txt color={theme.black} size={11} fontFamily={fonts.IBMPR}>
                         {t(option.title)}
                     </Txt>
                 </Box>

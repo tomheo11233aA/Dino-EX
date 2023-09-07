@@ -96,8 +96,11 @@ const tradeSlice = createSlice({
             state.countDown = state.closeTimestamp - timeCurrency + 3
             for (let index = 0; index < payload.dataSocket.length; index++) {
                 if (payload.dataSocket[index].timeString === state.timeLimit.timeString) {
-                    const data = payload.dataSocket[index]
+                    let data = payload.dataSocket[index]
                     if (state.countDown < 1) {
+                        const close = state.candles[state.candles.length - 1].close
+                        data = { ...data, open: close, high: close, low: close }
+
                         state.dataTrade.push(data)
                         state.candles.push(data)
                         state.dataTrade.shift()

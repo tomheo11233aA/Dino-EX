@@ -17,10 +17,10 @@ interface Props {
 }
 
 const Coins = ({ coins, theme }: Props) => {
-    const { t }= useTranslation()
+    const { t } = useTranslation()
     return (
         <Box marginTop={30}>
-            <Txt fontFamily={fonts.AS} size={18} color={theme.black}>
+            <Txt fontFamily={fonts.AS} size={16} color={theme.black}>
                 {t('Coin List')}
             </Txt>
             {coins.map((coin: Coin) =>
@@ -33,12 +33,14 @@ const Coins = ({ coins, theme }: Props) => {
                 >
                     <Icon
                         source={{ uri: contants.HOSTING + '/' + coin.image }}
-                        size={30}
+                        size={27}
                         marginRight={15}
                     />
                     <Box>
-                        <Txt color={theme.black}>{coin.currency}</Txt>
-                        <Txt color={colors.gray5} size={12}>{coin.symbol}</Txt>
+                        <Txt color={theme.black} size={13}>
+                            {coin.currency}
+                        </Txt>
+                        <Txt color={colors.gray5} size={11}>{coin.symbol}</Txt>
                     </Box>
                 </Btn>
             )}

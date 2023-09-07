@@ -32,7 +32,7 @@ const Header = ({ theme, t }: any) => {
                 </Box>
             </Box>
             <Btn width={70} onPress={() => goBack()}>
-                <Txt fontFamily={fonts.AS} color={colors.yellowBold} size={16}>
+                <Txt fontFamily={fonts.AS} color={colors.yellowBold}>
                     {t('Cancel')}
                 </Txt>
             </Btn>

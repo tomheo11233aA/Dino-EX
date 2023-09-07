@@ -17,7 +17,7 @@ interface Props {
 const Trending = ({ coins, theme, t }: Props) => {
     return (
         <Box>
-            <Txt fontFamily={fonts.AS} size={18} marginTop={30} color={theme.black}>
+            <Txt fontFamily={fonts.AS} size={16} marginTop={30} color={theme.black}>
                 {t('Trending')}
             </Txt>
             <Box row wrap marginTop={20}>
@@ -32,7 +32,9 @@ const Trending = ({ coins, theme, t }: Props) => {
                         backgroundColor={theme.gray3}
                         marginVertical={10}
                     >
-                        <Txt color={colors.grayBlue3} fontFamily={fonts.AS}>{coin.currency}</Txt>
+                        <Txt color={colors.grayBlue3} fontFamily={fonts.AS} size={13}>
+                            {coin.currency}
+                        </Txt>
                     </Btn>
                 )}
                 {/* <Box

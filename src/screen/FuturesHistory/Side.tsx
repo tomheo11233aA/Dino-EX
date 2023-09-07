@@ -5,9 +5,11 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 import CheckItem from './CheckItem'
+import { useTranslation } from 'react-i18next'
 
 const Side = () => {
     const theme = useTheme()
+    const { t } = useTranslation()
 
     return (
         <Box marginTop={40}>
@@ -16,8 +18,8 @@ const Side = () => {
                 borderBottomWidth={1}
                 borderColor={theme.gray2}
             >
-                <Txt color={colors.grayBlue} size={16} fontFamily={fonts.AS}>
-                    Direction
+                <Txt color={colors.grayBlue} fontFamily={fonts.AS}>
+                    {t('Direction')}
                 </Txt>
             </Box>
             <Box row>
@@ -38,7 +40,9 @@ const Side = () => {
                     paddingVertical={10}
                     backgroundColor={theme.gray2}
                 >
-                    <Txt color={theme.black} fontFamily={fonts.RM}>Reset</Txt>
+                    <Txt color={theme.black} fontFamily={fonts.RM}>
+                        {t('Reset')}
+                    </Txt>
                 </Box>
                 <Box
                     flex={1}
@@ -47,7 +51,9 @@ const Side = () => {
                     paddingVertical={10}
                     backgroundColor={colors.yellow}
                 >
-                    <Txt color={colors.black} fontFamily={fonts.RM}>Confirm</Txt>
+                    <Txt color={colors.black} fontFamily={fonts.RM}>
+                        {t('Confirm')}
+                    </Txt>
                 </Box>
             </Box>
         </Box>

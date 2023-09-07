@@ -23,7 +23,7 @@ const Header = ({ setShowFilter }: Props) => {
             alignCenter
             justifySpaceBetween
         >
-            <Back />
+            <Back size={16} />
             <Txt fontFamily={fonts.AS} size={16} color={theme.black}>
                 {t('USDⓢ-M Futures History')}
             </Txt>
@@ -31,7 +31,7 @@ const Header = ({ setShowFilter }: Props) => {
                 onPress={() => setShowFilter(true)}
             >
                 <Icon
-                    size={17}
+                    size={15}
                     tintColor={colors.grayBlue}
                     source={require('@images/wallet/filter.png')}
                 />

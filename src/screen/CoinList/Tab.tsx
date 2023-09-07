@@ -22,27 +22,27 @@ const Tab = ({ tab, setTab, theme }: Props) => {
         >
             <Btn onPress={() => setTab('Crypto')}>
                 <Txt
-                    size={18}
+                    size={16}
                     fontFamily={fonts.AS}
                     color={tab === 'Crypto' ? theme.black: colors.gray5}
                 >
                     Crypto
                 </Txt>
                 {tab === 'Crypto' &&
-                    <Box width={35} height={4} backgroundColor={colors.yellow} marginTop={10} />
+                    <Box width={30} height={4} backgroundColor={colors.yellow} marginTop={10} />
                 }
             </Btn>
 
             <Btn onPress={() => setTab('Cash')}>
                 <Txt
-                    size={18}
+                    size={16}
                     fontFamily={fonts.AS}
                     color={tab === 'Cash' ? theme.black : colors.gray5}
                 >
                     Cash
                 </Txt>
                 {tab === 'Cash' &&
-                    <Box width={35} height={4} backgroundColor={colors.yellow} marginTop={10} />
+                    <Box width={30} height={4} backgroundColor={colors.yellow} marginTop={10} />
                 }
             </Btn>
         </Box>

@@ -39,7 +39,7 @@ const Wallet = () => {
                   <Spot /> : tab === 'Funding' ?
                     <Funding /> : tab === 'Margin' ?
                       <Margin /> : tab === 'Earn' ?
-                        <Earn /> : <Future />
+                        <Margin /> : <Future />
               }
             </Box>
           </KeyBoardSafe>

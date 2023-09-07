@@ -50,7 +50,7 @@ const Tabs = ({ tab, setTab }: Props) => {
                             fontFamily={fonts.AS}
                             color={tab === item ? theme.black : colors.grayBlue}
                         >
-                            {item}
+                            {t(item)}
                         </Txt>
                         {tab === item &&
                             <Box

@@ -36,7 +36,7 @@ const OpenOrders = () => {
           marginTop={10}
           backgroundColor={theme.gray2}
         >
-          <Txt color={theme.black} size={13} fontFamily={fonts.SGM}>
+          <Txt color={theme.black} size={11} fontFamily={fonts.IBMPM}>
             {t('Cancel all')}
           </Txt>
         </Box>
@@ -44,17 +44,17 @@ const OpenOrders = () => {
 
       <Box alignCenter marginTop={100}>
         <Icon
-          size={100}
+          size={70}
           resizeMode={'contain'}
           source={require('@images/future/find.png')}
         />
         <Txt
-          size={15}
+          size={13}
           marginTop={20}
-          fontFamily={fonts.SGM}
+          fontFamily={fonts.IBMPR}
           color={colors.grayBlue}
         >
-          Not position
+          {t('Not positions')}
         </Txt>
       </Box>
     </Box>

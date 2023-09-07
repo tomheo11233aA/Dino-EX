@@ -44,7 +44,7 @@ export default ({
                                         key={`T_l2_candles_Y ${index}`}
                                         x={x_point}
                                         y={height_container - 10}
-                                        fontSize={9}
+                                        fontSize={8}
                                         fill={colors.grayBlue}
                                         textAnchor={'middle'}
                                     >

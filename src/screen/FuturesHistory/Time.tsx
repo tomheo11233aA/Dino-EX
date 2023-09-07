@@ -14,8 +14,8 @@ const Time = () => {
 
   return (
     <Box>
-      <Txt color={colors.grayBlue} size={15} fontFamily={fonts.SGM}>
-        Time
+      <Txt color={colors.grayBlue} size={13} fontFamily={fonts.SGM}>
+        {t('Time')}
       </Txt>
       <Box
         row
@@ -25,23 +25,38 @@ const Time = () => {
         paddingVertical={15}
         borderColor={theme.gray2}
       >
-        {times.map((time) =>
-          <Box
-            key={time}
-            alignCenter
-            width={'23%'}
-            paddingVertical={3}
-            paddingHorizontal={7}
-            backgroundColor={theme.gray2}
-          >
-            <Txt
-              fontFamily={fonts.IBMPM}
-              color={colors.grayBlue}
+        {times.map((time) => {
+          const number = time.slice(0, time.indexOf(" "))
+          const text = time.slice(time.indexOf(" "), time.length)
+
+          return (
+            <Box
+              row
+              key={time}
+              alignCenter
+              justifyCenter
+              width={'23%'}
+              paddingVertical={3}
+              paddingHorizontal={7}
+              backgroundColor={theme.gray2}
             >
-              {time}
-            </Txt>
-          </Box>
-        )}
+              <Txt
+                size={14}
+                fontFamily={fonts.M24}
+                color={colors.grayBlue}
+              >
+                {number}
+              </Txt>
+              <Txt
+                fontFamily={fonts.IBMPM}
+                color={colors.grayBlue}
+                size={13}
+              >
+                {text}
+              </Txt>
+            </Box>
+          )
+        })}
       </Box>
 
       <Box row alignCenter justifySpaceBetween>
@@ -51,12 +66,14 @@ const Time = () => {
           paddingHorizontal={30}
           backgroundColor={theme.gray2}
         >
-          <Txt color={theme.black} fontFamily={fonts.M24} size={16}>
+          <Txt color={theme.black} fontFamily={fonts.M24}>
             2023-06-02
           </Txt>
         </Box>
         <Box>
-          <Txt color={theme.black}>{t('to')}</Txt>
+          <Txt color={colors.grayBlue} fontFamily={fonts.IBMPR}>
+            {t('to')}
+          </Txt>
         </Box>
         <Box
           radius={3}
@@ -64,13 +81,18 @@ const Time = () => {
           paddingHorizontal={30}
           backgroundColor={theme.gray2}
         >
-          <Txt color={theme.black} fontFamily={fonts.M24} size={16}>
+          <Txt color={theme.black} fontFamily={fonts.M24}>
             2023-08-31
           </Txt>
         </Box>
       </Box>
 
-      <Txt color={colors.grayBlue} marginVertical={20} size={13}>
+      <Txt
+        size={13}
+        marginVertical={20}
+        color={colors.grayBlue}
+        fontFamily={fonts.IBMPR}
+      >
         {t('The system only displays transaction history within the past 3 months. For more data, go to the web and export the report.')}
       </Txt>
     </Box>

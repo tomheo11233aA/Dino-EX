@@ -30,23 +30,21 @@ const CoinList = () => {
     }
 
     return (
-        // <KeyBoardSafe>
-        //     <Box paddingHorizontal={10}>
-        //         <Header {...{ theme, t }} />
-        //         <Tab {...{ tab, setTab, theme }} />
-        //         {tab === 'Crypto' ?
-        //             <Box>
-        //                 <SearchHistory {...{ coins, theme, t }} />
-        //                 <Trending {...{ coins, theme, t }} />
-        //                 <Coins {...{ coins, theme }} />
-        //             </Box>
-        //             :
-        //             <></>
-        //         }
-        //     </Box>
-        // </KeyBoardSafe>
-
-        <ComingSoon />
+        <KeyBoardSafe>
+            <Box paddingHorizontal={15}>
+                <Header {...{ theme, t }} />
+                <Tab {...{ tab, setTab, theme }} />
+                {tab === 'Crypto' ?
+                    <Box>
+                        <SearchHistory {...{ coins, theme, t }} />
+                        <Trending {...{ coins, theme, t }} />
+                        <Coins {...{ coins, theme }} />
+                    </Box>
+                    :
+                    <></>
+                }
+            </Box>
+        </KeyBoardSafe>
     )
 }
 

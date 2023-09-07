@@ -44,7 +44,7 @@ export default ({
                             fill={colors.grayBlue}
                             y={gap_x_line}
                             textAnchor={'end'}
-                            fontSize={9}
+                            fontSize={8}
                         >
                             {numberCommasDot(textValue.toFixed(2))}
                         </TextSVG>
