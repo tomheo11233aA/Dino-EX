@@ -12,7 +12,7 @@ const Google = ({ t, theme }: any) => {
             justifyCenter
             backgroundColor={theme.gray}
             row
-            height={50}
+            height={45}
         >
             <Img
                 source={require('@images/login/google.png')}
@@ -20,7 +20,7 @@ const Google = ({ t, theme }: any) => {
                 height={20}
                 marginRight={10}
             />
-            <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
+            <Txt size={16} fontFamily={fonts.IBMPM} color={theme.black}>
                 {t('Continue with Google')}
             </Txt>
         </Box>

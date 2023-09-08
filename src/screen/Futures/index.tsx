@@ -16,6 +16,7 @@ import Transaction from './Transaction'
 import { useNavigation } from '@react-navigation/native'
 import { HEIGHT_BOTTOM_TAB, styles } from '@navigation/Container'
 import { height } from '@util/responsive'
+import { AppState, AppStateStatus } from 'react-native'
 
 const Futures = () => {
   const theme = useTheme()
@@ -25,6 +26,16 @@ const Futures = () => {
   const isLogin = useAppSelector(isLoginUserSelector)
   const loading = useAppSelector(loadingFuturesSelector)
   const navigation = useNavigation()
+
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+  })
+
+  const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    if (nextAppState === 'active') {
+      dispatch(futuresSlice.actions.setLoading(true))
+    }
+  }
 
   useEffect(() => {
     if (loading) {

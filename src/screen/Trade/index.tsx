@@ -7,7 +7,7 @@ import { loadingTradeSelector } from "@selector/tradeSelector"
 import tradeSlice from "@slice/tradeSlice"
 import { colors } from "@theme/colors"
 import { useEffect } from "react"
-import { StyleSheet, View } from "react-native"
+import { AppState, AppStateStatus, StyleSheet, View } from "react-native"
 import Date from "./Date"
 import Diagram from "./Diagram"
 import Footer from "./Footer"
@@ -20,12 +20,19 @@ export default () => {
   const theme = useTheme()
   const dispatch = useAppDispatch()
   const loading = useAppSelector(loadingTradeSelector)
-  
+
   hideBottomTab()
 
   useEffect(() => {
     dispatch(tradeSlice.actions.setLoading(true))
+    AppState.addEventListener('change', handleAppStateChange);
   }, [])
+
+  const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    if (nextAppState === 'active') {
+      dispatch(tradeSlice.actions.setLoading(true))
+    }
+  }
 
   useEffect(() => {
     if (loading) {

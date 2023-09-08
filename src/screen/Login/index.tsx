@@ -12,7 +12,7 @@ import { loadingUserSelector } from '@selector/userSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { screen } from '@util/screens'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { RootState } from 'src/redux/store'
@@ -92,7 +92,7 @@ const Login = () => {
             size={16}
             marginBottom={5}
             color={colors.grayBlue}
-            fontFamily={fonts.SGM}
+            fontFamily={fonts.IBMPM}
           >
             Email
           </Txt>
@@ -109,7 +109,7 @@ const Login = () => {
             marginBottom={5}
             size={16}
             color={colors.grayBlue}
-            fontFamily={fonts.SGM}
+            fontFamily={fonts.IBMPM}
           >
             {t('Password')}
           </Txt>
@@ -125,8 +125,8 @@ const Login = () => {
               style={styles.buttonEye}
             >
               <Img
-                width={30}
-                height={30}
+                width={25}
+                height={25}
                 source={security ? require('@images/login/hidden.png') : require('@images/login/view.png')}
               />
             </TouchableOpacity>
@@ -135,7 +135,7 @@ const Login = () => {
         </Box>
 
         <Btn
-          height={50}
+          height={45}
           marginTop={30}
           width={'100%'}
           onPress={handleLogin}
