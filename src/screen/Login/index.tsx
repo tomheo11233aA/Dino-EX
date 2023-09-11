@@ -4,24 +4,22 @@ import Btn from '@commom/Btn'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { cannotConnect } from '@method/alert'
 import { goBack, navigate } from '@navigation/navigationRef'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import LoadingBlack from '@reuse/LoadingBlack'
 import TextError from '@reuse/TextError'
 import { loadingUserSelector } from '@selector/userSelector'
+import { checkUser2fa } from '@service/userService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { screen } from '@util/screens'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { RootState } from 'src/redux/store'
-import Google from './Google'
-import Option from './Option'
-import Or from './Or'
-import { checkUser2fa } from '@service/userService'
 import ModalOTP2FA from './ModalOTP2FA'
-import { cannotConnect } from '@method/alert'
+import Option from './Option'
 
 const Login = () => {
   const theme = useTheme()
@@ -148,8 +146,6 @@ const Login = () => {
             </Txt>
           }
         </Btn>
-        <Or {...{ t, theme }} />
-        <Google {...{ t, theme }} />
         <Txt marginTop={40} color={'#cd9f1b'} size={16} fontFamily={fonts.AS}>
           {t('Create a Binance Account')}
         </Txt>

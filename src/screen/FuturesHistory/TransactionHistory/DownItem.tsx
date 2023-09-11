@@ -1,7 +1,6 @@
-import Box from '@commom/Box'
+import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { useTheme } from '@hooks/index'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
@@ -10,18 +9,25 @@ import { useTranslation } from 'react-i18next'
 interface Props {
     title: string;
     value: string;
+    onPress?: Function;
     marginRight?: number;
 }
 
 const DownItem = ({
     title,
     value,
+    onPress,
     marginRight = 20,
 }: Props) => {
     const { t } = useTranslation()
 
     return (
-        <Box row alignCenter marginRight={marginRight}>
+        <Btn
+            row
+            alignCenter
+            onPress={onPress}
+            marginRight={marginRight}
+        >
             <Txt
                 size={13}
                 fontFamily={fonts.IBMPM}
@@ -33,7 +39,7 @@ const DownItem = ({
                 size={14}
                 source={require('@images/trade/more.png')}
             />
-        </Box>
+        </Btn>
     )
 }
 

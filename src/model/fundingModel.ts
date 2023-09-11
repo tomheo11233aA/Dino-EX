@@ -1,14 +1,40 @@
 export interface IBank {
-    created_at: string,
     id: number,
     image: number,
+    created_at: string,
     name_banking: string,
-    number_banking: string,
     owner_banking: string,
+    number_banking: string,
 }
 
 export interface IReqCreateDepositVND {
-    idBanking: string | number;
     amount: string;
     message: string;
+    idBanking: string | number;
+}
+
+export interface IOpenOrder {
+    id: number;
+    cost: number;
+    core: number;
+    type: number;
+    side: string;
+    email: string;
+    userid: number;
+    amount: number;
+    regime: string;
+    symbol: string;
+    typeTrade: string;
+    created_at: string;
+    amountCoin: number;
+    idPosition: number;
+    orderEntryPrice: number;
+    closeEntryPrice: number;
+    liquidationPrice: number;
+}
+
+export interface IReqHistoryOpenOrder {
+    page: number;
+    limit: number;
+    symbol: string;
 }

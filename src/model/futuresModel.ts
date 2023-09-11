@@ -1,34 +1,34 @@
 export interface IPositions {
-    amountCoin: number;
-    core: number;
-    email: string;
-    entryPrice: number;
     id: number;
-    liquidationPrice: number;
-    margin: number;
-    regime: 'cross' | 'isolated';
-    side: 'buy' | 'sell';
-    symbol: string;
-    userid: number;
-    PNL: number;
     ROE: number;
+    PNL: number;
     RISK: number;
     SIZE: number;
-    MARK_PRICE: number;
-    LIQ_PRICE: number;
+    core: number;
     ROUND: number;
+    email: string;
+    margin: number;
+    symbol: string;
+    userid: number;
+    LIQ_PRICE: number;
+    MARK_PRICE: number;
+    amountCoin: number;
+    entryPrice: number;
+    side: 'buy' | 'sell';
+    liquidationPrice: number;
+    regime: 'cross' | 'isolated';
 }
 
 export interface IFunding {
     symbol: string;
-    symbolLogo: string;
     status: number;
+    uPrice: number;
+    cPrice: number;
+    symbolLogo: string;
+    uIndexPrice: number;
+    cIndexPrice: number;
     uMarginList: IMarginList[];
     cMarginList: IMarginList[];
-    uIndexPrice: number;
-    uPrice: number;
-    cIndexPrice: number;
-    cPrice: number;
 }
 
 export interface IMarginList {

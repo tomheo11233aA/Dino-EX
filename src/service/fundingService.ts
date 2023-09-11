@@ -1,7 +1,8 @@
 import { callFailed, callSuccess } from "@method/requestResult"
 import axiosInstance from "./axios"
-import { IReqCreateDepositVND } from "src/model/fundingModel"
+import { IReqCreateDepositVND, IReqHistoryOpenOrder } from "src/model/fundingModel"
 import axiosUpload from "./axiosUpload"
+import { ReqLimitPage } from "src/model/commomModel"
 
 export const getHistoryDeposit = async (data: any) => {
     try {
@@ -125,6 +126,24 @@ export const verifyTransactionDepositVnd = async (idTransaction: string | number
 export const uploadImageDeposiVND = async (formData: FormData) => {
     try {
         const res = await axiosUpload.post('/api/depositVND/uploadImageDeposiVND', formData)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}
+
+export const getHistoryOpenOrderAll = async (data: ReqLimitPage) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/getHistoryOpenOrderAll', data)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}
+
+export const getHistoryOpenOrder = async (data: IReqHistoryOpenOrder) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/getHistoryOpenOrder', data)
         return callSuccess(res)
     } catch (error) {
         return callFailed()

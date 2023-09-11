@@ -9,3 +9,5 @@ export const stepDepositFunddingSelector = (state: RootState) => state.funding.d
 export const loadingFundingSelector = (state: RootState) => state.funding.loading
 
 export const transferInfoDepositFundingSelector = (state: RootState) => state.funding.deposit.transferInfo
+
+export const openOrdersFundingSelector = (state: RootState) => state.funding.openOrders 

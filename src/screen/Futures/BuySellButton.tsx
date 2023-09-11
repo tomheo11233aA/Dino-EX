@@ -43,7 +43,7 @@ const BuySellButton = ({ toastTopRef }: any) => {
             typeTrade,
             priceLimit,
         })
-        console.log('res: ', res)
+        
         if (!res.error) {
             if (res.status) {
                 toastTopRef.current.slideDown(t(res.message), true)
