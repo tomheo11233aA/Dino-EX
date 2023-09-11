@@ -20,12 +20,13 @@ import { AppState, AppStateStatus } from 'react-native'
 
 const Futures = () => {
   const theme = useTheme()
-  const dispatch = useAppDispatch()
   const drawerRef = useRef(null)
   const toastTopRef = useRef(null)
+  const dispatch = useAppDispatch()
+  const navigation = useNavigation()
+  
   const isLogin = useAppSelector(isLoginUserSelector)
   const loading = useAppSelector(loadingFuturesSelector)
-  const navigation = useNavigation()
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);

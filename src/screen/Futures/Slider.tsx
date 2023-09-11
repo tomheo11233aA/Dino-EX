@@ -1,17 +1,37 @@
 import Box from '@commom/Box'
-import { useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { profileUserSelector } from '@selector/userSelector'
+import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { width } from '@util/responsive'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PanGestureHandler, TextInput } from 'react-native-gesture-handler'
-import Animated, { useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { SharedValue, runOnJS, useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated'
+import { Profile } from 'src/model/userModel'
 
-const Slider = () => {
+interface Props {
+    hint: SharedValue<boolean>;
+    enter: SharedValue<boolean>;
+    textSize: SharedValue<number>;
+    textFont: SharedValue<string>;
+    positionX: SharedValue<number>;
+}
+
+export const WIDTH_SLIDE = (width * 60 / 100) - 45
+
+const Slider = ({
+    hint,
+    enter,
+    textSize,
+    textFont,
+    positionX,
+}: Props) => {
     const theme = useTheme()
-    const positionX = useSharedValue(0)
-    const widthSlider = (width * 60 / 100) - 45
+    const dispatch = useAppDispatch()
+    const profile: Profile = useAppSelector<any>(profileUserSelector)
+    const widthSlider = WIDTH_SLIDE
     const width3 = (widthSlider / 2) - 7
     const width2 = (width3 / 2)
     const width5 = widthSlider - 6
@@ -30,9 +50,62 @@ const Slider = () => {
     const scaleCuror = useSharedValue(0.8)
     const inputOpacity = useSharedValue(0)
 
+    useDerivedValue(() => {
+        if (positionX.value > 0) {
+            colorCursor.value = theme.grayBlue
+            borderCursor.value = theme.bg
+            scaleCuror.value = 1
+        } else {
+            colorCursor.value = theme.bg
+            borderCursor.value = colors.gray5
+            scaleCuror.value = 0.8
+        }
+
+        if (positionX.value >= width2) {
+            color2.value = theme.grayBlue
+            border2.value = theme.bg
+        } else {
+            color2.value = theme.bg
+            border2.value = theme.gray
+        }
+
+        if (positionX.value >= (widthSlider / 2)) {
+            color3.value = theme.grayBlue
+            border3.value = theme.bg
+        } else {
+            color3.value = theme.bg
+            border3.value = theme.gray
+        }
+
+        if (positionX.value >= width4) {
+            color4.value = theme.grayBlue
+            border4.value = theme.bg
+        } else {
+            color4.value = theme.bg
+            border4.value = theme.gray
+        }
+
+        if (positionX.value >= width5) {
+            color5.value = theme.grayBlue
+            border5.value = theme.bg
+        } else {
+            color5.value = theme.bg
+            border5.value = theme.gray
+        }
+    }, [])
+
+    const setAmount = (amount: number) => {
+        dispatch(futuresSlice.actions.setAmount(amount.toFixed(0)))
+    }
+
     const gestureEvent = useAnimatedGestureHandler({
         onStart: (_, ctx: any) => {
             ctx.startX = positionX.value
+
+            hint.value = false
+            textSize.value = 18
+            enter.value = false
+            textFont.value = fonts.M20
         },
         onActive: (e, ctx) => {
             const position = ctx.startX + e.translationX
@@ -45,52 +118,14 @@ const Slider = () => {
                 positionX.value = position
             }
 
-            if (positionX.value > 0) {
-                colorCursor.value = theme.grayBlue
-                borderCursor.value = theme.bg
-                scaleCuror.value = 1
-            } else {
-                colorCursor.value = theme.bg
-                borderCursor.value = colors.gray5
-                scaleCuror.value = 0.8
-            }
-
-            if (positionX.value >= width2) {
-                color2.value = theme.grayBlue
-                border2.value = theme.bg
-            } else {
-                color2.value = theme.bg
-                border2.value = theme.gray
-            }
-
-            if (positionX.value >= (widthSlider / 2)) {
-                color3.value = theme.grayBlue
-                border3.value = theme.bg
-            } else {
-                color3.value = theme.bg
-                border3.value = theme.gray
-            }
-
-            if (positionX.value >= width4) {
-                color4.value = theme.grayBlue
-                border4.value = theme.bg
-            } else {
-                color4.value = theme.bg
-                border4.value = theme.gray
-            }
-
-            if (positionX.value >= width5) {
-                color5.value = theme.grayBlue
-                border5.value = theme.bg
-            } else {
-                color5.value = theme.bg
-                border5.value = theme.gray
-            }
-
             inputOpacity.value = 1
         },
         onEnd(e, ctx) {
             inputOpacity.value = 0
+            const percent = positionX.value * 100 / WIDTH_SLIDE
+            const amount = profile.balance * percent / 100
+
+            runOnJS(setAmount)(amount)
         },
     })
 

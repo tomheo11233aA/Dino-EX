@@ -1,8 +1,9 @@
 import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
-import { useAppDispatch, useAppSelector } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { USDTFuturesSelector, amountFuturesSelector, currencyFuturesSelector } from '@selector/futuresSelector'
+import { profileUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -10,13 +11,56 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Platform, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
+import Animated, { SharedValue, useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import { Profile } from 'src/model/userModel'
+import { WIDTH_SLIDE } from './Slider'
 
-const Amount = ({ theme }: any) => {
+interface Props {
+    hint: SharedValue<Boolean>;
+    enter: SharedValue<boolean>;
+    textSize: SharedValue<number>;
+    textFont: SharedValue<string>;
+    positionX: SharedValue<number>;
+}
+
+const TextInputAnimation = Animated.createAnimatedComponent(TextInput)
+
+const Amount = ({
+    hint,
+    enter,
+    textSize,
+    textFont,
+    positionX,
+}: Props) => {
+    const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
-    const amount = useAppSelector(amountFuturesSelector)
     const USDT = useAppSelector(USDTFuturesSelector)
+    const amount = useAppSelector(amountFuturesSelector)
     const currency = useAppSelector(currencyFuturesSelector)
+    const profile: Profile = useAppSelector<any>(profileUserSelector)
+
+    const animatedProps: any = useAnimatedProps(() => {
+        if (enter.value) {
+            return {
+                text: `${Number(amount).toFixed(0)}`
+            }
+        } else {
+            const percent = positionX.value * 100 / WIDTH_SLIDE
+            const amount = profile.balance * percent / 100
+
+            return {
+                text: hint.value ? '' : `${amount.toFixed(0)}`
+            }
+        }
+    })
+
+    const textStyle = useAnimatedStyle(() => {
+        return {
+            fontFamily: textFont.value,
+            fontSize: textSize.value,
+        }
+    })
 
     return (
         <Box>
@@ -59,18 +103,20 @@ const Amount = ({ theme }: any) => {
 
             <Box
                 row
+                height={45}
                 alignCenter
+                marginVertical={2}
                 justifySpaceBetween
                 paddingHorizontal={10}
                 backgroundColor={theme.gray2}
-                height={45}
-                marginVertical={2}
             >
                 <Btn
                     onPress={() => {
-                        const n = Number(amount) - 1
-                        if (n >= 0) {
-                            dispatch(futuresSlice.actions.setAmount(n))
+                        if (Number(amount) > 0) {
+                            enter.value = true
+                            positionX.value = 0
+                            const newAmount = Number(amount) - 1
+                            dispatch(futuresSlice.actions.setAmount(newAmount))
                         }
                     }}
                 >
@@ -78,7 +124,7 @@ const Amount = ({ theme }: any) => {
                 </Btn>
 
                 <Box flex={1} height={30}>
-                    <TextInput
+                    {/* <TextInput
                         value={amount.toString()}
                         onChangeText={(text: string) => dispatch(futuresSlice.actions.setAmount(text))}
                         style={[
@@ -92,13 +138,38 @@ const Amount = ({ theme }: any) => {
                         placeholder={String(t('Amount'))}
                         keyboardType={'decimal-pad'}
                         selectionColor={colors.yellow}
+                    /> */}
+                    <TextInputAnimation
+                        onChangeText={(txt: string) => {
+                            if (txt === '') {
+                                hint.value = true
+                                textSize.value = 15
+                                textFont.value = fonts.RM
+                            }
+                            positionX.value = 0
+                            enter.value = true
+                            dispatch(futuresSlice.actions.setAmount(txt))
+                        }}
+                        placeholder={'Amount'}
+                        keyboardType={'number-pad'}
+                        animatedProps={animatedProps}
+                        selectionColor={colors.yellow}
+                        style={
+                            [{
+                                height: '100%',
+                                textAlign: 'center',
+                            },
+                                textStyle
+                            ]}
                     />
                 </Box>
 
                 <Btn
                     onPress={() => {
-                        const n = Number(amount) + 1
-                        dispatch(futuresSlice.actions.setAmount(n))
+                        enter.value = true
+                        positionX.value = 0
+                        const newAmount = Number(amount) + 1
+                        dispatch(futuresSlice.actions.setAmount(newAmount))
                     }}
                 >
                     <Txt style={styles.txt}>+</Txt>

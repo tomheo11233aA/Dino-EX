@@ -11,6 +11,7 @@ export const fonts = {
     IBMPR: 'IBMPlexSans-Regular',
     IBMPM: 'IBMPlexSans-Medium',
     M17: 'Myfont17-Regular',
+    M20: 'Myfont20-Regular',
     M23: 'Myfont23-Regular',
     M24: 'Myfont24-Regular',
     M31: 'Myfont31-Regular',

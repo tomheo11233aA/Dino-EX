@@ -16,7 +16,7 @@ import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 const Wallet = () => {
   const theme = useTheme()
   const toastTopRef = useRef(null)
-  const [tab, setTab] = useState('Spot')
+  const [tab, setTab] = useState('Overview')
   const isLogin = useAppSelector(isLoginUserSelector)
 
   return (
@@ -29,10 +29,10 @@ const Wallet = () => {
             <Tab {...{ tab, setTab }} />
             <Box
               flex={1}
-              backgroundColor={theme.bg}
               paddingTop={20}
               borderTopLeftRadius={30}
               borderTopRightRadius={30}
+              backgroundColor={theme.bg}
             >
               {tab === 'Overview' ?
                 <Overview /> : tab === 'Spot' ?

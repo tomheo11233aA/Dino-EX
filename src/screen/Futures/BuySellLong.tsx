@@ -1,14 +1,13 @@
 import Box from '@commom/Box'
+import { useTheme } from '@hooks/index'
 import React from 'react'
+import AmountSlider from './AmountSlider'
+import Avbl from './Avbl'
 import BuyOrSell from './BuyOrSell'
+import BuySellButton from './BuySellButton'
+import Calc from './Calc'
 import Limit from './Limit'
 import Price from './Price'
-import Amount from './Amount'
-import Calc from './Calc'
-import BuySellButton from './BuySellButton'
-import Avbl from './Avbl'
-import Slider from './Slider'
-import { useTheme } from '@hooks/index'
 
 const BuySellLong = ({ toastTopRef }: any) => {
   const theme = useTheme()
@@ -18,8 +17,7 @@ const BuySellLong = ({ toastTopRef }: any) => {
       <Avbl theme={theme} />
       <Limit theme={theme} />
       <Price theme={theme} />
-      <Amount theme={theme} />
-      <Slider />
+      <AmountSlider />
       <Calc theme={theme}/>
       <BuySellButton toastTopRef={toastTopRef} />
     </Box>
