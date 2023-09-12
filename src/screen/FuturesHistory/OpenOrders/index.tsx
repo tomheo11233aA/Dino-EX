@@ -11,6 +11,14 @@ import { useTranslation } from 'react-i18next'
 import DownItem from '../TransactionHistory/DownItem'
 import Item from './Item'
 import ModalAsset from './ModalAsset'
+import contants from '@util/contants'
+import { io } from 'socket.io-client'
+import { Profile } from 'src/model/userModel'
+import { profileUserSelector } from '@selector/userSelector'
+import Scroll from '@commom/Scroll'
+import { cancelOpenOrder } from '@service/fundingService'
+import { Alert } from 'react-native'
+import { IOpenOrder } from 'src/model/fundingModel'
 
 const OpenOrders = () => {
   const theme = useTheme()
@@ -22,7 +30,7 @@ const OpenOrders = () => {
 
   const openOrders = useAppSelector(openOrdersFundingSelector)
 
-  useEffect(() => {
+  useEffect((): any => {
     getHistoryOpenOrderAll()
   }, [])
 
@@ -50,8 +58,18 @@ const OpenOrders = () => {
     }))
   }
 
+  const handleCancelOpenOrder = async (item: IOpenOrder) => {
+    const res = await cancelOpenOrder(item.id)
+    if (res.error) {
+      return Alert.alert(t(res.message))
+    }
+    if (res.status) {
+      handleSetType(type)
+    }
+  }
+
   return (
-    <Box>
+    <Box flex={1}>
       <Box row justifySpaceBetween>
         <Box
           row
@@ -97,16 +115,17 @@ const OpenOrders = () => {
             {t('Not positions')}
           </Txt>
         </Box> :
-        <>
+        <Scroll flex={1}>
           {openOrders.data.map((item) =>
             <Item
               t={t}
               item={item}
               key={item.id}
               theme={theme}
+              onCancelOpenOrder={handleCancelOpenOrder}
             />
           )}
-        </>
+        </Scroll>
       }
       <ModalAsset
         type={type}

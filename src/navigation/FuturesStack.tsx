@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Futures from '@screen/Futures'
+import FuturesHistory from '@screen/FuturesHistory'
 import SharePositions from '@screen/SharePositions'
 import { screen } from '@util/screens'
 import React from 'react'
@@ -11,6 +12,7 @@ const FuturesStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={screen.FUTURES} component={Futures} />
       <Stack.Screen name={screen.SHARE_POSITIONS} component={SharePositions} />
+      <Stack.Screen name={screen.FUTURES_HISTORY} component={FuturesHistory} />
     </Stack.Navigator>
   )
 }

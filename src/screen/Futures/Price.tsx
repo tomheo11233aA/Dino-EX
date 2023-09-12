@@ -29,12 +29,12 @@ const Price = ({ theme }: any) => {
   return (
     <Box
       row
+      height={45}
       alignCenter
+      marginVertical={5}
       justifySpaceBetween
       paddingHorizontal={10}
       backgroundColor={typeTrade === 'Limit' ? theme.gray2 : theme.gray}
-      height={45}
-      marginVertical={5}
     >
       <Btn
         onPress={() => {
@@ -49,7 +49,7 @@ const Price = ({ theme }: any) => {
 
       <Box flex={1} height={30}>
         <TextInput
-          value={Number(price).toFixed(2).toString()}
+          value={price.toString()}
           onChangeText={(text: string) => dispatch(futuresSlice.actions.setPrice(text))}
           style={
             [styles.input, {
@@ -63,6 +63,7 @@ const Price = ({ theme }: any) => {
           keyboardType={'decimal-pad'}
           editable={typeTrade === 'Limit'}
           selectionColor={colors.yellow}
+          numberOfLines={1}
         />
       </Box>
 

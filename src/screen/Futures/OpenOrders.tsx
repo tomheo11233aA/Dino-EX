@@ -1,30 +1,30 @@
-import { getHistoryOpenOrderAllThunk } from '@asyncThunk/fundingAsyncThunk'
 import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
-import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { useAppDispatch, useTheme } from '@hooks/index'
 import NotPosition from '@reuse/NotPosition'
-import { openOrdersFundingSelector } from '@selector/fundingSelector'
 import { fonts } from '@theme/fonts'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import ItemOpenOrder from './ItemOpenOrder'
+import { IOpenOrder } from 'src/model/fundingModel'
+import { cancelOpenOrder } from '@service/fundingService'
+import { Alert } from 'react-native'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
-const OpenOrders = () => {
+const OpenOrders = ({ openOrders }: any) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
-    const openOrders = useAppSelector(openOrdersFundingSelector)
 
-    useEffect(() => {
-        getHistoryOpenOrderAll()
-    }, [])
-
-    const getHistoryOpenOrderAll = async () => {
-        dispatch(getHistoryOpenOrderAllThunk({
-            limit: 100,
-            page: 1,
-        }))
+    const handleCancelOpenOrder = async (item: IOpenOrder) => {
+        const res = await cancelOpenOrder(item.id)
+        if (res.error) {
+            return Alert.alert(t(res.message))
+        }
+        if (res.status) {
+            dispatch(getProfileThunk())
+        }
     }
 
     return (
@@ -56,12 +56,13 @@ const OpenOrders = () => {
                             </Txt>
                         </Btn>
                     </Box>
-                    {openOrders.data.map((item) =>
+                    {openOrders.data.map((item: IOpenOrder) =>
                         <ItemOpenOrder
                             t={t}
                             item={item}
                             theme={theme}
                             key={item.id}
+                            onCancelOpenOrder={handleCancelOpenOrder}
                         />
                     )}
                 </>

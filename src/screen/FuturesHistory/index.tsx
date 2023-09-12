@@ -1,24 +1,29 @@
-import { useTheme } from '@hooks/index'
-import KeyBoardSafe from '@reuse/KeyBoardSafe'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import Safe from '@reuse/Safe'
+import { profileUserSelector } from '@selector/userSelector'
 import React, { useState } from 'react'
+import { Profile } from 'src/model/userModel'
+import FundingFee from './FundingFee'
 import Header from './Header'
-import Tabs from './Tabs'
-import TransactionHistory from './TransactionHistory'
+import ModalFilter from './ModalFilter'
+import OpenOrders from './OpenOrders'
 import OrderHistory from './OrderHistory'
 import PositionHistory from './PositionHistory'
 import TWAPHistory from './TWAPHistory'
-import FundingFee from './FundingFee'
-import OpenOrders from './OpenOrders'
+import Tabs from './Tabs'
 import TradeHistory from './TradeHistory'
-import ModalFilter from './ModalFilter'
+import TransactionHistory from './TransactionHistory'
 
 const FuturesHistory = () => {
   const theme = useTheme()
+  const dispatch = useAppDispatch()
   const [tab, setTab] = useState<string>('Open Orders')
   const [showFilter, setShowFilter] = useState<boolean>(false)
 
+  const profile: Profile = useAppSelector<any>(profileUserSelector)
+
   return (
-    <KeyBoardSafe bg={theme.bg} paddingHorizontal={15}>
+    <Safe bg={theme.bg} paddingHorizontal={15}>
       <Header {...{ setShowFilter }} />
       <Tabs {...{ tab, setTab }} />
       {tab === 'Open Orders' ?
@@ -33,7 +38,7 @@ const FuturesHistory = () => {
         show={showFilter}
         setShow={setShowFilter}
       />
-    </KeyBoardSafe>
+    </Safe>
   )
 }
 

@@ -158,3 +158,12 @@ export const getHistoryOrder = async (data: any) => {
         return callFailed()
     }
 }
+
+export const cancelOpenOrder = async (id: number) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/cancelOpenOrder', { id })
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}

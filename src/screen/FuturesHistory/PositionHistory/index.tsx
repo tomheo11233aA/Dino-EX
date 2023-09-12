@@ -6,11 +6,18 @@ import DownItem from '../TransactionHistory/DownItem'
 import { fonts } from '@theme/fonts'
 import { colors } from '@theme/colors'
 import Item from './Item'
-import { useTheme } from '@hooks/index'
+import { useAppSelector, useTheme } from '@hooks/index'
+import { coinsFuturesChartSelector, positionsFuturesSelector } from '@selector/futuresSelector'
+import Scroll from '@commom/Scroll'
+import { Profile } from 'src/model/userModel'
+import { profileUserSelector } from '@selector/userSelector'
 
 const PositionHistory = () => {
   const theme = useTheme()
   const { t } = useTranslation()
+  const coins = useAppSelector(coinsFuturesChartSelector)
+  const positions = useAppSelector(positionsFuturesSelector)
+  const profile: Profile = useAppSelector<any>(profileUserSelector)
 
   const data = [
     {
@@ -40,7 +47,7 @@ const PositionHistory = () => {
   ]
 
   return (
-    <Box>
+    <Box flex={1}>
       <Box
         row
         alignCenter
@@ -51,23 +58,27 @@ const PositionHistory = () => {
           value={'All'}
           title={'Type: '}
         />
-        <Txt color={colors.gray2} size={12}>
-          {t('Last update:')}
-          <Txt color={colors.gray2} fontFamily={fonts.M17} size={13}>
-            {' 2023-08-31 09:57:34'}
+        <Txt color={colors.grayBlue} size={12} fontFamily={fonts.IBMPR}>
+          {t('Last update')}
+          <Txt color={colors.grayBlue} fontFamily={fonts.M17} size={13}>
+            {': 2023-08-31 09:57:34'}
           </Txt>
         </Txt>
       </Box>
-      {
-        data.map((item) =>
-          <Item
-            t={t}
-            item={item}
-            theme={theme}
-            key={Math.random()}
-          />
-        )
-      }
+      <Scroll flex={1}>
+        {
+          positions.map((item) =>
+            <Item
+              t={t}
+              item={item}
+              theme={theme}
+              coins={coins}
+              profile={profile}
+              key={Math.random()}
+            />
+          )
+        }
+      </Scroll>
     </Box>
   )
 }

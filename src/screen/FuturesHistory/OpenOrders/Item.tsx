@@ -9,15 +9,17 @@ import CircularProgress from 'react-native-circular-progress-indicator'
 import { IOpenOrder } from 'src/model/fundingModel'
 
 interface Props {
-    t: any,
-    theme: any,
-    item: IOpenOrder,
+    t: any;
+    theme: any;
+    item: IOpenOrder;
+    onCancelOpenOrder: Function;
 }
 
 const Item = ({
     t,
     item,
     theme,
+    onCancelOpenOrder,
 }: Props) => {
     const side = item.side === 'buy' ? 'Buy' : 'Sell'
     return (
@@ -89,6 +91,7 @@ const Item = ({
                             paddingVertical={4}
                             paddingHorizontal={15}
                             backgroundColor={theme.gray2}
+                            onPress={() => onCancelOpenOrder(item)}
                         >
                             <Txt fontFamily={fonts.IBMPM} size={9} color={theme.black}>
                                 {t('Cancel')}

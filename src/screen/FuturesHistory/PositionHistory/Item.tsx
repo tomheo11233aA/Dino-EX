@@ -2,19 +2,32 @@ import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { capitalizeFirst } from '@method/format'
+import { capitalizeFirst, converPostirions, numberCommasDot } from '@method/format'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
+import { StyleSheet } from 'react-native'
+import { ICoins } from 'src/model/futuresModel'
+import { Profile } from 'src/model/userModel'
 
 interface Props {
     t: any;
     item: any;
     theme: any;
+    coins: ICoins[];
+    profile: Profile;
 }
 
-const Item = ({ item, t, theme }: Props) => {
+const Item = ({
+    t,
+    item,
+    coins,
+    theme,
+    profile,
+}: Props) => {
     const color = item.side === 'Buy' ? colors.green2 : colors.red3
+
+    item = converPostirions(item, coins, profile.balance)
 
     return (
         <Box
@@ -25,26 +38,26 @@ const Item = ({ item, t, theme }: Props) => {
             <Box row justifySpaceBetween>
                 <Box row alignCenter>
                     <Box
-                        radius={3}
-                        width={20}
-                        height={20}
+                        radius={2}
+                        width={15}
+                        height={15}
                         alignCenter
                         justifyCenter
                         marginRight={10}
                         backgroundColor={color}
                     >
-                        <Txt color={colors.white} size={13}>
+                        <Txt color={colors.white} size={10} fontFamily={fonts.SGM}>
                             {capitalizeFirst(item?.side?.charAt(0))}
                         </Txt>
                     </Box>
-                    <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
+                    <Txt size={13} fontFamily={fonts.IBMPM} color={theme.black}>
                         {`${item.symbol} ${t('Perpetual')}`}
                     </Txt>
                 </Box>
 
                 <Btn>
                     <Icon
-                        size={17}
+                        size={13}
                         source={require('@images/future/share.png')}
                     />
                 </Btn>
@@ -53,43 +66,58 @@ const Item = ({ item, t, theme }: Props) => {
             <Box
                 row
                 alignCenter
+                marginTop={2}
                 justifySpaceBetween
-                marginTop={5}
             >
-                <Txt color={color} fontFamily={fonts.IBMPM}>
-                    {`${item.regime} / ${item.side}`}
+                <Txt color={color} fontFamily={fonts.IBMPM} size={11}>
+                    {`${capitalizeFirst(item.regime)} / ${t(item.side)}`}
                 </Txt>
 
                 <Box row alignCenter marginTop={10}>
-                    <Box width={7} height={7} backgroundColor={color} radius={50} />
-                    <Txt color={colors.grayBlue} size={12}>{' Opened'}</Txt>
+                    <Box width={7} height={7} backgroundColor={colors.green2} radius={50} marginRight={5} />
+                    <Txt style={styles.textGray}>
+                        {t('Opened')}
+                    </Txt>
                 </Box>
             </Box>
 
-            <Box row justifySpaceBetween marginTop={15}>
+            <Box row justifySpaceBetween marginTop={10}>
                 <Box>
-                    <Txt color={colors.grayBlue}>PNL close</Txt>
-                    <Txt color={color} fontFamily={fonts.M24} size={16}>
-                        {item.PNL}
+                    <Txt style={styles.textGray}>
+                        PNL {t('close')}
+                    </Txt>
+                    <Txt
+                        size={13}
+                        marginTop={3}
+                        fontFamily={fonts.M24}
+                        color={item?.PNL >= 0 ? colors.green2 : colors.red3}
+                    >
+                        {numberCommasDot(item?.PNL?.toFixed(2))}
                     </Txt>
                 </Box>
 
                 <Box alignEnd>
-                    <Txt color={colors.grayBlue}>
+                    <Txt style={styles.textGray}>
                         {t('Closing volume')}
                     </Txt>
-                    <Txt color={theme.black} fontFamily={fonts.M24} size={16}>
-                        {item.ClosingVolume}
-                        <Txt color={theme.black} size={13}>{' BTC'}</Txt>
+                    <Txt
+                        size={13}
+                        marginTop={3}
+                        color={theme.black}
+                        fontFamily={fonts.M24}
+                    >
+                        --
                     </Txt>
                 </Box>
             </Box>
 
-            <Box row justifySpaceBetween marginTop={15}>
+            <Box row justifySpaceBetween marginTop={10}>
                 <Box>
-                    <Txt color={colors.grayBlue}>Entry price</Txt>
+                    <Txt style={styles.textGray}>
+                        {t('Entry price')}
+                    </Txt>
                     <Txt
-                        size={16}
+                        size={13}
                         marginTop={5}
                         color={theme.black}
                         fontFamily={fonts.M24}
@@ -99,46 +127,49 @@ const Item = ({ item, t, theme }: Props) => {
                 </Box>
 
                 <Box>
-                    <Txt color={colors.grayBlue}>
+                    <Txt style={styles.textGray}>
                         {t('Close price')}
                     </Txt>
                     <Txt
-                        size={16}
+                        size={13}
                         marginTop={5}
                         color={theme.black}
                         fontFamily={fonts.M24}
                     >
-                        {item.ClosingVolume}
+                        {numberCommasDot(item?.MARK_PRICE.toFixed(item?.ROUND))}
                     </Txt>
                 </Box>
 
                 <Box alignEnd>
-                    <Txt color={colors.grayBlue}>
+                    <Txt style={styles.textGray}>
                         {t('Maximum volume')}
                     </Txt>
                     <Txt
-                        size={16}
+                        size={13}
                         marginTop={5}
                         color={theme.black}
                         fontFamily={fonts.M24}
                     >
-                        {item.ClosingVolume}
-                        <Txt color={theme.black} size={13}>{' BTC'}</Txt>
+                        --
                     </Txt>
                 </Box>
             </Box>
 
             <Box row justifySpaceBetween marginTop={10}>
-                <Txt color={colors.grayBlue}>Opend</Txt>
-                <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={15}>
-                    2023-04-09 10:20:33
+                <Txt style={styles.textGray}>
+                    {t('Opend')}
+                </Txt>
+                <Txt style={styles.textM24}>
+                    --
                 </Txt>
             </Box>
 
             <Box row justifySpaceBetween marginTop={5}>
-                <Txt color={colors.grayBlue}>Closed</Txt>
-                <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={15}>
-                    2023-05-12 15:05:47
+                <Txt style={styles.textGray}>
+                    {t('Closed')}
+                </Txt>
+                <Txt style={styles.textM24}>
+                    --
                 </Txt>
             </Box>
         </Box>
@@ -146,3 +177,16 @@ const Item = ({ item, t, theme }: Props) => {
 }
 
 export default Item
+
+const styles = StyleSheet.create({
+    textGray: {
+        fontSize: 11,
+        color: colors.grayBlue,
+        fontFamily: fonts.IBMPR,
+    },
+    textM24: {
+        fontSize: 11,
+        color: colors.grayBlue,
+        fontFamily: fonts.M24,
+    }
+})

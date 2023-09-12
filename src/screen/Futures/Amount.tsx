@@ -139,6 +139,7 @@ const Amount = ({
                         keyboardType={'number-pad'}
                         animatedProps={animatedProps}
                         selectionColor={colors.yellow}
+                        placeholderTextColor={colors.grayBlue}
                         style={
                             [{
                                 height: '100%',

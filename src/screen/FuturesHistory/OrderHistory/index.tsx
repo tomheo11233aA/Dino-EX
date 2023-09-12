@@ -1,15 +1,15 @@
-import Box from '@commom/Box'
-import React, { useEffect, useState } from 'react'
-import DownItem from '../TransactionHistory/DownItem'
-import { colors } from '@theme/colors'
-import Txt from '@commom/Txt'
-import { useTranslation } from 'react-i18next'
-import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { fonts } from '@theme/fonts'
-import Item from './Item'
-import { getHistoryOrder } from '@service/fundingService'
 import { getHistoryOrderThunk } from '@asyncThunk/fundingAsyncThunk'
+import Box from '@commom/Box'
+import Txt from '@commom/Txt'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { numberCommasDot } from '@method/format'
 import { orderHistorysFundingSelector } from '@selector/fundingSelector'
+import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { FlatList } from 'react-native-gesture-handler'
+import DownItem from '../TransactionHistory/DownItem'
 import ModalAsset from './ModalAsset'
 import ModalType from './ModalType'
 
@@ -18,11 +18,10 @@ const OrderHistory = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const orderHistory = useAppSelector(orderHistorysFundingSelector)
-
   const [type, setType] = useState('All')
   const [typeTrade, setTypeTrade] = useState('All')
-  const [isShowModalAsset, setShowModalAsset] = useState(false)
   const [isShowModalType, setShowModalType] = useState(false)
+  const [isShowModalAsset, setShowModalAsset] = useState(false)
 
   useEffect(() => {
     handleGetHistoryOrder()
@@ -63,6 +62,111 @@ const OrderHistory = () => {
     setShowModalType(false)
   }
 
+  const renderItem = ({ item }: any) => {
+    const color = item.side === 'buy' ? colors.green2 : colors.red3
+    const side = item.side === 'buy' ? 'Buy' : 'Sell'
+    return (
+      <Box
+        paddingVertical={15}
+        borderBottomWidth={1}
+        borderColor={theme.gray2}
+      >
+        <Box row justifySpaceBetween>
+          <Box>
+            <Txt color={theme.black} fontFamily={fonts.IBMPM} size={13}>
+              {item.symbol} {t('Perpetual')}
+            </Txt>
+            <Txt color={color} fontFamily={fonts.IBMPM} size={11}>
+              {t(side)} / {t(item.typeTrade)}
+            </Txt>
+          </Box>
+
+          <Box alignEnd>
+            <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={13}>
+              {item.created_at}
+            </Txt>
+            {item.type === 0 ?
+              <Box
+                marginTop={5}
+                paddingVertical={2}
+                paddingHorizontal={5}
+                backgroundColor={theme.green}
+              >
+                <Txt color={colors.green} size={9}>
+                  {t('Matched')}
+                </Txt>
+              </Box> :
+              <Box
+                marginTop={5}
+                paddingVertical={2}
+                paddingHorizontal={5}
+                backgroundColor={theme.red2}
+              >
+                <Txt color={colors.red} size={9}>
+                  {t('Canceled')}
+                </Txt>
+              </Box>
+            }
+
+          </Box>
+        </Box>
+
+        <Box
+          row
+          alignCenter
+          marginTop={10}
+          justifySpaceBetween
+        >
+          <Txt color={theme.black} size={12}>
+            {`${t('Amount')} (BTC)`}
+          </Txt>
+          <Txt
+            size={13}
+            color={theme.black}
+            fontFamily={fonts.M23}
+          >
+            {numberCommasDot(item.amount?.toFixed(2))}
+            <Txt color={colors.grayBlue} size={13}>
+              {' / 0,00'}
+            </Txt>
+          </Txt>
+        </Box>
+
+        <Box
+          row
+          alignCenter
+          marginTop={10}
+          justifySpaceBetween
+        >
+          <Txt color={theme.black} size={12} fontFamily={fonts.IBMPR}>
+            {t('Price')}
+          </Txt>
+          <Txt color={theme.black} fontFamily={fonts.M23} size={13}>
+            {'0,00'}
+            <Txt color={colors.grayBlue} size={13}>
+              {' / 0,00'}
+            </Txt>
+          </Txt>
+        </Box>
+
+        {/* <Box
+          row
+          alignCenter
+          marginTop={10}
+          justifySpaceBetween
+        >
+          <Txt color={theme.black}>
+            {'Reduce Only'}
+          </Txt>
+  
+          <Txt color={theme.black} size={15}>
+            {' Correct'}
+          </Txt>
+        </Box> */}
+      </Box>
+    )
+  }
+
   return (
     <Box>
       <Box row justifySpaceBetween>
@@ -98,14 +202,15 @@ const OrderHistory = () => {
         </Box>
       </Box>
       {
-        orderHistory.data.map((item) =>
-          <Item
-            t={t}
-            item={item}
-            theme={theme}
-            key={Math.random()}
-          />
-        )
+        <FlatList
+          renderItem={renderItem}
+          initialNumToRender={10}
+          data={orderHistory.data}
+          removeClippedSubviews={true}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id.toString()}
+          contentContainerStyle={{ paddingBottom: 200 }}
+        />
       }
 
       <ModalAsset
@@ -117,8 +222,8 @@ const OrderHistory = () => {
       <ModalType
         type={typeTrade}
         show={isShowModalType}
-        onSetType={handleSetTypeTrade}
         setShow={setShowModalType}
+        onSetType={handleSetTypeTrade}
       />
     </Box>
   )
