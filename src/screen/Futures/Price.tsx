@@ -49,7 +49,7 @@ const Price = ({ theme }: any) => {
 
       <Box flex={1} height={30}>
         <TextInput
-          value={price.toString()}
+          value={Number(price).toFixed(2).toString()}
           onChangeText={(text: string) => dispatch(futuresSlice.actions.setPrice(text))}
           style={
             [styles.input, {

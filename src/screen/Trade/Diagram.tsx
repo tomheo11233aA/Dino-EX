@@ -70,7 +70,6 @@ export default () => {
 
         newSocket.on(`${coinChoosed.symbol}UPDATESPOT`, data => {
             if (data.length > 0) {
-                console.log(close)
                 dispatch(tradeSlice.actions.setChart({
                     close,
                     size_chart,

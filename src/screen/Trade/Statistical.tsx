@@ -17,11 +17,12 @@ const Statistical = () => {
     
     getCoinsFromSocket()
 
-    let [close, percentChange, color] = [0, '0', colors.greenCan]
+    let [close, percentChange, color, round] = [0, '0', colors.greenCan, 1]
     if (coins.length > 0) {
         const index = coins.findIndex(coin => coin.symbol === coinChoosed.symbol)
         if (index >= 0) {
             close = coins[index]?.close
+            round = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
             percentChange = coins[index]?.percentChange >= 0 ? `+${coins[index]?.percentChange}` : `${coins[index]?.percentChange}`
             color = coins[index]?.percentChange >= 0 ? colors.greenCan : colors.redCan
         }
@@ -31,13 +32,13 @@ const Statistical = () => {
         <View style={styles.container}>
             <View style={{ justifyContent: 'center' }}>
                 <Text style={styles.textLagre}>
-                    {numberCommasDot(close)}
+                    {numberCommasDot(close?.toFixed(round))}
                 </Text>
                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Text style={[styles.textSmall, { color: theme.black }]}>
                         {'≈ '}
                         <Text style={[styles.textSmall, { color: theme.black, fontFamily: fonts.M24, fontSize: 15 }]}>
-                            {numberCommasDot(close)}
+                            {numberCommasDot(close?.toFixed(round))}
                         </Text>
                         <Text style={{ fontFamily: fonts.IBMPM, fontSize: 12 }}>
                             {' $'}

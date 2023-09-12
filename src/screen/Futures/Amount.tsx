@@ -124,21 +124,6 @@ const Amount = ({
                 </Btn>
 
                 <Box flex={1} height={30}>
-                    {/* <TextInput
-                        value={amount.toString()}
-                        onChangeText={(text: string) => dispatch(futuresSlice.actions.setAmount(text))}
-                        style={[
-                            styles.input, {
-                                fontFamily: amount.toString() === '' ? fonts.RM : 'Myfont20-Regular',
-                                fontSize: amount.toString() === '' ? 15 : 18,
-                                color: theme.black,
-                            }
-                        ]}
-                        placeholderTextColor={colors.grayBlue}
-                        placeholder={String(t('Amount'))}
-                        keyboardType={'decimal-pad'}
-                        selectionColor={colors.yellow}
-                    /> */}
                     <TextInputAnimation
                         onChangeText={(txt: string) => {
                             if (txt === '') {
@@ -158,6 +143,7 @@ const Amount = ({
                             [{
                                 height: '100%',
                                 textAlign: 'center',
+                                color: theme.black
                             },
                                 textStyle
                             ]}
