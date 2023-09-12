@@ -16,6 +16,7 @@ import { io } from 'socket.io-client'
 import { Trade } from 'src/model/tradeModel'
 import LogoChart from './LogoChart'
 import TimeLimitChart from './TimeLimitChart'
+import { ICoins } from 'src/model/futuresModel'
 
 export const HEIGH_CONTAINER = height * 30 / 100
 export const SIZE_CHART = 30
@@ -66,9 +67,22 @@ const Chart = ({ setOpenChart }: Props) => {
         handleGetChart()
         const newSocket = io(contants.HOSTING)
 
+        let close = 0
+        newSocket.on('listCoin', (coins: ICoins[]) => {
+            if (coins.length > 0) {
+                for (let i = 0; i < coins.length; i++) {
+                    if (coins[i].symbol === symbol) {
+                        close = coins[i].close
+                        break
+                    }
+                }
+            }
+        })
+
         newSocket.on(`${symbol}UPDATESPOT`, data => {
             if (data.length > 0) {
                 dispatch(futuresSlice.actions.setChart({
+                    close,
                     dataSocket: data,
                     size_chart: SIZE_CHART,
                     heigh_candle: HEIGH_CANDLES,

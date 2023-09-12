@@ -149,3 +149,12 @@ export const getHistoryOpenOrder = async (data: IReqHistoryOpenOrder) => {
         return callFailed()
     }
 }
+
+export const getHistoryOrder = async (data: any) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/getHistoryOrder', data)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}

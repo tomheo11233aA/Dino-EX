@@ -19,6 +19,7 @@ import Cursor from "./Cursor"
 import LineX from "./LineX"
 import MinMaxLowHigh from "./MinMaxLowHigh"
 import PathMA from "./PathMA"
+import { ICoins } from "src/model/futuresModel"
 
 const height_container = height * 35 / 100
 export const heigh_candle = height_container - 40
@@ -55,13 +56,27 @@ export default () => {
 
         const newSocket = io(contants.HOSTING)
 
+        let close = 0
+        newSocket.on('listCoin', (coins: ICoins[]) => {
+            if (coins.length > 0) {
+                for (let i = 0; i < coins.length; i++) {
+                    if (coins[i].symbol === coinChoosed.symbol) {
+                        close = coins[i].close
+                        break
+                    }
+                }
+            }
+        })
+
         newSocket.on(`${coinChoosed.symbol}UPDATESPOT`, data => {
             if (data.length > 0) {
+                console.log(close)
                 dispatch(tradeSlice.actions.setChart({
-                    dataSocket: data,
+                    close,
                     size_chart,
-                    heigh_candle,
                     paddingTop,
+                    heigh_candle,
+                    dataSocket: data,
                     gap_candle: gapCandle.value,
                     padding_right_candle: paddingRightCandles.value,
                 }))

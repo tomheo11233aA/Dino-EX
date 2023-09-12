@@ -1,35 +1,67 @@
 import Box from '@commom/Box'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DownItem from '../TransactionHistory/DownItem'
 import { colors } from '@theme/colors'
 import Txt from '@commom/Txt'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { fonts } from '@theme/fonts'
 import Item from './Item'
+import { getHistoryOrder } from '@service/fundingService'
+import { getHistoryOrderThunk } from '@asyncThunk/fundingAsyncThunk'
+import { orderHistorysFundingSelector } from '@selector/fundingSelector'
+import ModalAsset from './ModalAsset'
+import ModalType from './ModalType'
 
 const OrderHistory = () => {
   const theme = useTheme()
   const { t } = useTranslation()
+  const dispatch = useAppDispatch()
+  const orderHistory = useAppSelector(orderHistorysFundingSelector)
 
-  const data = [
-    {
-      symbol: 'BTCUSDT',
-      date: '2023-05-16 13:58:57',
-      side: 'Sell',
-      type: 'Market',
-      amount: '0,001',
-      price: '27.059,6',
-    },
-    {
-      symbol: 'BTCUSDT',
-      date: '2023-05-16 13:58:57',
-      side: 'Buy',
-      type: 'Market',
-      amount: '0,001',
-      price: '27.059,6',
-    },
-  ]
+  const [type, setType] = useState('All')
+  const [typeTrade, setTypeTrade] = useState('All')
+  const [isShowModalAsset, setShowModalAsset] = useState(false)
+  const [isShowModalType, setShowModalType] = useState(false)
+
+  useEffect(() => {
+    handleGetHistoryOrder()
+  }, [])
+
+  const handleGetHistoryOrder = async () => {
+    dispatch(getHistoryOrderThunk({
+      page: 1,
+      limit: 1000,
+    }))
+  }
+
+  const handleSetType = (symbol: string) => {
+    if (symbol === 'All') {
+      handleGetHistoryOrder()
+    } else {
+      dispatch(getHistoryOrderThunk({
+        page: 1,
+        limit: 100,
+        symbol: symbol,
+      }))
+    }
+    setType(symbol)
+    setShowModalAsset(false)
+  }
+
+  const handleSetTypeTrade = (typeTrade: string) => {
+    if (typeTrade === 'All') {
+      handleGetHistoryOrder()
+    } else {
+      dispatch(getHistoryOrderThunk({
+        page: 1,
+        limit: 1000,
+        typeTrade: typeTrade,
+      }))
+    }
+    setTypeTrade(typeTrade)
+    setShowModalType(false)
+  }
 
   return (
     <Box>
@@ -40,12 +72,14 @@ const OrderHistory = () => {
           marginTop={10}
         >
           <DownItem
+            value={type}
             title={'Asset: '}
-            value={'All'}
+            onPress={() => setShowModalAsset(true)}
           />
           <DownItem
+            value={typeTrade}
             title={'Type: '}
-            value={'All'}
+            onPress={() => setShowModalType(true)}
           />
         </Box>
 
@@ -58,13 +92,13 @@ const OrderHistory = () => {
             borderWidth={1}
             borderColor={colors.grayBlue}
           />
-          <Txt color={colors.grayBlue} fontFamily={fonts.AS}>
+          <Txt color={colors.grayBlue} fontFamily={fonts.IBMPM} size={12}>
             {t('Grid')}
           </Txt>
         </Box>
       </Box>
       {
-        data.map((item) =>
+        orderHistory.data.map((item) =>
           <Item
             t={t}
             item={item}
@@ -73,6 +107,19 @@ const OrderHistory = () => {
           />
         )
       }
+
+      <ModalAsset
+        type={type}
+        show={isShowModalAsset}
+        onSetType={handleSetType}
+        setShow={setShowModalAsset}
+      />
+      <ModalType
+        type={typeTrade}
+        show={isShowModalType}
+        onSetType={handleSetTypeTrade}
+        setShow={setShowModalType}
+      />
     </Box>
   )
 }

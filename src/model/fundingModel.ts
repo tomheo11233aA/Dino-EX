@@ -38,3 +38,23 @@ export interface IReqHistoryOpenOrder {
     limit: number;
     symbol: string;
 }
+
+export interface IOrderHistory {
+    id: number;
+    side: string;
+    cost: number;
+    core: number;
+    type: number;
+    email: string;
+    userid: number;
+    regime: string;
+    amount: number;
+    symbol: string;
+    typeTrade: string;
+    created_at: string;
+    amountCoin: number;
+    idPosition: number;
+    liquidationPrice: number;
+    orderEntryPrice: number;
+    closeEntryPrice: number;
+}

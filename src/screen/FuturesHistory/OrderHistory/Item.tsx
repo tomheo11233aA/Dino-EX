@@ -1,18 +1,20 @@
 import Box from '@commom/Box';
 import Txt from '@commom/Txt';
+import { numberCommasDot } from '@method/format';
 import { colors } from '@theme/colors';
 import { fonts } from '@theme/fonts';
 import React from 'react';
+import { IOrderHistory } from 'src/model/fundingModel';
 
 interface Props {
   t: any;
-  item: any;
   theme: any;
+  item: IOrderHistory;
 }
 
 const Item = ({ item, theme, t }: Props) => {
-  const color = item.side === 'Buy' ? colors.green2 : colors.red3
-
+  const color = item.side === 'buy' ? colors.green2 : colors.red3
+  const side = item.side === 'buy' ? 'Buy' : 'Sell'
   return (
     <Box
       paddingVertical={15}
@@ -21,28 +23,41 @@ const Item = ({ item, theme, t }: Props) => {
     >
       <Box row justifySpaceBetween>
         <Box>
-          <Txt color={theme.black} fontFamily={fonts.AS} size={16}>
+          <Txt color={theme.black} fontFamily={fonts.IBMPM} size={13}>
             {item.symbol} {t('Perpetual')}
           </Txt>
-          <Txt color={color} fontFamily={fonts.AS}>
-            {item.side} / {item.type}
+          <Txt color={color} fontFamily={fonts.IBMPM} size={11}>
+            {t(side)} / {t(item.typeTrade)}
           </Txt>
         </Box>
 
         <Box alignEnd>
-          <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={15}>
-            {item.date}
+          <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={13}>
+            {item.created_at}
           </Txt>
-          <Box
-            marginTop={5}
-            paddingVertical={3}
-            paddingHorizontal={5}
-            backgroundColor={theme.green}
-          >
-            <Txt color={colors.green} size={13}>
-              Matched
-            </Txt>
-          </Box>
+          {item.type === 0 ?
+            <Box
+              marginTop={5}
+              paddingVertical={2}
+              paddingHorizontal={5}
+              backgroundColor={theme.green}
+            >
+              <Txt color={colors.green} size={9}>
+                {t('Matched')}
+              </Txt>
+            </Box> :
+            <Box
+              marginTop={5}
+              paddingVertical={2}
+              paddingHorizontal={5}
+              backgroundColor={theme.red2}
+            >
+              <Txt color={colors.red} size={9}>
+                {t('Canceled')}
+              </Txt>
+            </Box>
+          }
+
         </Box>
       </Box>
 
@@ -52,13 +67,17 @@ const Item = ({ item, theme, t }: Props) => {
         marginTop={10}
         justifySpaceBetween
       >
-        <Txt color={theme.black}>
-          {'Amount (BTC)'}
+        <Txt color={theme.black} size={12}>
+          {`${t('Amount')} (BTC)`}
         </Txt>
-        <Txt color={theme.black} fontFamily={fonts.M23} size={16}>
-          0,001
-          <Txt color={colors.grayBlue} size={15}>
-            {' / 0,0'}
+        <Txt
+          size={13}
+          color={theme.black}
+          fontFamily={fonts.M23}
+        >
+          {numberCommasDot(item.amount?.toFixed(2))}
+          <Txt color={colors.grayBlue} size={13}>
+            {' / 0,00'}
           </Txt>
         </Txt>
       </Box>
@@ -69,18 +88,18 @@ const Item = ({ item, theme, t }: Props) => {
         marginTop={10}
         justifySpaceBetween
       >
-        <Txt color={theme.black}>
-          {'Price'}
+        <Txt color={theme.black} size={12} fontFamily={fonts.IBMPR}>
+          {t('Price')}
         </Txt>
-        <Txt color={theme.black} fontFamily={fonts.M23} size={16}>
-          {item.price}
-          <Txt color={colors.grayBlue} size={15}>
-            {' / 0,001'}
+        <Txt color={theme.black} fontFamily={fonts.M23} size={13}>
+          {'0,00'}
+          <Txt color={colors.grayBlue} size={13}>
+            {' / 0,00'}
           </Txt>
         </Txt>
       </Box>
 
-      <Box
+      {/* <Box
         row
         alignCenter
         marginTop={10}
@@ -93,7 +112,7 @@ const Item = ({ item, theme, t }: Props) => {
         <Txt color={theme.black} size={15}>
           {' Correct'}
         </Txt>
-      </Box>
+      </Box> */}
     </Box>
   )
 }

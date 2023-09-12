@@ -1,7 +1,7 @@
-import { checkTransactionDepositVndThunk, getBankingThunk, getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk } from "@asyncThunk/fundingAsyncThunk";
+import { checkTransactionDepositVndThunk, getBankingThunk, getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk, getHistoryOrderThunk } from "@asyncThunk/fundingAsyncThunk";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { depositStep } from "@util/contants";
-import { IBank, IOpenOrder } from "src/model/fundingModel";
+import { IBank, IOpenOrder, IOrderHistory } from "src/model/fundingModel";
 import { IDepositInfo } from "src/model/walletModel";
 
 interface IFundingSlice {
@@ -9,6 +9,9 @@ interface IFundingSlice {
     loading: boolean,
     openOrders: {
         data: IOpenOrder[];
+    },
+    orderHistorys: {
+        data: IOrderHistory[],
     },
     deposit: {
         step: string;
@@ -21,6 +24,9 @@ const initialState: IFundingSlice = {
     banks: [],
     loading: false,
     openOrders: {
+        data: [],
+    },
+    orderHistorys: {
         data: [],
     },
     deposit: {
@@ -82,6 +88,11 @@ const fundingSlice = createSlice({
             .addCase(getHistoryOpenOrderThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {
                     state.openOrders.data = payload.data.array
+                }
+            })
+            .addCase(getHistoryOrderThunk.fulfilled, (state, { payload }) => {
+                if (payload.status) { 
+                    state.orderHistorys.data = payload.data.array
                 }
             })
     }

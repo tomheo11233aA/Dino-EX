@@ -59,7 +59,7 @@ const OpenOrders = () => {
           marginTop={10}
         >
           <DownItem
-            value={'All'}
+            value={type}
             title={'Asset: '}
             onPress={() => setShowModalAsset(true)}
           />

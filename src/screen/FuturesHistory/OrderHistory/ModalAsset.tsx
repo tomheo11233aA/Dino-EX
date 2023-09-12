@@ -90,10 +90,10 @@ const ModalAsset = ({
                         >
                             <Input
                                 height={40}
-                                onChangeText={setSearch}
                                 paddingHorizontal={40}
                                 color={colors.grayBlue}
                                 style={{ fontSize: 12 }}
+                                onChangeText={setSearch}
                                 hint={t('Search for symbol')}
                             />
                             <Box width={20} absolute left={10}>
@@ -135,6 +135,7 @@ const ModalAsset = ({
                     </Scroll>
                 </Box>
             </KeyboardAvoidingView>
+
         </Modality>
     )
 }
