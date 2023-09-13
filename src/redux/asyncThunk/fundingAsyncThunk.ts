@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { getBanking, getHistoryOpenOrder, getHistoryOpenOrderAll, getHistoryOrder } from "@service/fundingService"
+import { getBanking, getHistoryOpenOrder, getHistoryOpenOrderAll, getHistoryOrder, getListPositionClose } from "@service/fundingService"
 import { checkTransactionDepositVnd } from "@service/walletService"
 import { banking } from "@util/banking"
 import { ReqLimitPage } from "src/model/commomModel"
@@ -43,5 +43,11 @@ export const getHistoryOpenOrderThunk =
 export const getHistoryOrderThunk =
     createAsyncThunk('funding/getHistoryOrder', async (data: any) => {
         const res = await getHistoryOrder(data)
+        return res
+    })
+
+export const getListPositionCloseThunk =
+    createAsyncThunk('funding/getListPositionClose', async () => {
+        const res = await getListPositionClose()
         return res
     })

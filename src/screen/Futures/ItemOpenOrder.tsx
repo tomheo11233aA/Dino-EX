@@ -2,8 +2,10 @@ import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { numberCommasDot } from '@method/format'
+import { navigate } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
+import { screen } from '@util/screens'
 import React from 'react'
 import CircularProgress from 'react-native-circular-progress-indicator'
 import { IOpenOrder } from 'src/model/fundingModel'
@@ -64,14 +66,14 @@ const ItemOpenOrder = ({
                             </Txt>
                         </Box>
                         <Txt fontFamily={fonts.M24} color={theme.black}>
-                            {numberCommasDot(item.amount?.toFixed(3))}
+                            {numberCommasDot('0.0')}
                             <Txt color={colors.gray5}>
-                                {' / '} {numberCommasDot('0.000')}
+                                {' /'} {numberCommasDot(item.amount?.toFixed(1))}
                             </Txt>
                         </Txt>
                     </Box>
 
-                    <Box row>
+                    <Box row marginVertical={5}>
                         <Box width={70}>
                             <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
                                 {t('Price')}
@@ -80,6 +82,19 @@ const ItemOpenOrder = ({
                         <Txt fontFamily={fonts.M24} color={theme.black}>
                             {numberCommasDot(item?.orderEntryPrice?.toFixed(1))}
                         </Txt>
+                    </Box>
+
+                    <Box row>
+                        <Box width={70}>
+                            <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
+                                TP/SL
+                            </Txt>
+                        </Box>
+                        <Btn onPress={() => navigate(screen.TPSL)}>
+                            <Txt fontFamily={fonts.IBMPR} color={colors.yellow} size={12}>
+                                {t('View')}
+                            </Txt>
+                        </Btn>
                     </Box>
                 </Box>
             </Box>

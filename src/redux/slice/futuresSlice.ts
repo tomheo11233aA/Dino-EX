@@ -52,6 +52,8 @@ interface IfuturesSlice {
         showModal: boolean;
     },
     sliderListen: boolean,
+    tp: number | string,
+    sl: number | string,
 }
 
 const initialState: IfuturesSlice = {
@@ -98,12 +100,20 @@ const initialState: IfuturesSlice = {
         showModal: false
     },
     sliderListen: false,
+    tp: '',
+    sl: '',
 }
 
 const futuresSlice = createSlice({
     name: 'futures',
     initialState,
     reducers: {
+        setTP: (state, action: PayloadAction<number | string>) => {
+            state.tp = action.payload
+        },
+        setSL: (state, action: PayloadAction<number | string>) => {
+            state.sl = action.payload
+        },
         setTimeLimit: (state, action: PayloadAction<ITimeLimit>) => {
             state.timeLimit = action.payload
             state.loading = true
@@ -146,7 +156,7 @@ const futuresSlice = createSlice({
         refreshWhenOrderFuture: (state) => {
             state.amount = ''
             state.sliderListen = !state.sliderListen
-            state.price = state.coins.filter(coin => coin.symbol === state.symbol)[0].close 
+            state.price = state.coins.filter(coin => coin.symbol === state.symbol)[0].close
         },
         setSymbol: (state, action: PayloadAction<{ symbol: string, currency: string }>) => {
             state.symbol = action.payload.symbol
@@ -197,7 +207,7 @@ const futuresSlice = createSlice({
                         if (state.timeLimit.timeString) state.closeTimestamp += convertTimeGetChart(state.timeLimit.timeString)
                     } else {
                         data = { ...data, close: payload.close }
-                        
+
                         state.charts[state.charts.length - 1] = data
                         state.candles[state.candles.length - 1] = data
                     }

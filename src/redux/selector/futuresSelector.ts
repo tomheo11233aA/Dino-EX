@@ -57,3 +57,7 @@ export const countCandlesFuturesSelector = (state: RootState) => state.futures.c
 export const stopProfitFuturesSelector = (state: RootState) => state.futures.stopProfit
 
 export const sliderListenFutureSelector = (state: RootState) => state.futures.sliderListen 
+
+export const tpFutureSelector = (state: RootState) => state.futures.tp
+
+export const slFutureSelector = (state: RootState) => state.futures.sl

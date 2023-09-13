@@ -74,9 +74,9 @@ const Item = ({
                 </Txt>
 
                 <Box row alignCenter marginTop={10}>
-                    <Box width={7} height={7} backgroundColor={colors.green2} radius={50} marginRight={5} />
+                    <Box width={7} height={7} backgroundColor={colors.red3} radius={50} marginRight={5} />
                     <Txt style={styles.textGray}>
-                        {t('Opened')}
+                        {t('Closed')}
                     </Txt>
                 </Box>
             </Box>
@@ -122,7 +122,7 @@ const Item = ({
                         color={theme.black}
                         fontFamily={fonts.M24}
                     >
-                        {item.entryPrice}
+                            {numberCommasDot(item.entryPrice.toFixed(item?.ROUND))}
                     </Txt>
                 </Box>
 
@@ -136,7 +136,7 @@ const Item = ({
                         color={theme.black}
                         fontFamily={fonts.M24}
                     >
-                        {numberCommasDot(item?.MARK_PRICE.toFixed(item?.ROUND))}
+                        {numberCommasDot(item?.closePrice.toFixed(item?.ROUND))}
                     </Txt>
                 </Box>
 
@@ -160,7 +160,7 @@ const Item = ({
                     {t('Opend')}
                 </Txt>
                 <Txt style={styles.textM24}>
-                    --
+                    {item.created_at}
                 </Txt>
             </Box>
 
@@ -169,7 +169,7 @@ const Item = ({
                     {t('Closed')}
                 </Txt>
                 <Txt style={styles.textM24}>
-                    --
+                    {item.updated_at}
                 </Txt>
             </Box>
         </Box>

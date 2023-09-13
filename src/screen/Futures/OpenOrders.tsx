@@ -46,10 +46,10 @@ const OpenOrders = ({ openOrders }: any) => {
                             <Txt color={theme.black}>{t('Hide Other Symbols')}</Txt>
                         </Box>
                         <Btn
-                            paddingVertical={7}
-                            backgroundColor={theme.gray2}
                             radius={3}
+                            paddingVertical={7}
                             paddingHorizontal={10}
+                            backgroundColor={theme.gray2}
                         >
                             <Txt size={12} fontFamily={fonts.SGM} color={theme.black}>
                                 {t('Close All')}

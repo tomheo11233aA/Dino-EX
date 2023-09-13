@@ -12,6 +12,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import DownItem from '../TransactionHistory/DownItem'
 import ModalAsset from './ModalAsset'
 import ModalType from './ModalType'
+import { StyleSheet } from 'react-native'
 
 const OrderHistory = () => {
   const theme = useTheme()
@@ -142,7 +143,7 @@ const OrderHistory = () => {
             {t('Price')}
           </Txt>
           <Txt color={theme.black} fontFamily={fonts.M23} size={13}>
-            {'0,00'}
+            {'--'}
             <Txt color={colors.grayBlue} size={13}>
               {' / 0,00'}
             </Txt>
@@ -230,3 +231,15 @@ const OrderHistory = () => {
 }
 
 export default OrderHistory
+
+const styles = StyleSheet.create({
+  modal: {
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})

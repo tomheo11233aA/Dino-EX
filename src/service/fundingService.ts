@@ -167,3 +167,15 @@ export const cancelOpenOrder = async (id: number) => {
         return callFailed()
     }
 }
+
+export const getListPositionClose = async () => {
+    try {
+        const res = await axiosInstance.post('/api/binance/getListPositionClose', { 
+            limit: 1000,
+            page: 1,
+         })
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}
