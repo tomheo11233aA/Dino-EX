@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/index'
 import LoadingWhite from '@reuse/LoadingWhite'
 import { USDTFuturesSelector, amountFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, priceFuturesSelector, regimeFuturesSelector, sideFuturesSelector, symbolFuturesSelector, typeTradeFuturesSelector } from '@selector/futuresSelector'
 import { orderFuture } from '@service/tradeService'
+import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useState } from 'react'
@@ -43,11 +44,12 @@ const BuySellButton = ({ toastTopRef }: any) => {
             typeTrade,
             priceLimit,
         })
-        
+
         if (!res.error) {
             if (res.status) {
                 toastTopRef.current.slideDown(t(res.message), true)
                 await dispatch(getProfileThunk())
+                dispatch(futuresSlice.actions.refreshWhenOrderFuture())
             } else {
                 toastTopRef.current.slideDown(t(res.message), true)
             }

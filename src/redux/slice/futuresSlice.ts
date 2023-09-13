@@ -50,7 +50,8 @@ interface IfuturesSlice {
     countDown: number;
     stopProfit: {
         showModal: boolean;
-    }
+    },
+    sliderListen: boolean,
 }
 
 const initialState: IfuturesSlice = {
@@ -95,7 +96,8 @@ const initialState: IfuturesSlice = {
     countDown: 0,
     stopProfit: {
         showModal: false
-    }
+    },
+    sliderListen: false,
 }
 
 const futuresSlice = createSlice({
@@ -140,6 +142,11 @@ const futuresSlice = createSlice({
         },
         setPrice: (state, action: PayloadAction<number | string>) => {
             state.price = action.payload
+        },
+        refreshWhenOrderFuture: (state) => {
+            state.amount = ''
+            state.sliderListen = !state.sliderListen
+            state.price = state.coins.filter(coin => coin.symbol === state.symbol)[0].close 
         },
         setSymbol: (state, action: PayloadAction<{ symbol: string, currency: string }>) => {
             state.symbol = action.payload.symbol

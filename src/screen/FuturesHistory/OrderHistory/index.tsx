@@ -85,7 +85,7 @@ const OrderHistory = () => {
             <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={13}>
               {item.created_at}
             </Txt>
-            {item.type === 0 ?
+            {item.type === 1 ?
               <Box
                 marginTop={5}
                 paddingVertical={2}
@@ -100,9 +100,9 @@ const OrderHistory = () => {
                 marginTop={5}
                 paddingVertical={2}
                 paddingHorizontal={5}
-                backgroundColor={theme.red2}
+                backgroundColor={theme.gray2}
               >
-                <Txt color={colors.red} size={9}>
+                <Txt color={colors.grayBlue} size={9}>
                   {t('Canceled')}
                 </Txt>
               </Box>

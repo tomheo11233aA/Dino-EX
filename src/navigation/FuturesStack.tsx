@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Futures from '@screen/Futures'
 import FuturesHistory from '@screen/FuturesHistory'
 import SharePositions from '@screen/SharePositions'
+import TPSL from '@screen/TPSL'
 import { screen } from '@util/screens'
 import React from 'react'
 
@@ -13,6 +14,7 @@ const FuturesStack = () => {
       <Stack.Screen name={screen.FUTURES} component={Futures} />
       <Stack.Screen name={screen.SHARE_POSITIONS} component={SharePositions} />
       <Stack.Screen name={screen.FUTURES_HISTORY} component={FuturesHistory} />
+      <Stack.Screen name={screen.TPSL} component={TPSL} />
     </Stack.Navigator>
   )
 }

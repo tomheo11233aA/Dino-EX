@@ -55,3 +55,5 @@ export const listTimeLimitFuturesSelector = (state: RootState) => state.futures.
 export const countCandlesFuturesSelector = (state: RootState) => state.futures.countCandles
 
 export const stopProfitFuturesSelector = (state: RootState) => state.futures.stopProfit
+
+export const sliderListenFutureSelector = (state: RootState) => state.futures.sliderListen 

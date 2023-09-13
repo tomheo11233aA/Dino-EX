@@ -1,11 +1,12 @@
 import Box from '@commom/Box'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { sliderListenFutureSelector } from '@selector/futuresSelector'
 import { profileUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { width } from '@util/responsive'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PanGestureHandler, TextInput } from 'react-native-gesture-handler'
 import Animated, { SharedValue, runOnJS, useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated'
@@ -49,6 +50,12 @@ const Slider = ({
     const borderCursor = useSharedValue(colors.gray5)
     const scaleCuror = useSharedValue(0.8)
     const inputOpacity = useSharedValue(0)
+
+    const sliderListen = useAppSelector(sliderListenFutureSelector)
+
+    useEffect(() => {
+        positionX.value = 0
+    }, [sliderListen])
 
     useDerivedValue(() => {
         if (positionX.value > 0) {

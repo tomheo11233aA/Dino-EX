@@ -1,6 +1,7 @@
 export const screen = {
     KYC: 'KYC',
     HOME: 'Home',
+    TPSL: 'TPSL',
     EARN: 'Earn',
     LOGIN: 'Login',
     HELLO: 'Hello',

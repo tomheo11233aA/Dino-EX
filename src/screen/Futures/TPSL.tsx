@@ -59,9 +59,9 @@ const TPSL = ({ type, setType, theme }: Props) => {
                 <Box row marginBottom={10}>
                     <Btn
                         flex={1}
-                        backgroundColor={theme.gray2}
                         radius={3}
                         height={40}
+                        backgroundColor={theme.gray2}
                     >
                         <Txt color={colors.gray2} fontFamily={fonts.RM}>{t('Take Profit')}</Txt>
                     </Btn>

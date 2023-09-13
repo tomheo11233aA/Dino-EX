@@ -39,8 +39,6 @@ const History = () => {
         }))
     }
 
-
-
     return (
         <Box marginTop={30} flex={1}>
             <TabHistory {...{ tab, setTab, positions, openOrders }} />

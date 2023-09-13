@@ -78,7 +78,7 @@ const ItemOpenOrder = ({
                             </Txt>
                         </Box>
                         <Txt fontFamily={fonts.M24} color={theme.black}>
-                            {numberCommasDot('0.000')}
+                            {numberCommasDot(item?.orderEntryPrice?.toFixed(1))}
                         </Txt>
                     </Box>
                 </Box>
