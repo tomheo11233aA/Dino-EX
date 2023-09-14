@@ -7,13 +7,17 @@ export interface ReqGetTotalBuy {
 }
 
 export interface ReqOrderFuture {
-    amount: string | number;
-    regime: string;
-    core: string | number;
-    symbol: string;
     side: string;
+    regime: string;
+    symbol: string;
     typeTrade: string;
+    core: string | number;
+    amount: string | number;
     priceLimit?: string | number;
+    TP: string | number | undefined;
+    SL: string | number | undefined;
+    triggerTP: 'Mark' | 'Last' | undefined;
+    triggerSL: 'Mark' | 'Last' | undefined;
 }
 
 export interface ReqLimitPage {

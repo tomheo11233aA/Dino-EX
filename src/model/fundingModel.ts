@@ -14,23 +14,31 @@ export interface IReqCreateDepositVND {
 }
 
 export interface IOpenOrder {
-    id: number;
-    cost: number;
-    core: number;
-    type: number;
-    side: string;
-    email: string;
-    userid: number;
-    amount: number;
-    regime: string;
-    symbol: string;
-    typeTrade: string;
-    created_at: string;
-    amountCoin: number;
-    idPosition: number;
-    orderEntryPrice: number;
-    closeEntryPrice: number;
-    liquidationPrice: number;
+    id: number,
+    core: number,
+    type: number,
+    cost: number,
+    side: string,
+    email: string,
+    amount: number,
+    symbol: string,
+    regime: string,
+    userid: number,
+    SL: number | null,
+    TP: number | null,
+    typeTrade: string,
+    amountCoin: number,
+    idPosition: number,
+    created_at: string,
+    amountInput: number,
+    amountPnL_SL: number,
+    amountPnL_TP: number,
+    orderEntryPrice: number,
+    amountCoinInput: number,
+    closeEntryPrice: number,
+    liquidationPrice: number,
+    triggerSL: null | string,
+    triggerTP: null | string,
 }
 
 export interface IReqHistoryOpenOrder {

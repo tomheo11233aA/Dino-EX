@@ -11,31 +11,39 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Platform, StyleSheet, TextInput } from 'react-native'
 import { useDispatch } from 'react-redux'
+import { ITriggerTPSL } from 'src/model/futuresModel'
+import MarkLastPrice from './MarkLastPrice'
 
 interface Props {
-    type: '' | 'TPSL' | 'RO';
-    setType: Function;
+    triggerTPSL: ITriggerTPSL;
     theme: any
 }
 
-const TPSL = ({ type, setType, theme }: Props) => {
+const TPSL = ({ triggerTPSL, theme }: Props) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
 
     const tp = useAppSelector(tpFutureSelector)
     const sl = useAppSelector(slFutureSelector)
 
+    const tpsl = triggerTPSL.tpsl
+
     return (
-        <Box>
-            <Box row justifySpaceBetween>
+        <Box zIndex={1}>
+            <Box row justifySpaceBetween zIndex={1}>
                 <Btn
-                    onPress={() => setType((type === 'RO' || type === '') ? 'TPSL' : '')}
                     row
                     alignEnd
                     marginBottom={10}
                     alignSelf={'flex-start'}
+                    onPress={() => {
+                        dispatch(futuresSlice.actions.setTriggerTPSL({
+                            ...triggerTPSL,
+                            tpsl: (tpsl === 'RO' || tpsl === '') ? 'TPSL' : ''
+                        }))
+                    }}
                 >
-                    {type === 'TPSL' ?
+                    {tpsl === 'TPSL' ?
                         <Box
                             width={12}
                             height={12}
@@ -52,20 +60,23 @@ const TPSL = ({ type, setType, theme }: Props) => {
                         <Box
                             width={12}
                             height={12}
-                            backgroundColor={theme.gray3}
                             radius={50}
                             borderWidth={1}
-                            borderColor={theme.gray6}
                             marginRight={7}
+                            borderColor={theme.gray6}
+                            backgroundColor={theme.gray3}
                         />
                     }
 
                     <BoxLine title={'TP/SL'} />
                 </Btn>
-                {type === 'TPSL' && <Txt color={colors.yellowBold} size={12} fontFamily={fonts.RM}>{t('Advanced')}</Txt>}
+                {tpsl === 'TPSL' &&
+                    // <Txt color={colors.yellowBold} size={12} fontFamily={fonts.RM}>{t('Advanced')}</Txt>
+                    <MarkLastPrice />
+                }
             </Box>
 
-            {type === 'TPSL' &&
+            {tpsl === 'TPSL' &&
                 <Box row marginBottom={10}>
                     <TextInput
                         value={tp.toString()}
@@ -75,16 +86,16 @@ const TPSL = ({ type, setType, theme }: Props) => {
                         style={
                             [styles.input, {
                                 color: theme.black,
-                                textAlign: tp.toString().length < 10 ? 'center' : 'auto',
                                 backgroundColor: theme.gray2,
                                 fontSize: tp.toString() === '' ? 15 : 18,
+                                textAlign: tp.toString().length < 10 ? 'center' : 'auto',
                                 fontFamily: tp.toString() === '' ? fonts.RM : 'Myfont20-Regular',
                             }]
                         }
-                        placeholderTextColor={colors.grayBlue}
-                        placeholder={t('Take Profit')}
                         keyboardType={'decimal-pad'}
                         selectionColor={colors.yellow}
+                        placeholder={t('Take Profit')}
+                        placeholderTextColor={colors.grayBlue}
                     />
                     <TextInput
                         value={sl.toString()}
@@ -101,10 +112,10 @@ const TPSL = ({ type, setType, theme }: Props) => {
                                 fontFamily: sl.toString() === '' ? fonts.RM : 'Myfont20-Regular',
                             }]
                         }
-                        placeholderTextColor={colors.grayBlue}
                         placeholder={t('Stop Loss')}
                         keyboardType={'decimal-pad'}
                         selectionColor={colors.yellow}
+                        placeholderTextColor={colors.grayBlue}
                     />
                 </Box>
             }

@@ -22,8 +22,6 @@ const PositionHistory = () => {
   const profile: Profile = useAppSelector<any>(profileUserSelector)
   const positionsHistory = useAppSelector(positionsHistoryFundingSelector)
 
-  console.log(positionsHistory.data)
-
   useEffect(() => {   
       dispatch(getListPositionCloseThunk())
   }, [])

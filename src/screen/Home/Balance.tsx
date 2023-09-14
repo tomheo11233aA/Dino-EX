@@ -63,10 +63,10 @@ export default () => {
     return (
         <Box
             row
-            justifySpaceBetween
+            alignCenter
             marginTop={25}
             marginBottom={-5}
-            alignCenter
+            justifySpaceBetween
         >
             <Box>
                 <Box row alignCenter>
@@ -74,9 +74,9 @@ export default () => {
                         {t('Total (USDT)')}
                     </Txt>
                     <Icon
-                        source={require('@images/trade/more.png')}
                         size={11}
                         marginLeft={5}
+                        source={require('@images/trade/more.png')}
                     />
                 </Box>
 
@@ -90,9 +90,9 @@ export default () => {
                                 onPress={() => setHide(true)}
                             >
                                 <Icon
-                                    source={require('@images/wallet/eye-open.png')}
                                     size={20}
                                     marginLeft={5}
+                                    source={require('@images/wallet/eye-open.png')}
                                 />
                             </Btn>
                         </Box>

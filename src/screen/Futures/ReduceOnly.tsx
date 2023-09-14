@@ -1,42 +1,50 @@
 import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
+import { useAppDispatch } from '@hooks/index'
 import BoxLine from '@reuse/BoxLine'
+import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
-import { fonts } from '@theme/fonts'
-import React, { useState } from 'react'
+import React from 'react'
+import { ITriggerTPSL } from 'src/model/futuresModel'
 
 interface Props {
     t: any;
     theme: any;
-    setType: Function;
-    type: '' | 'TPSL' | 'RO';
+    triggerTPSL: ITriggerTPSL;
 }
 
 const ReduceOnly = ({
     t,
-    type,
     theme,
-    setType,
+    triggerTPSL,
 }: Props) => {
+    const tpsl = triggerTPSL.tpsl
+    const dispatch = useAppDispatch()
+    
     return (
         <Box>
             <Btn
-                onPress={() => setType(type !== 'RO' ? 'RO' : '')}
+                onPress={() => {
+                    dispatch(futuresSlice.actions.setTriggerTPSL({
+                        ...triggerTPSL,
+                        tpsl: tpsl !== 'RO' ? 'RO' : '',
+                    }))
+                }}
                 row
                 alignEnd
                 marginBottom={10}
                 alignSelf={'flex-start'}
             >
-                {type === 'RO' ?
+                {tpsl === 'RO' ?
                     <Box
                         width={12}
                         height={12}
                         radius={50}
-                        borderColor={theme.gray6}
-                        marginRight={7}
                         alignCenter
                         justifyCenter
+                        marginRight={7}
+                        borderColor={theme.gray6}
                         backgroundColor={colors.yellow}
                     >
                         <Txt size={10} color={colors.white}>✓</Txt>

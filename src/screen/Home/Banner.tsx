@@ -3,7 +3,6 @@ import Img from '@commom/Img'
 import { colors } from '@theme/colors'
 import { width } from '@util/responsive'
 import React, { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text } from 'react-native'
 
 type Event = {
@@ -61,16 +60,16 @@ const Banner = () => {
                 pagingEnabled
                 ref={stepCarousel}
                 onScroll={handleScroll}
-                scrollEventThrottle={10000}
                 style={styles.scrollView}
+                scrollEventThrottle={10000}
             >
                 {images.map((image: string) =>
                     <Img
                         key={image}
                         source={image}
+                        height={HEIGHT_IMG}
                         resizeMode={'stretch'}
                         width={width - PADING_HOZ}
-                        height={HEIGHT_IMG}
                     />
                 )}
             </ScrollView>

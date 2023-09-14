@@ -9,11 +9,10 @@ import Balance from './Balance'
 import Coins from './Coins'
 import Funding from './Funding'
 import Header from './Header'
-import KYCStatus from './KYCStatus'
 import Login from './Login'
 import Options from './Options'
 import TypeCoin from './TypeCoin'
-import ComingSoon from '@screen/ComingSoon'
+import { StatusBar } from 'react-native'
 
 const Home = () => {
   const theme = useTheme()
@@ -35,6 +34,7 @@ const Home = () => {
 
   return (
     <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+      <StatusBar barStyle={theme.bg === 'white' ? 'dark-content' : 'light-content'} />
       <Box paddingHorizontal={15} paddingTop={10}>
         <Header />
         {!isLogin && <Login />}

@@ -1,29 +1,38 @@
 import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector } from '@hooks/index'
 import LoadingWhite from '@reuse/LoadingWhite'
-import { USDTFuturesSelector, amountFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, priceFuturesSelector, regimeFuturesSelector, sideFuturesSelector, symbolFuturesSelector, typeTradeFuturesSelector } from '@selector/futuresSelector'
+import { USDTFuturesSelector, amountFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, priceFuturesSelector, regimeFuturesSelector, sideFuturesSelector, slFutureSelector, symbolFuturesSelector, tpFutureSelector, triggerTPSLFutureSelector, typeTradeFuturesSelector } from '@selector/futuresSelector'
 import { orderFuture } from '@service/tradeService'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import ModalAlertOrder from './ModalAlertOrder'
 
-const BuySellButton = ({ toastTopRef }: any) => {
+const BuySellButton = () => {
+    const { t } = useTranslation()
     const dispatch = useAppDispatch()
+
+    const tp = useAppSelector(tpFutureSelector)
+    const sl = useAppSelector(slFutureSelector)
     const side = useAppSelector(sideFuturesSelector)
+    const core = useAppSelector(coreFuturesSelector)
+    const USDT = useAppSelector(USDTFuturesSelector)
     const amount = useAppSelector(amountFuturesSelector)
     const regime = useAppSelector(regimeFuturesSelector)
-    const core = useAppSelector(coreFuturesSelector)
     const symbol = useAppSelector(symbolFuturesSelector)
-    const typeTrade = useAppSelector(typeTradeFuturesSelector)
-    const priceLimit = useAppSelector(priceFuturesSelector)
-    const USDT = useAppSelector(USDTFuturesSelector)
     const coins = useAppSelector(coinsFuturesChartSelector)
+    const priceLimit = useAppSelector(priceFuturesSelector)
+    const typeTrade = useAppSelector(typeTradeFuturesSelector)
+    const triggerTPSL = useAppSelector(triggerTPSLFutureSelector)
+
+    const [message, setMessage] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
-    const { t } = useTranslation()
+    const [isShowModalAlert, setShowModalAlert] = useState<boolean>(false)
 
     const handleOrderFuture = async () => {
         let close: number = 0
@@ -43,37 +52,51 @@ const BuySellButton = ({ toastTopRef }: any) => {
             side,
             typeTrade,
             priceLimit,
+            triggerTP: triggerTPSL.tpsl === 'TPSL' ? triggerTPSL.value : undefined,
+            triggerSL: triggerTPSL.tpsl === 'TPSL' ? triggerTPSL.value : undefined,
+            TP: triggerTPSL.tpsl !== 'TPSL' ? undefined : tp !== '' ? tp : undefined,
+            SL: triggerTPSL.tpsl !== 'TPSL' ? undefined : sl !== '' ? sl : undefined,
         })
 
         if (!res.error) {
             if (res.status) {
-                toastTopRef.current.slideDown(t(res.message), true)
                 await dispatch(getProfileThunk())
                 dispatch(futuresSlice.actions.refreshWhenOrderFuture())
-            } else {
-                toastTopRef.current.slideDown(t(res.message), true)
             }
+            setShowModalAlert(true)
+            setMessage(res.message)
+            console.log(res.message)
         }
 
         setLoading(false)
     }
 
     return (
-        <Btn
-            onPress={handleOrderFuture}
-            disabled={loading}
-            backgroundColor={side === 'buy' ? colors.green2 : colors.red2}
-            height={37}
-            radius={5}
-            marginTop={12}
-        >
-            {loading ?
-                <LoadingWhite /> :
-                <Txt color={colors.white} size={15} fontFamily={fonts.SGM}>
-                    {side === 'buy' ? t('Buy/Long') : t('Sell/Long')}
-                </Txt>
+        <Box>
+            <Btn
+                radius={5}
+                height={37}
+                marginTop={12}
+                disabled={loading}
+                onPress={handleOrderFuture}
+                backgroundColor={side === 'buy' ? colors.green2 : colors.red2}
+            >
+                {loading ?
+                    <LoadingWhite /> :
+                    <Txt color={colors.white} size={15} fontFamily={fonts.SGM}>
+                        {side === 'buy' ? t('Buy/Long') : t('Sell/Long')}
+                    </Txt>
+                }
+            </Btn>
+            {isShowModalAlert &&
+                <ModalAlertOrder
+                    message={message}
+                    setMessage={setMessage}
+                    show={isShowModalAlert}
+                    setShow={setShowModalAlert}
+                />
             }
-        </Btn>
+        </Box>
     )
 }
 

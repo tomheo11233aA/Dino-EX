@@ -42,7 +42,7 @@ const Hello = ({ navigation }: any) => {
 
     return (
         <Box flex={1} backgroundColor={'#11181e'} alignCenter justifyCenter>
-            <Img 
+            <Img
                 source={require('@images/Logo.png')}
                 width={100}
                 height={100}

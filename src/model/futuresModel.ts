@@ -64,3 +64,9 @@ export interface ISellBuy {
     totalUsdt: number;
     percent: number;
 }
+
+export interface ITriggerTPSL {
+    showOption: boolean;
+    value: 'Mark' | 'Last';
+    tpsl: '' | 'TPSL' | 'RO';
+}

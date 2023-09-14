@@ -88,6 +88,7 @@ export const colors = {
     grayBlue: '#717a8b',
     grayBlue2: '#82898f',
     grayBlue3: '#858e9c',
+    grayBlue4: '#77808f',
     lightYellow: '#fff6d8',
     lightYellow2: '#36352f',
     yellow: '#fbd434',

@@ -56,14 +56,14 @@ const OpenOrders = () => {
                     </Txt>
                     <Box paddingLeft={20} marginTop={10} row>
                         <CircularProgress
-                            value={(data.amountCoin * 100 / profile.balance)}
-                            valueSuffix='%'
-                            activeStrokeColor={data.side === 'buy' ? colors.green2 : colors.red2}
-                            inActiveStrokeColor={colors.gray5}
-                            inActiveStrokeOpacity={0.2}
                             radius={20}
+                            valueSuffix='%'
                             activeStrokeWidth={5}
                             inActiveStrokeWidth={5}
+                            inActiveStrokeOpacity={0.2}
+                            inActiveStrokeColor={colors.gray5}
+                            value={(data.amountCoin * 100 / profile.balance)}
+                            activeStrokeColor={data.side === 'buy' ? colors.green2 : colors.red2}
                         />
                         <Box marginLeft={15}>
                             <Box row>

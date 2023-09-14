@@ -24,7 +24,12 @@ const Options = () => {
     }
 
     return (
-        <Box row alignStart justifySpaceAround marginTop={30}>
+        <Box
+            row
+            alignStart
+            marginTop={30}
+            justifySpaceAround
+        >
             <ItemOption
                 onPress={handle}
                 title={t('Binance Academy')}
@@ -57,12 +62,12 @@ const Options = () => {
                         require('@images/home/more.png') :
                         require('@images/home/more-dark.png')
                     }
-                    size={44}
+                    size={42}
                     resizeMode={'contain'}
                 />
                 <Txt
                     center
-                    size={12}
+                    size={10}
                     marginTop={3}
                     numberOfLines={2}
                     color={theme.black}

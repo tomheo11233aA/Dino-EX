@@ -13,10 +13,14 @@ import Icon from '@commom/Icon'
 import { width } from '@util/responsive'
 import Safe from '@reuse/Safe'
 import Btn from '@commom/Btn'
+import { useRoute } from '@react-navigation/native'
 
 const TPSL = () => {
     const theme = useTheme()
     const { t } = useTranslation()
+
+    const route = useRoute<any>()
+    const { itemOpenOrder } = route.params
 
     hideBottomTab()
 
@@ -43,7 +47,7 @@ const TPSL = () => {
         <Safe bg={theme.bg} paddingHorizontal={15}>
             <Box flex={1}>
                 <Header />
-                <Parent />
+                <Parent {...{ itemOpenOrder }} />
                 <Box
                     alignEnd
                     width={'95%'}

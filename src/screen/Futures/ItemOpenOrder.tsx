@@ -84,18 +84,20 @@ const ItemOpenOrder = ({
                         </Txt>
                     </Box>
 
-                    <Box row>
-                        <Box width={70}>
-                            <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
-                                TP/SL
-                            </Txt>
+                    {(item.typeTrade === 'Limit' && (item.TP || item.SL))&&
+                        <Box row>
+                            <Box width={70}>
+                                <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
+                                    TP/SL
+                                </Txt>
+                            </Box>
+                            <Btn onPress={() => navigate(screen.TPSL, { itemOpenOrder: item })}>
+                                <Txt fontFamily={fonts.IBMPR} color={colors.yellow} size={12}>
+                                    {t('View')}
+                                </Txt>
+                            </Btn>
                         </Box>
-                        <Btn onPress={() => navigate(screen.TPSL)}>
-                            <Txt fontFamily={fonts.IBMPR} color={colors.yellow} size={12}>
-                                {t('View')}
-                            </Txt>
-                        </Btn>
-                    </Box>
+                    }
                 </Box>
             </Box>
             <Box alignEnd>

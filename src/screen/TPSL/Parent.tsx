@@ -6,10 +6,19 @@ import Txt from '@commom/Txt'
 import { useTranslation } from 'react-i18next'
 import { fonts } from '@theme/fonts'
 import { colors } from '@theme/colors'
+import { IOpenOrder } from 'src/model/fundingModel'
+import { numberCommasDot } from '@method/format'
 
-const Parent = () => {
+interface Props {
+    itemOpenOrder: IOpenOrder;
+}
+
+const Parent = ({ itemOpenOrder }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
+
+    const price = itemOpenOrder.orderEntryPrice
+    const ROUND = price < 10 ? 4 : (price > 9 && price < 51) ? 3 : 1
 
     return (
         <Box
@@ -20,7 +29,7 @@ const Parent = () => {
         >
             <Box row justifySpaceBetween>
                 <Txt color={theme.black} fontFamily={fonts.IBMPM} size={13}>
-                    {'Limit'}
+                    {itemOpenOrder.typeTrade}
                 </Txt>
                 <Txt
                     size={12}
@@ -37,10 +46,10 @@ const Parent = () => {
                 </Txt>
                 <Txt
                     size={12}
-                    color={colors.green2}
                     fontFamily={fonts.IBMPR}
+                    color={itemOpenOrder.side === 'Buy' ? colors.green2 : colors.red3}
                 >
-                    {t('Buy')}
+                    {t(itemOpenOrder.side)}
                 </Txt>
             </Box>
 
@@ -52,8 +61,8 @@ const Parent = () => {
                     color={theme.black}
                     fontFamily={fonts.M23}
                 >
-                    {'153,4 '}
-                    <Txt color={theme.black} size={11}>USDT</Txt>
+                    {numberCommasDot(itemOpenOrder.amount)}
+                    <Txt color={theme.black} size={11}> USDT</Txt>
                 </Txt>
             </Box>
 
@@ -65,8 +74,8 @@ const Parent = () => {
                     color={theme.black}
                     fontFamily={fonts.M23}
                 >
-                    {'30.676,0 '}
-                    <Txt color={theme.black} size={11}>USDT</Txt>
+                    {numberCommasDot(itemOpenOrder.orderEntryPrice.toFixed(ROUND))}
+                    <Txt color={theme.black} size={11}> USDT</Txt>
                 </Txt>
             </Box>
         </Box>
