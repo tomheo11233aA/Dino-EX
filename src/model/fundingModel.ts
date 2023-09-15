@@ -41,6 +41,13 @@ export interface IOpenOrder {
     triggerTP: null | string,
 }
 
+export interface IOpenOrderConver extends IOpenOrder {
+    reducerOnly: boolean,
+    showTPSL: number | boolean,
+    triggerConditionsTP: string | null,
+    triggerConditionsSL: string | null,
+}
+
 export interface IReqHistoryOpenOrder {
     page: number;
     limit: number;

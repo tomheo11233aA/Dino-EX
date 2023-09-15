@@ -39,25 +39,6 @@ const TPSL = () => {
         }
     }, [])
 
-    const data: any = [
-        {
-            side: 'Buy',
-            symbol: 'USDT',
-            amount: '160,0',
-            price: '32000,0',
-            status: 'Pending',
-            title: 'Take Profit Market',
-        },
-        {
-            side: 'Sell',
-            symbol: 'USDT',
-            amount: '160,0',
-            price: '32000,0',
-            status: 'Pending',
-            title: 'Stop Market',
-        },
-    ]
-
     return (
         <Safe
             bg={theme.bg}
@@ -100,22 +81,9 @@ const TPSL = () => {
                             side={itemOpenOrder.side === 'buy' ? 'sell' : 'buy'}
                         />
                     }
-
-                    {/* {
-                        data.map((item: any, index: number) =>
-                            <Item
-                                t={t}
-                                data={data}
-                                item={item}
-                                index={index}
-                                theme={theme}
-                                key={Math.random()}
-                            />
-                        )
-                    } */}
                 </Box>
 
-                <Box row marginTop={width * 25 / 100}>
+                <Box row marginTop={width * 25 / 100} zIndex={-1}>
                     <Icon
                         size={11}
                         marginTop={3}
@@ -130,7 +98,12 @@ const TPSL = () => {
                 </Box>
             </Box>
 
-            <Btn backgroundColor={colors.yellow} paddingVertical={10} radius={3}>
+            <Btn
+                radius={3}
+                marginBottom={10}
+                paddingVertical={10}
+                backgroundColor={colors.yellow}
+            >
                 <Txt fontFamily={fonts.IBMPM}>{t('Confirm')}</Txt>
             </Btn>
         </Safe>

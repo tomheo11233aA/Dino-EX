@@ -1,24 +1,20 @@
 import { getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk } from '@asyncThunk/fundingAsyncThunk'
 import Box from '@commom/Box'
 import Icon from '@commom/Icon'
+import Scroll from '@commom/Scroll'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { openOrdersFundingSelector } from '@selector/fundingSelector'
+import { cancelOpenOrder } from '@service/fundingService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Alert } from 'react-native'
+import { IOpenOrder } from 'src/model/fundingModel'
 import DownItem from '../TransactionHistory/DownItem'
 import Item from './Item'
 import ModalAsset from './ModalAsset'
-import contants from '@util/contants'
-import { io } from 'socket.io-client'
-import { Profile } from 'src/model/userModel'
-import { profileUserSelector } from '@selector/userSelector'
-import Scroll from '@commom/Scroll'
-import { cancelOpenOrder } from '@service/fundingService'
-import { Alert } from 'react-native'
-import { IOpenOrder } from 'src/model/fundingModel'
 
 const OpenOrders = () => {
   const theme = useTheme()
@@ -115,7 +111,7 @@ const OpenOrders = () => {
             {t('Not positions')}
           </Txt>
         </Box> :
-        <Scroll flex={1}>
+        <Scroll flexGrow={1} paddingBottom={100}>
           {openOrders.data.map((item) =>
             <Item
               t={t}

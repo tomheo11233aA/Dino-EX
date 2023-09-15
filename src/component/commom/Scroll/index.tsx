@@ -7,8 +7,8 @@ import { handleMargin, handlePadding, handleRound, handleSquare } from '../share
 import styles from '@commom/Box/styles';
 
 const Scroll = ({
-    showsHorizontalScrollIndicator = true,
-    showsVerticalScrollIndicator = true, 
+    showsHorizontalScrollIndicator = false,
+    showsVerticalScrollIndicator = false, 
     nestedScrollEnabled,
     flex,
     flexShrink,

@@ -1,3 +1,4 @@
+import { IOpenOrder, IOpenOrderConver } from "src/model/fundingModel";
 import { ICoins, IPositions } from "src/model/futuresModel";
 
 export const numberWithCommas = (x: number): string => {
@@ -218,4 +219,38 @@ export const converLanguage = (language: string) => {
         return 'Vietnamese'
     }
     return 'English'
+}
+
+export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {
+    const showTPSL = (item.typeTrade === 'Limit' && (item.TP || item.SL)) ||
+        (item.idPosition === 0 && (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market'))
+
+    const reducerOnly = (item.typeTrade === 'Limit') ||
+        (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market')
+
+    let triggerConditionsTP = null
+    if (item.TP) {
+        if (item.side === 'sell') {
+            triggerConditionsTP = `${t(item.triggerTP + ' Price')} >= `
+        } else {
+            triggerConditionsTP = `${t(item.triggerTP + ' Price')} <= `
+        }
+    }
+
+    let triggerConditionsSL = null
+    if (item.SL) {
+        if (item.side === 'sell') {
+            triggerConditionsSL = `${t(item.triggerSL + ' Price')} <= `
+        } else {
+            triggerConditionsSL = `${t(item.triggerSL + ' Price')} >= `
+        }
+    }
+
+    return {
+        ...item,
+        showTPSL,
+        reducerOnly,
+        triggerConditionsTP,
+        triggerConditionsSL,
+    }
 }
