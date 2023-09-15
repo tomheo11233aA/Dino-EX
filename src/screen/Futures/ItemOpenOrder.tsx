@@ -17,6 +17,8 @@ interface Props {
     onCancelOpenOrder: Function;
 }
 
+const WIDTH = 77
+
 const ItemOpenOrder = ({
     t,
     item,
@@ -24,6 +26,30 @@ const ItemOpenOrder = ({
     onCancelOpenOrder,
 }: Props) => {
     const side = item.side === 'buy' ? 'Buy' : 'Sell'
+    const showTPSL = (item.typeTrade === 'Limit' && (item.TP || item.SL)) ||
+        (item.idPosition === 0 && (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market'))
+
+    const reducerOnly = (item.typeTrade === 'Limit') ||
+        (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market')
+
+    let triggerConditionsTP = null
+    if (item.TP) {
+        if (item.side === 'sell') {
+            triggerConditionsTP = `${item.triggerTP + ' price'} >= `
+        } else {
+            triggerConditionsTP = `${item.triggerTP + ' price'} <= `
+        }
+    }
+
+    let triggerConditionsSL = null
+    if (item.SL) {
+        if (item.side === 'sell') {
+            triggerConditionsSL = `${item.triggerSL + ' price'} <= `
+        } else {
+            triggerConditionsSL = `${item.triggerSL + ' price'} >= `
+        }
+    }
+
     return (
         <Box
             key={item.id}
@@ -34,7 +60,8 @@ const ItemOpenOrder = ({
         >
             <Box row justifySpaceBetween alignCenter>
                 <Txt size={16} fontFamily={fonts.IBMPM} color={theme.black}>
-                    {`${item.symbol} ${t('Perpetual')}`}
+                    {`${item.symbol} ${t('Perpetual')
+                        }`}
                 </Txt>
                 <Txt fontFamily={fonts.M23} color={colors.grayBlue} size={14}>
                     {item.created_at}
@@ -46,7 +73,7 @@ const ItemOpenOrder = ({
                 color={item.side === 'buy' ? colors.green2 : colors.red2}
             >
                 {`${item.typeTrade} / ${t(side)}`}
-            </Txt>
+            </Txt >
             <Box paddingLeft={20} marginTop={10} row>
                 <CircularProgress
                     value={0}
@@ -60,7 +87,7 @@ const ItemOpenOrder = ({
                 />
                 <Box marginLeft={15}>
                     <Box row>
-                        <Box width={70}>
+                        <Box width={WIDTH}>
                             <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
                                 {t('Amount')} (USDT)
                             </Txt>
@@ -73,8 +100,8 @@ const ItemOpenOrder = ({
                         </Txt>
                     </Box>
 
-                    <Box row marginVertical={5}>
-                        <Box width={70}>
+                    <Box row marginTop={5}>
+                        <Box width={WIDTH}>
                             <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
                                 {t('Price')}
                             </Txt>
@@ -84,9 +111,48 @@ const ItemOpenOrder = ({
                         </Txt>
                     </Box>
 
-                    {(item.typeTrade === 'Limit' && (item.TP || item.SL))&&
-                        <Box row>
-                            <Box width={70}>
+                    {triggerConditionsTP &&
+                        <Box row marginTop={5} alignCenter>
+                            <Box>
+                                <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
+                                    {t(triggerConditionsTP)}
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.M24} color={theme.black}>
+                                {numberCommasDot(item.TP)}
+                            </Txt>
+                        </Box>
+                    }
+
+                    {triggerConditionsSL &&
+                        <Box row marginTop={5} alignCenter>
+                            <Box>
+                                <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
+                                    {t(triggerConditionsSL)}
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.M24} color={theme.black}>
+                                {numberCommasDot(item.SL)}
+                            </Txt>
+                        </Box>
+                    }
+
+                    {reducerOnly &&
+                        <Box row marginTop={5}>
+                            <Box width={WIDTH}>
+                                <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
+                                    {t('Reduce Only')}
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.IBMPR} color={theme.black} size={12}>
+                                {t('Yes')}
+                            </Txt>
+                        </Box>
+                    }
+
+                    {(showTPSL && (item.TP || item.SL)) &&
+                        <Box row marginTop={5}>
+                            <Box width={WIDTH}>
                                 <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
                                     TP/SL
                                 </Txt>
@@ -113,7 +179,7 @@ const ItemOpenOrder = ({
                     </Txt>
                 </Btn>
             </Box>
-        </Box>
+        </Box >
     )
 }
 

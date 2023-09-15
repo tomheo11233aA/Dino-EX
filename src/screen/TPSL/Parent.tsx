@@ -47,7 +47,7 @@ const Parent = ({ itemOpenOrder }: Props) => {
                 <Txt
                     size={12}
                     fontFamily={fonts.IBMPR}
-                    color={itemOpenOrder.side === 'Buy' ? colors.green2 : colors.red3}
+                    color={itemOpenOrder.side === 'buy' ? colors.green2 : colors.red3}
                 >
                     {t(itemOpenOrder.side)}
                 </Txt>
@@ -61,8 +61,8 @@ const Parent = ({ itemOpenOrder }: Props) => {
                     color={theme.black}
                     fontFamily={fonts.M23}
                 >
-                    {numberCommasDot(itemOpenOrder.amount)}
-                    <Txt color={theme.black} size={11}> USDT</Txt>
+                    {numberCommasDot(itemOpenOrder?.amountCoin?.toFixed(3))}
+                    <Txt color={theme.black} size={11}>{` ${itemOpenOrder.symbol}`}</Txt>
                 </Txt>
             </Box>
 
@@ -75,7 +75,7 @@ const Parent = ({ itemOpenOrder }: Props) => {
                     fontFamily={fonts.M23}
                 >
                     {numberCommasDot(itemOpenOrder.orderEntryPrice.toFixed(ROUND))}
-                    <Txt color={theme.black} size={11}> USDT</Txt>
+                    <Txt color={theme.black} size={11}>{' USDT'}</Txt>
                 </Txt>
             </Box>
         </Box>

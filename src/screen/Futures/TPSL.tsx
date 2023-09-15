@@ -15,8 +15,8 @@ import { ITriggerTPSL } from 'src/model/futuresModel'
 import MarkLastPrice from './MarkLastPrice'
 
 interface Props {
+    theme: any;
     triggerTPSL: ITriggerTPSL;
-    theme: any
 }
 
 const TPSL = ({ triggerTPSL, theme }: Props) => {
@@ -48,10 +48,10 @@ const TPSL = ({ triggerTPSL, theme }: Props) => {
                             width={12}
                             height={12}
                             radius={50}
-                            borderColor={theme.gray6}
-                            marginRight={7}
                             alignCenter
                             justifyCenter
+                            marginRight={7}
+                            borderColor={theme.gray6}
                             backgroundColor={colors.yellow}
                         >
                             <Txt size={10} color={colors.white}>✓</Txt>

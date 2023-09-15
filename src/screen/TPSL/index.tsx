@@ -1,19 +1,18 @@
-import { hideBottomTab, useTheme } from '@hooks/index'
-import KeyBoardSafe from '@reuse/KeyBoardSafe'
-import React from 'react'
-import Header from './Header'
 import Box from '@commom/Box'
-import Txt from '@commom/Txt'
-import { useTranslation } from 'react-i18next'
-import { fonts } from '@theme/fonts'
-import { colors } from '@theme/colors'
-import Parent from './Parent'
-import Item from './Item'
-import Icon from '@commom/Icon'
-import { width } from '@util/responsive'
-import Safe from '@reuse/Safe'
 import Btn from '@commom/Btn'
+import Icon from '@commom/Icon'
+import Txt from '@commom/Txt'
+import { hideBottomTab, useTheme } from '@hooks/index'
 import { useRoute } from '@react-navigation/native'
+import Safe from '@reuse/Safe'
+import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
+import { width } from '@util/responsive'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import Header from './Header'
+import ItemTPSL from './ItemTPSL'
+import Parent from './Parent'
 
 const TPSL = () => {
     const theme = useTheme()
@@ -22,7 +21,23 @@ const TPSL = () => {
     const route = useRoute<any>()
     const { itemOpenOrder } = route.params
 
+    const [amountTP, setAmountTP] = useState('')
+    const [amountSL, setAmountSL] = useState('')
+    const [triggerTP, setTriggerTP] = useState({ value: 'Mark', show: false })
+    const [triggerSL, setTriggerSL] = useState({ value: 'Mark', show: false })
+
     hideBottomTab()
+
+    useEffect(() => {
+        if (itemOpenOrder.TP) {
+            setAmountTP(itemOpenOrder.TP.toString())
+            setTriggerTP({ ...triggerTP, value: itemOpenOrder.triggerTP })
+        }
+        if (itemOpenOrder.SL) {
+            setAmountSL(itemOpenOrder.SL.toString())
+            setTriggerSL({ ...triggerSL, value: itemOpenOrder.triggerSL })
+        }
+    }, [])
 
     const data: any = [
         {
@@ -44,7 +59,10 @@ const TPSL = () => {
     ]
 
     return (
-        <Safe bg={theme.bg} paddingHorizontal={15}>
+        <Safe
+            bg={theme.bg}
+            paddingHorizontal={15}
+        >
             <Box flex={1}>
                 <Header />
                 <Parent {...{ itemOpenOrder }} />
@@ -55,7 +73,35 @@ const TPSL = () => {
                     alignSelf={'flex-end'}
                     borderColor={theme.gray2}
                 >
-                    {
+                    {itemOpenOrder.TP &&
+                        <ItemTPSL
+                            trigger={triggerTP}
+                            amountTrigger={amountTP}
+                            setTrigger={setTriggerTP}
+                            title={'Take Profit Market'}
+                            symbol={itemOpenOrder.symbol}
+                            setAmountTrigger={setAmountTP}
+                            amount={itemOpenOrder.amountPnL_TP}
+                            lastItem={!itemOpenOrder.SL}
+                            side={itemOpenOrder.side === 'buy' ? 'sell' : 'buy'}
+                        />
+                    }
+                    {itemOpenOrder.SL &&
+                        <ItemTPSL
+                            zIndex={0}
+                            lastItem={true}
+                            trigger={triggerSL}
+                            title={'Stop Market'}
+                            amountTrigger={amountSL}
+                            setTrigger={setTriggerSL}
+                            symbol={itemOpenOrder.symbol}
+                            setAmountTrigger={setAmountSL}
+                            amount={itemOpenOrder.amountPnL_SL}
+                            side={itemOpenOrder.side === 'buy' ? 'sell' : 'buy'}
+                        />
+                    }
+
+                    {/* {
                         data.map((item: any, index: number) =>
                             <Item
                                 t={t}
@@ -66,7 +112,7 @@ const TPSL = () => {
                                 key={Math.random()}
                             />
                         )
-                    }
+                    } */}
                 </Box>
 
                 <Box row marginTop={width * 25 / 100}>
