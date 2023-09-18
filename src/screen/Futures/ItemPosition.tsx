@@ -23,6 +23,7 @@ interface Props {
     onSetClosePosition?: Function;
     onSetShowModalCore?: Function;
     onShowModalStopProfit?: Function;
+    onShowModalTPSLPosition: Function;
 }
 
 const ItemPosition = ({
@@ -35,6 +36,7 @@ const ItemPosition = ({
     onSetClosePosition,
     onSetShowModalCore,
     onShowModalStopProfit,
+    onShowModalTPSLPosition,
 }: Props) => {
 
     position = converPostirions(position, coins, profile.balance)
@@ -185,43 +187,62 @@ const ItemPosition = ({
             </Box>
 
             {onSetClosePosition &&
+                <Box row alignCenter marginTop={-5}>
+                    <Txt style={styles.title}>
+                        {'TP/SL: '}
+                    </Txt>
+                    <Txt style={[styles.txtValue, { color: theme.black }]}>
+                        {'100 / 1.000'}
+                    </Txt>
+                    <Btn onPress={() => onShowModalTPSLPosition(position)}>
+                        <Icon
+                            size={12}
+                            marginLeft={5}
+                            tintColor={'#858d9b'}
+                            source={require('@images/home/pen.png')}
+                        />
+                    </Btn>
+                </Box>
+            }
+
+            {onSetClosePosition &&
                 <Box row>
                     <Btn
+                        flex={1}
+                        radius={4}
+                        height={35}
+                        backgroundColor={theme.gray8}
                         onPress={() => {
                             if (onSetShowModalCore) onSetShowModalCore(position)
                         }}
-                        height={35}
-                        backgroundColor={theme.gray8}
-                        flex={1}
-                        radius={4}
                     >
                         <Txt fontFamily={fonts.SGM} size={12} numberOfLines={1} color={theme.black}>
                             {t('Adjust Leverage')}
                         </Txt>
                     </Btn>
                     <Btn
+                        flex={1}
+                        radius={4}
+                        height={35}
+                        marginHorizontal={10}
+                        paddingHorizontal={5}
+                        backgroundColor={theme.gray8}
                         onPress={() => {
                             if (onShowModalStopProfit) onShowModalStopProfit()
                         }}
-                        height={35}
-                        backgroundColor={theme.gray8}
-                        flex={1}
-                        radius={4}
-                        marginHorizontal={10}
-                        paddingHorizontal={5}
                     >
                         <Txt fontFamily={fonts.SGM} size={12} numberOfLines={1} color={theme.black}>
                             {t('Stop Profit & Loss')}
                         </Txt>
                     </Btn>
                     <Btn
+                        flex={1}
+                        radius={4}
+                        height={35}
+                        backgroundColor={theme.gray8}
                         onPress={() => {
                             if (onSetClosePosition) onSetClosePosition(position)
                         }}
-                        height={35}
-                        backgroundColor={theme.gray8}
-                        flex={1}
-                        radius={4}
                     >
                         <Txt fontFamily={fonts.SGM} size={12} numberOfLines={1} color={theme.black}>
                             {t('Close Position')}

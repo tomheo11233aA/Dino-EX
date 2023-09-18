@@ -18,7 +18,7 @@ interface Props {
     onCancelOpenOrder: Function;
 }
 
-const WIDTH = 71.5
+const WIDTH = 75
 
 const Item = ({
     t,
@@ -63,19 +63,32 @@ const Item = ({
                     activeStrokeColor={itemConver.side === 'buy' ? colors.green2 : colors.red2}
                 />
                 <Box marginLeft={15} flex={1}>
-                    <Box row>
-                        <Box width={WIDTH}>
-                            <Txt style={styles.textGray}>
-                                {t('Amount')} (USDT)
+                    {itemConver.amount === 'Close Position' ?
+                        <Box row marginTop={5}>
+                            <Box width={WIDTH}>
+                                <Txt style={styles.textGray}>
+                                    {t('Close Position')}
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.IBMPR} color={theme.black} size={12}>
+                                {t('Yes')}
                             </Txt>
                         </Box>
-                        <Txt fontFamily={fonts.M17} color={theme.black} size={13}>
-                            {numberCommasDot('0.0')}
-                            <Txt color={colors.gray5}>
-                                {' /'} {numberCommasDot(itemConver.amount?.toFixed(1))}
+                        :
+                        <Box row>
+                            <Box width={WIDTH}>
+                                <Txt style={styles.textGray}>
+                                    {t('Amount')} (USDT)
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.M23} color={theme.black} size={13}>
+                                {numberCommasDot('0.0')}
+                                <Txt color={colors.gray5}>
+                                    {' /'} {numberCommasDot(itemConver.amount?.toFixed(1))}
+                                </Txt>
                             </Txt>
-                        </Txt>
-                    </Box>
+                        </Box>
+                    }
 
                     <Box row marginTop={5}>
                         <Box width={WIDTH}>
@@ -83,34 +96,42 @@ const Item = ({
                                 {t('Price')}
                             </Txt>
                         </Box>
-                        <Txt fontFamily={fonts.M17} color={theme.black} size={13}>
+                        <Txt fontFamily={fonts.M23} color={theme.black} size={13}>
                             {numberCommasDot(itemConver?.orderEntryPrice?.toFixed(1))}
                         </Txt>
                     </Box>
 
                     {itemConver.triggerConditionsTP &&
                         <Box row marginTop={5} alignCenter>
-                            <Box>
+                            <Box width={WIDTH}>
                                 <Txt style={styles.textGray}>
-                                    {t(itemConver.triggerConditionsTP)}
+                                    {t('Conditions')}
                                 </Txt>
                             </Box>
-                            <Txt fontFamily={fonts.M17} color={theme.black} size={13}>
-                                {numberCommasDot(itemConver.TP)}
-                            </Txt>
+
+                            <Box row alignCenter>
+                                <Txt style={styles.textGray}>{itemConver.triggerConditionsTP}</Txt>
+                                <Txt fontFamily={fonts.M23} color={theme.black} size={13}>
+                                    {numberCommasDot(itemConver.TP)}
+                                </Txt>
+                            </Box>
                         </Box>
                     }
 
                     {itemConver.triggerConditionsSL &&
                         <Box row marginTop={5} alignCenter>
-                            <Box>
+                            <Box width={WIDTH}>
                                 <Txt style={styles.textGray}>
-                                    {t(itemConver.triggerConditionsSL)}
+                                    {t('Conditions')}
                                 </Txt>
                             </Box>
-                            <Txt fontFamily={fonts.M17} color={theme.black} size={13}>
-                                {numberCommasDot(itemConver.SL)}
-                            </Txt>
+
+                            <Box row alignCenter>
+                                <Txt style={styles.textGray}>{itemConver.triggerConditionsSL}</Txt>
+                                <Txt fontFamily={fonts.M23} color={theme.black} size={13}>
+                                    {numberCommasDot(itemConver.SL)}
+                                </Txt>
+                            </Box>
                         </Box>
                     }
 

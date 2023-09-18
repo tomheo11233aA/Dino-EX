@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IChart } from "@screen/Futures/Chart";
 import { colors } from "@theme/colors";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import { ICoins, IPositions, ISellBuy, ITriggerTPSL } from "src/model/futuresModel";
+import { ICoins, IPositions, ISellBuy, ITpslPosition, ITriggerTPSL } from "src/model/futuresModel";
 import { WritableDraft } from "immer/dist/internal";
 import { ITimeLimit } from "src/model/tradeModel";
 import { convertTimeGetChart } from "@method/format";
@@ -55,6 +55,7 @@ interface IfuturesSlice {
     tp: number | string;
     sl: number | string;
     triggerTPSL: ITriggerTPSL;
+    tpslPosition: ITpslPosition;
 }
 
 const initialState: IfuturesSlice = {
@@ -108,12 +109,19 @@ const initialState: IfuturesSlice = {
         value: 'Mark',
         showOption: false,
     },
+    tpslPosition: {
+        position: null,
+        showModal: false,
+    }
 }
 
 const futuresSlice = createSlice({
     name: 'futures',
     initialState,
     reducers: {
+        setTPSLPosition: (state, action: PayloadAction<ITpslPosition>) => {
+            state.tpslPosition = action.payload
+        },
         setTriggerTPSL: (state, action: PayloadAction<ITriggerTPSL>) => {
             state.triggerTPSL = action.payload
         },

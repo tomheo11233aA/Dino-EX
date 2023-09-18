@@ -18,7 +18,7 @@ interface Props {
     onCancelOpenOrder: Function;
 }
 
-const WIDTH = 77
+const WIDTH = 80
 
 const ItemOpenOrder = ({
     t,
@@ -31,10 +31,10 @@ const ItemOpenOrder = ({
 
     return (
         <Box
-            key={itemConver.id}
             marginTop={10}
             paddingTop={10}
             borderTopWidth={1}
+            key={itemConver.id}
             borderColor={theme.gray2}
         >
             <Box row justifySpaceBetween alignCenter>
@@ -64,19 +64,32 @@ const ItemOpenOrder = ({
                     activeStrokeColor={itemConver.side === 'buy' ? colors.green2 : colors.red2}
                 />
                 <Box marginLeft={15}>
-                    <Box row>
-                        <Box width={WIDTH}>
-                            <Txt style={styles.textGray}>
-                                {t('Amount')} (USDT)
+                    {itemConver.amount === 'Close Position' ?
+                        <Box row marginTop={5}>
+                            <Box width={WIDTH}>
+                                <Txt style={styles.textGray}>
+                                    {t('Close Position')}
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.IBMPR} color={theme.black} size={12}>
+                                {t('Yes')}
                             </Txt>
                         </Box>
-                        <Txt fontFamily={fonts.M24} color={theme.black}>
-                            {numberCommasDot('0.0')}
-                            <Txt color={colors.gray5}>
-                                {' /'} {numberCommasDot(itemConver.amount?.toFixed(1))}
+                        :
+                        <Box row>
+                            <Box width={WIDTH}>
+                                <Txt style={styles.textGray}>
+                                    {t('Amount')} (USDT)
+                                </Txt>
+                            </Box>
+                            <Txt fontFamily={fonts.M23} color={theme.black}>
+                                {numberCommasDot('0.0')}
+                                <Txt color={colors.gray5}>
+                                    {' /'} {numberCommasDot(itemConver.amount?.toFixed(1))}
+                                </Txt>
                             </Txt>
-                        </Txt>
-                    </Box>
+                        </Box>
+                    }
 
                     <Box row marginTop={5}>
                         <Box width={WIDTH}>
@@ -84,34 +97,42 @@ const ItemOpenOrder = ({
                                 {t('Price')}
                             </Txt>
                         </Box>
-                        <Txt fontFamily={fonts.M24} color={theme.black}>
+                        <Txt fontFamily={fonts.M23} color={theme.black}>
                             {numberCommasDot(itemConver?.orderEntryPrice?.toFixed(1))}
                         </Txt>
                     </Box>
 
                     {itemConver.triggerConditionsTP &&
                         <Box row marginTop={5} alignCenter>
-                            <Box>
+                            <Box width={WIDTH}>
                                 <Txt style={styles.textGray}>
-                                    {itemConver.triggerConditionsTP}
+                                    {t('Conditions')}
                                 </Txt>
                             </Box>
-                            <Txt fontFamily={fonts.M24} color={theme.black}>
-                                {numberCommasDot(itemConver.TP)}
-                            </Txt>
+
+                            <Box row alignCenter>
+                                <Txt style={styles.textGray}>{itemConver.triggerConditionsTP}</Txt>
+                                <Txt fontFamily={fonts.M23} color={theme.black}>
+                                    {numberCommasDot(itemConver.TP)}
+                                </Txt>
+                            </Box>
                         </Box>
                     }
 
                     {itemConver.triggerConditionsSL &&
                         <Box row marginTop={5} alignCenter>
-                            <Box>
+                            <Box width={WIDTH}>
                                 <Txt style={styles.textGray}>
-                                    {itemConver.triggerConditionsSL}
+                                    {t('Conditions')}
                                 </Txt>
                             </Box>
-                            <Txt fontFamily={fonts.M24} color={theme.black}>
-                                {numberCommasDot(itemConver.SL)}
-                            </Txt>
+
+                            <Box row alignCenter>
+                                <Txt style={styles.textGray}>{itemConver.triggerConditionsSL}</Txt>
+                                <Txt fontFamily={fonts.M23} color={theme.black}>
+                                    {numberCommasDot(itemConver.SL)}
+                                </Txt>
+                            </Box>
                         </Box>
                     }
 
@@ -143,19 +164,20 @@ const ItemOpenOrder = ({
                         </Box>
                     }
                 </Box>
-            </Box>
-            <Box alignEnd>
-                <Btn
-                    onPress={() => onCancelOpenOrder(item)}
-                    radius={3}
-                    paddingVertical={5}
-                    paddingHorizontal={10}
-                    backgroundColor={theme.gray2}
-                >
-                    <Txt fontFamily={fonts.IBMPM} size={13} color={theme.black}>
-                        {t('Cancel')}
-                    </Txt>
-                </Btn>
+
+                <Box alignEnd flex={1} justifyEnd>
+                    <Btn
+                        onPress={() => onCancelOpenOrder(item)}
+                        radius={3}
+                        paddingVertical={3}
+                        paddingHorizontal={7}
+                        backgroundColor={theme.gray2}
+                    >
+                        <Txt fontFamily={fonts.IBMPM} size={12} color={theme.black}>
+                            {t('Cancel')}
+                        </Txt>
+                    </Btn>
+                </Box>
             </Box>
         </Box >
     )

@@ -1,4 +1,6 @@
-export interface IPositions {
+import { IOpenOrder } from "./fundingModel";
+
+export interface IPositions extends IOpenOrder {
     id: number;
     ROE: number;
     PNL: number;
@@ -69,4 +71,9 @@ export interface ITriggerTPSL {
     showOption: boolean;
     value: 'Mark' | 'Last';
     tpsl: '' | 'TPSL' | 'RO';
+}
+
+export interface ITpslPosition {
+    showModal: boolean;
+    position: IPositions | null;
 }

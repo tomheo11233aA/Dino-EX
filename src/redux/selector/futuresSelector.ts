@@ -63,3 +63,5 @@ export const tpFutureSelector = (state: RootState) => state.futures.tp
 export const slFutureSelector = (state: RootState) => state.futures.sl
 
 export const triggerTPSLFutureSelector = (state: RootState) => state.futures.triggerTPSL
+
+export const tpslPositionFutureSelector = (state: RootState) => state.futures.tpslPosition 

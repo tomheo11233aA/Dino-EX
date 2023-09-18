@@ -60,10 +60,10 @@ const TPSL = () => {
                             amountTrigger={amountTP}
                             setTrigger={setTriggerTP}
                             title={'Take Profit Market'}
+                            lastItem={!itemOpenOrder.SL}
                             symbol={itemOpenOrder.symbol}
                             setAmountTrigger={setAmountTP}
                             amount={itemOpenOrder.amountPnL_TP}
-                            lastItem={!itemOpenOrder.SL}
                             side={itemOpenOrder.side === 'buy' ? 'sell' : 'buy'}
                         />
                     }
@@ -83,7 +83,11 @@ const TPSL = () => {
                     }
                 </Box>
 
-                <Box row marginTop={width * 25 / 100} zIndex={-1}>
+                <Box
+                    row
+                    zIndex={-1}
+                    marginTop={width * 25 / 100}
+                >
                     <Icon
                         size={11}
                         marginTop={3}

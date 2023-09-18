@@ -43,12 +43,12 @@ const Header = () => {
             </TouchableOpacity>
 
             <Box
-                backgroundColor={theme.gray2}
-                height={30}
                 flex={1}
+                height={30}
                 radius={20}
-                marginLeft={15}
                 justifyCenter
+                marginLeft={15}
+                backgroundColor={theme.gray2}
             >
                 <Input
                     height={40}

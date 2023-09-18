@@ -222,8 +222,17 @@ export const converLanguage = (language: string) => {
 }
 
 export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {
-    const showTPSL = (item.typeTrade === 'Limit' && (item.TP || item.SL)) ||
-        (item.idPosition === 0 && (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market'))
+    let showTPSL = false
+    let amount = item.amount
+
+    if (item.typeTrade === 'Limit' && (item.TP || item.SL)) {
+        showTPSL = true
+    } else if ((item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market') && !item.amount) {
+        showTPSL = false
+        amount = 'Close Position'
+    } else if (item.idPosition === 0 && (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market')) {
+        showTPSL = true
+    }
 
     const reducerOnly = (item.typeTrade === 'Limit') ||
         (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market')
@@ -231,23 +240,24 @@ export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {
     let triggerConditionsTP = null
     if (item.TP) {
         if (item.side === 'sell') {
-            triggerConditionsTP = `${t(item.triggerTP + ' Price')} >= `
+            triggerConditionsTP = `${t(item.triggerTP + ' Price')}≥`
         } else {
-            triggerConditionsTP = `${t(item.triggerTP + ' Price')} <= `
+            triggerConditionsTP = `${t(item.triggerTP + ' Price')}≤`
         }
     }
 
     let triggerConditionsSL = null
     if (item.SL) {
         if (item.side === 'sell') {
-            triggerConditionsSL = `${t(item.triggerSL + ' Price')} <= `
+            triggerConditionsSL = `${t(item.triggerSL + ' Price')}≤`
         } else {
-            triggerConditionsSL = `${t(item.triggerSL + ' Price')} >= `
+            triggerConditionsSL = `${t(item.triggerSL + ' Price')}≥`
         }
     }
 
     return {
         ...item,
+        amount,
         showTPSL,
         reducerOnly,
         triggerConditionsTP,

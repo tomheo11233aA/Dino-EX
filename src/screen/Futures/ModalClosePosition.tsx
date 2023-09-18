@@ -57,6 +57,10 @@ const ModalClosePosition = ({ show = true, setShow }: Props) => {
                     symbol: position.symbol,
                     typeTrade: typeTrade,
                     priceLimit: price,
+                    triggerTP: position.triggerTP,
+                    triggerSL: position.triggerSL,
+                    TP: position.TP,
+                    SL: position.SL,
                 })
 
                 if (!res.status) Alert.alert(t(cannotConnect()))

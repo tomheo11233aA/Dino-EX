@@ -115,7 +115,7 @@ const ItemTPSL = ({
                         color={theme.black}
                         fontFamily={fonts.M23}
                     >
-                        {numberCommasDot(amount?.toFixed(4))}
+                        {numberCommasDot(amount?.toFixed(1))}
                         <Txt color={theme.black} size={11}>{` ${symbol}`}</Txt>
                     </Txt>
                     <Box

@@ -15,6 +15,7 @@ import { getHistoryOpenOrderAllThunk } from '@asyncThunk/fundingAsyncThunk'
 import { io } from 'socket.io-client'
 import contants from '@util/contants'
 import { Profile } from 'src/model/userModel'
+import ModalTPSLPosition from './ModalTPSLPosition'
 
 const History = () => {
     const dispatch = useAppDispatch()
@@ -55,6 +56,7 @@ const History = () => {
                 show={stopProfit.showModal}
                 setShow={() => { }}
             />
+            <ModalTPSLPosition />
         </Box>
     )
 }

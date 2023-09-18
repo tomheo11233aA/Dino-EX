@@ -59,6 +59,13 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
+    const handleShowModalTPSLPosition = async (position: IPositions) => {
+        dispatch(futuresSlice.actions.setTPSLPosition({
+            position,
+            showModal: true,
+        }))
+    }
+
     return (
         <>
             {positions.length > 0 ?
@@ -96,15 +103,16 @@ const Positions = ({ positions }: Props) => {
                         {positions.map((item: IPositions) =>
                             <ItemPosition
                                 t={t}
-                                key={item.id}
                                 item={item}
                                 coins={coins}
                                 theme={theme}
+                                key={item.id}
                                 profile={profile}
                                 onClosePosition={handleClosePosition}
                                 onSetClosePosition={handleSetClosePosition}
                                 onSetShowModalCore={handleSetShowModalCore}
                                 onShowModalStopProfit={handleShowModalStopProfit}
+                                onShowModalTPSLPosition={handleShowModalTPSLPosition}
                             />
                         )}
                     </ScrollView>

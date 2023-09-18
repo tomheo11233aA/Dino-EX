@@ -62,7 +62,7 @@ const Parent = ({ itemOpenOrder }: Props) => {
                     fontFamily={fonts.M23}
                 >
                     {numberCommasDot(itemOpenOrder?.amountCoin?.toFixed(3))}
-                    <Txt color={theme.black} size={11}>{` ${itemOpenOrder.symbol}`}</Txt>
+                    <Txt color={theme.black} size={11}>{' USDT'}</Txt>
                 </Txt>
             </Box>
 
