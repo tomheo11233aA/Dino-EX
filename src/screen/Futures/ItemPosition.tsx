@@ -192,7 +192,7 @@ const ItemPosition = ({
                         {'TP/SL: '}
                     </Txt>
                     <Txt style={[styles.txtValue, { color: theme.black }]}>
-                        {'100 / 1.000'}
+                        {`${position.TP || '--'} / ${position.SL || '--'}`}
                     </Txt>
                     <Btn onPress={() => onShowModalTPSLPosition(position)}>
                         <Icon

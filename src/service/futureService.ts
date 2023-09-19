@@ -134,3 +134,21 @@ export const leverAdjustmentAPI = async (data: any) => {
         callFailed()
     }
 }
+
+// export const setTPSLPosition = async (data: any) => {
+//     try {
+//         const res = await axiosInstance.post('/api/binance/setTPSLPosition', data)
+//         return callSuccess(res)
+//     } catch (error) {
+//         callFailed()
+//     }
+// }
+
+// export const setTPSLPosition = async (data: any) => {
+//     try {
+//         const res = await axiosInstance.post('/api/binance/setTPSLPosition', data)
+//         return callSuccess(res)
+//     } catch (error) {
+//         callFailed()
+//     }
+// }

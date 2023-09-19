@@ -27,7 +27,7 @@ const MLTPSLPosition = ({
         <Box paddingTop={10}>
             <Box row justifySpaceBetween>
                 <Txt color={colors.grayBlue} fontFamily={fonts.IBMPM}>
-                    {title}
+                    {t(title)}
                 </Txt>
                 <Btn onPress={onCancel}>
                     <Txt color={colors.yellow} fontFamily={fonts.IBMPM} size={12}>
