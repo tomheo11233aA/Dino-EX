@@ -61,7 +61,6 @@ const TPSL = () => {
                             setTrigger={setTriggerTP}
                             title={'Take Profit Market'}
                             lastItem={!itemOpenOrder.SL}
-                            symbol={itemOpenOrder.symbol}
                             setAmountTrigger={setAmountTP}
                             amount={itemOpenOrder.amountPnL_TP}
                             side={itemOpenOrder.side === 'buy' ? 'sell' : 'buy'}
@@ -75,7 +74,6 @@ const TPSL = () => {
                             title={'Stop Market'}
                             amountTrigger={amountSL}
                             setTrigger={setTriggerSL}
-                            symbol={itemOpenOrder.symbol}
                             setAmountTrigger={setAmountSL}
                             amount={itemOpenOrder.amountPnL_SL}
                             side={itemOpenOrder.side === 'buy' ? 'sell' : 'buy'}

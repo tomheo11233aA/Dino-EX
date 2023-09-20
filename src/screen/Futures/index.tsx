@@ -24,16 +24,13 @@ const Futures = () => {
   const toastTopRef = useRef(null)
   const dispatch = useAppDispatch()
   const navigation = useNavigation()
-
+  
   const isLogin = useAppSelector(isLoginUserSelector)
   const loading = useAppSelector(loadingFuturesSelector)
 
   useEffect(() => {
-    navigation.addListener('focus', () => {
-      dispatch(futuresSlice.actions.setLoading(true))
-    })
     AppState.addEventListener('change', handleAppStateChange);
-  }, [])
+  })
 
   const handleAppStateChange = (nextAppState: AppStateStatus) => {
     if (nextAppState === 'active') {

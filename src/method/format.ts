@@ -221,7 +221,7 @@ export const converLanguage = (language: string) => {
         case 'cn': return 'China'
         case 'th': return 'Thailand'
         case 'kh': return 'Cambodia'
-        case 'la': return 'laos'
+        case 'la': return 'Laos'
         case 'id': return 'Indonesia'
         default: return 'English'
     }

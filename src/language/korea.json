@@ -410,6 +410,15 @@
         "Please note that only supported networks on Binance platform are shown, if you deposit via another network your assets may be lost.": "바이낸스 플랫폼에서 지원되는 네트워크만 표시됩니다. 다른 네트워크를 통해 자금을 입금하면 자산이 손실될 수 있습니다. 분실될 수도 있습니다.",
         "The One-Triggers-a One Cancels the-Other (OTOCO) order allows you to place two orders - one primary and two secondary orders - at the same time.": "One-Triggers-a One은 다른 주문을 취소합니다. ( OTOCO)에서는 두 가지 주문(기본 주문 하나와 보조 주문 두 개)을 동시에 할 수 있습니다.",
         "You can set up trading bots that automatically trade day-to-day arbitrage, or monitor the leaderboards to check the top trading positions.": "일일 차익거래를 자동으로 거래하는 트레이딩 봇을 설정할 수 있습니다. 또는 리더보드를 팔로우하여 순위를 확인할 수 있습니다. 최고의 거래 위치.",
-        "Choosing higher leverage, such as[10x] increases the risk of liquidation. Always manage your risk. See our help article for more information.": "[10x]와 같이 더 높은 레버리지를 선택하면 청산 위험이 높아집니다. 위험합니다. 자세한 내용은 도움말 항목을 참조하세요."
+        "Choosing higher leverage, such as[10x] increases the risk of liquidation. Always manage your risk. See our help article for more information.": "[10x]와 같이 더 높은 레버리지를 선택하면 청산 위험이 높아집니다. 위험합니다. 자세한 내용은 도움말 항목을 참조하세요.",
+
+        "Conditions": "조건",
+        "Korea": "한국",
+        "Japan": "일본",
+        "China": "중국",
+        "Thailand": "태국",
+        "Cambodia": "캄보디아",
+        "Laos": "라오스",
+        "Indonesia": "인도네시아"
     }
 }

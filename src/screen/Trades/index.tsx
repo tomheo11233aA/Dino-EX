@@ -30,9 +30,6 @@ const Trades = () => {
   const loading = useAppSelector(loadingSpotSelector)
 
   useEffect(() => {
-    navigation.addListener('focus', () => {
-      dispatch(setLoading(true))
-    })
     AppState.addEventListener('change', handleAppStateChange);
   }, [])
 

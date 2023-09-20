@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { fonts } from '@theme/fonts'
 import { colors } from '@theme/colors'
 import { IOpenOrder } from 'src/model/fundingModel'
-import { numberCommasDot } from '@method/format'
+import { capitalizeFirst, numberCommasDot } from '@method/format'
 
 interface Props {
     itemOpenOrder: IOpenOrder;
@@ -49,7 +49,7 @@ const Parent = ({ itemOpenOrder }: Props) => {
                     fontFamily={fonts.IBMPR}
                     color={itemOpenOrder.side === 'buy' ? colors.green2 : colors.red3}
                 >
-                    {t(itemOpenOrder.side)}
+                    {t(capitalizeFirst(itemOpenOrder.side))}
                 </Txt>
             </Box>
 

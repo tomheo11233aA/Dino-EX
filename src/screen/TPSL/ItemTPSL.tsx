@@ -7,7 +7,7 @@ import { useTheme } from '@hooks/index'
 import Txt from '@commom/Txt'
 import { fonts } from '@theme/fonts'
 import { useTranslation } from 'react-i18next'
-import { numberCommasDot } from '@method/format'
+import { capitalizeFirst, numberCommasDot } from '@method/format'
 import MarkOrLast from './MarkOrLast'
 import { height, width } from '@util/responsive'
 
@@ -15,7 +15,6 @@ interface Props {
     trigger: any;
     title: string;
     amount: number;
-    symbol: string;
     status?: string;
     zIndex?: number;
     lastItem?: boolean;
@@ -31,7 +30,6 @@ const ItemTPSL = ({
     side,
     title,
     amount,
-    symbol,
     trigger,
     setTrigger,
     zIndex = 1,
@@ -93,7 +91,7 @@ const ItemTPSL = ({
                     </Txt>
                 </Box>
 
-                <Box>
+                <Box width={90}>
                     <Txt
                         size={11}
                         color={colors.grayBlue}
@@ -107,7 +105,7 @@ const ItemTPSL = ({
                         color={color}
                         fontFamily={fonts.IBMPR}
                     >
-                        {t(side)}
+                        {t(capitalizeFirst(side))}
                     </Txt>
                     <Txt
                         size={13}
@@ -116,7 +114,7 @@ const ItemTPSL = ({
                         fontFamily={fonts.M23}
                     >
                         {numberCommasDot(amount?.toFixed(1))}
-                        <Txt color={theme.black} size={11}>{` ${symbol}`}</Txt>
+                        <Txt color={theme.black} size={11}>{' USDT'}</Txt>
                     </Txt>
                     <Box
                         row
