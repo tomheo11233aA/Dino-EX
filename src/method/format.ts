@@ -213,12 +213,18 @@ export const calcPositions = (positions: IPositions[], coins: ICoins[]): ICalcPo
 }
 
 export const converLanguage = (language: string) => {
-    if (language === 'en') {
-        return 'English'
-    } else if (language === 'vn') {
-        return 'Vietnamese'
+    switch (language) {
+        case 'en': return 'English'
+        case 'vn': return 'Vietnamese'
+        case 'kp': return 'Korea'
+        case 'jp': return 'Japan'
+        case 'cn': return 'China'
+        case 'th': return 'Thailand'
+        case 'kh': return 'Cambodia'
+        case 'la': return 'laos'
+        case 'id': return 'Indonesia'
+        default: return 'English'
     }
-    return 'English'
 }
 
 export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {

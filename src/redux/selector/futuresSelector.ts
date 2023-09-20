@@ -64,4 +64,6 @@ export const slFutureSelector = (state: RootState) => state.futures.sl
 
 export const triggerTPSLFutureSelector = (state: RootState) => state.futures.triggerTPSL
 
-export const tpslPositionFutureSelector = (state: RootState) => state.futures.tpslPosition 
+export const tpslPositionFutureSelector = (state: RootState) => state.futures.tpslPosition
+
+export const loadingHistoryFutureSelector = (state: RootState) => state.futures.loadingHistoryFuture 

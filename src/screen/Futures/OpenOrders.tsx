@@ -11,6 +11,7 @@ import { IOpenOrder } from 'src/model/fundingModel'
 import { cancelOpenOrder } from '@service/fundingService'
 import { Alert } from 'react-native'
 import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import { cancelOpenOrderThunk } from '@asyncThunk/futuresAsyncThunk'
 
 const OpenOrders = ({ openOrders }: any) => {
     const theme = useTheme()
@@ -18,11 +19,10 @@ const OpenOrders = ({ openOrders }: any) => {
     const dispatch = useAppDispatch()
 
     const handleCancelOpenOrder = async (item: IOpenOrder) => {
-        const res = await cancelOpenOrder(item.id)
-        if (res.error) {
-            return Alert.alert(t(res.message))
-        }
-        if (res.status) {
+        const { payload } = await dispatch(cancelOpenOrderThunk(item.id))
+        if (payload.error) {
+            return Alert.alert(t(payload.message))
+        } else {
             dispatch(getProfileThunk())
         }
     }

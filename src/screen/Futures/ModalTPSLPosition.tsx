@@ -1,10 +1,12 @@
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk';
 import Box from '@commom/Box';
 import Btn from '@commom/Btn';
 import Icon from '@commom/Icon';
 import Txt from '@commom/Txt';
-import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index';
+import { useAppDispatch, useTheme } from '@hooks/index';
+import LoadingBlack from '@reuse/LoadingBlack';
 import Modality from '@reuse/Modality';
-import { tpslPositionFutureSelector } from '@selector/futuresSelector';
+import { getPosition, setCancelSLPosition, setCancelTPPosition, setTPSLPosition } from '@service/futureService';
 import futuresSlice from '@slice/futuresSlice';
 import { colors } from '@theme/colors';
 import { fonts } from '@theme/fonts';
@@ -12,17 +14,19 @@ import { height, width } from '@util/responsive';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, StyleSheet } from 'react-native';
+import { IPositions, ITpslPosition } from 'src/model/futuresModel';
 import InputTPSLPosition from './InputTPSLPosition';
 import MLTPSLPosition from './MLTPSLPosition';
 import NoteModalTPSLPosition from './NoteModalTPSLPosition';
 import StatisticalModalTPSLPosition from './StatisticalModalTPSLPosition';
-import { setTPSLPosition } from '@service/futureService';
-import LoadingBlack from '@reuse/LoadingBlack';
-import { getProfileThunk } from '@asyncThunk/userAsyncThunk';
+
+interface Props {
+    tpslPosition: ITpslPosition;
+}
 
 const RADIUS_CONTENT = 10
 
-const ModalTPSLPosition = () => {
+const ModalTPSLPosition = ({ tpslPosition }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
@@ -31,19 +35,17 @@ const ModalTPSLPosition = () => {
     const [tp, setTP] = useState<any>({ value: '', type: 'Mark', down: false })
     const [sl, setSL] = useState<any>({ value: '', type: 'Mark', down: false })
 
-    const tpslPosition = useAppSelector(tpslPositionFutureSelector)
-
     const position = tpslPosition.position
 
     useEffect(() => {
         const position = tpslPosition.position
         if (position?.amountPnL_TP) {
-            setTP({ value: position?.TP, type: position?.triggerTP })
+            setTP({ value: '', type: position?.triggerTP })
         }
         if (position?.amountPnL_SL) {
-            setSL({ value: position?.SL, type: position?.triggerSL })
+            setSL({ value: '', type: position?.triggerSL })
         }
-    }, [tpslPosition.position])
+    }, [])
 
     const handleSetTPSLPosition = async () => {
         setLoading(true)
@@ -57,8 +59,7 @@ const ModalTPSLPosition = () => {
         if (!res.status) {
             Alert.alert(t(res.message))
         } else {
-            dispatch(getProfileThunk())
-            handleCloseModal()
+            handleResetPositionTPSL()
         }
         setLoading(false)
     }
@@ -72,7 +73,36 @@ const ModalTPSLPosition = () => {
         }))
     }
 
+    const handleResetPositionTPSL = async () => {
+        const res = await getPosition('BTCUSDT')
+        if (res.status) {
+            const index = res.data.findIndex((item: IPositions) => item.symbol === position?.symbol)
+            if (index >= 0) {
+                dispatch(futuresSlice.actions.setTPSLPosition({
+                    ...tpslPosition,
+                    position: res.data[index],
+                }))
+            }
+            dispatch(getProfileThunk())
+        }
+    }
+
+    const handleCancelTP = async () => {
+        const res = await setCancelTPPosition(position?.id)
+        if (res.status) {
+            handleResetPositionTPSL()
+        } else {
+            Alert.alert(t(res.message))
+        }
+    }
+
     const handleCancelSL = async () => {
+        const res = await setCancelSLPosition(position?.id)
+        if (res.status) {
+            handleResetPositionTPSL()
+        } else {
+            Alert.alert(t(res.message))
+        }
     }
 
     return (
@@ -111,8 +141,8 @@ const ModalTPSLPosition = () => {
                     <Box zIndex={2}>
                         {position?.amountPnL_TP ?
                             <MLTPSLPosition
-                                onCancel={() => { }}
                                 title={'Take Profit'}
+                                onCancel={handleCancelTP}
                                 value={Number(position?.TP)}
                                 trigger={`${t(position.triggerTP + ' Price')} >= `}
                             />

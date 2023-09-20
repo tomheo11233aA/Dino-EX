@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { cancelOpenOrder } from "@service/fundingService"
 import { closeMarketFuture, getPosition, leverAdjustmentAPI } from "@service/futureService"
 import { closeMarketFutureAll, getChart, getTotalBuy, getTotalSell } from "@service/tradeService"
 import { colors } from "@theme/colors"
@@ -200,6 +201,12 @@ export const getTotalSellThunk =
 export const getTotalBuyThunk =
     createAsyncThunk('futures/getTotalBuy', async (data: any) => {
         const res = await getTotalBuy(data)
+        return res
+    })
+
+export const cancelOpenOrderThunk =
+    createAsyncThunk('futures/cancelOpenOrder', async (id: number) => {
+        const res = await cancelOpenOrder(id)
         return res
     })
 

@@ -12,7 +12,7 @@ import contants from '@util/contants'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const themes = ['en', 'vn']
+const themes = ['en', 'vn', 'kp', 'jp', 'cn', 'th', 'kh', 'la', 'id']
 
 const ChangeLanguage = () => {
   const color = useTheme()

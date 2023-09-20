@@ -1,4 +1,4 @@
-import { closeMarketFutureAllThunk, closeMarketFutureThunk, getChartFuturesThunk, getPositionThunk, getTotalBuyThunk, getTotalSellThunk, leverAdjustmentAPIThunk } from "@asyncThunk/futuresAsyncThunk";
+import { cancelOpenOrderThunk, closeMarketFutureAllThunk, closeMarketFutureThunk, getChartFuturesThunk, getPositionThunk, getTotalBuyThunk, getTotalSellThunk, leverAdjustmentAPIThunk } from "@asyncThunk/futuresAsyncThunk";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IChart } from "@screen/Futures/Chart";
 import { colors } from "@theme/colors";
@@ -56,6 +56,7 @@ interface IfuturesSlice {
     sl: number | string;
     triggerTPSL: ITriggerTPSL;
     tpslPosition: ITpslPosition;
+    loadingHistoryFuture: boolean;
 }
 
 const initialState: IfuturesSlice = {
@@ -112,7 +113,8 @@ const initialState: IfuturesSlice = {
     tpslPosition: {
         position: null,
         showModal: false,
-    }
+    },
+    loadingHistoryFuture: false,
 }
 
 const futuresSlice = createSlice({
@@ -292,7 +294,7 @@ const futuresSlice = createSlice({
         },
         setStopProfit: (state, { payload }) => {
             state.stopProfit = payload
-        }
+        },
     },
     extraReducers: builder => {
         builder.
@@ -335,6 +337,11 @@ const futuresSlice = createSlice({
                 if (payload.status) {
                     setSellOrBuy(state, payload.data.array, 'buy')
                 }
+            }).addCase(cancelOpenOrderThunk.pending, (state) => {
+                state.loadingHistoryFuture = true
+            })
+            .addCase(cancelOpenOrderThunk.fulfilled, (state) => {
+                state.loadingHistoryFuture = false
             })
     }
 })

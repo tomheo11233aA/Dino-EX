@@ -65,7 +65,6 @@ const BuySellButton = () => {
             }
             setShowModalAlert(true)
             setMessage(res.message)
-            console.log(res.message)
         }
 
         setLoading(false)

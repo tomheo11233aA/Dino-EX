@@ -21,8 +21,6 @@ const TPSL = () => {
     const route = useRoute<any>()
     const { itemOpenOrder } = route.params
 
-    console.log(itemOpenOrder)
-
     const [amountTP, setAmountTP] = useState('')
     const [amountSL, setAmountSL] = useState('')
     const [triggerTP, setTriggerTP] = useState({ value: 'Mark', show: false })

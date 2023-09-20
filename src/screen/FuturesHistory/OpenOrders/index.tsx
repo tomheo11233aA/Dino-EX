@@ -1,11 +1,13 @@
 import { getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk } from '@asyncThunk/fundingAsyncThunk'
+import { cancelOpenOrderThunk } from '@asyncThunk/futuresAsyncThunk'
 import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Scroll from '@commom/Scroll'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import LoadingYellow from '@reuse/LoadingYellow'
 import { openOrdersFundingSelector } from '@selector/fundingSelector'
-import { cancelOpenOrder } from '@service/fundingService'
+import { loadingHistoryFutureSelector } from '@selector/futuresSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useEffect, useState } from 'react'
@@ -25,6 +27,7 @@ const OpenOrders = () => {
   const [isShowModalAsset, setShowModalAsset] = useState(false)
 
   const openOrders = useAppSelector(openOrdersFundingSelector)
+  const loadingHistoryFuture = useAppSelector(loadingHistoryFutureSelector)
 
   useEffect((): any => {
     getHistoryOpenOrderAll()
@@ -55,11 +58,11 @@ const OpenOrders = () => {
   }
 
   const handleCancelOpenOrder = async (item: IOpenOrder) => {
-    const res = await cancelOpenOrder(item.id)
-    if (res.error) {
-      return Alert.alert(t(res.message))
+    const { payload } = await dispatch(cancelOpenOrderThunk(item.id))
+    if (payload.error) {
+      return Alert.alert(t(payload.message))
     }
-    if (res.status) {
+    if (payload.status) {
       handleSetType(type)
     }
   }
@@ -95,33 +98,39 @@ const OpenOrders = () => {
         </Box>
       </Box>
 
-      {openOrders.data.length === 0 ?
-        <Box alignCenter marginTop={100}>
-          <Icon
-            size={70}
-            resizeMode={'contain'}
-            source={require('@images/future/find.png')}
-          />
-          <Txt
-            size={13}
-            marginTop={20}
-            fontFamily={fonts.IBMPR}
-            color={colors.grayBlue}
-          >
-            {t('Not positions')}
-          </Txt>
-        </Box> :
-        <Scroll flexGrow={1} paddingBottom={100}>
-          {openOrders.data.map((item) =>
-            <Item
-              t={t}
-              item={item}
-              key={item.id}
-              theme={theme}
-              onCancelOpenOrder={handleCancelOpenOrder}
-            />
-          )}
-        </Scroll>
+      {loadingHistoryFuture ?
+        <LoadingYellow />
+        :
+        <>
+          {openOrders.data.length === 0 ?
+            <Box alignCenter marginTop={100}>
+              <Icon
+                size={70}
+                resizeMode={'contain'}
+                source={require('@images/future/find.png')}
+              />
+              <Txt
+                size={13}
+                marginTop={20}
+                fontFamily={fonts.IBMPR}
+                color={colors.grayBlue}
+              >
+                {t('Not positions')}
+              </Txt>
+            </Box> :
+            <Scroll flexGrow={1} paddingBottom={100}>
+              {openOrders.data.map((item) =>
+                <Item
+                  t={t}
+                  item={item}
+                  key={item.id}
+                  theme={theme}
+                  onCancelOpenOrder={handleCancelOpenOrder}
+                />
+              )}
+            </Scroll>
+          }
+        </>
       }
       <ModalAsset
         type={type}

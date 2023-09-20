@@ -70,7 +70,7 @@ const Item = ({
                                     {t('Close Position')}
                                 </Txt>
                             </Box>
-                            <Txt fontFamily={fonts.IBMPR} color={theme.black} size={12}>
+                            <Txt fontFamily={fonts.IBMPR} color={theme.black} size={11}>
                                 {t('Yes')}
                             </Txt>
                         </Box>
@@ -97,7 +97,7 @@ const Item = ({
                             </Txt>
                         </Box>
                         <Txt fontFamily={fonts.M23} color={theme.black} size={13}>
-                            {numberCommasDot(itemConver?.orderEntryPrice?.toFixed(1))}
+                            {itemConver?.orderEntryPrice ? numberCommasDot(itemConver?.orderEntryPrice?.toFixed(1)) : '--'}
                         </Txt>
                     </Box>
 
@@ -162,7 +162,8 @@ const Item = ({
                             </Btn>
                         </Box>
                     }
-
+                </Box>
+                <Box justifyEnd alignEnd>
                     <Btn
                         radius={3}
                         paddingVertical={4}

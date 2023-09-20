@@ -1,21 +1,20 @@
+import { getHistoryOpenOrderAllThunk } from '@asyncThunk/fundingAsyncThunk'
 import { getPositionThunk } from '@asyncThunk/futuresAsyncThunk'
 import Box from '@commom/Box'
 import { useAppDispatch, useAppSelector } from '@hooks/index'
-import { positionFuturesSelector, positionsFuturesSelector, stopProfitFuturesSelector, symbolFuturesSelector } from '@selector/futuresSelector'
+import LoadingYellow from '@reuse/LoadingYellow'
+import { openOrdersFundingSelector } from '@selector/fundingSelector'
+import { loadingHistoryFutureSelector, positionFuturesSelector, positionsFuturesSelector, stopProfitFuturesSelector, symbolFuturesSelector, tpslPositionFutureSelector } from '@selector/futuresSelector'
 import { profileUserSelector } from '@selector/userSelector'
 import React, { useEffect, useState } from 'react'
+import { Profile } from 'src/model/userModel'
 import ModalClosePosition from './ModalClosePosition'
 import ModalCorePosition from './ModalCorePosition'
 import ModalStopFrofit from './ModalStopFrofit'
+import ModalTPSLPosition from './ModalTPSLPosition'
 import OpenOrders from './OpenOrders'
 import Positions from './Positions'
 import TabHistory from './TabHistory'
-import { openOrdersFundingSelector } from '@selector/fundingSelector'
-import { getHistoryOpenOrderAllThunk } from '@asyncThunk/fundingAsyncThunk'
-import { io } from 'socket.io-client'
-import contants from '@util/contants'
-import { Profile } from 'src/model/userModel'
-import ModalTPSLPosition from './ModalTPSLPosition'
 
 const History = () => {
     const dispatch = useAppDispatch()
@@ -26,7 +25,9 @@ const History = () => {
     const positions = useAppSelector(positionsFuturesSelector)
     const stopProfit = useAppSelector(stopProfitFuturesSelector)
     const openOrders = useAppSelector(openOrdersFundingSelector)
+    const tpslPosition = useAppSelector(tpslPositionFutureSelector)
     const profile: Profile = useAppSelector<any>(profileUserSelector)
+    const loadingHistoryFuture = useAppSelector(loadingHistoryFutureSelector)
 
     useEffect((): any => {
         handleGetPosition()
@@ -43,9 +44,14 @@ const History = () => {
     return (
         <Box marginTop={30} flex={1}>
             <TabHistory {...{ tab, setTab, positions, openOrders }} />
-            {tab === 'open' ?
-                <OpenOrders {...{ openOrders }} /> :
-                <Positions {...{ positions }} />
+            {loadingHistoryFuture ?
+                <LoadingYellow /> :
+                <>
+                    {tab === 'open' ?
+                        <OpenOrders {...{ openOrders }} /> :
+                        <Positions {...{ positions }} />
+                    }
+                </>
             }
             <ModalClosePosition
                 show={position !== null}
@@ -56,7 +62,7 @@ const History = () => {
                 show={stopProfit.showModal}
                 setShow={() => { }}
             />
-            <ModalTPSLPosition />
+            {tpslPosition.showModal && <ModalTPSLPosition {...{ tpslPosition }} />}
         </Box>
     )
 }

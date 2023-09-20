@@ -144,11 +144,20 @@ export const setTPSLPosition = async (data: any) => {
     }
 }
 
-// export const setTPSLPosition = async (data: any) => {
-//     try {
-//         const res = await axiosInstance.post('/api/binance/setTPSLPosition', data)
-//         return callSuccess(res)
-//     } catch (error) {
-//         callFailed()
-//     }
-// }
+export const setCancelTPPosition = async (idPosition: any) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/setCancelTPPosition', { idPosition })
+        return callSuccess(res)
+    } catch (error) {
+        callFailed()
+    }
+}
+
+export const setCancelSLPosition = async (idPosition: any) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/setCancelSLPosition', { idPosition })
+        return callSuccess(res)
+    } catch (error) {
+        callFailed()
+    }
+}

@@ -98,7 +98,7 @@ const ItemOpenOrder = ({
                             </Txt>
                         </Box>
                         <Txt fontFamily={fonts.M23} color={theme.black}>
-                            {numberCommasDot(itemConver?.orderEntryPrice?.toFixed(1))}
+                            {itemConver?.orderEntryPrice ? numberCommasDot(itemConver?.orderEntryPrice?.toFixed(1)) : '--'}
                         </Txt>
                     </Box>
 
@@ -111,7 +111,9 @@ const ItemOpenOrder = ({
                             </Box>
 
                             <Box row alignCenter>
-                                <Txt style={styles.textGray}>{itemConver.triggerConditionsTP}</Txt>
+                                <Txt style={[styles.textGray, { color: theme.black }]}>
+                                    {itemConver.triggerConditionsTP}
+                                </Txt>
                                 <Txt fontFamily={fonts.M23} color={theme.black}>
                                     {numberCommasDot(itemConver.TP)}
                                 </Txt>
@@ -128,7 +130,9 @@ const ItemOpenOrder = ({
                             </Box>
 
                             <Box row alignCenter>
-                                <Txt style={styles.textGray}>{itemConver.triggerConditionsSL}</Txt>
+                                <Txt style={[styles.textGray, { color: theme.black }]}>
+                                    {itemConver.triggerConditionsSL}
+                                </Txt>
                                 <Txt fontFamily={fonts.M23} color={theme.black}>
                                     {numberCommasDot(itemConver.SL)}
                                 </Txt>

@@ -16,6 +16,7 @@ import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
+import { AppState, AppStateStatus } from 'react-native'
 
 const Trades = () => {
   const theme = useTheme()
@@ -27,6 +28,19 @@ const Trades = () => {
 
   const isLogin = useAppSelector(isLoginUserSelector)
   const loading = useAppSelector(loadingSpotSelector)
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      dispatch(setLoading(true))
+    })
+    AppState.addEventListener('change', handleAppStateChange);
+  }, [])
+
+  const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    if (nextAppState === 'active') {
+      dispatch(setLoading(true))
+    }
+  }
 
   useEffect(() => {
     if (loading) {
