@@ -2,7 +2,7 @@ import Box from '@commom/Box';
 import { useAppDispatch, useTheme } from '@hooks/index';
 import Modality from '@reuse/Modality';
 import { height, width } from '@util/responsive';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CloseStopProfit from './CloseStopProfit';
 import { useTranslation } from 'react-i18next';
 import OpenStopProfit from './OpenStopProfit';
@@ -10,26 +10,40 @@ import { Pressable } from 'react-native';
 import futuresSlice from '@slice/futuresSlice';
 import TakeProfit from './TakeProfit';
 import StopLoss from './StopLoss';
+import { ITpslPosition } from 'src/model/futuresModel';
 
 interface Props {
-    show: boolean;
-    setShow: Function;
+    stopProfit: ITpslPosition
 }
 
 const RADIUS_CONTENT = 10
 
-const ModalStopFrofit = ({ show = true, setShow }: Props) => {
+const ModalStopFrofit = ({ stopProfit }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
 
+    const [tp, setTP] = useState<any>({ value: '', type: 'Mark', down: false })
+    const [sl, setSL] = useState<any>({ value: '', type: 'Mark', down: false })
+
+    const position = stopProfit.position
+    
+    useEffect(() => {
+        if (position?.amountPnL_TP) {
+            setTP({ value: position.TP, type: position?.triggerTP })
+        }
+        if (position?.amountPnL_SL) {
+            setSL({ value: position.SL, type: position?.triggerSL })
+        }
+    }, [])
+
     return (
         <Modality
-            show={show}
-            setShow={setShow}
+            show={stopProfit.showModal}
         >
             <Pressable onPress={() =>
                 dispatch(futuresSlice.actions.setStopProfit({
+                    ...stopProfit,
                     showModal: false,
                 }))
             }
@@ -49,8 +63,8 @@ const ModalStopFrofit = ({ show = true, setShow }: Props) => {
             >
                 <CloseStopProfit  {...{ dispatch, theme, t }} />
                 <OpenStopProfit {...{ theme, t }} />
-                <TakeProfit {...{ theme, t }} />
-                <StopLoss  {...{ theme, t }} />
+                <TakeProfit {...{ theme, t, tp, setTP, position }} />
+                <StopLoss  {...{ theme, t, sl, setSL, position }} />
             </Box>
         </Modality>
     )

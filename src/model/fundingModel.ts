@@ -73,3 +73,29 @@ export interface IOrderHistory {
     orderEntryPrice: number;
     closeEntryPrice: number;
 }
+
+export interface IPositionHistory {
+    idSL: any;
+    idTP: any;
+    id: number;
+    core: number;
+    side: string;
+    type: number;
+    email: string;
+    margin: number;
+    regime: string;
+    symbol: string;
+    userid: number;
+    SL: null | number;
+    TP: null | number;
+    updated_at: string;
+    entryPrice: number;
+    amountCoin: number;
+    closePrice: number;
+    created_at: string;
+    triggerSL: null | number;
+    triggerTP: null | number;
+    liquidationPrice: number;
+    amountPnL_SL: null | number;
+    amountPnL_TP: null | number;
+}

@@ -44,8 +44,7 @@ const BuySellButton = () => {
         }
         setLoading(true)
         const res = await orderFuture({
-            amount: USDT ?
-                amount : (Number(amount) * close),
+            amount: USDT ? Number(amount) : (Number(amount) * close),
             regime: regime.toLocaleLowerCase(),
             core,
             symbol,

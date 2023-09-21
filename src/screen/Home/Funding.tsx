@@ -21,6 +21,7 @@ export default () => {
             navigate(screen.LOGIN)
         } else {
             // navigate(screen.EARN)
+            navigate(screen.COMMING_SOON)
         }
     }
 
@@ -32,11 +33,12 @@ export default () => {
             justifySpaceBetween
         >
             <Btn flex={1} onPress={() => {
-                if (!isLogin) {
-                    navigate(screen.LOGIN)
-                } else {
-                    navigate(screen.P2P_TAB)
-                }
+                // if (!isLogin) {
+                //     navigate(screen.LOGIN)
+                // } else {
+                //     navigate(screen.P2P_TAB)
+                // }
+                handle()
             }}>
                 <LinearGradient
                     colors={[theme.white2, theme.yellow3]}
@@ -61,11 +63,12 @@ export default () => {
             <Btn
                 flex={1}
                 onPress={() => {
-                    if (!isLogin) {
-                        navigate(screen.LOGIN)
-                    } else {
-                        navigate(screen.DEPOSIT_VND)
-                    }
+                    // if (!isLogin) {
+                    //     navigate(screen.LOGIN)
+                    // } else {
+                    //     navigate(screen.DEPOSIT_VND)
+                    // }
+                    handle()
                 }}
                 marginHorizontal={10}
             >

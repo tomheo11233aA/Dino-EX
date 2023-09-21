@@ -29,6 +29,7 @@ export const screen = {
     WALLET_STACK: 'WalletStack',
     ACCOUNT_INFO: 'AccountInfo',
     TRADES_STACK: 'TradesStack',
+    COMMING_SOON: 'CommingSoon',
     MARKETS_STACK: 'MarketsStack',
     FUTURES_STACK: 'FuturesStack',
     DEPOSIT_CRYPTO: 'DepositCrypto',

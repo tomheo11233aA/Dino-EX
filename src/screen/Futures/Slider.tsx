@@ -1,7 +1,7 @@
 import Box from '@commom/Box'
+import Btn from '@commom/Btn'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { sliderListenFutureSelector } from '@selector/futuresSelector'
-import { profileUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -13,6 +13,7 @@ import Animated, { SharedValue, runOnJS, useAnimatedGestureHandler, useAnimatedP
 import { Profile } from 'src/model/userModel'
 
 interface Props {
+    max: number;
     hint: SharedValue<boolean>;
     enter: SharedValue<boolean>;
     textSize: SharedValue<number>;
@@ -23,6 +24,7 @@ interface Props {
 export const WIDTH_SLIDE = (width * 60 / 100) - 45
 
 const Slider = ({
+    max,
     hint,
     enter,
     textSize,
@@ -31,7 +33,6 @@ const Slider = ({
 }: Props) => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const profile: Profile = useAppSelector<any>(profileUserSelector)
     const widthSlider = WIDTH_SLIDE
     const width3 = (widthSlider / 2) - 7
     const width2 = (width3 / 2)
@@ -102,7 +103,7 @@ const Slider = ({
     }, [])
 
     const setAmount = (amount: number) => {
-        dispatch(futuresSlice.actions.setAmount(amount.toFixed(0)))
+        dispatch(futuresSlice.actions.setAmount(amount))
     }
 
     const gestureEvent = useAnimatedGestureHandler({
@@ -113,6 +114,11 @@ const Slider = ({
             textSize.value = 18
             enter.value = false
             textFont.value = fonts.M20
+
+            const percent = positionX.value * 100 / WIDTH_SLIDE
+            const amount = max * percent / 100
+
+            runOnJS(setAmount)(amount)
         },
         onActive: (e, ctx) => {
             const position = ctx.startX + e.translationX
@@ -130,7 +136,7 @@ const Slider = ({
         onEnd(e, ctx) {
             inputOpacity.value = 0
             const percent = positionX.value * 100 / WIDTH_SLIDE
-            const amount = profile.balance * percent / 100
+            const amount = max * percent / 100
 
             runOnJS(setAmount)(amount)
         },
@@ -183,6 +189,18 @@ const Slider = ({
         }
     })
 
+    const setPercentAmount = (percent: number) => {
+        positionX.value = WIDTH_SLIDE * percent / 100
+        const amount = max * percent / 100
+
+        hint.value = false
+        textSize.value = 18
+        enter.value = false
+        textFont.value = fonts.M20
+        
+        setAmount(amount)
+    }
+
     return (
         <Box alignCenter marginBottom={20} marginTop={20}>
             <Box width={'100%'}>
@@ -212,35 +230,69 @@ const Slider = ({
                             marginLeft: -3,
                             transform: [{ rotateZ: '45deg' }]
                         }}
-                    />
+                    >
+                        <Btn
+                            flex={1}
+                            style={{ transform: [{ scale: 2 }] }}
+                            onPress={() => setPercentAmount(0)}
+                        />
+                    </View>
+
                     <Animated.View
                         style={[
                             styles.indexSlider,
                             { left: width2, borderColor: theme.gray, backgroundColor: theme.bg },
                             slider2,
                         ]}
-                    />
+                    >
+                        <Btn
+                            flex={1}
+                            style={{ transform: [{ scale: 2 }] }}
+                            onPress={() => setPercentAmount(25)}
+                        />
+                    </Animated.View>
+
                     <Animated.View
                         style={[
                             styles.indexSlider,
                             { left: width3, borderColor: theme.gray, backgroundColor: theme.bg },
                             slider3,
                         ]}
-                    />
+                    >
+                        <Btn
+                            flex={1}
+                            style={{ transform: [{ scale: 2 }] }}
+                            onPress={() => setPercentAmount(50)}
+                        />
+                    </Animated.View>
+
                     <Animated.View
                         style={[
                             styles.indexSlider,
                             { left: width4, borderColor: theme.gray, backgroundColor: theme.bg },
                             slider4,
                         ]}
-                    />
+                    >
+                        <Btn
+                            flex={1}
+                            style={{ transform: [{ scale: 2 }] }}
+                            onPress={() => setPercentAmount(75)}
+                        />
+                    </Animated.View>
+
                     <Animated.View
                         style={[
                             styles.indexSlider,
                             { left: width5, borderColor: theme.gray, backgroundColor: theme.bg },
                             slider5,
                         ]}
-                    />
+                    >
+                        <Btn
+                            flex={1}
+                            style={{ transform: [{ scale: 2 }] }}
+                            onPress={() => setPercentAmount(100)}
+                        />
+                    </Animated.View>
                 </Box>
 
                 <PanGestureHandler onGestureEvent={gestureEvent}>

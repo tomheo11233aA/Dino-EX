@@ -50,6 +50,7 @@ interface IfuturesSlice {
     countDown: number;
     stopProfit: {
         showModal: boolean;
+        position: IPositions | null;
     },
     sliderListen: boolean;
     tp: number | string;
@@ -78,7 +79,7 @@ const initialState: IfuturesSlice = {
     currency: 'BTC',
     USDT: false,
     regime: 'Cross',
-    typeTrade: 'Limit',
+    typeTrade: 'Market', // market is default
     side: 'buy',
     price: '',
     core: 1,
@@ -100,7 +101,8 @@ const initialState: IfuturesSlice = {
     closeTimestamp: 0,
     countDown: 0,
     stopProfit: {
-        showModal: false
+        showModal: false,
+        position: null,
     },
     sliderListen: false,
     tp: '',
@@ -162,6 +164,8 @@ const futuresSlice = createSlice({
         },
         setCore: (state, action: PayloadAction<number>) => {
             state.core = action.payload
+            state.amount = '0'
+            state.sliderListen = !state.sliderListen
         },
         setSide: (state, action: PayloadAction<'buy' | 'sell'>) => {
             state.side = action.payload

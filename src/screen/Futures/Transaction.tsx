@@ -6,7 +6,7 @@ import Cross from './Cross'
 import History from './History'
 import Statistical from './Statistical'
 
-const Transaction = ({ toastTopRef }: any) => {
+const Transaction = () => {
     const theme = useTheme()
 
     return (
@@ -19,7 +19,7 @@ const Transaction = ({ toastTopRef }: any) => {
             <Cross />
             <Box row>
                 <Statistical />
-                <BuySellLong toastTopRef={toastTopRef} />
+                <BuySellLong />
             </Box>
             <History />
         </Box>

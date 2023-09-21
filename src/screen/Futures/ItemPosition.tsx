@@ -228,7 +228,7 @@ const ItemPosition = ({
                         paddingHorizontal={5}
                         backgroundColor={theme.gray8}
                         onPress={() => {
-                            if (onShowModalStopProfit) onShowModalStopProfit()
+                            if (onShowModalStopProfit) onShowModalStopProfit(position)
                         }}
                     >
                         <Txt fontFamily={fonts.SGM} size={12} numberOfLines={1} color={theme.black}>

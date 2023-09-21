@@ -2,33 +2,30 @@ import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { capitalizeFirst, converPostirions, numberCommasDot } from '@method/format'
+import { capitalizeFirst, converPostirionsClose, numberCommasDot } from '@method/format'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { ICoins } from 'src/model/futuresModel'
 import { Profile } from 'src/model/userModel'
 
 interface Props {
     t: any;
     item: any;
     theme: any;
-    coins: ICoins[];
     profile: Profile;
 }
 
 const Item = ({
     t,
     item,
-    coins,
     theme,
     profile,
 }: Props) => {
     const color = item.side === 'Buy' ? colors.green2 : colors.red3
 
-    item = converPostirions(item, coins, profile.balance)
-
+    item = converPostirionsClose(item, profile.balance)
+    
     return (
         <Box
             paddingVertical={15}
@@ -122,7 +119,7 @@ const Item = ({
                         color={theme.black}
                         fontFamily={fonts.M24}
                     >
-                            {numberCommasDot(item.entryPrice.toFixed(item?.ROUND))}
+                        {numberCommasDot(item.entryPrice.toFixed(item?.ROUND))}
                     </Txt>
                 </Box>
 

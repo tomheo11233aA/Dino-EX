@@ -58,10 +58,7 @@ const History = () => {
                 setShow={() => { }}
             />
             <ModalCorePosition />
-            <ModalStopFrofit
-                show={stopProfit.showModal}
-                setShow={() => { }}
-            />
+            {stopProfit.showModal && <ModalStopFrofit {...{ stopProfit }} />}
             {tpslPosition.showModal && <ModalTPSLPosition {...{ tpslPosition }} />}
         </Box>
     )

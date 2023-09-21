@@ -5,17 +5,24 @@ import { useTheme } from '@hooks/index'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { Platform, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 
 interface Props {
     value: string;
+    onMinus: Function;
+    onPlus: Function;
     setValue: Function;
     placeholder?: string;
 }
 
-const EditText = ({ value, setValue, placeholder = '' }: Props) => {
+const EditText = ({
+    value,
+    onPlus,
+    onMinus,
+    setValue,
+    placeholder = '',
+}: Props) => {
     const theme = useTheme()
 
     return (
@@ -28,7 +35,7 @@ const EditText = ({ value, setValue, placeholder = '' }: Props) => {
             height={40}
             flex={1}
         >
-            <Btn>
+            <Btn onPress={onMinus}>
                 <Txt size={20} bold color={colors.grayBlue}>ー</Txt>
             </Btn>
 
@@ -50,7 +57,7 @@ const EditText = ({ value, setValue, placeholder = '' }: Props) => {
                 />
             </Box>
 
-            <Btn>
+            <Btn onPress={onPlus}>
                 <Txt style={styles.txt}>+</Txt>
             </Btn>
         </Box>

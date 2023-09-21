@@ -19,6 +19,7 @@ import InputTPSLPosition from './InputTPSLPosition';
 import MLTPSLPosition from './MLTPSLPosition';
 import NoteModalTPSLPosition from './NoteModalTPSLPosition';
 import StatisticalModalTPSLPosition from './StatisticalModalTPSLPosition';
+import { calcPNL } from '@method/format';
 
 interface Props {
     tpslPosition: ITpslPosition;
@@ -156,7 +157,8 @@ const ModalTPSLPosition = ({ tpslPosition }: Props) => {
                         }
                         <NoteModalTPSLPosition
                             typeTrade={'Take Profit Market'}
-                            pnl={position?.amountPnL_TP || '--'}
+                            pnl={position?.amountPnL_TP ? position.amountPnL_TP :
+                                (tp.value && position) ? calcPNL(position, tp.value) : '--'}
                             level={position?.TP || tp.value || '--'}
                             typeTrigger={position?.triggerTP ? (position?.triggerTP + ' Price') : (tp.type + ' Price')}
                         />
@@ -180,7 +182,8 @@ const ModalTPSLPosition = ({ tpslPosition }: Props) => {
 
                         <NoteModalTPSLPosition
                             typeTrade={'Stop Market'}
-                            pnl={position?.amountPnL_SL || '--'}
+                            pnl={position?.amountPnL_SL ? position.amountPnL_SL :
+                                (sl.value && position) ? calcPNL(position, sl.value) : '--'}
                             level={position?.SL || sl.value || '--'}
                             typeTrigger={position?.triggerSL ? (position?.triggerSL + ' Price') : (sl.type + ' Price')}
                         />

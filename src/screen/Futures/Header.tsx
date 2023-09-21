@@ -20,7 +20,7 @@ import Symbol from './Symbol'
 const SIZE_ICON = 15
 
 export type StackParams = {
-    HomeStack: any
+    Trade: any;
 }
 
 const Header = ({ drawerRef }: any) => {
@@ -88,9 +88,9 @@ const Header = ({ drawerRef }: any) => {
                             source={require('@images/future/convert.png')}
                             width={18}
                             height={18}
-                            tintColor={theme.black}
                             marginTop={3}
                             resizeMode={'contain'}
+                            tintColor={theme.black}
                         />
                     </TouchableOpacity>
 
@@ -103,17 +103,17 @@ const Header = ({ drawerRef }: any) => {
                         </Txt>
                     </Box>
                     <Txt
+                        size={15}
+                        marginTop={8}
                         color={colorPercentChange}
                         fontFamily={'Myfont20-Regular'}
-                        marginTop={8}
-                        size={15}
                     >
                         {percentChange}
                     </Txt>
                 </Box>
 
                 <Box row marginTop={12} paddingRight={10}>
-                    <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Trade')}>
                         <Icon
                             source={require('@images/future/candles.png')}
                             size={SIZE_ICON}
@@ -122,15 +122,15 @@ const Header = ({ drawerRef }: any) => {
                     </TouchableOpacity>
 
                     <Icon
-                        source={require('@images/future/calc.png')}
                         size={SIZE_ICON}
-                        resizeMode={'contain'}
                         marginHorizontal={13}
+                        resizeMode={'contain'}
+                        source={require('@images/future/calc.png')}
                     />
                     <Icon
-                        source={require('@images/login/dots.png')}
                         size={SIZE_ICON}
                         resizeMode={'contain'}
+                        source={require('@images/login/dots.png')}
                     />
                 </Box>
             </Box>

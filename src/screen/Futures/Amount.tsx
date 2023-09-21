@@ -16,6 +16,7 @@ import { Profile } from 'src/model/userModel'
 import { WIDTH_SLIDE } from './Slider'
 
 interface Props {
+    max: number;
     hint: SharedValue<Boolean>;
     enter: SharedValue<boolean>;
     textSize: SharedValue<number>;
@@ -26,6 +27,7 @@ interface Props {
 const TextInputAnimation = Animated.createAnimatedComponent(TextInput)
 
 const Amount = ({
+    max,
     hint,
     enter,
     textSize,
@@ -33,32 +35,29 @@ const Amount = ({
     positionX,
 }: Props) => {
     const theme = useTheme()
-    const { t } = useTranslation()
     const dispatch = useAppDispatch()
     const USDT = useAppSelector(USDTFuturesSelector)
     const amount = useAppSelector(amountFuturesSelector)
     const currency = useAppSelector(currencyFuturesSelector)
-    const profile: Profile = useAppSelector<any>(profileUserSelector)
 
     const animatedProps: any = useAnimatedProps(() => {
         if (enter.value) {
             return {
-                text: `${Number(amount).toFixed(0)}`
+                text: `${amount}`
             }
         } else {
             const percent = positionX.value * 100 / WIDTH_SLIDE
-            const amount = profile.balance * percent / 100
-
+            const amount = max * percent / 100
             return {
-                text: hint.value ? '' : `${amount.toFixed(0)}`
+                text: hint.value ? '' : `${amount}`
             }
         }
     })
 
     const textStyle = useAnimatedStyle(() => {
         return {
-            fontFamily: textFont.value,
             fontSize: textSize.value,
+            fontFamily: textFont.value,
         }
     })
 
@@ -66,13 +65,13 @@ const Amount = ({
         <Box>
             <Box row>
                 <Btn
-                    onPress={() => dispatch(futuresSlice.actions.setUSDT(false))}
                     flex={1}
+                    height={25}
                     alignCenter
                     justifyCenter
-                    height={25}
-                    backgroundColor={theme.gray2}
                     marginRight={2}
+                    backgroundColor={theme.gray2}
+                    onPress={() => dispatch(futuresSlice.actions.setUSDT(false))}
                 >
                     <Txt
                         size={12}
@@ -84,12 +83,12 @@ const Amount = ({
                 </Btn>
 
                 <Btn
-                    onPress={() => dispatch(futuresSlice.actions.setUSDT(true))}
                     flex={1}
+                    height={25}
                     alignCenter
                     justifyCenter
-                    height={25}
                     backgroundColor={theme.gray2}
+                    onPress={() => dispatch(futuresSlice.actions.setUSDT(true))}
                 >
                     <Txt
                         size={12}
@@ -114,8 +113,10 @@ const Amount = ({
                     onPress={() => {
                         if (Number(amount) > 0) {
                             enter.value = true
-                            positionX.value = 0
                             const newAmount = Number(amount) - 1
+                            const percent = newAmount * 100 / max
+                            positionX.value = WIDTH_SLIDE * percent / 100
+                            positionX.value = Math.max(positionX.value, 0)
                             dispatch(futuresSlice.actions.setAmount(newAmount))
                         }
                     }}
@@ -130,13 +131,16 @@ const Amount = ({
                                 hint.value = true
                                 textSize.value = 15
                                 textFont.value = fonts.RM
+                                positionX.value = 0
+                            } else {
+                                const percent = Number(txt) * 100 / max
+                                positionX.value = Math.min(WIDTH_SLIDE * percent / 100, WIDTH_SLIDE)
                             }
-                            positionX.value = 0
                             enter.value = true
                             dispatch(futuresSlice.actions.setAmount(txt))
                         }}
                         placeholder={'Amount'}
-                        keyboardType={'number-pad'}
+                        keyboardType={'numeric'}
                         animatedProps={animatedProps}
                         selectionColor={colors.yellow}
                         placeholderTextColor={colors.grayBlue}
@@ -145,17 +149,18 @@ const Amount = ({
                                 height: '100%',
                                 textAlign: 'center',
                                 color: theme.black
-                            },
-                                textStyle
-                            ]}
+                            }, textStyle]
+                        }
                     />
                 </Box>
 
                 <Btn
                     onPress={() => {
                         enter.value = true
-                        positionX.value = 0
                         const newAmount = Number(amount) + 1
+                        const percent = newAmount * 100 / max
+                        positionX.value = WIDTH_SLIDE * percent / 100
+                        positionX.value = Math.min(positionX.value, WIDTH_SLIDE)
                         dispatch(futuresSlice.actions.setAmount(newAmount))
                     }}
                 >

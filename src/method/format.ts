@@ -1,4 +1,4 @@
-import { IOpenOrder, IOpenOrderConver } from "src/model/fundingModel";
+import { IOpenOrder, IOpenOrderConver, IPositionHistory } from "src/model/fundingModel";
 import { ICoins, IPositions } from "src/model/futuresModel";
 
 export const numberWithCommas = (x: number): string => {
@@ -269,4 +269,59 @@ export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {
         triggerConditionsTP,
         triggerConditionsSL,
     }
+}
+
+export const converPostirionsClose = (position: IPositionHistory, balance: number) => {
+    let [PNL, ROE, RISK, SIZE, MARK_PRICE, LIQ_PRICE, ROUND] = [0, 0, 0, 0, 0, 0, 1]
+
+    const close = position.closePrice
+
+    if (position.side === 'buy') {
+        PNL = (close - position.entryPrice) * position.amountCoin
+    } else {
+        PNL = (position.entryPrice - close) * position.amountCoin
+    }
+
+    MARK_PRICE = close
+    ROE = PNL / position.margin * 100
+    SIZE = position.margin * position.core
+    ROUND = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
+
+    if (position.regime === 'isolated' && position.liquidationPrice !== 0) {
+        RISK = (SIZE * close * (1 / position.core)) / position.liquidationPrice
+        RISK = RISK / 1000
+        if (ROE < 0) {
+            RISK = RISK + ROE
+        } else {
+            RISK = RISK - ROE
+        }
+        if (RISK > 64) RISK = 64
+    }
+
+    if (position.regime === 'cross' && position.side === 'sell') {
+        LIQ_PRICE = balance / (position.margin * position.core) * position.entryPrice
+    } else {
+        LIQ_PRICE = position.liquidationPrice
+    }
+
+    return {
+        ...position,
+        PNL,
+        ROE,
+        RISK,
+        SIZE,
+        MARK_PRICE,
+        LIQ_PRICE,
+        ROUND,
+    }
+}
+
+export const calcPNL = (position: IPositions, close: number) => {
+    let PNL = 0
+    if (position.side === 'buy') {
+        PNL = (close - position.entryPrice) * position.amountCoin
+    } else {
+        PNL = (position.entryPrice - close) * position.amountCoin
+    }
+    return PNL
 }

@@ -53,9 +53,10 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
-    const handleShowModalStopProfit = async () => {
+    const handleShowModalStopProfit = async (position: IPositions) => {
         dispatch(futuresSlice.actions.setStopProfit({
             showModal: true,
+            position: position,
         }))
     }
 

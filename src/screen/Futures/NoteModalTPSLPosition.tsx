@@ -30,6 +30,9 @@ const NoteModalTPSLPosition = ({
     if (!isNaN(pnl)) {
         ROUND = Number(pnl) < 10 ? 4 : (Number(pnl) > 9 && Number(pnl) < 51) ? 3 : 1
     }
+
+    const color = Number(pnl) >= 0 ? colors.green : colors.red3
+
     level = !isNaN(Number(level)) ? numberCommasDot(Number(level).toFixed(ROUND)) : level
     pnl = !isNaN(pnl) ? numberCommasDot(Number(pnl).toFixed(ROUND)) : pnl
 
@@ -44,8 +47,8 @@ const NoteModalTPSLPosition = ({
                 <Txt style={styles.textGray}>{` ${typeTrade} `}</Txt>
                 <Txt style={styles.textGray}>{t('order will be triggered to close the position. PNL is estimated to be')}</Txt>
                 <Txt
+                    color={color}
                     fontFamily={fonts.M23}
-                    color={Number(pnl) >= 0 ? colors.green : colors.red3}
                 >
                     {` ${pnl}.`}
                 </Txt>

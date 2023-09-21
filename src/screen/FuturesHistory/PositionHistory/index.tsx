@@ -1,29 +1,27 @@
+import { getListPositionCloseThunk } from '@asyncThunk/fundingAsyncThunk'
 import Box from '@commom/Box'
+import Scroll from '@commom/Scroll'
 import Txt from '@commom/Txt'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { positionsHistoryFundingSelector } from '@selector/fundingSelector'
+import { profileUserSelector } from '@selector/userSelector'
+import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import DownItem from '../TransactionHistory/DownItem'
-import { fonts } from '@theme/fonts'
-import { colors } from '@theme/colors'
-import Item from './Item'
-import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { coinsFuturesChartSelector, positionsFuturesSelector } from '@selector/futuresSelector'
-import Scroll from '@commom/Scroll'
 import { Profile } from 'src/model/userModel'
-import { profileUserSelector } from '@selector/userSelector'
-import { positionsHistoryFundingSelector } from '@selector/fundingSelector'
-import { getListPositionCloseThunk } from '@asyncThunk/fundingAsyncThunk'
+import DownItem from '../TransactionHistory/DownItem'
+import Item from './Item'
 
 const PositionHistory = () => {
   const theme = useTheme()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const coins = useAppSelector(coinsFuturesChartSelector)
   const profile: Profile = useAppSelector<any>(profileUserSelector)
   const positionsHistory = useAppSelector(positionsHistoryFundingSelector)
 
-  useEffect(() => {   
-      dispatch(getListPositionCloseThunk())
+  useEffect(() => {
+    dispatch(getListPositionCloseThunk())
   }, [])
 
   return (
@@ -45,14 +43,13 @@ const PositionHistory = () => {
           </Txt>
         </Txt>
       </Box>
-      <Scroll flex={1}>
+      <Scroll flexGrow={1} paddingBottom={200}>
         {
           positionsHistory.data.map((item) =>
             <Item
               t={t}
               item={item}
               theme={theme}
-              coins={coins}
               profile={profile}
               key={Math.random()}
             />

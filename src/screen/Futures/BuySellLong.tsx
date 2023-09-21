@@ -9,7 +9,7 @@ import Calc from './Calc'
 import Limit from './Limit'
 import Price from './Price'
 
-const BuySellLong = ({ toastTopRef }: any) => {
+const BuySellLong = () => {
   const theme = useTheme()
   return (
     <Box width={'63%'} paddingHorizontal={10}>
@@ -19,7 +19,7 @@ const BuySellLong = ({ toastTopRef }: any) => {
       <Price theme={theme} />
       <AmountSlider />
       <Calc theme={theme}/>
-      <BuySellButton toastTopRef={toastTopRef} />
+      <BuySellButton  />
     </Box>
   )
 }
