@@ -52,6 +52,16 @@ export const formatDate = (input: string): string => {
     return day + '-' + month + '-' + year;
 }
 
+export const getDateMD = (time: number): string => {
+    const date = new Date(time)
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    const monthStr = month < 10 ? '0' + month : month
+    const dayStr = day < 10 ? '0' + day : day
+
+    return `${monthStr}-${dayStr}`
+}
+
 export const getToDayYMD = (): string => {
     const today = new Date()
     const year = today.getFullYear()

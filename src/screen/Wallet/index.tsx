@@ -13,6 +13,7 @@ import React, { useRef, useState } from 'react'
 import Login from './Login'
 import Tab from './Tab'
 import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
+
 const Wallet = () => {
   const theme = useTheme()
   const toastTopRef = useRef(null)

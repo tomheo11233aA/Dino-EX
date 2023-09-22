@@ -104,11 +104,17 @@ const Balance = ({ balance, t }: Props) => {
                     <Txt fontFamily={fonts.AS} color={colors.gray5}>******</Txt>
                 </>
             }
-            <Box row alignCenter marginTop={15}>
+            <Btn
+                row
+                alignCenter
+                marginTop={15}
+                alignSelf={'flex-start'}
+                onPress={() => navigate(screen.PNL_ANALYSIS)}
+            >
                 <Box
-                    backgroundColor={theme.gray9}
-                    paddingHorizontal={8}
                     paddingVertical={5}
+                    paddingHorizontal={8}
+                    backgroundColor={theme.gray9}
                 >
                     <Txt size={9} color={colors.yellowBold}>
                         {t('PNL . analysis')}
@@ -123,7 +129,7 @@ const Balance = ({ balance, t }: Props) => {
                         {`${winingDay} ${t('Winning Days')} >`}
                     </Txt>
                 </Box>
-            </Box>
+            </Btn>
         </Box>
     )
 }

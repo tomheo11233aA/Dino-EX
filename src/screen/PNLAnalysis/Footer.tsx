@@ -1,11 +1,12 @@
 import Box from '@commom/Box'
 import Txt from '@commom/Txt'
 import { useTheme } from '@hooks/index'
+import { getChartStatisticsUser } from '@service/walletService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import ChartPNl from './ChartPNl'
+import PNLEveryDay from './PNLEveryDay'
 
 const FONT = fonts.IBMPM
 
@@ -28,21 +29,7 @@ const Footer = () => {
                     </Txt>
                 </Box>
             </Box>
-
-            <Txt color={theme.black} marginTop={20} fontFamily={FONT}>
-                {t('PNL hằng ngày')}
-            </Txt>
-            <Txt color={colors.grayBlue} fontFamily={fonts.M23} marginTop={10}>
-                {'2023-09-22'}
-            </Txt>
-            <Txt color={theme.black} fontFamily={fonts.M24} marginTop={5} size={15}>
-                {'0,00'}
-                <Txt color={theme.black} fontFamily={fonts.IBMPM} size={13}>
-                    {' USDT'}
-                </Txt>
-            </Txt>
-
-            <ChartPNl />
+            <PNLEveryDay />
         </Box>
     )
 }

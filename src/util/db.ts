@@ -6506,3 +6506,41 @@ export const db = [
         "volume": "3861.452"
     }
 ]
+
+export const pnls = [
+    {
+        "PnL": 1,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+    {
+        "PnL": 0,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+    {
+        "PnL": 0,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+    {
+        "PnL": 0.5,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+    {
+        "PnL": -0.5,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+    {
+        "PnL": -1,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+    {
+        "PnL": 0,
+        "ROE": 0,
+        "created_at":1693612800000,
+    },
+]
