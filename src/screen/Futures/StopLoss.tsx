@@ -8,8 +8,9 @@ import Input from '@commom/Input';
 import Icon from '@commom/Icon';
 import Btn from '@commom/Btn';
 import { StyleSheet, TextInput } from 'react-native';
+import { calcPNL, numberCommasDot } from '@method/format';
 
-const StopLoss = ({ theme, t, sl, setSL }: any) => {
+const StopLoss = ({ theme, t, sl, setSL, position }: any) => {
     const [show, setShow] = useState(true)
 
     const handleMinus = () => {
@@ -30,6 +31,10 @@ const StopLoss = ({ theme, t, sl, setSL }: any) => {
         { title: 'Mark Price', value: 'Mark' },
         { title: 'Last Price', value: 'Last' },
     ]
+
+    let pnl: any = calcPNL(position, sl.value)
+    const color = Number(pnl) >= 0 ? colors.green2 : colors.red3
+    pnl = !isNaN(Number(pnl)) ? numberCommasDot(pnl.toFixed(3)) : '--'
 
     return (
         <Box marginTop={-20}>
@@ -110,9 +115,11 @@ const StopLoss = ({ theme, t, sl, setSL }: any) => {
                             <Input
                                 height={40}
                                 font={fonts.RM}
+                                disabled={false}
                                 color={theme.black}
                                 textAlign={'center'}
                                 hint={t('Market Price')}
+                                keyboardType={'numeric'}
                                 hintColor={colors.grayBlue}
                             />
                         </Box>
@@ -179,37 +186,28 @@ const StopLoss = ({ theme, t, sl, setSL }: any) => {
                                 {` ${t('reaches')} `}
                             </Txt>
                             <Txt color={theme.black} fontFamily={fonts.M17} size={16}>
-                                {' -- '}
+                                {sl.value ? numberCommasDot(Number(sl.value).toFixed(3)) : ' -- '}
                             </Txt>
                             <Txt style={styles.textGray}>
                                 {`, ${t('it will trigger')}`}
                             </Txt>
-                            <Txt color={theme.black}>
+                            <Txt color={theme.black} size={12}>
                                 {`${t(' Market ')}`}
                             </Txt>
                             <Txt style={styles.textGray}>
                                 {`${t('order and the estimated PNL will be ')}`}
                             </Txt>
-                            <Txt color={theme.black} fontFamily={fonts.M17} size={16}>
-                                {' -- '}
+                            <Txt
+                                color={color} fontFamily={fonts.M17}>
+                                {` ${pnl} `}
                             </Txt>
-                            <Txt color={theme.black}>
+                            <Txt color={color} size={12}>
                                 {' USDT.'}
                             </Txt>
                         </Txt>
                     </Box>
                 </Box>
             }
-            <Btn
-                radius={5}
-                height={40}
-                marginTop={10}
-                backgroundColor={colors.yellow}
-            >
-                <Txt color={'black'} fontFamily={fonts.RM}>
-                    {t('Confirm')}
-                </Txt>
-            </Btn>
         </Box>
     )
 }

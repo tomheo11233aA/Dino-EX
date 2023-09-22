@@ -9,7 +9,7 @@ import { screen } from '@util/screens'
 import React from 'react'
 import Item from './Item'
 
-const Appearance = ({ t, i18n }: any) => {
+const Other = ({ t, i18n }: any) => {
     const theme = useTheme()
     const themeUser = useAppSelector(themeUserSelector)
 
@@ -25,17 +25,17 @@ const Appearance = ({ t, i18n }: any) => {
                     size={15}
                     fontFamily={fonts.AS}
                 >
-                    {t('Appearance')}
+                    {t('Others')}
                 </Txt>
             </Box>
             <Item 
                 theme={theme}
-                title={t('Appearance')}
-                onPress={() => navigate(screen.APPEARANCE)}
-                value={themeUser === 'dark' ? t('Dark Mode') : t('Light Mode')}
+                value={'******'}
+                title={t('Chang Password')}
+                onPress={() => navigate(screen.CHANGE_PASSWORD)}
             />
         </Box>
     )
 }
 
-export default Appearance
+export default Other

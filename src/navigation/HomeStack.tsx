@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AccountInfo from '@screen/AccountInfo'
 import Appearance from '@screen/Appearance'
 import ChangeLanguage from '@screen/ChangeLanguage'
+import ChangePassword from '@screen/ChangePassword'
 import ComingSoon from '@screen/ComingSoon'
 import Deposit from '@screen/Deposit'
 import DepositVND from '@screen/DepositVND'
@@ -43,6 +44,7 @@ const HomeStack = () => {
             <Stack.Screen name={screen.DEPOSIT_VND} component={DepositVND} />
             <Stack.Screen name={screen.EARN} component={Earn} />
             <Stack.Screen name={screen.COMMING_SOON} component={ComingSoon} />
+            <Stack.Screen name={screen.CHANGE_PASSWORD} component={ChangePassword} />
         </Stack.Navigator>
     )
 }

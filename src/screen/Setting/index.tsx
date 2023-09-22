@@ -8,6 +8,7 @@ import Appearance from './Appearance'
 import { useTheme } from '@hooks/index'
 import General from './General'
 import { useTranslation } from 'react-i18next'
+import Other from './Other'
 
 const Setting = () => {
   const theme = useTheme()
@@ -27,6 +28,7 @@ const Setting = () => {
         </Txt>
         <General {...{ t, i18n }} />
         <Appearance {...{ t, i18n }}  />
+        <Other {...{ t, i18n }}  />
       </Box>
     </KeyBoardSafe>
   )

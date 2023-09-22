@@ -35,6 +35,7 @@ export const screen = {
     DEPOSIT_CRYPTO: 'DepositCrypto',
     CONVERT_TRADES: 'ConvertTrades',
     WITHDRAW_CRYPTO: 'WithdrawCrypto',
+    CHANGE_PASSWORD: 'ChangePassword',
     CHANGE_LANGUAGE: 'ChangeLanguage',
     SHARE_POSITIONS: 'SharePositions',
     FUTURES_HISTORY: 'FuturesHistory',

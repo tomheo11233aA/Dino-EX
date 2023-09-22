@@ -5,18 +5,20 @@ import { width } from '@util/responsive'
 import React, { useState } from 'react'
 import Animated from 'react-native-reanimated'
 import { G, Path, Svg, Text as TextSVG } from 'react-native-svg'
+import { IPositions } from 'src/model/futuresModel'
 
 interface Props {
     t: any;
     theme: any;
+    position: IPositions | null;
 }
 
 const PADDING = 30
 const WIDHT_SVG = width - PADDING
 const HEIGHT_SVG = 30
 
-const OpenStopProfit = ({ theme, t }: Props) => {
-    const [side, setSide] = useState<'buy' | 'sell'>('buy')
+const OpenStopProfit = ({ theme, t, position }: Props) => {
+    const [side, setSide] = useState<'buy' | 'sell'>(position?.side || 'buy')
 
     return (
         <Box marginTop={20}>
