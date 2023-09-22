@@ -6,7 +6,7 @@ import { theme } from '@theme/index'
 import { width } from '@util/responsive'
 import React from 'react'
 import { PanGestureHandler } from 'react-native-gesture-handler'
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { Extrapolation, interpolate, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import { Circle, G, Line, Path, Svg, Text as TextSVG } from 'react-native-svg'
 
 const PADDING_H = 30
@@ -51,6 +51,35 @@ const ChartPNl = ({
   const positionX = useSharedValue(0)
   const opacity = useSharedValue(0)
 
+  let inputRange = [0, 1]
+  let outputRange = [0, 1]
+  const calcRange = () => {
+    let range: any = []
+    if (indexRow.data.length > 1) {
+      indexRow.data.map((item, index) => {
+        range.push((WIDTH_CHART_ACTUAL / (indexRow.data.length - 1) * index + PADDING_LEFT_CHART))
+      })
+    }
+
+
+    for (let i = 0; i < range.length; i++) {
+      if (i === 0) inputRange.push(range[i])
+
+      if (i !== 0) {
+        const tb = (range[i] - range[i - 1]) / 2 + range[i - 1]
+        inputRange = [...inputRange, (tb - 0.1), (tb + 0.1), range[i]]
+      }
+
+      if (i !== 0 && i < (range.length - 1)) {
+        outputRange = [...outputRange, range[i], range[i], range[i]]
+      } else {
+        outputRange = [...outputRange, range[i], range[i]]
+      }
+    }
+  }
+
+  calcRange()
+
   const render_x_line = () => {
     const size = indexColunm.total
     return (
@@ -90,7 +119,8 @@ const ChartPNl = ({
   }
 
   const renderIndexDay = () => {
-    const size = indexRow.data.length
+    const size = indexRow.data.length < 2 ? 2 : indexRow.data.length
+    
     return (
       <G>
         {
@@ -118,7 +148,7 @@ const ChartPNl = ({
 
   const renderLineYellow = () => {
     let dPath = ''
-    const size = indexRow.data.length
+    const size = indexRow.data.length < 2 ? 2 : indexRow.data.length
     const heighValueChart = indexColunm.max - indexColunm.min
     let section = HEIGHT_CHART / heighValueChart
 
@@ -127,7 +157,7 @@ const ChartPNl = ({
     lineYellow.map((item, index) => {
       let x_point = (WIDTH_CHART_ACTUAL / (size - 1)) * index + PADDING_LEFT_CHART
       let y_point = HEIGHT_CHART - (item - indexColunm.min) * section + PADDING_TOP_CHART
-
+      
       if (section == Infinity) y_point = HEIGHT_CHART / 2 + PADDING_TOP_CHART
 
       if (index === 0) {
@@ -135,6 +165,7 @@ const ChartPNl = ({
       } else {
         dPath += `L${x_point} ${y_point}`
       }
+  
       circles.push({ cx: x_point, cy: y_point })
     })
 
@@ -179,7 +210,7 @@ const ChartPNl = ({
       if (translateX > (WIDTH_CHART_ACTUAL + PADDING_LEFT_CHART)) {
         positionX.value = WIDTH_CHART_ACTUAL + PADDING_LEFT_CHART
       }
-      console.log(translateX)
+   
     },
     onEnd: (e, ctx) => {
       opacity.value = 0
@@ -187,10 +218,20 @@ const ChartPNl = ({
   })
 
   const cursorStyle = useAnimatedStyle(() => {
+    const local = interpolate(
+      positionX.value,
+      inputRange,
+      outputRange,
+      {
+        extrapolateLeft: Extrapolation.IDENTITY,
+        extrapolateRight: Extrapolation.IDENTITY,
+      }
+    )
+
     return {
       transform: [
         {
-          translateX: positionX.value,
+          translateX: local,
         },
       ],
       opacity: opacity.value
@@ -204,7 +245,7 @@ const ChartPNl = ({
           <Svg width={WIDTH_SVG} height={HEIGHT_SVG}>
             {render_x_line()}
             {renderIndexDay()}
-            {lineYellow.length > 0 && renderLineYellow()}
+            {(lineYellow.length > 0 && indexRow.data.length > 0) && renderLineYellow()}
 
             <LineAnimated
               key={`L_Cursor`}
@@ -212,8 +253,9 @@ const ChartPNl = ({
               y1={PADDING_TOP_CHART}
               x2={0}
               y2={HEIGHT_CHART + PADDING_TOP_CHART}
-              stroke={colors.yellow}
-              strokeWidth={2}
+              stroke={colors.grayBlue}
+              strokeWidth={1}
+              strokeDasharray={'1'}
               style={cursorStyle}
             />
           </Svg>

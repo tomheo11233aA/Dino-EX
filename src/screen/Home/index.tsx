@@ -33,7 +33,7 @@ const Home = () => {
   }, [theme])
 
   return (
-    <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+    <KeyBoardSafe paddingBottom={100}>
       <StatusBar barStyle={theme.bg === 'white' ? 'dark-content' : 'light-content'} />
       <Box paddingHorizontal={15} paddingTop={10}>
         <Header />

@@ -22,12 +22,14 @@ const PNLEveryDay = () => {
 
     const handleGetChartStatisticsUser = async () => {
         const res = await getChartStatisticsUser()
-        const array = pnls
+        const array = res.data
+        console.log(res.data.length)
 
         const max = Math.max.apply(Math, array.map((item: any) => item.PnL))
         const min = Math.min.apply(Math, array.map((item: any) => item.PnL))
 
-        const dataDate = pnls.map((item) => getDateMD(item.created_at))
+        const dataDate = array.map((item: any) => getDateMD(item.created_at))
+        const lineYellow = array.map((item: any) => item.PnL)
 
         setData({
             ...data,
@@ -40,7 +42,8 @@ const PNLEveryDay = () => {
             indexRow: {
                 total: 4,
                 data: dataDate
-            }
+            },
+            lineYellow,
         })
     }
 
@@ -62,7 +65,7 @@ const PNLEveryDay = () => {
             {data &&
                 <ChartPNl
                     indexColunm={data.indexColumn}
-                    lineYellow={pnls.map((item) => item.PnL)}
+                    lineYellow={data.lineYellow}
                     indexRow={data.indexRow}
                 />}
         </Box>
