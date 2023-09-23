@@ -62,6 +62,18 @@ export const getDateMD = (time: number): string => {
     return `${monthStr}-${dayStr}`
 }
 
+export const getDateYMD = (time: number): string => {
+    'worklet'
+    const date = new Date(time)
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    const year = date.getFullYear()
+    const monthStr = month < 10 ? '0' + month : month
+    const dayStr = day < 10 ? '0' + day : day
+
+    return `${year}-${monthStr}-${dayStr}`
+}
+
 export const getToDayYMD = (): string => {
     const today = new Date()
     const year = today.getFullYear()

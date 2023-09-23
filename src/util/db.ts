@@ -6510,7 +6510,7 @@ export const db = [
 export const pnls = [
     {
         "PnL": 1,
-        "ROE": 0,
+        "ROE": 1,
         "created_at":1693612800000,
     },
     {
@@ -6525,17 +6525,17 @@ export const pnls = [
     },
     {
         "PnL": 0.5,
-        "ROE": 0,
+        "ROE": 0.5,
         "created_at":1693612800000,
     },
     {
         "PnL": -0.5,
-        "ROE": 0,
+        "ROE": -0.5,
         "created_at":1693612800000,
     },
     {
         "PnL": -1,
-        "ROE": 0,
+        "ROE": -1,
         "created_at":1693612800000,
     },
     {

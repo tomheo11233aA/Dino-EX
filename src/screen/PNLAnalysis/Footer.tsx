@@ -7,6 +7,7 @@ import { fonts } from '@theme/fonts'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import PNLEveryDay from './PNLEveryDay'
+import PNL from './PNL'
 
 const FONT = fonts.IBMPM
 
@@ -30,6 +31,7 @@ const Footer = () => {
                 </Box>
             </Box>
             <PNLEveryDay />
+            <PNL />
         </Box>
     )
 }

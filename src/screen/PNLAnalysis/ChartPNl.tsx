@@ -1,12 +1,17 @@
 import Box from '@commom/Box'
+import Txt from '@commom/Txt'
 import { useTheme } from '@hooks/index'
+import { getDateMD, getDateYMD } from '@method/date'
+import { numberCommasDot } from '@method/format'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { theme } from '@theme/index'
+import { ReText } from 'react-native-redash'
 import { width } from '@util/responsive'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { PanGestureHandler } from 'react-native-gesture-handler'
-import Animated, { Extrapolation, interpolate, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { Extrapolation, SharedValue, interpolate, useAnimatedGestureHandler, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated'
 import { Circle, G, Line, Path, Svg, Text as TextSVG } from 'react-native-svg'
 
 const PADDING_H = 30
@@ -30,19 +35,21 @@ export interface IndexColumn {
 }
 
 export interface IndexRow {
-  data: string[];
+  data: any[];
   total: number;
 }
 
 interface Props {
-  indexColunm: IndexColumn,
-  indexRow: IndexRow,
-  lineYellow: number[],
+  title: string;
+  indexColunm: IndexColumn;
+  indexRow: IndexRow;
+  lineYellow: number[];
 }
 
 const LineAnimated = Animated.createAnimatedComponent(Line)
 
 const ChartPNl = ({
+  title,
   indexRow,
   indexColunm,
   lineYellow,
@@ -50,6 +57,10 @@ const ChartPNl = ({
   const theme = useTheme()
   const positionX = useSharedValue(0)
   const opacity = useSharedValue(0)
+  const usdt = useSharedValue(0)
+  const day = useSharedValue(0)
+
+  const { t } = useTranslation()
 
   let inputRange = [0, 1]
   let outputRange = [0, 1]
@@ -120,12 +131,22 @@ const ChartPNl = ({
 
   const renderIndexDay = () => {
     const size = indexRow.data.length < 2 ? 2 : indexRow.data.length
-    
+    let show = 0
+    const sub = (indexRow.data.length / indexRow.total).toFixed(0)
+
     return (
       <G>
         {
           indexRow.data.map((item, index) => {
             let x_point = (WIDTH_CHART_ACTUAL / (size - 1)) * index + PADDING_LEFT_CHART
+            let showText = 0
+            if (index == 0) {
+              showText = 1
+            } else if (show == Number(sub)) {
+              showText = 1
+              show = 0
+            }
+            show++
 
             return (
               <G key={'g_index_day' + index}>
@@ -135,8 +156,9 @@ const ChartPNl = ({
                   fontFamily={FONT}
                   fill={COLOR}
                   textAnchor={'middle'}
+                  opacity={showText}
                 >
-                  {item}
+                  {getDateMD(item)}
                 </TextSVG>
               </G>
             )
@@ -157,7 +179,7 @@ const ChartPNl = ({
     lineYellow.map((item, index) => {
       let x_point = (WIDTH_CHART_ACTUAL / (size - 1)) * index + PADDING_LEFT_CHART
       let y_point = HEIGHT_CHART - (item - indexColunm.min) * section + PADDING_TOP_CHART
-      
+
       if (section == Infinity) y_point = HEIGHT_CHART / 2 + PADDING_TOP_CHART
 
       if (index === 0) {
@@ -165,7 +187,7 @@ const ChartPNl = ({
       } else {
         dPath += `L${x_point} ${y_point}`
       }
-  
+
       circles.push({ cx: x_point, cy: y_point })
     })
 
@@ -210,7 +232,7 @@ const ChartPNl = ({
       if (translateX > (WIDTH_CHART_ACTUAL + PADDING_LEFT_CHART)) {
         positionX.value = WIDTH_CHART_ACTUAL + PADDING_LEFT_CHART
       }
-   
+
     },
     onEnd: (e, ctx) => {
       opacity.value = 0
@@ -227,6 +249,11 @@ const ChartPNl = ({
         extrapolateRight: Extrapolation.IDENTITY,
       }
     )
+    const index = ((local - PADDING_LEFT_CHART) / (WIDTH_CHART_ACTUAL / (indexRow.data.length - 1))).toFixed(0)
+    if (Number(index) >= 0) {
+      usdt.value = lineYellow[Number(index)]
+      day.value = indexRow.data[Number(index)]
+    }
 
     return {
       transform: [
@@ -238,29 +265,58 @@ const ChartPNl = ({
     }
   })
 
-  return (
-    <Box marginTop={20}>
-      <PanGestureHandler onGestureEvent={gestureEvent}>
-        <Animated.View>
-          <Svg width={WIDTH_SVG} height={HEIGHT_SVG}>
-            {render_x_line()}
-            {renderIndexDay()}
-            {(lineYellow.length > 0 && indexRow.data.length > 0) && renderLineYellow()}
+  const valueDrived = useDerivedValue(() => {
+    return `${numberCommasDot(usdt.value.toFixed(2))}`
+  })
 
-            <LineAnimated
-              key={`L_Cursor`}
-              x1={0}
-              y1={PADDING_TOP_CHART}
-              x2={0}
-              y2={HEIGHT_CHART + PADDING_TOP_CHART}
-              stroke={colors.grayBlue}
-              strokeWidth={1}
-              strokeDasharray={'1'}
-              style={cursorStyle}
-            />
-          </Svg>
-        </Animated.View>
-      </PanGestureHandler>
+  const dayDrived = useDerivedValue(() => {
+    return `${day.value != 0 ? getDateYMD(day.value) : '--'}`
+  })
+
+  return (
+    <Box>
+      <Txt color={theme.black} marginTop={20} fontFamily={fonts.IBMPM}>
+        {t(title)}
+      </Txt>
+
+      <ReText
+        text={dayDrived}
+        style={{ color: colors.grayBlue, fontFamily: fonts.M23, marginTop: -10 }}
+      />
+
+      <Box row alignCenter marginTop={-30} marginBottom={-20}>
+        <ReText
+          text={valueDrived}
+          style={{ color: colors.grayBlue, fontFamily: fonts.M24, fontSize: 15 }}
+        />
+        <Txt color={colors.grayBlue} fontFamily={fonts.IBMPM} size={13} marginTop={-3}>
+          {'USDT'}
+        </Txt>
+      </Box>
+
+      <Box marginTop={20}>
+        <PanGestureHandler onGestureEvent={gestureEvent}>
+          <Animated.View>
+            <Svg width={WIDTH_SVG} height={HEIGHT_SVG}>
+              {render_x_line()}
+              {renderIndexDay()}
+              {(lineYellow.length > 0 && indexRow.data.length > 0) && renderLineYellow()}
+
+              <LineAnimated
+                key={`L_Cursor`}
+                x1={0}
+                y1={PADDING_TOP_CHART}
+                x2={0}
+                y2={HEIGHT_CHART + PADDING_TOP_CHART}
+                stroke={colors.grayBlue}
+                strokeWidth={1}
+                strokeDasharray={'1'}
+                style={cursorStyle}
+              />
+            </Svg>
+          </Animated.View>
+        </PanGestureHandler>
+      </Box>
     </Box>
   )
 }

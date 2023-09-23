@@ -6675,7 +6675,7 @@ react-native-reanimated@^2.14.4:
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
 
-react-native-redash@*:
+react-native-redash@*, react-native-redash@^18.1.0:
   version "18.1.0"
   resolved "https://registry.npmjs.org/react-native-redash/-/react-native-redash-18.1.0.tgz"
   integrity sha512-bdCFl/ZB7Rf2raIlU6SLV+Dc/rL6UXsQNjEVwTGBukHMeSKp1zs4zVtWaGimbN8P22N4qYvb9Jmw/K94ZWYG0Q==
