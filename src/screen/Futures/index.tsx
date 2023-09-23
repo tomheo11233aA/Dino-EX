@@ -55,7 +55,7 @@ const Futures = () => {
           {!loading ?
             <>
               <Box height={height - HEIGHT_BOTTOM_TAB}>
-                <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
+                <KeyBoardSafe bg={theme.gray5} paddingBottom={100}>
                   <Header drawerRef={drawerRef} />
                   <Transaction />
                 </KeyBoardSafe>

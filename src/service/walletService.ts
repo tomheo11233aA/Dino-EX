@@ -58,3 +58,12 @@ export const getChartStatisticsUser = async () => {
         return callFailed()
     }
 }
+
+export const getHistoryChangeBalance = async (data: any) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/getHistoryChangeBalance', data)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}

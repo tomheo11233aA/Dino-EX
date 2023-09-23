@@ -30,7 +30,11 @@ const CoinItem = ({ coin, theme }: Props) => {
 
     return (
         <Btn
-            onPress={() => navigate(screen.SPOT_COIN, { coin })}
+            onPress={() => {
+                if (coin.currency == 'USDT') {
+                    navigate(screen.SPOT_COIN, { coin })
+                }
+            }}
             row
             alignCenter
             justifySpaceBetween

@@ -99,3 +99,16 @@ export interface IPositionHistory {
     amountPnL_SL: null | number;
     amountPnL_TP: null | number;
 }
+
+export interface IHistoryChangeBalance {
+    id: number;
+    userid: number;
+    symbol: string;
+    amount: number;
+    type: string;
+    created_at: string;
+    child_id: any;
+    totalAmount: any;
+    email: any;
+    title: string;
+}

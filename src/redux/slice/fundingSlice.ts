@@ -1,7 +1,7 @@
-import { checkTransactionDepositVndThunk, getBankingThunk, getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk, getHistoryOrderThunk, getListPositionCloseThunk } from "@asyncThunk/fundingAsyncThunk";
+import { checkTransactionDepositVndThunk, getBankingThunk, getHistoryChangeBalanceThunk, getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk, getHistoryOrderThunk, getListPositionCloseThunk } from "@asyncThunk/fundingAsyncThunk";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { depositStep } from "@util/contants";
-import { IBank, IOpenOrder, IOrderHistory } from "src/model/fundingModel";
+import { IBank, IHistoryChangeBalance, IOpenOrder, IOrderHistory } from "src/model/fundingModel";
 import { IDepositInfo } from "src/model/walletModel";
 
 interface IFundingSlice {
@@ -15,6 +15,10 @@ interface IFundingSlice {
     },
     positionsHistory: {
         data: [],
+    },
+    historyChangeBalance: {
+        data: IHistoryChangeBalance[],
+        page: number,
     },
     deposit: {
         step: string;
@@ -31,6 +35,10 @@ const initialState: IFundingSlice = {
     },
     orderHistorys: {
         data: [],
+    },
+    historyChangeBalance: {
+        data: [],
+        page: 1,
     },
     positionsHistory: {
         data: [],
@@ -104,6 +112,11 @@ const fundingSlice = createSlice({
             .addCase(getListPositionCloseThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {
                     state.positionsHistory.data = payload.data.array
+                }
+            })
+            .addCase(getHistoryChangeBalanceThunk.fulfilled, (state, { payload }) => {
+                if (payload.status) {
+                    state.historyChangeBalance.data = payload.data.array
                 }
             })
     }

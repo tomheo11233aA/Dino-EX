@@ -15,3 +15,5 @@ export const openOrdersFundingSelector = (state: RootState) => state.funding.ope
 export const orderHistorysFundingSelector = (state: RootState) => state.funding.orderHistorys
 
 export const positionsHistoryFundingSelector = (state: RootState) => state.funding.positionsHistory
+
+export const historyChangeBalanceFundingSeletor = (state: RootState) => state.funding.historyChangeBalance

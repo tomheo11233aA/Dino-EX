@@ -17,7 +17,7 @@ import TransactionHistory from './TransactionHistory'
 const FuturesHistory = () => {
   const theme = useTheme()
   const dispatch = useAppDispatch()
-  const [tab, setTab] = useState<string>('Open Orders')
+  const [tab, setTab] = useState<string>('Transaction History')
   const [showFilter, setShowFilter] = useState<boolean>(false)
 
   const profile: Profile = useAppSelector<any>(profileUserSelector)

@@ -21,24 +21,22 @@ const SpotCoin = () => {
   const { coin } = route.params
   const { t } = useTranslation()
   
-  // hideBottomTab()
+  hideBottomTab()
 
   return (
-    // <KeyBoardSafe bg={theme.gray10} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
-    //   <Box height={height}>
-    //     <Header {...{ theme, coin }} />
-    //     <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>
-    //       <Balance {...{ theme, coin, t }} />
-    //       <Available {...{ theme, coin, t }} />
-    //       <TradeBuySellCrypto />
-    //       <Earn {...{ theme, t }} />
-    //       <TradeSpot {...{ theme, t }} />
-    //       <History {...{ coin }} />
-    //     </Box>
-    //   </Box>
-    // </KeyBoardSafe>
-    
-    <ComingSoon />
+    <KeyBoardSafe bg={theme.gray10} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+      <Box height={height}>
+        <Header {...{ theme, coin }} />
+        <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>
+          <Balance {...{ theme, coin, t }} />
+          <Available {...{ theme, coin, t }} />
+          <TradeBuySellCrypto />
+          <Earn {...{ theme, t }} />
+          <TradeSpot {...{ theme, t }} />
+          <History {...{ coin }} />
+        </Box>
+      </Box>
+    </KeyBoardSafe>
   )
 }
 
