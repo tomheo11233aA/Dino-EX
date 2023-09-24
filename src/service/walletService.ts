@@ -47,12 +47,9 @@ export const checkTransactionDepositVnd = async () => {
     }
 }
 
-export const getChartStatisticsUser = async () => {
+export const getChartStatisticsUser = async (data: any) => {
     try {
-        const res = await axiosInstance.post('/api/binaryOption/getChartStatisticsUser', {
-            "start": "1693552682000",
-            "end": "1695367082000"
-        })
+        const res = await axiosInstance.post('/api/binaryOption/getChartStatisticsUser', data)
         return callSuccess(res)
     } catch (error) {
         return callFailed()

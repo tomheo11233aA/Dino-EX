@@ -17,3 +17,5 @@ export const orderHistorysFundingSelector = (state: RootState) => state.funding.
 export const positionsHistoryFundingSelector = (state: RootState) => state.funding.positionsHistory
 
 export const historyChangeBalanceFundingSeletor = (state: RootState) => state.funding.historyChangeBalance
+
+export const chartStatisticsUserSelector = (state: RootState) => state.funding.chartStatisticsUser

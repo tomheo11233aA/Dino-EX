@@ -1,10 +1,10 @@
 export interface IBank {
-    id: number,
-    image: number,
-    created_at: string,
-    name_banking: string,
-    owner_banking: string,
-    number_banking: string,
+    id: number;
+    image: number;
+    created_at: string;
+    name_banking: string;
+    owner_banking: string;
+    number_banking: string;
 }
 
 export interface IReqCreateDepositVND {
@@ -42,10 +42,10 @@ export interface IOpenOrder {
 }
 
 export interface IOpenOrderConver extends IOpenOrder {
-    reducerOnly: boolean,
-    showTPSL: number | boolean,
-    triggerConditionsTP: string | null,
-    triggerConditionsSL: string | null,
+    reducerOnly: boolean;
+    showTPSL: number | boolean;
+    triggerConditionsTP: string | null;
+    triggerConditionsSL: string | null;
 }
 
 export interface IReqHistoryOpenOrder {
@@ -111,4 +111,32 @@ export interface IHistoryChangeBalance {
     totalAmount: any;
     email: any;
     title: string;
+}
+
+export interface IChartStatisticsUser {
+    PnL: number;
+    ROE: number;
+    afterBalance: number;
+    beforeBalance: number;
+    commissionBalance: number;
+    created_at: number;
+    deposit: number;
+    email: string;
+    id: number;
+    lose: number;
+    receive: number;
+    totalAmountLose: number;
+    totalAmountWin: number;
+    totalLose: number;
+    totalMember: number;
+    totalMemberVipF1: number;
+    totalOrder: number;
+    totalOrderF1: number;
+    totalVolume: number;
+    totalWin: number;
+    transfer: number;
+    userName: string;
+    userid: number;
+    widthdraw: number;
+    win: number;
 }

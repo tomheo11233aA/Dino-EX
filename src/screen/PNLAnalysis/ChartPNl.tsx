@@ -199,7 +199,7 @@ const ChartPNl = ({
           strokeWidth={1.5}
           stroke={colors.yellow}
         />
-        {circles.map((item, index) => {
+        {circles.length <= 21 && circles.map((item, index) => {
           return (
             <Circle
               r={3}
