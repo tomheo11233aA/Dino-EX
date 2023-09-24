@@ -7,7 +7,7 @@ import Transaction from "./Transaction";
 import WithdrawHistory from "./WithdrawHistory";
 
 export default () => {
-    const [tab, setTab] = useState<string>('Withdrawals')
+    const [tab, setTab] = useState<string>('Deposit')
 
     return (
         <KeyBoardSafe>

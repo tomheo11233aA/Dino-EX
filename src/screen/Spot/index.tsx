@@ -7,13 +7,16 @@ import React from 'react'
 import Balance from './Balance'
 import Coins from './Coins'
 import Convert from './Convert'
+import { profileUserSelector } from '@selector/userSelector'
+import { Profile } from 'src/model/userModel'
 
 const Spot = () => {
     const theme = useTheme()
-    const coins = useAppSelector(coinsFuturesChartSelector)
     const wallet = useAppSelector(walletSpotSelector)
+    const coins = useAppSelector(coinsFuturesChartSelector)
+    const profile: Profile = useAppSelector<any>(profileUserSelector)
 
-    const spot = convertToValueSpot(coins, wallet)
+    const spot = convertToValueSpot(coins, wallet, profile)
 
     return (
         <Box>

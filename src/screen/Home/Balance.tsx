@@ -57,7 +57,7 @@ export default () => {
     const positionObj = calcPositions(positions, coins)
     BALANCE = profile.balance + positionObj.pnl + positionObj.margin
 
-    const spot = convertToValueSpot(coins, wallet)
+    const spot = convertToValueSpot(coins, wallet, profile)
     BALANCE += spot.totalExchangeRate
 
     return (

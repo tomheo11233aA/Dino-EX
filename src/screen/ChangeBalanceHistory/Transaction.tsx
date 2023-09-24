@@ -1,6 +1,7 @@
 import Box from "@commom/Box";
 import Btn from "@commom/Btn";
 import Txt from "@commom/Txt";
+import { useTheme } from "@hooks/index";
 import { colors } from "@theme/colors";
 import { fonts } from "@theme/fonts";
 import { width } from "@util/responsive";
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export default ({ tab, setTab }: Props) => {
+    const theme = useTheme()
     const data = ['Deposit', 'Withdrawals', 'Buy', 'Sell', 'Convert', 'Trade']
 
     return (
@@ -33,7 +35,7 @@ export default ({ tab, setTab }: Props) => {
                         marginRight={10}
                     >
                         <Txt
-                            color={item === tab ? colors.black : colors.gray5}
+                            color={item === tab ? theme.black : colors.grayBlue}
                             fontFamily={fonts.AS}
                             size={13}
                         >
@@ -45,7 +47,7 @@ export default ({ tab, setTab }: Props) => {
                     </Btn>
                 )}
             </Box>
-            <Box width={width} height={0.5} backgroundColor={colors.gray4} marginLeft={-15} />
+            <Box width={width} height={0.5} backgroundColor={theme.gray2} marginLeft={-15} />
         </Box>
 
     )

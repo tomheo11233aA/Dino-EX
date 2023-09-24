@@ -1,5 +1,6 @@
 import { IOpenOrder, IOpenOrderConver, IPositionHistory } from "src/model/fundingModel";
 import { ICoins, IPositions } from "src/model/futuresModel";
+import { Profile } from "src/model/userModel";
 
 export const numberWithCommas = (x: number): string => {
     const number = x?.toFixed(0)
@@ -148,16 +149,13 @@ export interface ISpot {
     totalExchangeRate: number,
 }
 
-export const convertToValueSpot = (coins: ICoins[], wallet: any): ISpot => {
+export const convertToValueSpot = (coins: ICoins[], wallet: any, profile: Profile): ISpot => {
     let data = []
     let close = 0
     let balanceSpot = 0
     let totalExchangeRate = 0
     if (coins.length > 0 && wallet) {
-        data = [
-            ...coins,
-            { currency: 'USDT', balance: 0, id: 3 }
-        ]
+        data = coins
         const dataWallet = Object.entries(wallet);
         data = data.map((coin: any, index) => {
             let balance: number = 0
@@ -178,6 +176,7 @@ export const convertToValueSpot = (coins: ICoins[], wallet: any): ISpot => {
             return coin
         })
         balanceSpot = totalExchangeRate / close
+        data.push({ currency: 'USDT', balance: profile.balance, exchangeRate: profile.balance, id: 3 })
     }
     return {
         balanceSpot,

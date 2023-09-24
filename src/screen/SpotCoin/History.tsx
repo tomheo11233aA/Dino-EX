@@ -10,12 +10,16 @@ import { useTheme } from "@hooks/index";
 import { navigate } from "@navigation/navigationRef";
 import { screen } from "@util/screens";
 import { useTranslation } from "react-i18next";
+import TabDeposit from "./TabDeposit";
+import TabWithdraw from "./TabWithdraw";
 
-const data = ['All', 'Deposit & Withdraw', 'Convert', 'Transfer']
+const data = ['Deposit', 'Withdraw']
 
 export default ({ coin }: any) => {
     const theme = useTheme()
     const { t } = useTranslation()
+
+    const [tab, setTab] = useState('Deposit')
     const [isShowModalWithdraw, setShowModalWithdraw] = useState(false)
 
     return (
@@ -29,28 +33,34 @@ export default ({ coin }: any) => {
                 </Txt>
             </Box>
 
-            <Box row alignCenter justifySpaceAround>
-                {data.map((item, index) =>
-                    <Box
+            <Box row alignStart marginBottom={10}>
+                {data.map((item) =>
+                    <Btn
                         key={item}
-                        backgroundColor={index === 0 && theme.gray}
+                        backgroundColor={item === tab && theme.gray}
                         paddingHorizontal={10}
                         paddingVertical={3}
                         radius={4}
                         marginTop={10}
+                        onPress={() => setTab(item)}
                     >
                         <Txt
                             size={12}
                             fontFamily={fonts.AS}
-                            color={index !== 0 ? colors.grayBlue2 : theme.black}
+                            color={item === tab ? theme.black : colors.grayBlue}
                         >
                             {t(item)}
                         </Txt>
-                    </Box>
+                    </Btn>
                 )}
             </Box>
 
-            <Box row justifySpaceBetween marginTop={20}>
+            {tab === 'Deposit' ?
+                <TabDeposit /> :
+                <TabWithdraw />
+            }
+
+            {/* <Box row justifySpaceBetween marginTop={20}>
                 <Box row>
                     <Box
                         padding={7}
@@ -113,9 +123,9 @@ export default ({ coin }: any) => {
                 <Txt fontFamily={fonts.M24} color={colors.greenCan}>
                     +999,71
                 </Txt>
-            </Box>
+            </Box> */}
 
-            <Box row marginTop={20}>
+            <Box row marginTop={10}>
                 <Btn
                     onPress={() => setShowModalWithdraw(true)}
                     flex={1}

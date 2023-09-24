@@ -6,16 +6,21 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useEffect, useState } from 'react'
 import { historyDeposit } from 'src/model/walletModel'
+import ItemDepositHistory from './ItemDepositHistory'
+import { useTheme } from '@hooks/index'
+import { View } from 'react-native'
 
 const DepositHistory = () => {
+    const theme = useTheme()
     const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([])
+
 
     useEffect(() => {
         handleGetDepositBalance()
     }, [])
 
     const handleGetDepositBalance = async () => {
-        const res = await getDepositBalance({limit: 10, page: 1})
+        const res = await getDepositBalance({ limit: 1000, page: 1 })
         if (res.status) {
             setHistoryDeposit(res.data.array)
         }
@@ -30,14 +35,21 @@ const DepositHistory = () => {
                 marginTop={20}
             >
                 <Box row alignCenter>
-                    <Box
-                        padding={5}
-                        backgroundColor={colors.gray3}
-                        marginRight={20}
-                    >
-                        <Txt size={13} fontFamily={fonts.IBMPM}>Crypto</Txt>
-                    </Box>
-                    <Txt size={13} fontFamily={fonts.IBMPM}>Cash</Txt>
+                    <View
+                        style={{
+                            paddingVertical: 3,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginRight: 20,
+                            backgroundColor: theme.gray2,
+                            paddingHorizontal: 10,
+                            borderRadius: 3
+                        }}>
+                        <Txt size={13} fontFamily={fonts.IBMPM} color={theme.black}>
+                            Crypto
+                        </Txt>
+                    </View>
+                    <Txt size={13} fontFamily={fonts.IBMPM} color={colors.grayBlue}>Cash</Txt>
                 </Box>
                 <Icon
                     source={require('@images/wallet/filter.png')}
@@ -49,52 +61,27 @@ const DepositHistory = () => {
             <Box row alignCenter marginTop={10}>
                 <Icon
                     source={require('@images/future/info.png')}
-                    size={12}
+                    size={10}
                     marginRight={5}
                     tintColor={'#b6bec8'}
                 />
-                <Txt size={12} color={colors.grayBlue2}>
+                <Txt size={11} color={colors.grayBlue2} fontFamily={fonts.IBMPR}>
                     Deposits not arrived?
                 </Txt>
-                <Txt size={12} color={colors.yellowBold}>
-                    {'Deposits not arrived >'}
+                <Txt size={11} color={colors.yellowBold} fontFamily={fonts.IBMPR}>
+                    {' Deposits not arrived >'}
                 </Txt>
             </Box>
 
             <Box>
-                {historyDeposits.map((item: any, index: any) =>
-                    <Box
-                        key={index}
-                        row
-                        justifySpaceBetween
-                        marginTop={25}
-                    >
-                        <Box>
-                            <Txt fontFamily={fonts.SGM} marginBottom={5} size={13}>
-                                {'USDT'}
-                            </Txt>
-                            <Txt size={11} color={colors.grayBlue2} fontFamily={fonts.RM}>
-                                {item.created_at}
-                            </Txt>
-                        </Box>
-
-                        <Box>
-                            <Txt fontFamily={fonts.M24} size={15}>
-                                {item.amount}
-                            </Txt>
-                            <Box row alignCenter marginTop={5}>
-                                <Txt color={colors.greenCan} size={5} marginRight={2}>
-                                    ●
-                                </Txt>
-                                <Txt color={colors.grayBlue2} size={10} fontFamily={fonts.RM}>
-                                    Completed
-                                </Txt>
-                            </Box>
-                        </Box>
-                    </Box>
+                {historyDeposits.map((item: any) =>
+                    <ItemDepositHistory
+                        item={item}
+                        theme={theme}
+                    />
                 )}
                 <Box alignCenter>
-                    <Txt size={12} fontFamily={fonts.RM} marginTop={20} color={colors.grayBlue2}>
+                    <Txt size={12} fontFamily={fonts.IBMPR} marginTop={20} color={colors.grayBlue2}>
                         No more data
                     </Txt>
                 </Box>
