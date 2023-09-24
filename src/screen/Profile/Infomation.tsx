@@ -16,15 +16,8 @@ import { Profile } from "src/model/userModel";
 
 export default ({ t }: any) => {
     const theme = useTheme()
-    const dispatch = useAppDispatch()
     const kyc = useAppSelector(kycUserSelector)
     const profile: Profile = useAppSelector<any>(profileUserSelector)
-
-    const handleLogout = async () => {
-        await AsyncStorage.removeItem(contants.TOKEN)
-        dispatch(userSlice.actions.signOut())
-        reset(0, screen.LOGIN)
-    }
 
     const kycOjb = {
         approved: {
@@ -32,21 +25,21 @@ export default ({ t }: any) => {
             color: '#3cb389',
             backgroundColor: theme.green,
             icon: require('@images/profile/checkmark.png'),
-            sizeIcon: 14,
+            sizeIcon: 12,
         },
         pendding: {
             text: 'Pending',
             color: colors.yellowBold,
             backgroundColor: theme.yellow,
             icon: require('@images/p2p/oclock.png'),
-            sizeIcon: 11,
+            sizeIcon: 9,
         },
         notKyc: {
             text: 'Not verified',
             color: colors.red,
             backgroundColor: theme.red2,
             icon: require('@images/profile/close.png'),
-            sizeIcon: 11,
+            sizeIcon: 9,
         },
     }
 
@@ -54,14 +47,12 @@ export default ({ t }: any) => {
         kyc === contants.KYC_PENDING ? kycOjb.pendding : kycOjb.notKyc 
 
     return (
-        <Btn
-            onPress={handleLogout}
-        >
+        <Box>
             <Box row alignCenter marginTop={30}>
                 <Box flex={1} row>
                     <Img
-                        width={42}
-                        height={43}
+                        width={32}
+                        height={33}
                         marginRight={10}
                         source={require('@images/home/user.png')}
                     />
@@ -69,7 +60,7 @@ export default ({ t }: any) => {
                         <Txt color={colors.grayBlue2} size={10}>
                             ID: 14294361
                         </Txt>
-                        <Txt bold size={22} color={theme.black}>
+                        <Txt fontFamily={fonts.AS} size={18} color={theme.black}>
                             {profile.userName}
                         </Txt>
                         <Box
@@ -93,7 +84,7 @@ export default ({ t }: any) => {
                                     size={kycStatus.sizeIcon}
                                     tintColor={kycStatus.color}
                                 />
-                                <Txt size={12} color={kycStatus.color} fontFamily={fonts.RM}>
+                                <Txt size={10} color={kycStatus.color} fontFamily={fonts.RM}>
                                     {t(kycStatus.text)}
                                 </Txt>
                             </Box>
@@ -108,14 +99,14 @@ export default ({ t }: any) => {
                                 backgroundColor={theme.gray}
                             >
                                 <Icon
-                                    size={13}
+                                    size={11}
                                     marginRight={5}
                                     resizeMode={'contain'}
                                     tintColor={theme.black}
                                     source={require('@images/profile/diamond.png')}
                                 />
                                 <Txt
-                                    size={12}
+                                    size={10}
                                     color={theme.black}
                                     fontFamily={fonts.IBMPM}
                                 >
@@ -126,13 +117,13 @@ export default ({ t }: any) => {
                     </Box>
                 </Box>
                 <Icon
-                    size={14}
+                    size={12}
                     resizeMode={'contain'}
                     source={require('@images/wallet/right_arrow.png')}
                 />
             </Box>
 
             <Box width={'100%'} height={1} backgroundColor={theme.gray2} marginTop={20} />
-        </Btn>
+        </Box>
     )
 }

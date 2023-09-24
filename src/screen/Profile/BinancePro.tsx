@@ -14,11 +14,11 @@ export default () => {
             <Box row alignCenter>
                 <Icon
                     source={require('@images/trade/logo.png')}
-                    size={21}
+                    size={19}
                     tintColor={'#90929E'}
                     marginRight={10}
                 />
-                <Txt fontFamily={fonts.IBMPR} size={13} color={theme.black}>
+                <Txt fontFamily={fonts.IBMPR} size={12} color={theme.black}>
                     Binance Pro
                 </Txt>
             </Box>
@@ -26,7 +26,7 @@ export default () => {
                 value={true}
                 trackColor={{ true: colors.yellow }}
                 thumbColor={'white'}
-                style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
+                style={{ transform: [{ scaleX: .7 }, { scaleY: .7 }] }}
             />
         </Box>
     )

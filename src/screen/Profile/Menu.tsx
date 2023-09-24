@@ -1,8 +1,12 @@
 import Box from "@commom/Box"
+import Btn from "@commom/Btn"
 import Icon from "@commom/Icon"
 import Txt from "@commom/Txt"
 import { useTheme } from "@hooks/index"
+import { navigate } from "@navigation/navigationRef"
 import { colors } from "@theme/colors"
+import { fonts } from "@theme/fonts"
+import { screen } from "@util/screens"
 import { useTranslation } from "react-i18next"
 
 const data = [
@@ -34,19 +38,24 @@ export default ({ t }: any) => {
             justifySpaceAround
         >
             {data.map((item, index) =>
-                <Box alignCenter key={item.title} width={'20%'}>
+                <Btn
+                    onPress={() => navigate(screen.COMMING_SOON)}
+                    alignCenter
+                    key={item.title}
+                    width={'20%'}
+                >
                     <Box
                         radius={50}
                         padding={7}
                         backgroundColor={theme.gray2}
                     >
                         <Icon
-                            size={22}
+                            size={18}
                             source={item.icon}
                             resizeMode={'contain'}
                         />
                     </Box>
-                    <Txt size={11} marginTop={10} color={theme.black} center>
+                    <Txt size={10} marginTop={10} color={theme.black} center fontFamily={fonts.IBMPR}>
                         {t(item.title)}
                     </Txt>
                     {index === 3 &&
@@ -59,7 +68,7 @@ export default ({ t }: any) => {
                             backgroundColor={colors.red}
                         />
                     }
-                </Box>
+                </Btn>
             )}
         </Box>
     )

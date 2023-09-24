@@ -7,9 +7,11 @@ import { useTheme } from '@hooks/index'
 import { historyWithdraw } from 'src/model/walletModel'
 import ItemWithdrawHistory from '@screen/ChangeBalanceHistory/ItemWithdrawHistory'
 import Scroll from '@commom/Scroll'
+import { useTranslation } from 'react-i18next'
 
 const TabWithdraw = () => {
     const theme = useTheme()
+    const { t } = useTranslation()
     const [historyWithdraws, setHistoryWithdraw] = useState<historyWithdraw[]>([])
 
     useEffect(() => {
@@ -31,6 +33,7 @@ const TabWithdraw = () => {
             <Scroll nestedScrollEnabled={true} paddingBottom={20}>
                 {historyWithdraws.map((item, index) =>
                     <ItemWithdrawHistory
+                        t={t}
                         theme={theme}
                         item={item}
                         key={item.id}

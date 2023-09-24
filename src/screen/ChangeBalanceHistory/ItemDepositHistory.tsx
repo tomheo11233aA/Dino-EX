@@ -1,15 +1,19 @@
 import Box from '@commom/Box'
+import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
+import { navigate } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
+import { screen } from '@util/screens'
 import React from 'react'
 
-const ItemDepositHistory = ({ item, theme }: any) => {
+const ItemDepositHistory = ({ item, theme, t }: any) => {
     return (
-        <Box
-            key={item.id}
+        <Btn
+            onPress={() => navigate(screen.DEPOSIT_DETAIL)}
             justifySpaceBetween
             marginTop={25}
+            alignCenter={false}
         >
             <Box row alignCenter justifySpaceBetween>
                 <Txt fontFamily={fonts.SGM} size={13} color={theme.black}>
@@ -30,11 +34,11 @@ const ItemDepositHistory = ({ item, theme }: any) => {
                         ●
                     </Txt>
                     <Txt color={colors.grayBlue} size={10} fontFamily={fonts.IBMPR}>
-                        Completed
+                        {t('Completed')}
                     </Txt>
                 </Box>
             </Box>
-        </Box>
+        </Btn>
     )
 }
 

@@ -10,6 +10,7 @@ import Balance from './Balance'
 import Header from './Header'
 import History from './History'
 import TradeSpot from './TradeSpot'
+import Footer from './Footer'
 
 const SpotCoin = () => {
   const theme = useTheme()
@@ -20,17 +21,20 @@ const SpotCoin = () => {
   hideBottomTab()
 
   return (
-    <KeyBoardSafe bg={theme.gray10} paddingBottom={70}>
-      <Box height={height}>
-        <Header {...{ theme, coin }} />
-        <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>
-          <Balance {...{ theme, coin, t }} />
-          <Available {...{ theme, coin, t }} />
-          <TradeSpot {...{ theme, t }} />
-          <History {...{ coin }} />
+    <Box flex={1}>
+      <KeyBoardSafe bg={theme.gray10} paddingBottom={0}>
+        <Box height={height}>
+          <Header {...{ theme, coin }} />
+          <Box backgroundColor={theme.bg} marginTop={10} paddingHorizontal={15} flex={1}>
+            <Balance {...{ theme, coin, t }} />
+            <Available {...{ theme, coin, t }} />
+            <TradeSpot {...{ theme, t }} />
+            <History />
+          </Box>
         </Box>
-      </Box>
-    </KeyBoardSafe>
+      </KeyBoardSafe>
+      <Footer {...{ coin }} />
+    </Box>
   )
 }
 

@@ -47,10 +47,10 @@ export default ({ theme, t }: any) => {
     return (
         <Box marginTop={20}>
             <Box row alignCenter justifySpaceBetween>
-                <Txt fontFamily={fonts.AS} size={13} color={theme.black}>
+                <Txt fontFamily={fonts.IBMPM} size={13} color={theme.black}>
                     {t('Spot Trade')}
                 </Txt>
-                <Txt size={12} bold color={colors.yellow}>
+                <Txt size={12} fontFamily={fonts.IBMPM} color={colors.yellow}>
                     {t('More')}
                 </Txt>
             </Box>

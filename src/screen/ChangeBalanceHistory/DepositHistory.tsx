@@ -9,11 +9,25 @@ import { historyDeposit } from 'src/model/walletModel'
 import ItemDepositHistory from './ItemDepositHistory'
 import { useTheme } from '@hooks/index'
 import { View } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 const DepositHistory = () => {
     const theme = useTheme()
+    const { t } = useTranslation()
     const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([])
 
+    // const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([
+    //     {
+    //         id: 1,
+    //         amount: 50,
+    //         created_at: '0823443'
+    //     },
+    //     {
+    //         id: 2,
+    //         amount: 50,
+    //         created_at: '0823443'
+    //     },
+    // ])
 
     useEffect(() => {
         handleGetDepositBalance()
@@ -76,6 +90,8 @@ const DepositHistory = () => {
             <Box>
                 {historyDeposits.map((item: any) =>
                     <ItemDepositHistory
+                        t={t}
+                        key={item.id}
                         item={item}
                         theme={theme}
                     />

@@ -7,7 +7,12 @@ import { fonts } from "@theme/fonts"
 import { useState } from "react"
 import { ImageSourcePropType } from "react-native"
 import ModalShare from "./ModalShare"
-import { useTheme } from "@hooks/index"
+import { useAppDispatch, useTheme } from "@hooks/index"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import contants from "@util/contants"
+import userSlice from "@slice/userSlice"
+import { screen } from "@util/screens"
+import { navigate, reset } from "@navigation/navigationRef"
 
 interface Data {
     title: string;
@@ -35,20 +40,33 @@ const data: Data[] = [
         title: 'Help & Support',
         icon: require('@images/future/book.png'),
     },
+    // {
+    //     title: 'Share the app',
+    //     icon: require('@images/future/share.png'),
+    // },
     {
-        title: 'Share the app',
-        icon: require('@images/future/share.png'),
+        title: 'Log out',
+        icon: require('@images/wallet/logout.png'),
     },
 ]
 
 export default ({ t }: any) => {
-    const [isShowModalShare, setShowModalShare] = useState(false)
     const theme = useTheme()
+    const dispatch = useAppDispatch()
+    const [isShowModalShare, setShowModalShare] = useState(false)
 
     const handleItemData = (item: Data) => {
-        if (item.title === 'Share the app') {
-            setShowModalShare(true)
+        if (item.title === 'Log out') {
+            handleLogout()
+        } else {
+            navigate(screen.COMMING_SOON)
         }
+    }
+
+    const handleLogout = async () => {
+        await AsyncStorage.removeItem(contants.TOKEN)
+        dispatch(userSlice.actions.signOut())
+        reset(0, screen.LOGIN)
     }
 
     return (
@@ -64,13 +82,13 @@ export default ({ t }: any) => {
                 >
                     <Box row alignCenter>
                         <Icon
-                            size={21}
+                            size={19}
                             marginRight={10}
                             source={item.icon}
                             tintColor={'#90929E'}
                             resizeMode={'contain'}
                         />
-                        <Txt fontFamily={fonts.IBMPR} size={13} color={theme.black}>
+                        <Txt fontFamily={fonts.IBMPR} size={12} color={theme.black}>
                             {t(item.title)}
                         </Txt>
                     </Box>
@@ -87,7 +105,7 @@ export default ({ t }: any) => {
                         }
 
                         <Icon
-                            size={12}
+                            size={10}
                             resizeMode={'contain'}
                             source={require('@images/wallet/right_arrow.png')}
                         />

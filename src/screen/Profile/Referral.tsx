@@ -1,15 +1,24 @@
 import Box from "@commom/Box"
+import Btn from "@commom/Btn"
 import Icon from "@commom/Icon"
 import Txt from "@commom/Txt"
 import { useTheme } from "@hooks/index"
+import { navigate } from "@navigation/navigationRef"
 import { colors } from "@theme/colors"
 import { fonts } from "@theme/fonts"
+import { screen } from "@util/screens"
 
 export default ({ t }: any) => {
     const theme = useTheme()
 
     return (
-        <Box row alignCenter justifySpaceBetween marginTop={25}>
+        <Btn
+            row
+            alignCenter
+            justifySpaceBetween
+            marginTop={25}
+            onPress={() => navigate(screen.COMMING_SOON)}
+        >
             <Box row alignCenter>
                 <Icon
                     size={21}
@@ -46,6 +55,6 @@ export default ({ t }: any) => {
                     source={require('@images/wallet/right_arrow.png')}
                 />
             </Box>
-        </Box>
+        </Btn>
     )
 }

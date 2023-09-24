@@ -1,17 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
 import Box from '@commom/Box'
-import { fonts } from '@theme/fonts'
+import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
-import { colors } from '@theme/colors'
 import { numberCommasDot } from '@method/format'
+import { navigate } from '@navigation/navigationRef'
+import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
+import { screen } from '@util/screens'
+import React from 'react'
 
 const IBMPR = fonts.IBMPR
-const ItemWithdrawHistory = ({ item, index, theme }:any) => {
+const ItemWithdrawHistory = ({ item, index, theme, t }: any) => {
     return (
-        <Box
-            key={index}
+        <Btn
             row
+            key={index}
             justifySpaceBetween
             marginTop={25}
         >
@@ -36,11 +38,11 @@ const ItemWithdrawHistory = ({ item, index, theme }:any) => {
                         ●
                     </Txt>
                     <Txt color={colors.grayBlue} size={10} fontFamily={IBMPR}>
-                        Done
+                        {t('Done')}
                     </Txt>
                 </Box>
             </Box>
-        </Box>
+        </Btn>
     )
 }
 

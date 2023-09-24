@@ -35,7 +35,7 @@ export default ({ profile, theme, t }: Props) =>
         >
             <Box flex={1}>
                 <Txt fontFamily={fonts.SGM} color={theme.black}>
-                    Binance ID / Pay ID
+                    {t('Spot Wallet')}
                 </Txt>
             </Box>
             <Box>
@@ -48,7 +48,7 @@ export default ({ profile, theme, t }: Props) =>
             </Box>
         </Box>
 
-        <Box row marginTop={8}>
+        <Box row marginTop={8} alignCenter>
             <Txt color={colors.grayBlue2} size={11}>
                 {`${t('Available')}:  `}
             </Txt>

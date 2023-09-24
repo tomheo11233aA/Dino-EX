@@ -15,15 +15,15 @@ export default ({ theme, t }: any) =>
         </Txt>
         <Box row alignCenter>
             <Txt color={colors.grayBlue2} size={5} marginRight={5}>●</Txt>
-            <Box row alignEnd>
+            <Box row alignCenter>
                 <Txt color={colors.grayBlue2} size={10}>
                     {`${t('24h Withdrawal limit')}: `}
                 </Txt>
                 <Txt size={11} fontFamily={fonts.M24} color={theme.black}>
                     {'8.000.000/8.000.000 '}
-                </Txt>
-                <Txt size={10} color={theme.black}>
-                    BUSD
+                    <Txt size={9} color={theme.black}>
+                        USDT
+                    </Txt>
                 </Txt>
             </Box>
         </Box>

@@ -29,11 +29,10 @@ export default () => {
             <KeyBoardSafe>
                 <Box paddingHorizontal={10}>
                     <Header {...{ theme, t }} />
-                    <TypeSend {...{ netWork, setNetWork, theme, t }} />
                     <ID {...{ toAddress, setToAddress, theme, t }} />
+                    <TypeSend {...{ netWork, setNetWork, theme, t }} />
                     <Amount {...{ amount, setAmount, profile, theme, t }} />
                     <FromSend {...{ profile, theme, t }} />
-                    <Note {...{ theme, t }} />
                     <Tips {...{ theme, t }} />
                 </Box>
             </KeyBoardSafe>

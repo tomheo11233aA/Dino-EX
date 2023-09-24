@@ -1,36 +1,35 @@
 import Box from "@commom/Box";
 import Btn from "@commom/Btn";
-import Icon from "@commom/Icon";
 import Txt from "@commom/Txt";
-import { colors } from "@theme/colors";
-import { fonts } from "@theme/fonts";
-import ModalWithdraw from "./ModalWithdraw";
-import { useState } from "react";
 import { useTheme } from "@hooks/index";
 import { navigate } from "@navigation/navigationRef";
+import { colors } from "@theme/colors";
+import { fonts } from "@theme/fonts";
 import { screen } from "@util/screens";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import TabDeposit from "./TabDeposit";
 import TabWithdraw from "./TabWithdraw";
 
 const data = ['Deposit', 'Withdraw']
 
-export default ({ coin }: any) => {
+export default () => {
     const theme = useTheme()
     const { t } = useTranslation()
 
     const [tab, setTab] = useState('Deposit')
-    const [isShowModalWithdraw, setShowModalWithdraw] = useState(false)
 
     return (
         <Box marginTop={20}>
             <Box row alignCenter justifySpaceBetween>
-                <Txt fontFamily={fonts.AS} size={13} color={theme.black}>
+                <Txt fontFamily={fonts.IBMPM} size={13} color={theme.black}>
                     {t('History')}
                 </Txt>
-                <Txt size={12} bold color={colors.yellow}>
-                    {t('More')}
-                </Txt>
+                <Btn onPress={() => navigate(screen.CHANGE_BALANCE_HISTORY)}>
+                    <Txt size={12} fontFamily={fonts.IBMPM} color={colors.yellow}>
+                        {t('More')}
+                    </Txt>
+                </Btn>
             </Box>
 
             <Box row alignStart marginBottom={10}>
@@ -124,40 +123,6 @@ export default ({ coin }: any) => {
                     +999,71
                 </Txt>
             </Box> */}
-
-            <Box row marginTop={10}>
-                <Btn
-                    onPress={() => setShowModalWithdraw(true)}
-                    flex={1}
-                    backgroundColor={theme.gray}
-                    height={32}
-                    radius={5}
-                >
-                    <Txt fontFamily={fonts.AS} size={13} color={theme.black}>
-                        {t('Withdraw')}
-                    </Txt>
-                </Btn>
-
-                <Btn
-                    onPress={() => navigate(screen.DEPOSIT_CRYPTO, { coin })}
-                    flex={1}
-                    backgroundColor={colors.yellow}
-                    height={32}
-                    radius={5}
-                    marginLeft={10}
-                >
-                    <Txt fontFamily={fonts.AS} size={13}>
-                        {t('Deposit')}
-                    </Txt>
-                </Btn>
-            </Box>
-
-            <ModalWithdraw
-                {...{
-                    isShow: isShowModalWithdraw,
-                    setShow: setShowModalWithdraw
-                }}
-            />
         </Box>
     )
 }

@@ -177,7 +177,16 @@ const Balance = ({ spot }: Props) => {
                     <Txt fontFamily={fonts.IBMPM} size={13}>{t('Deposit')}</Txt>
                 </Btn>
                 <Btn
-                    onPress={() => navigate(screen.COIN_LIST_WITHDRAW)}
+                    // onPress={() => navigate(screen.COIN_LIST_WITHDRAW)}
+                    onPress={() => navigate(screen.DEPOSIT_CRYPTO, {
+                        coin: {
+                            currency: 'USDT',
+                            balance: profile.balance,
+                            exchangeRate: profile.balance,
+                            id: 18092002,
+                            wallet: 'USDT'
+                        }
+                    })}
                     style={styles.button}
                     backgroundColor={theme.gray2}
                     marginHorizontal={10}

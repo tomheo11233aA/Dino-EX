@@ -21,9 +21,9 @@ export default ({ toAddress, setToAddress, theme, t }: Props) => {
                     color={colors.grayBlue2}
                     size={12}
                     marginBottom={7}
-                    fontFamily={fonts.RM}
+                    fontFamily={fonts.IBMPR}
                 >
-                    Binance ID / Pay ID
+                    {t('Address / Invoice')}
                 </Txt>
                 <Icon
                     source={require('@images/future/info.png')}
@@ -46,11 +46,9 @@ export default ({ toAddress, setToAddress, theme, t }: Props) => {
                         value={toAddress}
                         onChangeText={setToAddress}
                         hint={t('Enter Binance ID or Pay ID')}
-                        fontSize={toAddress === '' ? 14 : 16}
-                        keyboardType={'decimal-pad'}
                         paddingRight={10}
                         height={40}
-                        font={toAddress === '' ? fonts.RM : fonts.M24}
+                        font={fonts.IBMPM}
                         color={theme.black}
                     />
                 </Box>
