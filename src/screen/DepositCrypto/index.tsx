@@ -43,14 +43,13 @@ const DepositCrypto = () => {
             <Box height={1} backgroundColor={theme.gray2} marginTop={40} />
             <Box padding={30}>
                 <Btn alignCenter={false} marginBottom={30}>
-                    <Txt color={colors.gray5} size={16}>
+                    <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
                         {t('Wallet address')}
                     </Txt>
                     <Box row justifySpaceBetween alignCenter>
                         <Txt
                             marginLeft={1}
-                            fontFamily={fonts.AS}
-                            size={17}
+                            fontFamily={fonts.IBMPM}
                             width={width * 70 / 100}
                             color={theme.black}
                         >
@@ -58,7 +57,7 @@ const DepositCrypto = () => {
                         </Txt>
                         <Icon
                             source={require('@images/wallet/copy.png')}
-                            size={20}
+                            size={14}
                         />
                     </Box>
                 </Btn>
@@ -68,13 +67,15 @@ const DepositCrypto = () => {
                     marginBottom={30}
                     onPress={() => setShowModalNetWork(true)}
                 >
-                    <Txt color={colors.gray5} size={16}>{t('Network')}</Txt>
+                    <Txt color={colors.gray5} size={12} fontFamily={fonts.IBMPR}>
+                        {t('Network')}
+                    </Txt>
                     <Box row justifySpaceBetween alignCenter>
-                        <Txt marginLeft={1} fontFamily={fonts.AS} size={17} color={theme.black}>
+                        <Txt marginLeft={1} fontFamily={fonts.IBMPM} color={theme.black}>
                             {network.name || '--'}
                         </Txt>
                         <Icon
-                            size={25}
+                            size={20}
                             resizeMode={'contain'}
                             source={require('@images/wallet/convert.png')}
                         />
@@ -83,15 +84,17 @@ const DepositCrypto = () => {
 
                 <Btn alignCenter={false} marginBottom={30}>
                     <Box row alignCenter>
-                        <Txt color={colors.gray5} size={16}>{t('Selected Wallet')}</Txt>
+                        <Txt color={colors.gray5} size={12} fontFamily={fonts.IBMPR}>
+                            {t('Selected Wallet')}
+                        </Txt>
                         <Icon
                             source={require('@images/future/info.png')}
-                            size={15}
+                            size={12}
                             marginLeft={10}
                         />
                     </Box>
 
-                    <Txt marginLeft={1} fontFamily={fonts.AS} size={17} color={theme.black}>
+                    <Txt marginLeft={1} fontFamily={fonts.IBMPM} color={theme.black}>
                         Spot Wallet
                     </Txt>
                 </Btn>

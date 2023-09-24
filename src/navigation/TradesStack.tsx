@@ -3,7 +3,6 @@ import ConvertTrades from '@screen/ConvertTrades'
 import FuturesHistory from '@screen/FuturesHistory'
 import HotTeller from '@screen/HotTeller'
 import P2pTab from '@screen/P2pTab'
-import PNLAnalysis from '@screen/PNLAnalysis'
 import Trades from '@screen/Trades'
 import { screen } from '@util/screens'
 import React from 'react'
@@ -13,7 +12,6 @@ const Stack = createNativeStackNavigator()
 const TradesStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={screen.PNL_ANALYSIS} component={PNLAnalysis} />
       <Stack.Screen name={screen.TRADES} component={Trades} />
       <Stack.Screen name={screen.FUTURES_HISTORY} component={FuturesHistory} />
       <Stack.Screen name={screen.HOT_TELLER} component={HotTeller} />

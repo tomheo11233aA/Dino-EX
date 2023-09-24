@@ -43,4 +43,5 @@ export const screen = {
     FUTURES_HISTORY: 'FuturesHistory',
     COIN_LIST_WITHDRAW: 'CoinListWithdraw',
     CHANGE_BALANCE_HISTORY: 'ChangeBalanceHistory',
+    DEPOSIT_DETAIL: 'DepositDetail',
 }

@@ -161,7 +161,16 @@ const Balance = ({ spot }: Props) => {
 
             <Box row marginTop={15}>
                 <Btn
-                    onPress={() => navigate(screen.COIN_LIST)}
+                    // onPress={() => navigate(screen.COIN_LIST)}
+                    onPress={() => navigate(screen.DEPOSIT_CRYPTO, {
+                        coin: {
+                            currency: 'USDT',
+                            balance: profile.balance,
+                            exchangeRate: profile.balance,
+                            id: 18092002,
+                            wallet: 'USDT'
+                        }
+                    })}
                     backgroundColor={colors.yellow}
                     style={styles.button}
                 >

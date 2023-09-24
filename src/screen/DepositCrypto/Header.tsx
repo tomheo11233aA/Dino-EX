@@ -23,8 +23,8 @@ const Header = ({ coin, network, theme, address, t }: Props) => {
         <Box paddingHorizontal={10}>
             <Box alignCenter>
                 <Txt
-                    size={22}
-                    fontFamily={fonts.AS}
+                    size={16}
+                    fontFamily={fonts.IBMPM}
                     color={theme.black}
                 >
                     {t('Deposit')} {coin.currency}
@@ -39,7 +39,7 @@ const Header = ({ coin, network, theme, address, t }: Props) => {
                     }}
                 >
                     <Icon
-                        size={25}
+                        size={14}
                         source={require('@images/back2.png')}
                         resizeMode={'contain'}
                     />
@@ -64,10 +64,10 @@ const Header = ({ coin, network, theme, address, t }: Props) => {
                     />
                 }
 
-                <Txt fontFamily={fonts.AS} marginVertical={15} size={16} color={theme.black}>
+                <Txt fontFamily={fonts.IBMPM} marginVertical={15} color={theme.black}>
                     {t('Choose network to get deposit address')}
                 </Txt>
-                <Txt paddingHorizontal={20} color={colors.gray5} center>
+                <Txt paddingHorizontal={20} color={colors.gray5} center fontFamily={fonts.IBMPR} size={12}>
                     {t('Wait for the blockchain network to confirm your transfer. After the network confirmation, Binance will credit the crypto for you')}
                 </Txt>
             </Box>

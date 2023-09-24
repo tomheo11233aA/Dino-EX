@@ -30,7 +30,7 @@ const ModalNetwork = ({ show, setShow, setNetWork }: any) => {
                 height={height * 60 / 100}
                 backgroundColor={theme.bg}
             >
-                <Txt fontFamily={fonts.AS} marginVertical={10} size={16} color={theme.black}>
+                <Txt fontFamily={fonts.IBMPM} marginVertical={10} color={theme.black}>
                     {t('Choose Network')}
                 </Txt>
                 <Box
@@ -43,12 +43,14 @@ const ModalNetwork = ({ show, setShow, setNetWork }: any) => {
                 >
                     <Icon
                         source={require('@images/profile/warning.png')}
-                        size={20}
+                        size={16}
                         marginRight={10}
                     />
-                    <Txt color={colors.yellowBold}>
-                        {t('Please note that only supported networks on Binance platform are shown, if you deposit via another network your assets may be lost.')}
-                    </Txt>
+                    <Box flex={1}>
+                        <Txt color={colors.yellowBold} size={12} fontFamily={fonts.IBMPR}>
+                            {t('Please note that only supported networks on Binance platform are shown, if you deposit via another network your assets may be lost.')}
+                        </Txt>
+                    </Box>
                 </Box>
 
                 <Btn
@@ -67,8 +69,7 @@ const ModalNetwork = ({ show, setShow, setNetWork }: any) => {
                     padding={10}
                 >
                     <Txt
-                        fontFamily={fonts.AS}
-                        size={16}
+                        fontFamily={fonts.IBMPM}
                         color={theme.black}
                     >
                         BNB Smart Chain (BEP20)
@@ -91,8 +92,7 @@ const ModalNetwork = ({ show, setShow, setNetWork }: any) => {
                     padding={10}
                 >
                     <Txt
-                        fontFamily={fonts.AS}
-                        size={16}
+                        fontFamily={fonts.IBMPM}
                         color={theme.black}
                     >
                         Ethereum (ERC20)

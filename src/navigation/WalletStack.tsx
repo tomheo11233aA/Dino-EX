@@ -4,6 +4,7 @@ import CoinList from '@screen/CoinList'
 import CoinListWithdraw from '@screen/CoinListWithdraw'
 import Convert from '@screen/Convert'
 import DepositCrypto from '@screen/DepositCrypto'
+import DepositDetail from '@screen/DepositDetail'
 import FuturesHistory from '@screen/FuturesHistory'
 import PNLAnalysis from '@screen/PNLAnalysis'
 import SendUSDT from '@screen/SendUSDT'
@@ -31,6 +32,7 @@ const WalletStack = () => {
         <Stack.Screen name={screen.FUTURES_HISTORY} component={FuturesHistory} />
         <Stack.Screen name={screen.TPSL} component={TPSL} />
         <Stack.Screen name={screen.PNL_ANALYSIS} component={PNLAnalysis} />
+        <Stack.Screen name={screen.DEPOSIT_DETAIL} component={DepositDetail} />
     </Stack.Navigator>
   )
 }

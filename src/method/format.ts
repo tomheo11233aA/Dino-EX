@@ -176,7 +176,13 @@ export const convertToValueSpot = (coins: ICoins[], wallet: any, profile: Profil
             return coin
         })
         balanceSpot = totalExchangeRate / close
-        data.push({ currency: 'USDT', balance: profile.balance, exchangeRate: profile.balance, id: 3 })
+        data.push({ 
+            currency: 'USDT', 
+            balance: profile.balance, 
+            exchangeRate: profile.balance, 
+            id: 18092002,  
+            wallet: 'USDT'
+        })
     }
     return {
         balanceSpot,
