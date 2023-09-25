@@ -27,17 +27,17 @@ const Item = ({
             alignCenter
             marginTop={20}
         >
-            <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
+            <Txt size={13} fontFamily={fonts.SGM} color={theme.black}>
                 {title}
             </Txt>
 
             <Box row alignCenter>
-                <Txt size={15} fontFamily={fonts.SGM} color={colors.gray8}>
+                <Txt size={13} fontFamily={fonts.SGM} color={colors.gray8}>
                     {value}
                 </Txt>
                 <Icon
                     source={require('@images/wallet/right_arrow.png')}
-                    size={14}
+                    size={10}
                     resizeMode={'contain'}
                     marginLeft={10}
                 />

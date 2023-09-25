@@ -2,9 +2,9 @@ import { callFailed, callSuccess } from "@method/requestResult"
 import axiosInstance from "./axios"
 import { reqWithdraw } from "src/model/walletModel"
 
-export const getDepositBalance = async (data: any) => {
+export const getHistoryDeposit = async (data: any) => {
     try {
-        const res = await axiosInstance.post('/api/binance/getDepositBalance', data)
+        const res = await axiosInstance.post('/api/crypto/getHistoryDeposit', data)
         return callSuccess(res)
     } catch (error) {
         return callFailed()

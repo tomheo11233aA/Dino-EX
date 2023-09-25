@@ -3,13 +3,19 @@ import TopBar from './TopBar'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import Amount from './Amount'
 import Infomation from './Infomation'
+import { useRoute } from '@react-navigation/native'
 
 const DepositDetail = () => {
+  const route = useRoute<any>()
+  const { depositItem } = route.params
+
+  console.log(depositItem)
+
   return (
     <KeyBoardSafe>
-        <TopBar />
-        <Amount />
-        <Infomation />
+      <TopBar />
+      <Amount {...{ depositItem }} />
+      <Infomation {...{ depositItem }} />
     </KeyBoardSafe>
   )
 }

@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import Animated, { Extrapolation, SharedValue, interpolate, useAnimatedGestureHandler, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated'
 import { Circle, G, Line, Path, Svg, Text as TextSVG } from 'react-native-svg'
+import { Platform } from 'react-native'
 
 const PADDING_H = 30
 const WIDTH_SVG = width - PADDING_H
@@ -281,10 +282,18 @@ const ChartPNl = ({
 
       <ReText
         text={dayDrived}
-        style={{ color: colors.grayBlue, fontFamily: fonts.M23, marginTop: -10 }}
+        style={{
+          color: colors.grayBlue,
+          fontFamily: fonts.M23,
+          marginTop: Platform.OS === 'ios' ? 5 : -10,
+        }}
       />
 
-      <Box row alignCenter marginTop={-30} marginBottom={-20}>
+      <Box
+        row alignCenter
+        marginTop={Platform.OS === 'android' ?  -30: 5}
+        marginBottom={Platform.OS === 'android' ?  -20: 5}
+      >
         <ReText
           text={valueDrived}
           style={{ color: colors.grayBlue, fontFamily: fonts.M24, fontSize: 15 }}

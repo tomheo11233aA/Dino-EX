@@ -28,12 +28,12 @@ export default ({ isShow, setShow }: Props) => {
                 setShow(false)
             }
         },
-        {
-            icon: require('@images/wallet/hand-coin2.png'),
-            title: 'Send by email/phone number/ID',
-            note: 'To Binance users. Easy fast, free',
-            onPress: () => { },
-        },
+        // {
+        //     icon: require('@images/wallet/hand-coin2.png'),
+        //     title: 'Send by email/phone number/ID',
+        //     note: 'To Binance users. Easy fast, free',
+        //     onPress: () => { },
+        // },
     ]
 
     return (

@@ -1,17 +1,43 @@
 import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { useTheme } from '@hooks/index'
+import { useAppSelector, useTheme } from '@hooks/index'
 import Back from '@reuse/Back'
+import { chartStatisticsUserSelector } from '@selector/fundingSelector'
+import { getChartStatisticsUser } from '@service/walletService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Animated } from 'react-native'
+import { Alert } from 'react-native'
+
+const MILLISECOND_30DAY = 2_592_000_000
+const MILISECOND_1DAY = 86_400_000
 
 const Header = () => {
     const theme = useTheme()
     const { t } = useTranslation()
+
+    const chartStatisticsUser = useAppSelector(chartStatisticsUserSelector)
+
+    useEffect(() => {
+        handleGetChartStatisticsUser()
+    }, [])
+
+    const handleGetChartStatisticsUser = async () => {
+        const currentDate = new Date()
+        const end = currentDate.getTime()
+        const start = end - MILLISECOND_30DAY
+        
+        const res = await getChartStatisticsUser({
+            start,
+            end,
+        })
+        console.log('res: ', res.data)
+        if (!res.status) {
+            Alert.alert(t(res.message))
+        }
+    }
 
     return (
         <Box
@@ -31,7 +57,7 @@ const Header = () => {
                 />
             </Box>
 
-            <Animated.View
+            {/* <Animated.View
                 style={{
                     padding: 1,
                     alignSelf: 'center',
@@ -59,7 +85,7 @@ const Header = () => {
                         COIN-M
                     </Txt>
                 </Box>
-            </Animated.View>
+            </Animated.View> */}
 
             <Box alignCenter={'center'} marginTop={30}>
                 <Box row alignCenter>

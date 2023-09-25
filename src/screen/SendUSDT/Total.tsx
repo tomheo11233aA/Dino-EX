@@ -38,6 +38,7 @@ export default ({
             network: netWork,
             toAddress,
         })
+        console.log(res.message)
         Alert.alert(t(res.message))
         setLoading(false)
         await dispatch(getProfileThunk())

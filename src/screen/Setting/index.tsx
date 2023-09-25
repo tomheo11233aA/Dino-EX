@@ -17,9 +17,9 @@ const Setting = () => {
   return (
     <KeyBoardSafe>
       <Box padding={15}>
-        <Back />
+        <Back size={14} />
         <Txt
-          size={23}
+          size={21}
           fontFamily={fonts.AS}
           marginTop={18}
           color={theme.black}
@@ -27,8 +27,8 @@ const Setting = () => {
           {t('Settings')}
         </Txt>
         <General {...{ t, i18n }} />
-        <Appearance {...{ t, i18n }}  />
-        <Other {...{ t, i18n }}  />
+        <Appearance {...{ t, i18n }} />
+        <Other {...{ t, i18n }} />
       </Box>
     </KeyBoardSafe>
   )

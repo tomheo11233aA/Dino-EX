@@ -2,7 +2,7 @@ import Box from '@commom/Box'
 import Scroll from '@commom/Scroll'
 import { useTheme } from '@hooks/index'
 import ItemDepositHistory from '@screen/ChangeBalanceHistory/ItemDepositHistory'
-import { getDepositBalance } from '@service/walletService'
+import { getHistoryDeposit } from '@service/walletService'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { historyDeposit } from 'src/model/walletModel'
@@ -13,11 +13,11 @@ const TabDeposit = () => {
   const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([])
 
   useEffect(() => {
-    handleGetDepositBalance()
+    handleGetHistoryDeposit()
   }, [])
 
-  const handleGetDepositBalance = async () => {
-    const res = await getDepositBalance({ limit: 1000, page: 1 })
+  const handleGetHistoryDeposit = async () => {
+    const res = await getHistoryDeposit({ limit: 1000, page: 1 })
     if (res.status) {
       setHistoryDeposit(res.data.array)
     }

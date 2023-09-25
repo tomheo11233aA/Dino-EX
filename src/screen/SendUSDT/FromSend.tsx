@@ -38,14 +38,6 @@ export default ({ profile, theme, t }: Props) =>
                     {t('Spot Wallet')}
                 </Txt>
             </Box>
-            <Box>
-                <Icon
-                    size={11}
-                    tintColor={'#8e909b'}
-                    resizeMode={'contain'}
-                    source={require('@images/wallet/right_arrow.png')}
-                />
-            </Box>
         </Box>
 
         <Box row marginTop={8} alignCenter>

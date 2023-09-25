@@ -3,6 +3,7 @@ import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { useTheme } from '@hooks/index'
+import Clipboard from '@react-native-clipboard/clipboard'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
@@ -11,7 +12,7 @@ import { StyleSheet } from 'react-native'
 
 const SIZE_12 = 12
 const MRT_25 = 25
-const Infomation = () => {
+const Infomation = ({ depositItem }: any) => {
     const theme = useTheme()
     const { t } = useTranslation()
 
@@ -27,7 +28,9 @@ const Infomation = () => {
                         source={require('@images/future/info.png')}
                     />
                 </Box>
-                <Txt color={theme.black} fontFamily={fonts.M23}>12345</Txt>
+                <Txt color={theme.black} fontFamily={fonts.IBMPR} size={SIZE_12}>
+                    {t('Success')}
+                </Txt>
             </Box>
 
             <Box row justifySpaceBetween alignCenter marginTop={MRT_25}>
@@ -44,7 +47,9 @@ const Infomation = () => {
                     {t('Network')}
                 </Txt>
                 <Txt color={theme.black} fontFamily={fonts.IBMPR} size={SIZE_12}>
-                    {t('BSC')}
+                    {depositItem?.coin_key == 'USDT.BEP20' ? 'BSC' :
+                        depositItem?.coin_key == 'USDT.ERC20' ? 'ETH' : '--'
+                    }
                 </Txt>
             </Box>
 
@@ -59,9 +64,12 @@ const Infomation = () => {
                         size={SIZE_12}
                         right
                     >
-                        {t('0x5d63hd7shs7ds83he398hd83d387dg3dg83hd39d83h93')}
+                        {depositItem.address}
                     </Txt>
-                    <Btn marginLeft={10}>
+                    <Btn
+                        onPress={() => Clipboard.setString(depositItem.address)}
+                        marginLeft={10}
+                    >
                         <Icon
                             size={12}
                             source={require('@images/wallet/copy.png')}
@@ -72,7 +80,7 @@ const Infomation = () => {
 
             <Box row justifySpaceBetween alignStart marginTop={MRT_25}>
                 <Txt style={styles.textGray}>
-                    {t('Address')}
+                    {t('Txid')}
                 </Txt>
                 <Box row width={'60%'} marginRight={15} alignStart>
                     <Txt
@@ -82,9 +90,12 @@ const Infomation = () => {
                         right
                         line
                     >
-                        {t('0x5d63hd7shs7ds83he398hd83d387dg3dg83hd39d83h93')}
+                        {depositItem.hash}
                     </Txt>
-                    <Btn marginLeft={10}>
+                    <Btn
+                        marginLeft={10}
+                        onPress={() => Clipboard.setString(depositItem.hash)}
+                    >
                         <Icon
                             size={12}
                             source={require('@images/wallet/copy.png')}
@@ -98,7 +109,7 @@ const Infomation = () => {
                     {t('Time')}
                 </Txt>
                 <Txt color={theme.black} fontFamily={fonts.M23}>
-                    {t('2022-05-26 18:39:40')}
+                    {depositItem.created_at}
                 </Txt>
             </Box>
 

@@ -56,9 +56,9 @@ export const converPostirions = (position: IPositions, coins: ICoins[], balance:
         const close = coins[index].close
 
         if (position.side === 'buy') {
-            PNL = (close - position.entryPrice) * position.amountCoin
+            PNL = (close - position.entryPrice) * position.amountCoin * position.core
         } else {
-            PNL = (position.entryPrice - close) * position.amountCoin
+            PNL = (position.entryPrice - close) * position.amountCoin * position.core
         }
 
         MARK_PRICE = close
@@ -176,11 +176,11 @@ export const convertToValueSpot = (coins: ICoins[], wallet: any, profile: Profil
             return coin
         })
         balanceSpot = totalExchangeRate / close
-        data.push({ 
-            currency: 'USDT', 
-            balance: profile.balance, 
-            exchangeRate: profile.balance, 
-            id: 18092002,  
+        data.push({
+            currency: 'USDT',
+            balance: profile.balance,
+            exchangeRate: profile.balance,
+            id: 18092002,
             wallet: 'USDT'
         })
     }
@@ -283,9 +283,9 @@ export const converPostirionsClose = (position: IPositionHistory, balance: numbe
     const close = position.closePrice
 
     if (position.side === 'buy') {
-        PNL = (close - position.entryPrice) * position.amountCoin
+        PNL = (close - position.entryPrice) * position.amountCoin * position.core
     } else {
-        PNL = (position.entryPrice - close) * position.amountCoin
+        PNL = (position.entryPrice - close) * position.amountCoin * position.core
     }
 
     MARK_PRICE = close
@@ -325,9 +325,9 @@ export const converPostirionsClose = (position: IPositionHistory, balance: numbe
 export const calcPNL = (position: IPositions, close: number) => {
     let PNL = 0
     if (position.side === 'buy') {
-        PNL = (close - position.entryPrice) * position.amountCoin
+        PNL = (close - position.entryPrice) * position.amountCoin * position.core
     } else {
-        PNL = (position.entryPrice - close) * position.amountCoin
+        PNL = (position.entryPrice - close) * position.amountCoin * position.core
     }
     return PNL
 }

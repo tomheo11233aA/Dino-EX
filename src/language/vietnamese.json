@@ -418,6 +418,29 @@
         "Thailand": "Thái Lan",
         "Cambodia": "Campuchia",
         "Laos": "Lào",
-        "Indonesia": "Indonesia"
+        "Indonesia": "Indonesia",
+        
+        "Not be empty": "Vui lòng nhập đầy đủ thông tin",
+        "Username": "Tên tài khoản",
+        "Confirm password": "Xác nhận mật khẩu",
+        "Referral code (optional)": "Mã giới thiệu (tùy chọn)",
+        "Submit": "Gửi",
+        "Username already exists !": "Tên tài khoản đã tồn tại !",
+        "Email already exists !": "Email đã tồn tại !",
+        "The confirmation password is not the same as the new password": "Mật khẩu xác nhận không giống với mật khẩu mới",
+        "Sign Up Success !": "Đăng ký thành công",
+        "Address": "Địa chỉ",
+        "Invoice": "Hoá đơn",
+        "Long press to paste": "Giữ và dán",
+        "Analysis of PNL futures contracts": "Phân tích hợp đồng tương lai PNL",
+        "PNL for 7 days": "PNL trong 7 ngày",
+        "PNL for 30 days": "PNL trong 30 ngày",
+        "day": "ngày",
+        "month": "tháng",
+        "year": "năm",
+        "Total profit": "Tổng lợi nhuận",
+        "Total loss": "Tổng thiệt hại",
+        "Net profit/loss": "Lãi/lỗ ròng",
+        "every day": "hằng ngày"
     }
 }

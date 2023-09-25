@@ -23,9 +23,8 @@ const General = ({ t, i18n }: any) => {
                 paddingVertical={10}
             >
                 <Txt
-                    size={15}
-                    color={colors.gray8}
-                    fontFamily={fonts.AS}
+                    color={colors.grayBlue}
+                    fontFamily={fonts.IBMPM}
                 >
                     {t('General')}
                 </Txt>

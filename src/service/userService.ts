@@ -47,7 +47,7 @@ export const kycUser = async (formData: FormData) => {
         },
         body: formData
     })
-    return  res.json()
+    return res.json()
 }
 
 export const generateOTPToken = async () => {
@@ -94,4 +94,14 @@ export const createWallet = async (data: any) => {
         return callFailed()
     }
 }
+
+export const signUp = async (data: any) => {
+    try {
+        const res = await axiosInstance.post('/api/user/signup', data)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}
+
 

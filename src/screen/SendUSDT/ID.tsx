@@ -23,7 +23,7 @@ export default ({ toAddress, setToAddress, theme, t }: Props) => {
                     marginBottom={7}
                     fontFamily={fonts.IBMPR}
                 >
-                    {t('Address / Invoice')}
+                    {`${t('Address')} / ${'Invoice'}`}
                 </Txt>
                 <Icon
                     source={require('@images/future/info.png')}
@@ -45,7 +45,7 @@ export default ({ toAddress, setToAddress, theme, t }: Props) => {
                     <Input
                         value={toAddress}
                         onChangeText={setToAddress}
-                        hint={t('Enter Binance ID or Pay ID')}
+                        hint={t('Long press to paste')}
                         paddingRight={10}
                         height={40}
                         font={fonts.IBMPM}

@@ -21,9 +21,8 @@ const Other = ({ t, i18n }: any) => {
                 paddingVertical={10}
             >
                 <Txt
-                    color={colors.gray8}
-                    size={15}
-                    fontFamily={fonts.AS}
+                    color={colors.grayBlue}
+                    fontFamily={fonts.IBMPM}
                 >
                     {t('Others')}
                 </Txt>

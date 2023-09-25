@@ -146,9 +146,14 @@ const Login = () => {
             </Txt>
           }
         </Btn>
-        <Txt marginTop={40} color={'#cd9f1b'} size={16} fontFamily={fonts.AS}>
-          {t('Create a Binance Account')}
-        </Txt>
+        <Btn
+          onPress={() => navigate(screen.SIGN_UP)}
+          alignCenter={false}
+        >
+          <Txt marginTop={40} color={'#cd9f1b'} size={16} fontFamily={fonts.AS}>
+            {t('Create a Binance Account')}
+          </Txt>
+        </Btn>
       </Box>
 
       <ModalOTP2FA

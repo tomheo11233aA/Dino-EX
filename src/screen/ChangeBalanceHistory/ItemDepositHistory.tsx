@@ -10,10 +10,10 @@ import React from 'react'
 const ItemDepositHistory = ({ item, theme, t }: any) => {
     return (
         <Btn
-            onPress={() => navigate(screen.DEPOSIT_DETAIL)}
-            justifySpaceBetween
             marginTop={25}
+            justifySpaceBetween
             alignCenter={false}
+            onPress={() => navigate(screen.DEPOSIT_DETAIL, { depositItem: item })}
         >
             <Box row alignCenter justifySpaceBetween>
                 <Txt fontFamily={fonts.SGM} size={13} color={theme.black}>

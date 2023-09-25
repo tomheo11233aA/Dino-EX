@@ -1,10 +1,11 @@
 import Box from '@commom/Box'
 import { useAppSelector, useTheme } from '@hooks/index'
-import { HEIGHT_BOTTOM_TAB, styles } from '@navigation/Container'
+import { styles } from '@navigation/Container'
 import { useNavigation } from '@react-navigation/native'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import { isLoginUserSelector } from '@selector/userSelector'
 import React, { useEffect } from 'react'
+import { StatusBar } from 'react-native'
 import Balance from './Balance'
 import Coins from './Coins'
 import Funding from './Funding'
@@ -12,7 +13,6 @@ import Header from './Header'
 import Login from './Login'
 import Options from './Options'
 import TypeCoin from './TypeCoin'
-import { StatusBar } from 'react-native'
 
 const Home = () => {
   const theme = useTheme()

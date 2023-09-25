@@ -11,6 +11,7 @@ import { colors } from '@theme/colors'
 import { useTranslation } from 'react-i18next'
 import { getChartStatisticsUserThunk } from '@asyncThunk/fundingAsyncThunk'
 import { Alert } from 'react-native'
+import { IChartStatisticsUser } from 'src/model/fundingModel'
 
 const DatePNL = () => {
     const theme = useTheme()
@@ -19,10 +20,10 @@ const DatePNL = () => {
     const chartStatisticsUser = useAppSelector(chartStatisticsUserSelector)
 
     const dates = [
-        { number: '7', title: ' day', value: '7day', miliSecond: 604_800_000 },
-        { number: '1', title: ' month', value: '1month', miliSecond: 2_629_746_000 },
-        { number: '3', title: ' month', value: '3month', miliSecond: 7_889_238_000 },
-        { number: '1', title: ' year', value: '1year', miliSecond: 31_556_952_000 },
+        { number: '7 ', title: 'day', value: '7day', miliSecond: 604_800_000 },
+        { number: '1 ', title: 'month', value: '1month', miliSecond: 2_629_746_000 },
+        { number: '3 ', title: 'month', value: '3month', miliSecond: 7_889_238_000 },
+        { number: '1 ', title: 'year', value: '1year', miliSecond: 31_556_952_000 },
     ]
 
     useEffect(() => {
@@ -43,6 +44,20 @@ const DatePNL = () => {
         }
     }
 
+    const totalPNL = chartStatisticsUser.data.reduce((total, item: IChartStatisticsUser) => {
+        return total + item.PnL;
+    }, 0);
+    const totalProfit = Math.max(totalPNL, 0)
+    const totalLoss = Math.min(0, totalPNL)
+    let netProfitLoss = 0
+    if (totalProfit > 0) {
+        netProfitLoss = totalProfit
+    } else if (totalLoss > 0) {
+        netProfitLoss = totalLoss
+    } else if (totalProfit == 0 && totalLoss == 0) {
+        netProfitLoss = 0
+    }
+
     return (
         <Box paddingHorizontal={15}>
             <Box row paddingVertical={10} alignCenter>
@@ -57,8 +72,8 @@ const DatePNL = () => {
                                 alignCenter
                                 key={date.value}
                                 paddingVertical={5}
-                                paddingHorizontal={15}
                                 backgroundColor={bg}
+                                paddingHorizontal={15}
                                 onPress={() => handleGetChartStatisticsUser(date)}
                             >
                                 <Txt
@@ -87,12 +102,15 @@ const DatePNL = () => {
             </Box>
             <Box marginTop={10}>
                 <ItemUSDT
+                    value={totalProfit}
                     title={'Total profit'}
                 />
                 <ItemUSDT
+                    value={totalLoss}
                     title={'Total loss'}
                 />
                 <ItemUSDT
+                    value={netProfitLoss}
                     title={'Net profit/loss'}
                 />
             </Box>

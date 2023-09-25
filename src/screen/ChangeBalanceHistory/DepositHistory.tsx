@@ -1,15 +1,15 @@
 import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { getDepositBalance } from '@service/walletService'
+import { useTheme } from '@hooks/index'
+import { getHistoryDeposit } from '@service/walletService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { View } from 'react-native'
 import { historyDeposit } from 'src/model/walletModel'
 import ItemDepositHistory from './ItemDepositHistory'
-import { useTheme } from '@hooks/index'
-import { View } from 'react-native'
-import { useTranslation } from 'react-i18next'
 
 const DepositHistory = () => {
     const theme = useTheme()
@@ -30,11 +30,11 @@ const DepositHistory = () => {
     // ])
 
     useEffect(() => {
-        handleGetDepositBalance()
+        handleGetHistoryDeposit()
     }, [])
 
-    const handleGetDepositBalance = async () => {
-        const res = await getDepositBalance({ limit: 1000, page: 1 })
+    const handleGetHistoryDeposit = async () => {
+        const res = await getHistoryDeposit({ limit: 1000, page: 1 })
         if (res.status) {
             setHistoryDeposit(res.data.array)
         }

@@ -9,7 +9,7 @@ import { colors } from '@theme/colors'
 import Icon from '@commom/Icon'
 import { fonts } from '@theme/fonts'
 
-const Amount = () => {
+const Amount = ({ depositItem }: any) => {
     const theme = useTheme()
     const { t } = useTranslation()
 
@@ -26,7 +26,7 @@ const Amount = () => {
             </Txt>
             <Box row alignCenter>
                 <Txt color={theme.black} size={26} fontFamily={fonts.M24} marginVertical={10}>
-                    {numberCommasDot(1099.7627)}
+                    {numberCommasDot(depositItem?.usd_amount)}
                 </Txt>
                 <Txt color={theme.black} size={13} fontFamily={fonts.IBMPR}>
                     {' USDT'}
@@ -43,7 +43,7 @@ const Amount = () => {
                 </Txt>
             </Box>
             <Txt size={11} center fontFamily={fonts.IBMPR} color={colors.grayBlue} marginVertical={20}>
-                The cryptocurrency has been transferred to your Binance account. See your Spot account balance for more details.
+                {t('The cryptocurrency has been transferred to your Binance account. See your Spot account balance for more details.')}
             </Txt>
         </Box>
     )

@@ -14,6 +14,7 @@ import Login from '@screen/Login'
 import P2pTab from '@screen/P2pTab'
 import Profile from '@screen/Profile'
 import Setting from '@screen/Setting'
+import SignUp from '@screen/SignUp'
 import Trade from '@screen/Trade'
 import Transfer from '@screen/Transfer'
 import TwoFA from '@screen/TwoFA'
@@ -40,6 +41,7 @@ const HomeStack = () => {
             <Stack.Screen name={screen.P2P_TAB} component={P2pTab} />
             <Stack.Screen name={screen.CHANGE_LANGUAGE} component={ChangeLanguage} />
             <Stack.Screen name={screen.KYC} component={KYC} />
+            <Stack.Screen name={screen.SIGN_UP} component={SignUp} />
             <Stack.Screen name={screen.TWO_FA} component={TwoFA} />
             <Stack.Screen name={screen.DEPOSIT_VND} component={DepositVND} />
             <Stack.Screen name={screen.EARN} component={Earn} />

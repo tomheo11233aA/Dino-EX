@@ -55,10 +55,11 @@ const Login = () => {
         </Btn>
 
         <Btn
-          width={'48%'}
-          backgroundColor={colors.yellow}
+          onPress={() => navigate(screen.SIGN_UP)}
           height={50}
           radius={20}
+          width={'48%'}
+          backgroundColor={colors.yellow}
         >
           <Txt fontFamily={fonts.AS} size={17}>{t('Sign Up')}</Txt>
         </Btn>

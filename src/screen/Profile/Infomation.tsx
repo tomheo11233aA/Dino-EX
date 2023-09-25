@@ -58,7 +58,7 @@ export default ({ t }: any) => {
                     />
                     <Box>
                         <Txt color={colors.grayBlue2} size={10}>
-                            ID: 14294361
+                            ID: {profile.id}
                         </Txt>
                         <Txt fontFamily={fonts.AS} size={18} color={theme.black}>
                             {profile.userName}
