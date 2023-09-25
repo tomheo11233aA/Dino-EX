@@ -44,5 +44,6 @@ export const screen = {
     COIN_LIST_WITHDRAW: 'CoinListWithdraw',
     CHANGE_BALANCE_HISTORY: 'ChangeBalanceHistory',
     DEPOSIT_DETAIL: 'DepositDetail',
-    SIGN_UP: 'SignUp'
+    SIGN_UP: 'SignUp',
+    DETAIL_WITHDRAW: 'DetailWithdraw',
 }

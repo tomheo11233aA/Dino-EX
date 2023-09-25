@@ -14,8 +14,9 @@ const ItemWithdrawHistory = ({ item, index, theme, t }: any) => {
         <Btn
             row
             key={index}
-            justifySpaceBetween
             marginTop={25}
+            justifySpaceBetween
+            onPress={() => navigate(screen.DETAIL_WITHDRAW, { withdrawItem: item })}
         >
             <Box>
                 <Txt fontFamily={fonts.IBMPM} marginBottom={5} size={13} color={theme.black}>

@@ -3,16 +3,13 @@ import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { USDTFuturesSelector, amountFuturesSelector, currencyFuturesSelector } from '@selector/futuresSelector'
-import { profileUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { Platform, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import Animated, { SharedValue, useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
-import { Profile } from 'src/model/userModel'
+import Animated, { SharedValue, useAnimatedProps, useAnimatedStyle } from 'react-native-reanimated'
 import { WIDTH_SLIDE } from './Slider'
 
 interface Props {
@@ -148,8 +145,8 @@ const Amount = ({
                             [{
                                 height: '100%',
                                 textAlign: 'center',
-                                color: theme.black
-                            }, textStyle]
+                                color: theme.black,
+                            }, textStyle, styles.input]
                         }
                     />
                 </Box>
@@ -179,7 +176,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         marginHorizontal: 10,
         textAlign: 'center',
-        fontFamily: fonts.SGM,
     },
     txt: {
         fontSize: 30,

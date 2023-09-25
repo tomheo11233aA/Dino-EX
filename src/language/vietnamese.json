@@ -441,6 +441,19 @@
         "Total profit": "Tổng lợi nhuận",
         "Total loss": "Tổng thiệt hại",
         "Net profit/loss": "Lãi/lỗ ròng",
-        "every day": "hằng ngày"
+        "every day": "hằng ngày",
+        "Withdrawal Infomation": "Thông tin rút",
+        "Network fee": "Phí giao dịch",
+        "Do you need help? See frequently asked questions": "Bạn cần giúp đỡ? Xem các câu hỏi thường gặp",
+        "Why hasn't my withdrawal arrived?": "Tại sao khoản tiền rút của tôi chưa đến?",
+        "Save address": "Lưu địa chỉ",
+        "Deposit Information": "Thông tin nạp",
+        "The cryptocurrency has been transferred to your Binance account. See your Spot account balance for more details.": "Tiền điện tử đã được chuyển vào tài khoản Binance của bạn. Xem số dư tài khoản Spot của bạn để biết thêm chi tiết.",
+        "Spot wallet": "Ví spot",
+        "Crypto transferred out of Binance. Please contact the recipient platform for your transaction receipt.": "Tiền điện tử được chuyển ra khỏi Binance. Vui lòng liên hệ với nền tảng người nhận để nhận biên lai giao dịch của bạn.",
+        "Completed": "Hoàn thành",
+        "Detail": "Chi tiết",
+        "Account overview": "Tổng quan tài khoản",
+        "PNL every day": " PNL hằng ngày"
     }
 }

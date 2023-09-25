@@ -1,15 +1,14 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
-import { colors } from '@theme/colors'
 import Box from '@commom/Box'
-import { useTheme } from '@hooks/index'
 import Txt from '@commom/Txt'
-import { fonts } from '@theme/fonts'
-import { useTranslation } from 'react-i18next'
+import { useTheme } from '@hooks/index'
 import { capitalizeFirst, numberCommasDot } from '@method/format'
+import { colors } from '@theme/colors'
+import { fonts } from '@theme/fonts'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { TextInput } from 'react-native'
+import Animated from 'react-native-reanimated'
 import MarkOrLast from './MarkOrLast'
-import { height, width } from '@util/responsive'
 
 interface Props {
     trigger: any;
@@ -122,6 +121,7 @@ const ItemTPSL = ({
                         padding={4}
                         marginTop={5}
                         backgroundColor={theme.gray}
+                        height={40}
                     >
                         <TextInput
                             keyboardType={'decimal-pad'}
@@ -131,7 +131,7 @@ const ItemTPSL = ({
                             onChangeText={(txt) => setAmountTrigger(txt)}
                             style={{
                                 flex: 1,
-                                fontSize: 13,
+                                fontSize: 10,
                                 paddingRight: 4,
                                 color: theme.black,
                                 fontFamily: fonts.M23,

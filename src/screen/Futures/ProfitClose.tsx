@@ -21,11 +21,11 @@ const ProfitClose = ({ position, theme, t }: Props) => {
     let SIZE = 0
     if (coins.length > 0 && position) {
         let index = coins.findIndex(coin => coin.symbol === position.symbol)
-        index = index < 0 ? 0 : index
+        const close = coins[index]?.close || 0
         if (position.side === 'buy') {
-            PNL = (coins[index].close - position.entryPrice) * position.amountCoin
+            PNL = (close - position.entryPrice) * position.amountCoin * position.core
         } else {
-            PNL = (position.entryPrice - coins[index].close) * position.amountCoin
+            PNL = (position.entryPrice - close) * position.amountCoin * position.core
         }
         SIZE = position.margin * position.core
     }

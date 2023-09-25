@@ -20,13 +20,13 @@ const Footer = () => {
             <Box row alignStart>
                 <Box alignCenter flex={1}>
                     <Txt fontFamily={FONT} color={theme.black} >
-                        Account overview
+                        {t('Account overview')}
                     </Txt>
                     <Box width={40} height={3} backgroundColor={colors.yellow} marginTop={7} />
                 </Box>
                 <Box flex={1} alignCenter>
                     <Txt color={colors.grayBlue} fontFamily={FONT}>
-                        Detail
+                        {t('Detail')}
                     </Txt>
                 </Box>
             </Box>

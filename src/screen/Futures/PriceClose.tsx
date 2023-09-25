@@ -27,8 +27,7 @@ const PriceClose = ({ position, t, theme }: Props) => {
     let mark_price: number = 0
     if (coins.length > 0) {
         let index = coins.findIndex(coin => coin.symbol === position?.symbol)
-        index = index < 0 ? 0 : index
-        const close = coins[index].close
+        const close = coins[index]?.close || 0
         mark_price = close
         rounding = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
     }

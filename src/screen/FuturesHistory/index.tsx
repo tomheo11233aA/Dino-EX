@@ -1,8 +1,6 @@
-import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { useAppDispatch, useTheme } from '@hooks/index'
 import Safe from '@reuse/Safe'
-import { profileUserSelector } from '@selector/userSelector'
 import React, { useState } from 'react'
-import { Profile } from 'src/model/userModel'
 import FundingFee from './FundingFee'
 import Header from './Header'
 import ModalFilter from './ModalFilter'
@@ -17,10 +15,8 @@ import TransactionHistory from './TransactionHistory'
 const FuturesHistory = () => {
   const theme = useTheme()
   const dispatch = useAppDispatch()
-  const [tab, setTab] = useState<string>('Transaction History')
+  const [tab, setTab] = useState<string>('Open Orders')
   const [showFilter, setShowFilter] = useState<boolean>(false)
-
-  const profile: Profile = useAppSelector<any>(profileUserSelector)
 
   return (
     <Safe bg={theme.bg} paddingHorizontal={15}>

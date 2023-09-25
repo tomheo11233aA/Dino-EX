@@ -9,8 +9,6 @@ const DepositDetail = () => {
   const route = useRoute<any>()
   const { depositItem } = route.params
 
-  console.log(depositItem)
-
   return (
     <KeyBoardSafe>
       <TopBar />

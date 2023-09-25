@@ -52,8 +52,7 @@ export const converPostirions = (position: IPositions, coins: ICoins[], balance:
 
     if (coins.length > 0 && position) {
         let index = coins.findIndex((coin: ICoins) => coin.symbol === position.symbol)
-        index = index < 0 ? 0 : index
-        const close = coins[index].close
+        const close = coins[index]?.close || 0
 
         if (position.side === 'buy') {
             PNL = (close - position.entryPrice) * position.amountCoin * position.core
@@ -201,11 +200,12 @@ export const calcPositions = (positions: IPositions[], coins: ICoins[]): ICalcPo
     if (positions.length > 0 && coins.length > 0) {
         for (let i = 0; i < positions.length; i++) {
             let index = coins.findIndex((coin: ICoins) => coin.symbol === positions[i].symbol)
-            index = index < 0 ? 0 : index
+            const close = coins[index]?.close || 0
+
             if (positions[i].side === 'buy') {
-                PNL += (coins[index]?.close - positions[i].entryPrice) * positions[i].amountCoin
+                PNL += (close - positions[i].entryPrice) * positions[i].amountCoin * positions[i].core
             } else {
-                PNL += (positions[i].entryPrice - coins[index]?.close) * positions[i].amountCoin
+                PNL += (positions[i].entryPrice - close) * positions[i].amountCoin * positions[i].core
             }
             if (positions[i].regime === 'cross') {
                 MARGIN += positions[i].margin
