@@ -85,10 +85,10 @@ export default () => {
                             />
                         </Box>
                         <Txt size={11} fontFamily={fonts.IBMPM} color={theme.white}>
-                            {t('Deposit VND')}
+                            {t('Futures')}
                         </Txt>
                         <Txt size={9} fontFamily={fonts.IBMPM} marginTop={5} color={colors.grayBlue2}>
-                            {t('Multiple payment options')}
+                            {t('Derivatives trading platform')}
                         </Txt>
                     </Box>
                 </LinearGradient>
@@ -111,10 +111,10 @@ export default () => {
                             />
                         </Box>
                         <Txt size={11} fontFamily={fonts.IBMPM} color={theme.black}>
-                            {t('Buy with VND')}
+                            {t('Spot')}
                         </Txt>
                         <Txt size={9} fontFamily={fonts.IBMPM} marginTop={5} color={colors.grayBlue2}>
-                            {t('Visa, Mastercard')}
+                            {t('Immediate trading of cryptocurrencies at current market prices')}
                         </Txt>
                     </Box>
                 </LinearGradient>

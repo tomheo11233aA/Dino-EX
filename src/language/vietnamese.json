@@ -358,7 +358,6 @@
         "Send USDT to Binance account": "Gửi USDT vào tài khoản Binance",
         "Send by email/phone number/ID": "Gửi qua email/số điện thoại/ID",
         "Document Issuing Country/Region": "Quốc gia/khu vực cấp giấy tờ",
-        "Multiple payment options": "Nhiều lựa chọn hình thức thanh toán",
         "Happy Easter Day 2023!": "Chúc mừng ngày lễ Phục sinh năm 2023!",
         "Enter Binance ID or Pay ID": "Nhập ID Binance hoặc ID thanh toán",
         "Use BNB for fees(10% discount)": "Phí giao dich bằng BNB (giảm 10%)",
@@ -455,6 +454,8 @@
         "Detail": "Chi tiết",
         "Account overview": "Tổng quan tài khoản",
         "PNL every day": " PNL hằng ngày",
-        "All List Coin": "Tất cả coin"
+        "All List Coin": "Tất cả coin",
+        "Derivatives trading platform": "Sàn giao dịch phát sinh",
+        "Immediate trading of cryptocurrencies at current market prices": "Giao dịch ngay lập tức tiền điện tử theo giá thị trường hiện tại"
     }
 }
