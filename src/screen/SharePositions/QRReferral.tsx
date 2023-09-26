@@ -3,6 +3,7 @@ import Txt from '@commom/Txt'
 import { useAppSelector } from '@hooks/index'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
+import contants from '@util/contants'
 import React from 'react'
 import QRCode from 'react-native-qrcode-svg'
 import { Profile } from 'src/model/userModel'
@@ -13,7 +14,6 @@ interface Props {
 }
 
 const QRReferral = ({ t, profile }: Props) => {
-    console.log(profile)
     return (
         <Box row marginTop={10} width={'100%'} alignCenter>
             <Box
@@ -26,7 +26,7 @@ const QRReferral = ({ t, profile }: Props) => {
                     size={40}
                     color='black'
                     backgroundColor='white'
-                    value={'https://www.binance.info/vi/futures/ref/170597461'}
+                    value={`${contants.HOSTING}/register?ref=${profile.referral}`}
                 />
             </Box>
 
@@ -38,8 +38,9 @@ const QRReferral = ({ t, profile }: Props) => {
                     size={23}
                     numberOfLines={10}
                     marginVertical={2}
+                    marginTop={-3}
                 >
-                    {'170597461'}
+                    {profile.referral}
                 </Txt>
                 <Txt color={colors.yellow} size={9}>
                     {t('Download the Binance App')}
