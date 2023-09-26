@@ -246,8 +246,7 @@ export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {
         showTPSL = true
     }
 
-    const reducerOnly = (item.typeTrade === 'Limit') ||
-        (item.typeTrade === 'Take Profit Market' || item.typeTrade === 'Stop Market')
+    const reducerOnly = calcReducerOnly(item.typeTrade)
 
     let triggerConditionsTP = null
     if (item.TP) {
@@ -325,9 +324,18 @@ export const converPostirionsClose = (position: IPositionHistory, balance: numbe
 export const calcPNL = (position: IPositions, close: number) => {
     let PNL = 0
     if (position.side === 'buy') {
-        PNL = (close - position.entryPrice) * position.amountCoin 
+        PNL = (close - position.entryPrice) * position.amountCoin
     } else {
         PNL = (position.entryPrice - close) * position.amountCoin
     }
     return PNL
+}
+
+export const calcReducerOnly = (typeTrade: string) => {
+    if (typeTrade === 'Limit') {
+        return true
+    } else if (typeTrade === 'Take Profit Market' || typeTrade === 'Stop Market') {
+        return true
+    }
+    return false
 }

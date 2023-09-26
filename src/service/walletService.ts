@@ -64,3 +64,12 @@ export const getHistoryChangeBalance = async (data: any) => {
         return callFailed()
     }
 }
+
+export const getHistoryOrderToIdPosition = async (data: any) => {
+    try {
+        const res = await axiosInstance.post('/api/binance/getHistoryChangeBalance', data)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}

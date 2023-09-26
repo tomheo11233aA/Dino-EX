@@ -13,6 +13,9 @@ import DownItem from '../TransactionHistory/DownItem'
 import ModalAsset from './ModalAsset'
 import ModalType from './ModalType'
 import { StyleSheet } from 'react-native'
+import Btn from '@commom/Btn'
+import { navigate } from '@navigation/navigationRef'
+import { screen } from '@util/screens'
 
 const OrderHistory = () => {
   const theme = useTheme()
@@ -67,7 +70,8 @@ const OrderHistory = () => {
     const color = item.side === 'buy' ? colors.green2 : colors.red3
     const side = item.side === 'buy' ? 'Buy' : 'Sell'
     return (
-      <Box
+      <Btn
+        alignCenter={false}
         paddingVertical={15}
         borderBottomWidth={1}
         borderColor={theme.gray2}
@@ -164,7 +168,7 @@ const OrderHistory = () => {
             {' Correct'}
           </Txt>
         </Box> */}
-      </Box>
+      </Btn>
     )
   }
 

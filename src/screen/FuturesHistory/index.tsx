@@ -1,4 +1,4 @@
-import { useAppDispatch, useTheme } from '@hooks/index'
+import { hideBottomTab, useAppDispatch, useTheme } from '@hooks/index'
 import Safe from '@reuse/Safe'
 import React, { useState } from 'react'
 import FundingFee from './FundingFee'
@@ -14,9 +14,10 @@ import TransactionHistory from './TransactionHistory'
 
 const FuturesHistory = () => {
   const theme = useTheme()
-  const dispatch = useAppDispatch()
   const [tab, setTab] = useState<string>('Open Orders')
   const [showFilter, setShowFilter] = useState<boolean>(false)
+
+  hideBottomTab()
 
   return (
     <Safe bg={theme.bg} paddingHorizontal={15}>

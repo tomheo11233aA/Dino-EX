@@ -3,8 +3,10 @@ import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { capitalizeFirst, converPostirionsClose, numberCommasDot } from '@method/format'
+import { navigate } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
+import { screen } from '@util/screens'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Profile } from 'src/model/userModel'
@@ -25,12 +27,14 @@ const Item = ({
     const color = item.side === 'Buy' ? colors.green2 : colors.red3
 
     item = converPostirionsClose(item, profile.balance)
-    
+
     return (
-        <Box
+        <Btn
+            onPress={() => navigate(screen.POSITION_HISTORY_DETAIL, { positionItem: item })}
             paddingVertical={15}
             borderBottomWidth={1}
             borderColor={theme.gray2}
+            alignCenter={false}
         >
             <Box row justifySpaceBetween>
                 <Box row alignCenter>
@@ -169,7 +173,7 @@ const Item = ({
                     {item.updated_at}
                 </Txt>
             </Box>
-        </Box>
+        </Btn>
     )
 }
 

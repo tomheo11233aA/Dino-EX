@@ -7,6 +7,7 @@ import DepositCrypto from '@screen/DepositCrypto'
 import DepositDetail from '@screen/DepositDetail'
 import DetailWithdraw from '@screen/DetailWithdraw'
 import FuturesHistory from '@screen/FuturesHistory'
+import PositionHistoryDetail from '@screen/FuturesHistory/PositionHistoryDetail'
 import PNLAnalysis from '@screen/PNLAnalysis'
 import SendUSDT from '@screen/SendUSDT'
 import SpotCoin from '@screen/SpotCoin'
@@ -35,6 +36,7 @@ const WalletStack = () => {
         <Stack.Screen name={screen.PNL_ANALYSIS} component={PNLAnalysis} />
         <Stack.Screen name={screen.DEPOSIT_DETAIL} component={DepositDetail} />
         <Stack.Screen name={screen.DETAIL_WITHDRAW} component={DetailWithdraw} />
+        <Stack.Screen name={screen.POSITION_HISTORY_DETAIL} component={PositionHistoryDetail} />
     </Stack.Navigator>
   )
 }

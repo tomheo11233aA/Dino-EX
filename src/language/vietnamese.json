@@ -456,6 +456,17 @@
         "PNL every day": " PNL hằng ngày",
         "All List Coin": "Tất cả coin",
         "Derivatives trading platform": "Sàn giao dịch phát sinh",
-        "Immediate trading of cryptocurrencies at current market prices": "Giao dịch ngay lập tức tiền điện tử theo giá thị trường hiện tại"
+        "Immediate trading of cryptocurrencies at current market prices": "Giao dịch ngay lập tức tiền điện tử theo giá thị trường hiện tại",
+        "Order detail": "Chi tiết lệnh",
+        "Command": "Lệnh",
+        "Average": "Trung bình",
+        "No": "Không",
+        "Fee": "Phí",
+        "Profit is recorded": "Lợi nhuận đã được ghi nhận",
+        "Creation time": "Thời gian tạo",
+        "Update time": "Thời gian cập nhật",
+        "Transaction details": "Chi tiết giao dịch",
+        "Role": "Vai trò",
+        "Taker": "Người thực hiện"
     }
 }
