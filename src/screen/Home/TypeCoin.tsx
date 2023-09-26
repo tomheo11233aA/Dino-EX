@@ -11,17 +11,16 @@ const TypeCoin = () => {
     const theme = useTheme()
     const { t } = useTranslation()
 
-    const list: string[] =
-        ['Favorites', 'Hot', 'Gainers', 'Losers', 'New Listings', '24h Vol']
+    const list: string[] = ['All List Coin']
 
     return (
         <Box marginTop={20}>
             <Scroll horizontal showsHorizontalScrollIndicator={false}>
-                {list.map(item =>
+                {list.map((item, index) =>
                     <Box
                         key={item}
                         marginRight={20}
-                        backgroundColor={item === 'Favorites' && theme.gray}
+                        backgroundColor={index == 0 && theme.gray}
                         paddingHorizontal={8}
                         paddingVertical={3}
                         radius={3}
@@ -29,7 +28,7 @@ const TypeCoin = () => {
                         <Txt
                             size={13}
                             fontFamily={fonts.RM}
-                            color={item === 'Favorites' ? theme.black : colors.gray5}
+                            color={index == 0 ? theme.black : colors.gray5}
                         >
                             {t(item)}
                         </Txt>

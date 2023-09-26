@@ -11,6 +11,8 @@ import { ICoins } from 'src/model/futuresModel'
 import { Coin } from 'src/model/tradeModel'
 import CoinItem from './CoinItem'
 import { useTranslation } from 'react-i18next'
+import futuresSlice from '@slice/futuresSlice'
+import { navigate } from '@navigation/navigationRef'
 
 const Coins = () => {
     const theme = useTheme()
@@ -20,9 +22,11 @@ const Coins = () => {
     const coins = useAppSelector(coinsFuturesChartSelector)
 
     const handleMoveTrade = (coin: Coin) => {
-        dispatch(setCoinChoosed(coin))
-        navigation.navigate(screen.TRADE)
-        // navigation.navigate(screen.EARN)
+        dispatch(futuresSlice.actions.setSymbol({
+            symbol: coin.symbol,
+            currency: coin.currency,
+        }))
+        navigate(screen.TRADE)
     }
 
     return (

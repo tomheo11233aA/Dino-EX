@@ -1,6 +1,7 @@
 import Img from '@commom/Img'
 import { useAppDispatch, useTheme } from '@hooks/index'
 import { navigate } from '@navigation/navigationRef'
+import futuresSlice from '@slice/futuresSlice'
 import { setSide } from '@slice/spotSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -44,8 +45,8 @@ const Footer = () => {
             <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity
                     onPress={() => {
-                        dispatch(setSide('buy'))
-                        navigate(screen.TRADES_STACK)
+                        dispatch(futuresSlice.actions.setSide('buy'))
+                        navigate(screen.FUTURES_STACK)
                     }}
                     style={[styles.buySellButton, { backgroundColor: '#2fbd85' }]}
                 >
@@ -53,8 +54,8 @@ const Footer = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        dispatch(setSide('sell'))
-                        navigate(screen.TRADES_STACK)
+                        dispatch(futuresSlice.actions.setSide('sell'))
+                        navigate(screen.FUTURES_STACK)
                     }}
                     style={[styles.buySellButton, { backgroundColor: '#f6465d' }]}
                 >

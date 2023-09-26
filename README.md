@@ -30,9 +30,9 @@ Trong overview đẻ lại mục spot vs usds-m futures. còn mấy mục khác 
 # position
 PNL
 if (side == 'buy') {
-  PNL = (giá hiện tại của đồng coin - position.entryPrice) * position.amountCoin * position.core
+  PNL = (giá hiện tại của đồng coin - position.entryPrice) * position.amountCoin
 } else {
-  PNL = (position.entryPrice - giá hiện tại của đồng coin) * position.amountCoin * position.core
+  PNL = (position.entryPrice - giá hiện tại của đồng coin) * position.amountCoin
 }
 
 ROE = PNL / position.margin * 100

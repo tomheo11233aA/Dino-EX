@@ -1,6 +1,6 @@
 import { useAppSelector, useTheme } from '@hooks/index'
 import { numberCommasDot } from '@method/format'
-import { coinChoosedSpotSelector } from '@selector/spotSelector'
+import { symbolFuturesSelector } from '@selector/futuresSelector'
 import { getTotalBuy } from '@service/tradeService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -15,7 +15,7 @@ const BuyInto = () => {
     const theme = useTheme()
     const { t } = useTranslation()
     const [buys, setBuys] = useState<BuySell[]>([])
-    const coinsChoose = useAppSelector(coinChoosedSpotSelector)
+    const symbol = useAppSelector(symbolFuturesSelector)
 
     useEffect((): any => {
         if (buys.length === 0) {
@@ -23,7 +23,7 @@ const BuyInto = () => {
         }
 
         const newSocket = io(contants.HOSTING)
-        newSocket.on(`${coinsChoose.symbol}BUY`, (data) => {
+        newSocket.on(`${symbol}BUY`, (data) => {
             if (data.array) {
                 setBuys(data.array.slice(0, 7))
             }
@@ -36,7 +36,7 @@ const BuyInto = () => {
         const res = await getTotalBuy({
             limit: 7,
             page: 1,
-            symbol: coinsChoose.symbol,
+            symbol: symbol,
         })
         if (res.status) {
             setBuys(res.data.array)

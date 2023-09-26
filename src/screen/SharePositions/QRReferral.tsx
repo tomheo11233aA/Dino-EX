@@ -1,11 +1,19 @@
 import Box from '@commom/Box'
 import Txt from '@commom/Txt'
+import { useAppSelector } from '@hooks/index'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 import QRCode from 'react-native-qrcode-svg'
+import { Profile } from 'src/model/userModel'
 
-const QRReferral = ({ t }: any) => {
+interface Props {
+    t: any;
+    profile: Profile;
+}
+
+const QRReferral = ({ t, profile }: Props) => {
+    console.log(profile)
     return (
         <Box row marginTop={10} width={'100%'} alignCenter>
             <Box

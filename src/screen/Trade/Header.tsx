@@ -3,13 +3,13 @@ import Img from '@commom/Img'
 import Txt from '@commom/Txt'
 import { useAppSelector, useTheme } from '@hooks/index'
 import { goBack } from '@navigation/navigationRef'
-import { coinChoosedSpotSelector } from '@selector/spotSelector'
+import { currencyFuturesSelector } from '@selector/futuresSelector'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 const Header = () => {
     const theme = useTheme()
-    const coinChoose = useAppSelector(coinChoosedSpotSelector)
+    const currency = useAppSelector(currencyFuturesSelector)
 
     return (
         <View style={styles.container}>
@@ -28,7 +28,7 @@ const Header = () => {
                     </Txt> */}
                     <Box row alignCenter>
                         <Txt color={theme.black} bold size={15}>
-                            {coinChoose.currency}
+                            {currency}
                         </Txt>
                         <Txt bold size={13}>{'/'}</Txt>
                         <Txt color={theme.black} bold size={15}>USDT</Txt>
@@ -37,11 +37,14 @@ const Header = () => {
             </View>
 
             <View style={styles.content}>
-                <TouchableOpacity onPress={() => goBack()}>
+                <TouchableOpacity
+                    style={{ paddingVertical: 15, paddingRight: 20 }}
+                    onPress={() => goBack()}
+                >
                     <Img
-                        source={require('@images/back.png')}
                         width={15}
                         height={15}
+                        source={require('@images/back.png')}
                     />
                 </TouchableOpacity>
 

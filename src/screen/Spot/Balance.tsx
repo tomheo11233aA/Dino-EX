@@ -77,9 +77,9 @@ const Balance = ({ spot }: Props) => {
             let index = coins.findIndex((coin: ICoins) => coin.symbol === position[0].symbol)
             const close = coins[index]?.close || 0
             if (position[0].side === 'buy') {
-                PNL = (close - position[0].entryPrice) * position[0].amountCoin * position[0].core
+                PNL = (close - position[0].entryPrice) * position[0].amountCoin
             } else {
-                PNL = (position[0].entryPrice - close) * position[0].amountCoin * position[0].core
+                PNL = (position[0].entryPrice - close) * position[0].amountCoin
             }
             ROE = PNL / position[0].margin * 100
         }

@@ -1,7 +1,7 @@
 import Box from '@commom/Box'
 import Img from '@commom/Img'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { coinChoosedSpotSelector } from '@selector/spotSelector'
+import { symbolFuturesSelector } from '@selector/futuresSelector'
 import { listTimeLimitTradeSelector, timeLimitSelector } from '@selector/tradeSelector'
 import tradeSlice from '@slice/tradeSlice'
 import { colors } from '@theme/colors'
@@ -19,13 +19,13 @@ const Times = () => {
     const dispatch = useAppDispatch()
     const [openMore, setOpenMore] = useState(false)
     const timeLimit = useAppSelector(timeLimitSelector)
-    const coinChoosed = useAppSelector(coinChoosedSpotSelector)
+    const symbol = useAppSelector(symbolFuturesSelector)
     const listTimeLimit = useAppSelector(listTimeLimitTradeSelector)
 
     useEffect((): any => {
         const newSocket = io(contants.HOSTING)
 
-        newSocket.on(`${coinChoosed.symbol}UPDATESPOT`, (times: ITimeLimit[]) => {
+        newSocket.on(`${symbol}UPDATESPOT`, (times: ITimeLimit[]) => {
             if (times.length > 0 && listTimeLimit.length === 0) {
                 dispatch(tradeSlice.actions.setListTimeLimit(times))
                 newSocket.disconnect()

@@ -1,7 +1,6 @@
 import { getCoinsFromSocket, useAppSelector, useTheme } from '@hooks/index'
 import { numberCommasDot } from '@method/format'
-import { coinsFuturesChartSelector } from '@selector/futuresSelector'
-import { coinChoosedSpotSelector } from '@selector/spotSelector'
+import { coinsFuturesChartSelector, symbolFuturesSelector } from '@selector/futuresSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
@@ -13,13 +12,13 @@ const Statistical = () => {
     const theme = useTheme()
     const { t } = useTranslation()
     const coins = useAppSelector(coinsFuturesChartSelector)
-    const coinChoosed = useAppSelector(coinChoosedSpotSelector)
+    const symbol = useAppSelector(symbolFuturesSelector)
     
     getCoinsFromSocket()
 
     let [close, percentChange, color, round] = [0, '0', colors.greenCan, 1]
     if (coins.length > 0) {
-        const index = coins.findIndex(coin => coin.symbol === coinChoosed.symbol)
+        const index = coins.findIndex(coin => coin.symbol === symbol)
         if (index >= 0) {
             close = coins[index]?.close
             round = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1

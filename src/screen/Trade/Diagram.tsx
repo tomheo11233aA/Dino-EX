@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector, useTheme } from "@hooks/index"
 import { convertTimeGetChart } from "@method/format"
 import LogoChart from "@screen/Futures/LogoChart"
-import { coinChoosedSpotSelector } from "@selector/spotSelector"
+import { symbolFuturesSelector } from "@selector/futuresSelector"
 import { candlesTradeSelector, closeTimestampTradeSelector, countCandlesTradeSelector, countDownTradeSelector, dPathMATradeSelector, heighValueChartTradeSelector, maxHighItemTradeSelector, minLowItemTradeSelector, timeLimitSelector } from "@selector/tradeSelector"
 import { getChart } from "@service/tradeService"
 import tradeSlice from "@slice/tradeSlice"
@@ -14,12 +14,12 @@ import { PanGestureHandler, PinchGestureHandler, PinchGestureHandlerGestureEvent
 import Animated, { runOnJS, useAnimatedGestureHandler, useSharedValue } from "react-native-reanimated"
 import { G, Svg } from "react-native-svg"
 import { io } from "socket.io-client"
+import { ICoins } from "src/model/futuresModel"
 import Candles from "./Candles"
 import Cursor from "./Cursor"
 import LineX from "./LineX"
 import MinMaxLowHigh from "./MinMaxLowHigh"
 import PathMA from "./PathMA"
-import { ICoins } from "src/model/futuresModel"
 
 const height_container = height * 35 / 100
 export const heigh_candle = height_container - 40
@@ -33,7 +33,7 @@ const padding_right_candle = size_chart * gap_candle - width_candle - width_cand
 export default () => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const coinChoosed = useAppSelector(coinChoosedSpotSelector)
+    const symbol = useAppSelector(symbolFuturesSelector)
     const timeLimit = useAppSelector(timeLimitSelector)
     const closeTimeStamp = useAppSelector(closeTimestampTradeSelector)
     const candles = useAppSelector(candlesTradeSelector)
@@ -60,7 +60,7 @@ export default () => {
         newSocket.on('listCoin', (coins: ICoins[]) => {
             if (coins.length > 0) {
                 for (let i = 0; i < coins.length; i++) {
-                    if (coins[i].symbol === coinChoosed.symbol) {
+                    if (coins[i].symbol === symbol) {
                         close = coins[i].close
                         break
                     }
@@ -68,7 +68,7 @@ export default () => {
             }
         })
 
-        newSocket.on(`${coinChoosed.symbol}UPDATESPOT`, data => {
+        newSocket.on(`${symbol}UPDATESPOT`, data => {
             if (data.length > 0) {
                 dispatch(tradeSlice.actions.setChart({
                     close,
@@ -93,7 +93,7 @@ export default () => {
 
         const res = await getChart({
             limit: 500,
-            symbol: coinChoosed.symbol,
+            symbol: symbol,
             time: time,
         })
         if (res.status) {
