@@ -19,7 +19,7 @@ const Options = () => {
         if (!isLogin) {
             navigate(screen.LOGIN)
         } else {
-            // navigate(screen.EARN)
+            navigate(screen.COMMING_SOON)
         }
     }
 
@@ -42,11 +42,12 @@ const Options = () => {
             />
             <ItemOption
                 onPress={() => {
-                    if (!isLogin) {
-                        navigate(screen.LOGIN)
-                    } else {
-                        navigate(screen.EARN)
-                    }
+                    // if (!isLogin) {
+                    //     navigate(screen.LOGIN)
+                    // } else {
+                    //     navigate(screen.EARN)
+                    // }
+                    handle()
                 }}
                 title={t('Earn')}
                 icon={require('@images/home/pig.png')}

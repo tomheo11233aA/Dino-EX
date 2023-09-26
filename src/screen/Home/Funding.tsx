@@ -20,7 +20,6 @@ export default () => {
         if (!isLogin) {
             navigate(screen.LOGIN)
         } else {
-            // navigate(screen.EARN)
             navigate(screen.COMMING_SOON)
         }
     }
@@ -63,12 +62,11 @@ export default () => {
             <Btn
                 flex={1}
                 onPress={() => {
-                    // if (!isLogin) {
-                    //     navigate(screen.LOGIN)
-                    // } else {
-                    //     navigate(screen.DEPOSIT_VND)
-                    // }
-                    handle()
+                    if (!isLogin) {
+                        navigate(screen.LOGIN)
+                    } else {
+                        navigate(screen.FUTURES_STACK)
+                    }
                 }}
                 marginHorizontal={10}
             >
