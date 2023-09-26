@@ -24,7 +24,7 @@ import PathMA from "./PathMA"
 const height_container = height * 35 / 100
 export const heigh_candle = height_container - 40
 export const paddingTop = 20
-export const size_chart = 30
+export const size_chart = 50
 const gap_candle = width * 2.55 / 100
 const width_candle = width * 2.052 / 100
 const width_candles = (width * 2.55 / 100) * 30 - width_candle
@@ -175,7 +175,7 @@ export default () => {
                 scaleCount.value--
                 if (scaleCount.value < -5) {
                     scaleCount.value = 0
-                    scaleSum.value = (scaleSum.value - 1 >= 2) ? (scaleSum.value - 1) : 2
+                    scaleSum.value = (scaleSum.value - 1 >= 1) ? (scaleSum.value - 1) : 1
                     gapCandle.value = width * (scaleSum.value + 0.55) / 100
                     widthCandle.value = width * (scaleSum.value + 0.052) / 100
                     paddingRightCandles.value = size_chart * gapCandle.value - widthCandle.value - width_candles
