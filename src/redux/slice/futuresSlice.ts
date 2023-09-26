@@ -141,7 +141,7 @@ const futuresSlice = createSlice({
         },
         setListTimeLimit: (state, action: PayloadAction<ITimeLimit[]>) => {
             state.listTimeLimit = action.payload
-            state.timeLimit = action.payload[1]
+            state.timeLimit = action.payload[0]
         },
         setPNL: (state, action: PayloadAction<number>) => {
             state.PNL = action.payload
@@ -220,16 +220,30 @@ const futuresSlice = createSlice({
                 if (payload.dataSocket[index].timeString === state.timeLimit.timeString) {
                     let data = payload.dataSocket[index]
                     if (state.countDown < 1) {
-                        const close = payload.close
-                        data = { ...data, open: close, high: close, low: close }
+                        if (state.timeLimit.timeString) state.closeTimestamp += convertTimeGetChart(state.timeLimit.timeString)
+                    }
+                    const lastChart = state.candles[state.candles.length - 1]
+                    if (data.closeTimestamp != lastChart.closeTimestamp) {
+                        data = {
+                            ...data,
+                            open: lastChart.close,
+                            high: lastChart.close,
+                            low: lastChart.close,
+                            close: lastChart.close,
+                        }
 
                         state.charts.push(data)
                         state.candles.push(data)
                         state.charts.shift()
                         state.candles.shift()
-                        if (state.timeLimit.timeString) state.closeTimestamp += convertTimeGetChart(state.timeLimit.timeString)
                     } else {
-                        data = { ...data, close: payload.close }
+                        data = {
+                            ...data,
+                            close: payload.close,
+                            open: state.candles[state.candles.length - 2].close,
+                            high: payload.close > lastChart.high ? payload.close : lastChart.close,
+                            low: payload.close < lastChart.low ? payload.close : lastChart.low
+                        }
 
                         state.charts[state.charts.length - 1] = data
                         state.candles[state.candles.length - 1] = data

@@ -19,7 +19,7 @@ import TimeLimitChart from './TimeLimitChart'
 import { ICoins } from 'src/model/futuresModel'
 
 export const HEIGH_CONTAINER = height * 30 / 100
-export const SIZE_CHART = 30
+export const SIZE_CHART = 50
 const HEIGH_SVG = HEIGH_CONTAINER - 30
 const HEIGH_CANDLES = HEIGH_SVG - 20
 const GAP_CANDLES = width * 2.55 / 100
@@ -96,7 +96,7 @@ const Chart = ({ setOpenChart }: Props) => {
     }, [])
 
     const handleGetChart = async () => {
-        let time = 3 * 60
+        let time = 1 * 60
         if (timeLimit.timeString) {
             time = convertTimeGetChart(timeLimit.timeString)
         }
@@ -121,7 +121,7 @@ const Chart = ({ setOpenChart }: Props) => {
             const x_point = gapCandle.value * index - paddingRightCandles.value
             return (
                 <G key={`G_candles_${index}`}>
-                    {(index === 10 || index === 25) &&
+                    {(index === 30 || index === 45) &&
                         <>
                             <Line
                                 key={`l2_candles_Y ${index}`}
@@ -442,7 +442,7 @@ const Chart = ({ setOpenChart }: Props) => {
                 scaleCount.value--
                 if (scaleCount.value < -5) {
                     scaleCount.value = 0
-                    scaleSum.value = (scaleSum.value - 1 >= 2) ? (scaleSum.value - 1) : 2
+                    scaleSum.value = (scaleSum.value - 1 >= 1) ? (scaleSum.value - 1) : 1
                     gapCandle.value = width * (scaleSum.value + 0.55) / 100
                     widthCandle.value = width * (scaleSum.value + 0.052) / 100
                     paddingRightCandles.value = SIZE_CHART * gapCandle.value - widthCandle.value - WIDTH_CANDLES

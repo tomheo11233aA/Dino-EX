@@ -86,7 +86,7 @@ export default () => {
     }, [])
 
     const handleGetChart = async () => {
-        let time = 3 * 60
+        let time = 1 * 60
         if (timeLimit.timeString) {
             time = convertTimeGetChart(timeLimit.timeString)
         }
