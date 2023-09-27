@@ -16,6 +16,8 @@ import { Platform, TouchableOpacity } from 'react-native'
 import io from 'socket.io-client'
 import { ICoins } from 'src/model/futuresModel'
 import Symbol from './Symbol'
+import { navigate } from '@navigation/navigationRef'
+import { screen } from '@util/screens'
 
 const SIZE_ICON = 15
 
@@ -113,7 +115,11 @@ const Header = ({ drawerRef }: any) => {
                 </Box>
 
                 <Box row marginTop={12} paddingRight={10}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Trade')}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigate(screen.TRADE)
+                        }}
+                    >
                         <Icon
                             source={require('@images/future/candles.png')}
                             size={SIZE_ICON}

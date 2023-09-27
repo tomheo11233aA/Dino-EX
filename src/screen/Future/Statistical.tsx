@@ -13,7 +13,7 @@ const size_text_box2 = 10
 
 const Statistical = ({
     t,
-    PNL,
+    totalPNL,
     wallet_balance,
     balance: TOTAL_MARGIN,
 }: any) => {
@@ -80,10 +80,10 @@ const Statistical = ({
                     font={fonts.IBMPR}
                 />
                 <Txt style={[styles.txtValue1, { color: theme.black }]}>
-                    {numberCommasDot(PNL?.toFixed(2))}
+                    {numberCommasDot(totalPNL?.toFixed(2))}
                 </Txt>
                 <Txt style={styles.txtValue2}>
-                    ≈ {numberCommasDot(PNL.toFixed(2))}
+                    ≈ {numberCommasDot(totalPNL.toFixed(2))}
                     <Txt style={styles.txtDolar}>{' $'}</Txt>
                 </Txt>
             </Box>

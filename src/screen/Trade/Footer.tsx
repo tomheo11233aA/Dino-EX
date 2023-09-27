@@ -46,7 +46,7 @@ const Footer = () => {
                 <TouchableOpacity
                     onPress={() => {
                         dispatch(futuresSlice.actions.setSide('buy'))
-                        navigate(screen.FUTURES_STACK)
+                        navigate(screen.FUTURES)
                     }}
                     style={[styles.buySellButton, { backgroundColor: '#2fbd85' }]}
                 >
@@ -55,7 +55,7 @@ const Footer = () => {
                 <TouchableOpacity
                     onPress={() => {
                         dispatch(futuresSlice.actions.setSide('sell'))
-                        navigate(screen.FUTURES_STACK)
+                        navigate(screen.FUTURES)
                     }}
                     style={[styles.buySellButton, { backgroundColor: '#f6465d' }]}
                 >

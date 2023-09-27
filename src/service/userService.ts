@@ -104,4 +104,13 @@ export const signUp = async (data: any) => {
     }
 }
 
+export const getValueConfig = async (name: string) => {
+    try {
+        const res = await axiosInstance.post('/api/user/getValueConfig', { name })
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}
+
 

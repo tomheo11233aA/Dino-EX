@@ -1,24 +1,21 @@
 import Box from '@commom/Box'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { useNavigation } from '@react-navigation/native'
+import { navigate } from '@navigation/navigationRef'
 import { coinsFuturesChartSelector } from '@selector/futuresSelector'
-import { setCoinChoosed } from '@slice/spotSlice'
+import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { screen } from '@util/screens'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { ICoins } from 'src/model/futuresModel'
 import { Coin } from 'src/model/tradeModel'
 import CoinItem from './CoinItem'
-import { useTranslation } from 'react-i18next'
-import futuresSlice from '@slice/futuresSlice'
-import { navigate } from '@navigation/navigationRef'
 
 const Coins = () => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
-    const navigation = useNavigation<any>()
     const coins = useAppSelector(coinsFuturesChartSelector)
 
     const handleMoveTrade = (coin: Coin) => {

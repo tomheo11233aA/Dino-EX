@@ -23,7 +23,7 @@ interface Props {
     onSetClosePosition?: Function;
     onSetShowModalCore?: Function;
     onShowModalStopProfit?: Function;
-    onShowModalTPSLPosition: Function;
+    onShowModalTPSLPosition?: Function;
 }
 
 const ItemPosition = ({
@@ -194,7 +194,7 @@ const ItemPosition = ({
                     <Txt style={[styles.txtValue, { color: theme.black }]}>
                         {`${position.TP || '--'} / ${position.SL || '--'}`}
                     </Txt>
-                    <Btn onPress={() => onShowModalTPSLPosition(position)}>
+                    <Btn onPress={() => onShowModalTPSLPosition && onShowModalTPSLPosition(position)}>
                         <Icon
                             size={12}
                             marginLeft={5}

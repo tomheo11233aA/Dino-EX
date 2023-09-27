@@ -69,7 +69,7 @@ const Future = () => {
         }
     }, [])
 
-    let PNL: number = 0
+    let totalPNL: number = 0
     let balance: number = profile.balance
     let wallet_balance: number = profile.balance
 
@@ -77,12 +77,12 @@ const Future = () => {
 
     balance = profile.balance + positionObj.pnl + positionObj.margin
     wallet_balance = profile.balance + positionObj.margin
-    PNL = positionObj.pnl
+    totalPNL = positionObj.pnl
 
     return (
         <Box>
             <Balance {...{ balance, t }} />
-            <Statistical {...{ PNL, balance, wallet_balance, t }} />
+            <Statistical {...{ totalPNL, balance, wallet_balance, t }} />
             <Box
                 row
                 marginTop={15}
