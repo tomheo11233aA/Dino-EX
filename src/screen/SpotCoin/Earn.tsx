@@ -33,7 +33,7 @@ export default ({ theme, t }: any) => {
                 />
                 <Box alignStart>
                     <Txt fontFamily={fonts.RM} size={11} color={theme.black}>
-                        Binance Earn
+                        HotX Earn
                     </Txt>
                     <Box row alignEnd>
                         <Txt color={colors.grayBlue2} fontFamily={fonts.SGM} size={10}>

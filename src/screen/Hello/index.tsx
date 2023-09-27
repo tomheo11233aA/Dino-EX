@@ -43,11 +43,11 @@ const Hello = ({ navigation }: any) => {
     return (
         <Box flex={1} backgroundColor={'#11181e'} alignCenter justifyCenter>
             <Img
-                source={require('@images/Logo.png')}
+                source={require('@images/logohx.png')}
                 width={100}
                 height={100}
             />
-            <Txt color={'#ecb800'} marginTop={20} size={30} bold>{applyLetterSpacing('BINANCE')}</Txt>
+            <Txt color={'#ecb800'} marginTop={20} size={30} bold>{applyLetterSpacing('HOTX')}</Txt>
         </Box>
     )
 }

@@ -19,7 +19,7 @@ const Header = () => {
         >
             <Back />
             <Txt color={theme.black} fontFamily={fonts.AS} size={18}>
-                {t('Binance Earn')}
+                {t('HotX Earn')}
             </Txt>
             <Txt></Txt>
         </Box>

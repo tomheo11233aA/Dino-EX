@@ -38,6 +38,6 @@ export default ({ theme, t }: any) =>
         </Txt>
 
         <Txt size={10} fontFamily={fonts.SGM} color={colors.grayBlue2}>
-            {t('Send USDT to Binance account')}
+            {t('Send USDT to HotX account')}
         </Txt>
     </Box>

@@ -16,13 +16,14 @@ import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
+import Icon from '@commom/Icon'
 
 const Futures = () => {
   const theme = useTheme()
   const drawerRef = useRef(null)
   const dispatch = useAppDispatch()
   const navigation = useNavigation()
-  
+
   const isLogin = useAppSelector(isLoginUserSelector)
   const loading = useAppSelector(loadingFuturesSelector)
 
@@ -64,7 +65,11 @@ const Futures = () => {
               <Drawer ref={drawerRef} />
             </> :
             <Box flex={1} alignCenter justifyCenter backgroundColor={theme.bg}>
-              <LoadingYellow />
+              {/* <LoadingYellow /> */}
+              <Icon
+                size={30}
+                source={require('@images/logohx.png')}
+              />
             </Box>
           }
         </Box>

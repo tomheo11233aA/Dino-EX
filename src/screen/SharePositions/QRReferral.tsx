@@ -43,7 +43,7 @@ const QRReferral = ({ t, profile }: Props) => {
                     {profile.referral}
                 </Txt>
                 <Txt color={colors.yellow} size={9}>
-                    {t('Download the Binance App')}
+                    {t('Download the HotX App')}
                 </Txt>
             </Box>
         </Box>

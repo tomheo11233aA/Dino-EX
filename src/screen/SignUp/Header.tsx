@@ -14,7 +14,7 @@ const Header = () => {
     <Box>
       <Back size={16} />
       <Txt marginTop={40} bold size={24} fontFamily={fonts.AS} color={theme.black}>
-        {`Binance ${t('Sign Up')}`}
+        {`HotX ${t('Sign Up')}`}
       </Txt>
     </Box>
   )

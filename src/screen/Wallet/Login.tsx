@@ -26,7 +26,7 @@ const Login = () => {
             height={200}
           />
         </Box>
-        <Txt marginTop={40} bold size={25}>{t('Welcome to Binance')}</Txt>
+        <Txt marginTop={40} bold size={25}>{t('Welcome to HotX')}</Txt>
       </Box>
 
       <Box row alignCenter justifySpaceBetween marginTop={10} marginBottom={10}>
