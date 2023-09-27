@@ -30,11 +30,17 @@ const SliderCorePosition = () => {
 
     const widthSlider = width - 45
     const onePercent = widthSlider * 1 / 100
-    
+
     const percent = Number(leverAdjustment.core) * 100 / MAX
     const percentCore = widthSlider * percent / 100
 
     const translateX = useSharedValue<number | string>(percentCore)
+
+    useEffect(() => {
+        const percent = Number(leverAdjustment.core) * 100 / MAX
+        const percentCore = widthSlider * percent / 100
+        translateX.value = percentCore
+    }, [leverAdjustment.showModal])
 
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: (_, ctx: any) => {
@@ -69,7 +75,7 @@ const SliderCorePosition = () => {
         return {
             text: `${value.toFixed(0)}x`
         }
-    }, [translateX])
+    })
 
     const handleChangeTextCore = (txt: string) => {
         let core = Number(txt.replace('x', '')) * (widthSlider / MAX)

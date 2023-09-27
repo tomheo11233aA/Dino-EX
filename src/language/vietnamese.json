@@ -467,6 +467,7 @@
         "Update time": "Thời gian cập nhật",
         "Transaction details": "Chi tiết giao dịch",
         "Role": "Vai trò",
-        "Taker": "Người thực hiện"
+        "Taker": "Người thực hiện",
+        "You are using the old version, please update the application to the new version for the best experience.": "Bạn đang sử dụng phiên bản cũ, hãy cập nhật ứng dụng lên phiên bản mới để có trải nghiệm tốt nhất."
     }
 }
