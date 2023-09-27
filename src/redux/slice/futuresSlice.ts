@@ -261,6 +261,7 @@ const futuresSlice = createSlice({
             handleSetChart(state, payload)
         },
         chartTranslate: (state, { payload }) => {
+            if (state.countCandles >= 490) return
             if ((state.countCandles + state.candles.length) >= state.charts.length) return
             state.countCandles++
             const item = state.charts[state.charts.length - (state.candles.length + state.countCandles)]

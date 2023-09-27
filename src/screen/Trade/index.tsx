@@ -1,8 +1,8 @@
 import Box from "@commom/Box"
+import Icon from "@commom/Icon"
 import { hideBottomTab, useAppDispatch, useAppSelector, useTheme } from "@hooks/index"
 import { delay } from "@method/alert"
 import KeyBoardSafe from "@reuse/KeyBoardSafe"
-import LoadingYellow from "@reuse/LoadingYellow"
 import { loadingTradeSelector } from "@selector/tradeSelector"
 import tradeSlice from "@slice/tradeSlice"
 import { colors } from "@theme/colors"
@@ -15,7 +15,6 @@ import Header from "./Header"
 import History from "./History"
 import Statistical from "./Statistical"
 import Times from "./Times"
-import Icon from "@commom/Icon"
 
 export default () => {
   const theme = useTheme()

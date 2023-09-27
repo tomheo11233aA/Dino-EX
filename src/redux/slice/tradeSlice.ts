@@ -132,7 +132,8 @@ const tradeSlice = createSlice({
             }
             handleSetChart(state, payload)
         },
-        chartTranslate: (state, { payload }) => {
+        chartTranslate: (state, { payload }) => { 
+            if (state.countCandles >= 490) return 
             if ((state.countCandles + state.candles.length) >= state.dataTrade.length) return
             state.countCandles++
             const item = state.dataTrade[state.dataTrade.length - (state.candles.length + state.countCandles)]
