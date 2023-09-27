@@ -15,6 +15,7 @@ import Header from "./Header"
 import History from "./History"
 import Statistical from "./Statistical"
 import Times from "./Times"
+import Icon from "@commom/Icon"
 
 export default () => {
   const theme = useTheme()
@@ -53,7 +54,11 @@ export default () => {
             <History />
           </> :
           <Box flex={1} alignCenter justifyCenter>
-            <LoadingYellow />
+            {/* <LoadingYellow /> */}
+            <Icon
+              size={30}
+              source={require('@images/logohx.png')}
+            />
           </Box>
         }
       </KeyBoardSafe>

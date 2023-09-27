@@ -13,13 +13,14 @@ export default () => {
         <Box row alignCenter justifySpaceBetween marginTop={25}>
             <Box row alignCenter>
                 <Icon
-                    source={require('@images/trade/logo.png')}
+                    source={require('@images/logohx.png')}
                     size={19}
-                    tintColor={'#90929E'}
+                    // tintColor={'#90929E'}
                     marginRight={10}
+                    resizeMode={'contain'}
                 />
                 <Txt fontFamily={fonts.IBMPR} size={12} color={theme.black}>
-                    Binance Pro
+                    HotX
                 </Txt>
             </Box>
             <Switch

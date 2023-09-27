@@ -3,16 +3,18 @@ import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { coreFuturesSelector } from '@selector/futuresSelector'
+import { coreFuturesSelector, positionsFuturesSelector, symbolFuturesSelector } from '@selector/futuresSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { width } from '@util/responsive'
-import React, { useEffect } from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { Alert, Platform, StyleSheet, Text, View } from 'react-native'
 import { PanGestureHandler, TextInput } from 'react-native-gesture-handler'
 import Animated, { useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import Note from './Note'
+import { leverAdjustmentAPIThunk } from '@asyncThunk/futuresAsyncThunk'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 interface Props {
     t: any;
@@ -26,17 +28,19 @@ const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
 
 const SliderCore = ({ setShow, t }: Props) => {
     const theme = useTheme()
+    const dispatch = useAppDispatch()
+
+    const core = useAppSelector(coreFuturesSelector)
+    const symbol = useAppSelector(symbolFuturesSelector)
+    const positions = useAppSelector(positionsFuturesSelector)
+
     const widthSlider = width - 45
     const onePercent = widthSlider * 1 / 100
-    const translateX = useSharedValue<number | string>(onePercent)
 
-    const dispatch = useAppDispatch()
-    const core = useAppSelector(coreFuturesSelector)
+    const percent = core * 100 / MAX
+    const percentCore = widthSlider * percent / 100
 
-    useEffect((): any => {
-        const percent = core * 100 / MAX
-        translateX.value = widthSlider * percent / 100
-    }, [])
+    const translateX = useSharedValue<number | string>(percentCore)
 
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: (_, ctx: any) => {
@@ -71,7 +75,7 @@ const SliderCore = ({ setShow, t }: Props) => {
         return {
             text: `${value.toFixed(0)}x`
         }
-    })
+    }, [translateX])
 
     const handleChangeTextCore = (txt: string) => {
         let core = Number(txt.replace('x', '')) * (widthSlider / MAX)
@@ -189,12 +193,35 @@ const SliderCore = ({ setShow, t }: Props) => {
             </Box>
 
             <Btn
-                onPress={() => {
+                onPress={async () => {
+                    const position = positions.filter(item => item.symbol === symbol)[0]
                     const percent = Number(translateX.value) * 100 / widthSlider
                     const core = MAX * percent / 100
-                    dispatch(futuresSlice.actions.setCore(
-                        Number(core?.toFixed(0))
-                    ))
+                    
+                    if (position) {
+                        if (core < position.core) {
+                            Alert.alert(t('Leverage reduction is not supported in Isolated Margin Mode with open positions.'))
+                            return setShow(false)
+                        }
+
+                        const { payload } = await dispatch(leverAdjustmentAPIThunk({
+                            idPosition: position.id,
+                            core: core,
+                        }))
+                        console.log('payload: ', payload)
+                        if (payload.status) {
+                            await dispatch(getProfileThunk())
+                            dispatch(futuresSlice.actions.setCore(
+                                Number(core?.toFixed(0))
+                            ))
+                        } else {
+                            Alert.alert(t(payload.message))
+                        }
+                    } else {
+                        dispatch(futuresSlice.actions.setCore(
+                            Number(core?.toFixed(0))
+                        ))
+                    }
                     setShow(false)
                 }}
                 backgroundColor={colors.yellow}

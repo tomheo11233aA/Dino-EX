@@ -21,12 +21,12 @@ const LogoChart = ({ color, height }: any) => {
             absolute
         >
             <Icon
-                source={require('@images/trade/logo.png')}
+                source={require('@images/logohx.png')}
                 size={25}
                 tintColor={COLOR}
             />
             <Text style={{ fontSize: 20, marginLeft: 10, fontWeight: 'bold', color: COLOR }}>
-                {applyLetterSpacing('BINANCE')}
+                {applyLetterSpacing('HOTX')}
             </Text>
         </Box>
     )

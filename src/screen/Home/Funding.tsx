@@ -80,6 +80,7 @@ export default () => {
                             <Icon
                                 source={require('@images/home/d.png')}
                                 size={30}
+                                opacity={0}
                             />
                         </Box>
                         <Txt size={11} fontFamily={fonts.IBMPM} color={theme.white}>

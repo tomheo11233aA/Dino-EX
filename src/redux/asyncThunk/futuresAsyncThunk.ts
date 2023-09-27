@@ -189,7 +189,7 @@ export const closeMarketFutureAllThunk =
 export const leverAdjustmentAPIThunk =
     createAsyncThunk('futures/leverAdjustmentAPI', async (data: any) => {
         const res = await leverAdjustmentAPI(data)
-        return res
+        return { ...res, core: data.core }
     })
 
 export const getTotalSellThunk =

@@ -115,7 +115,7 @@ const Future = () => {
                 </Btn>
             </Box>
             <Box height={5} backgroundColor={theme.gray2} marginTop={15} />
-            <Fee />
+            {/* <Fee /> */}
             <History />
         </Box>
     )

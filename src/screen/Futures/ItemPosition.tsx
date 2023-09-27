@@ -174,7 +174,7 @@ const ItemPosition = ({
                     </Txt>
 
                     <Txt style={styles.title} numberOfLines={1}>{`${t(`Liq. Price`)}(USDT)`}</Txt>
-                    {position.liquidationPrice === 0 || (position.side === 'buy' && position.regime === 'cross') ?
+                    {position?.liquidationPrice ?
                         <Box width={'100%'} alignEnd marginTop={3}>
                             <Txt color={'#aaaaaa'}>--</Txt>
                             <Txt color={'#aaaaaa'} size={10} marginTop={-9} marginRight={1} bold>{'- -'}</Txt>

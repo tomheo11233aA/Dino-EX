@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IChart } from "@screen/Futures/Chart";
 import { colors } from "@theme/colors";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import { ICoins, IPositions, ISellBuy, ITpslPosition, ITriggerTPSL } from "src/model/futuresModel";
+import { ICoins, IFeeOrderFuture, IPositions, ISellBuy, ITpslPosition, ITriggerTPSL } from "src/model/futuresModel";
 import { WritableDraft } from "immer/dist/internal";
 import { ITimeLimit } from "src/model/tradeModel";
 import { convertTimeGetChart } from "@method/format";
@@ -58,6 +58,7 @@ interface IfuturesSlice {
     triggerTPSL: ITriggerTPSL;
     tpslPosition: ITpslPosition;
     loadingHistoryFuture: boolean;
+    feeOrderFuture: IFeeOrderFuture[];
 }
 
 const initialState: IfuturesSlice = {
@@ -117,12 +118,16 @@ const initialState: IfuturesSlice = {
         showModal: false,
     },
     loadingHistoryFuture: false,
+    feeOrderFuture: [],
 }
 
 const futuresSlice = createSlice({
     name: 'futures',
     initialState,
     reducers: {
+        setFeeOrderFuture: (state, action) => {
+            state.feeOrderFuture = action.payload
+        },
         setTPSLPosition: (state, action: PayloadAction<ITpslPosition>) => {
             state.tpslPosition = action.payload
         },
@@ -192,6 +197,8 @@ const futuresSlice = createSlice({
         },
         setUSDT: (state, action: PayloadAction<boolean>) => {
             state.USDT = action.payload
+            state.amount = ''
+            state.sliderListen = !state.sliderListen
         },
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.loading = action.payload
@@ -319,8 +326,10 @@ const futuresSlice = createSlice({
             addCase(getPositionThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {
                     state.positions = payload.data
+                    state.core = state.positions.filter(item => item.symbol == state.symbol)[0]?.core || 1
                 } else {
                     state.positions = []
+                    state.core = 1
                 }
             }).addCase(getChartFuturesThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {
@@ -346,6 +355,7 @@ const futuresSlice = createSlice({
                 if (payload.status) {
                     state.leverAdjustment.showModal = false
                     state.leverAdjustment.idPosition = -1
+                    state.leverAdjustment.core = payload.core
                 }
             }).addCase(getTotalSellThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {

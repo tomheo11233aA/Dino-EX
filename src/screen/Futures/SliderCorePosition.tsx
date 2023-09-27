@@ -11,12 +11,11 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { width } from '@util/responsive'
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, Platform, StyleSheet, Text, View } from 'react-native'
 import { PanGestureHandler, TextInput } from 'react-native-gesture-handler'
 import Animated, { useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import Note from './Note'
-import { useTranslation } from 'react-i18next'
-import { cannotConnect } from '@method/alert'
 
 const MAX = 125
 const arrIndex = [1, 25, 50, 75, 100, 125]
@@ -31,12 +30,11 @@ const SliderCorePosition = () => {
 
     const widthSlider = width - 45
     const onePercent = widthSlider * 1 / 100
-    const translateX = useSharedValue<number | string>(onePercent)
+    
+    const percent = Number(leverAdjustment.core) * 100 / MAX
+    const percentCore = widthSlider * percent / 100
 
-    useEffect((): any => {
-        const percent = Number(leverAdjustment.core) * 100 / MAX
-        translateX.value = widthSlider * percent / 100
-    }, [])
+    const translateX = useSharedValue<number | string>(percentCore)
 
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: (_, ctx: any) => {
@@ -71,7 +69,7 @@ const SliderCorePosition = () => {
         return {
             text: `${value.toFixed(0)}x`
         }
-    })
+    }, [translateX])
 
     const handleChangeTextCore = (txt: string) => {
         let core = Number(txt.replace('x', '')) * (widthSlider / MAX)
@@ -87,7 +85,7 @@ const SliderCorePosition = () => {
         if (payload.status) {
             await dispatch(getProfileThunk())
         } else {
-            Alert.alert(t(cannotConnect()))
+            Alert.alert(t(payload.message))
         }
     }
 
@@ -206,11 +204,11 @@ const SliderCorePosition = () => {
             </Box>
 
             <Btn
-                onPress={handleleverAdjustment}
-                backgroundColor={colors.yellow}
+                radius={5}
                 height={35}
                 marginTop={20}
-                radius={5}
+                backgroundColor={colors.yellow}
+                onPress={handleleverAdjustment}
                 disabled={leverAdjustment.loading}
             >
                 {leverAdjustment.loading ? <LoadingBlack /> : <Txt fontFamily={fonts.SGM}>{t('Confirm')}</Txt>}

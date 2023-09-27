@@ -21,9 +21,9 @@ const Tabs = ({ tab, setTab }: Props) => {
         'Open Orders',
         'Order History',
         'Position History',
-        'Trade History',
+        // 'Trade History',
         'Transaction History',
-        'TWAP History',
+        // 'TWAP History',
         'Funding Fee',
     ]
 

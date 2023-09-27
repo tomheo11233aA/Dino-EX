@@ -4,7 +4,7 @@ import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector } from '@hooks/index'
 import LoadingWhite from '@reuse/LoadingWhite'
-import { USDTFuturesSelector, amountFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, priceFuturesSelector, regimeFuturesSelector, sideFuturesSelector, slFutureSelector, symbolFuturesSelector, tpFutureSelector, triggerTPSLFutureSelector, typeTradeFuturesSelector } from '@selector/futuresSelector'
+import { USDTFuturesSelector, amountFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, feeOrderFutureSelector, priceFuturesSelector, regimeFuturesSelector, sideFuturesSelector, slFutureSelector, symbolFuturesSelector, tpFutureSelector, triggerTPSLFutureSelector, typeTradeFuturesSelector } from '@selector/futuresSelector'
 import { orderFuture } from '@service/tradeService'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
@@ -12,6 +12,9 @@ import { fonts } from '@theme/fonts'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalAlertOrder from './ModalAlertOrder'
+import { profileUserSelector } from '@selector/userSelector'
+import { Profile } from 'src/model/userModel'
+import { PERCENT_90 } from './Amount'
 
 const BuySellButton = () => {
     const { t } = useTranslation()
@@ -29,22 +32,29 @@ const BuySellButton = () => {
     const priceLimit = useAppSelector(priceFuturesSelector)
     const typeTrade = useAppSelector(typeTradeFuturesSelector)
     const triggerTPSL = useAppSelector(triggerTPSLFutureSelector)
+    const feeOrderFuture = useAppSelector(feeOrderFutureSelector)
+    const profile: Profile = useAppSelector<any>(profileUserSelector)
 
     const [message, setMessage] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
     const [isShowModalAlert, setShowModalAlert] = useState<boolean>(false)
 
+    const feeStart = feeOrderFuture[0]?.value || 0
+    const feeEnd = feeOrderFuture[1]?.value || 0
+
+    const exchangeRate = coins.filter(item => item.symbol == symbol)[0]?.close || 0
+
     const handleOrderFuture = async () => {
-        let close: number = 0
-        for (let index = 0; index < coins.length; index++) {
-            if (coins[index].symbol === symbol) {
-                close = coins[index].close
-                break
-            }
+        let amountFee = amount
+        const max = USDT ? core * profile.balance : core * profile.balance / exchangeRate
+        if ((Number(amountFee) * 100 / max) >= PERCENT_90) {
+            const start = Number(amountFee) * (feeStart / 100)
+            const end = Number(amountFee) * (feeEnd / 100)
+            amountFee = Number(amountFee) - start - end
         }
         setLoading(true)
         const res = await orderFuture({
-            amount: USDT ? Number(amount) : (Number(amount) * close),
+            amount: USDT ? Number(amountFee) : Number(amountFee) * exchangeRate,
             regime: regime.toLocaleLowerCase(),
             core,
             symbol,

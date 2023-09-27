@@ -3,6 +3,8 @@ import Icon from '@commom/Icon'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
+import { styles } from '@navigation/Container'
+import { navigate } from '@navigation/navigationRef'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { coinsFuturesChartSelector, symbolFuturesSelector } from '@selector/futuresSelector'
@@ -10,14 +12,13 @@ import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import contants from '@util/contants'
+import { screen } from '@util/screens'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Platform, TouchableOpacity } from 'react-native'
 import io from 'socket.io-client'
 import { ICoins } from 'src/model/futuresModel'
 import Symbol from './Symbol'
-import { navigate } from '@navigation/navigationRef'
-import { screen } from '@util/screens'
 
 const SIZE_ICON = 15
 
@@ -117,6 +118,7 @@ const Header = ({ drawerRef }: any) => {
                 <Box row marginTop={12} paddingRight={10}>
                     <TouchableOpacity
                         onPress={() => {
+                            navigation.getParent()?.setOptions({ tabBarStyle: styles.noneContainer })
                             navigate(screen.TRADE)
                         }}
                     >

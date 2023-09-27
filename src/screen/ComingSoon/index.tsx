@@ -1,39 +1,39 @@
 import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { useTheme } from '@hooks/index'
 import { applyLetterSpacing } from '@method/format'
+import Back from '@reuse/Back'
+import Safe from '@reuse/Safe'
 import { colors } from '@theme/colors'
 import { height, width } from '@util/responsive'
 import React from 'react'
 
-const ComingSoon = ({
-    flex = 1,
-    marginTop = -height * 20 / 100
-}) => {
-    const theme = useTheme()
+const ComingSoon = ({ showBack = true }) => {
     return (
-        <Box
-            flex={flex}
-            alignCenter
-            justifyCenter
-            backgroundColor={theme.bg}
-            marginTop={marginTop}
-        >
-            <Icon
-                size={width * 90 / 100}
-                marginLeft={20}
-                source={require('@images/planet2.png')}
-            />
-            <Txt
-                bold
-                size={20}
-                marginTop={-50}
-                color={colors.yellow}
+        <Safe paddingHorizontal={15}>
+            {showBack ? <Back size={16} /> : <></>}
+
+            <Box
+                flex={1}
+                alignCenter
+                justifyCenter
             >
-                {applyLetterSpacing('COMING SOON', 10)}
-            </Txt>
-        </Box>
+                <Icon
+                    marginTop={-height * 30 / 100}
+                    marginLeft={20}
+                    size={width * 90 / 100}
+                    source={require('@images/planet2.png')}
+                />
+                <Txt
+                    bold
+                    size={20}
+                    marginTop={-50}
+                    color={colors.yellow}
+                >
+                    {applyLetterSpacing('COMING SOON', 10)}
+                </Txt>
+            </Box>
+        </Safe>
     )
 }
 

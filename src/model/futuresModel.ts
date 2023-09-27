@@ -77,3 +77,10 @@ export interface ITpslPosition {
     showModal: boolean;
     position: IPositions | null;
 }
+
+export interface IFeeOrderFuture {
+    id: number,
+    name: string
+    value: number,
+    data: null,
+}
