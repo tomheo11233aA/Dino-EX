@@ -15,6 +15,10 @@ import ModalTPSLPosition from './ModalTPSLPosition'
 import OpenOrders from './OpenOrders'
 import Positions from './Positions'
 import TabHistory from './TabHistory'
+import { io } from 'socket.io-client'
+import contants from '@util/contants'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import { AppState, AppStateStatus } from 'react-native'
 
 const History = () => {
     const dispatch = useAppDispatch()
@@ -32,6 +36,27 @@ const History = () => {
     useEffect((): any => {
         handleGetPosition()
     }, [profile])
+
+    useEffect((): any => {
+        const newSocket = io(contants.HOSTING)
+        newSocket.emit('joinUser', `${profile.id}`)
+
+        newSocket.on("limit", (res) => {
+            console.log('ress')
+            dispatch(getProfileThunk())
+        })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
+
+        return () => newSocket.disconnect()
+    }, [])
 
     const handleGetPosition = async () => {
         await dispatch(getPositionThunk(symbol))

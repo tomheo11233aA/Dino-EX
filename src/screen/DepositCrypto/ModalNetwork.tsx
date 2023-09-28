@@ -76,7 +76,7 @@ const ModalNetwork = ({ show, setShow, setNetWork }: any) => {
                     </Txt>
                 </Btn>
 
-                <Btn
+                {/* <Btn
                     onPress={() => {
                         setNetWork({
                             name: 'Ethereum (ERC20)',
@@ -97,7 +97,7 @@ const ModalNetwork = ({ show, setShow, setNetWork }: any) => {
                     >
                         Ethereum (ERC20)
                     </Txt>
-                </Btn>
+                </Btn> */}
             </Box>
         </Modality>
     )

@@ -14,6 +14,7 @@ import { Alert } from 'react-native'
 import Header from './Header'
 import ModalNetwork from './ModalNetwork'
 import { useTranslation } from 'react-i18next'
+import Clipboard from '@react-native-clipboard/clipboard'
 
 const DepositCrypto = () => {
     const theme = useTheme()
@@ -31,7 +32,7 @@ const DepositCrypto = () => {
     }, [network])
 
     const handleCreateWallet = async () => {
-        const res = await createWallet(coin.wallet)
+        const res = await createWallet('USDT.BEP20')
         if (res.status) {
             setAddress(res.data.address)
         }
@@ -42,7 +43,10 @@ const DepositCrypto = () => {
             <Header {...{ coin, network, theme, address, t }} />
             <Box height={1} backgroundColor={theme.gray2} marginTop={40} />
             <Box padding={30}>
-                <Btn alignCenter={false} marginBottom={30}>
+                <Btn
+                    onPress={() => Clipboard.setString(address)}
+                    alignCenter={false} marginBottom={30}
+                >
                     <Txt color={colors.gray5} fontFamily={fonts.IBMPR} size={12}>
                         {t('Wallet address')}
                     </Txt>
@@ -53,7 +57,7 @@ const DepositCrypto = () => {
                             width={width * 70 / 100}
                             color={theme.black}
                         >
-                            {network.name ? '0x3d8999b00ee8324dd0f22ac8be859cc10f50e9cb' : '--'}
+                            {network.name ? address || '--' : '--'}
                         </Txt>
                         <Icon
                             source={require('@images/wallet/copy.png')}

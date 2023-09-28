@@ -174,7 +174,7 @@ const Balance = ({ spot }: Props) => {
                 </Btn>
                 <Btn
                     // onPress={() => navigate(screen.COIN_LIST_WITHDRAW)}
-                    onPress={() => navigate(screen.DEPOSIT_CRYPTO, {
+                    onPress={() => navigate(screen.SPOT_COIN, {
                         coin: {
                             currency: 'USDT',
                             balance: profile.balance,
