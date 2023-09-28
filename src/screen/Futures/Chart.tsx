@@ -8,7 +8,7 @@ import { colors } from '@theme/colors'
 import contants from '@util/contants'
 import { height, width } from '@util/responsive'
 import React, { useEffect } from 'react'
-import { StyleSheet } from 'react-native'
+import { AppState, AppStateStatus, StyleSheet } from 'react-native'
 import { PanGestureHandler, PinchGestureHandler, PinchGestureHandlerGestureEvent } from 'react-native-gesture-handler'
 import Reanimated, { runOnJS, useAnimatedGestureHandler, useSharedValue } from 'react-native-reanimated'
 import { G, Line, Path, Svg, Text as TextSVG } from 'react-native-svg'
@@ -91,6 +91,15 @@ const Chart = ({ setOpenChart }: Props) => {
                 }))
             }
         })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
 
         return () => newSocket.disconnect()
     }, [])

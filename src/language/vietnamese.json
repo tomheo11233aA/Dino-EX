@@ -470,6 +470,10 @@
         "Taker": "Người thực hiện",
         "You are using the old version, please update the application to the new version for the best experience.": "Bạn đang sử dụng phiên bản cũ, hãy cập nhật ứng dụng lên phiên bản mới để có trải nghiệm tốt nhất.",
         "Close all positions, cancel all positions in USDⓢ-M and close all positions in USDⓢ-M with Market orders.": "Đóng tất cả các vị thế, huỷ tất cả các vị thế trong USDⓢ-M và đóng tất cả các vị thế trong USDⓢ-M bằng lệng Market.",
-        "Are you sure you want to close all positions.": "Bạn có chắc muốn đóng tất cả các vị thế."
+        "Are you sure you want to close all positions.": "Bạn có chắc muốn đóng tất cả các vị thế.",
+        "Open Short": "Mở bán",
+        "Open Long": "Mở mua",
+        "it will trigger": "lệnh sẽ được kích hoạt",
+        "order and the estimated PNL will be": "PNL ước tính là"
     }
 }

@@ -5,6 +5,7 @@ import futuresSlice from "@slice/futuresSlice";
 import { colors } from "@theme/colors";
 import contants from "@util/contants";
 import { useEffect } from "react";
+import { AppState, AppStateStatus } from "react-native";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { ICoins } from "src/model/futuresModel";
@@ -56,6 +57,16 @@ export const getCoinsFromSocket = async () => {
     const focus = navigation.addListener('focus', () => {
       newSocket.connect()
     })
+
+    AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+      console.log(nextAppState)
+      if (nextAppState === 'inactive') {
+        newSocket.disconnect()
+      }
+      if (nextAppState === 'active') {
+        newSocket.connect()
+      }
+    });
 
     return () => {
       blur

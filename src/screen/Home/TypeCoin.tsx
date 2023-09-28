@@ -20,7 +20,7 @@ const TypeCoin = () => {
                     <Box
                         key={item}
                         marginRight={20}
-                        backgroundColor={index == 0 && theme.gray}
+                        backgroundColor={index == 0 && theme.gray2}
                         paddingHorizontal={8}
                         paddingVertical={3}
                         radius={3}

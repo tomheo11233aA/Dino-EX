@@ -11,7 +11,7 @@ import { isLoginUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { height } from '@util/responsive'
 import React, { useEffect, useRef } from 'react'
-import { AppState, AppStateStatus } from 'react-native'
+import { AppState, AppStateStatus, Platform } from 'react-native'
 import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
@@ -54,8 +54,13 @@ const Futures = () => {
         <Box flex={1}>
           {!loading ?
             <>
-              <Box height={height - HEIGHT_BOTTOM_TAB}>
-                <KeyBoardSafe bg={theme.gray5} paddingBottom={100}>
+              <Box
+                height={
+                  Platform.OS === 'android' ? height - HEIGHT_BOTTOM_TAB * 2 :
+                    height - HEIGHT_BOTTOM_TAB
+                }
+              >
+                <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
                   <Header drawerRef={drawerRef} />
                   <Transaction />
                 </KeyBoardSafe>

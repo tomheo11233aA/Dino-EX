@@ -58,7 +58,6 @@ interface IfuturesSlice {
     triggerTPSL: ITriggerTPSL;
     tpslPosition: ITpslPosition;
     loadingHistoryFuture: boolean;
-    feeOrderFuture: IFeeOrderFuture[];
 }
 
 const initialState: IfuturesSlice = {
@@ -118,16 +117,12 @@ const initialState: IfuturesSlice = {
         showModal: false,
     },
     loadingHistoryFuture: false,
-    feeOrderFuture: [],
 }
 
 const futuresSlice = createSlice({
     name: 'futures',
     initialState,
     reducers: {
-        setFeeOrderFuture: (state, action) => {
-            state.feeOrderFuture = action.payload
-        },
         setTPSLPosition: (state, action: PayloadAction<ITpslPosition>) => {
             state.tpslPosition = action.payload
         },
@@ -422,9 +417,9 @@ const handleSetChart = (state: WritableDraft<IfuturesSlice>, payload: any) => {
             sumMA99 = sumMA99 - firtValueSumMA99 + current
         }
 
-        let dma7 = payload.heigh_candle - ((sumMA7 / 7 - minLowItem.low) * section)
-        let dma25 = payload.heigh_candle - ((sumMA25 / 25 - minLowItem.low) * section)
-        let dma99 = payload.heigh_candle - ((sumMA99 / 99 - minLowItem.low) * section)
+        let dma7 = payload.heigh_candle - ((sumMA7 / 7 - minLowItem.low) * section) || 0
+        let dma25 = payload.heigh_candle - ((sumMA25 / 25 - minLowItem.low) * section) || 0
+        let dma99 = payload.heigh_candle - ((sumMA99 / 99 - minLowItem.low) * section) || 0
 
         const char = index === 0 ? 'M' : 'L'
         dPathMA7 += `${char}${payload.gap_candles * index - payload.padding_right_candle} ${dma7}`

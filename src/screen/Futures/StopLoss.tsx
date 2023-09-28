@@ -195,7 +195,7 @@ const StopLoss = ({ theme, t, sl, setSL, position }: any) => {
                                 {`${t(' Market ')}`}
                             </Txt>
                             <Txt style={styles.textGray}>
-                                {`${t('order and the estimated PNL will be ')}`}
+                                {`${t('order and the estimated PNL will be')}`}
                             </Txt>
                             <Txt
                                 color={color} fontFamily={fonts.M17}>

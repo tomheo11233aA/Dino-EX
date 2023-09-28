@@ -9,7 +9,7 @@ import { colors } from '@theme/colors'
 import contants from '@util/contants'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { Alert, AppState, AppStateStatus, StyleSheet, Text, View } from 'react-native'
 import io from 'socket.io-client'
 import { ISellBuy } from 'src/model/futuresModel'
 
@@ -31,6 +31,15 @@ const SellInto = () => {
         newSocket.on(`${symbol}SELL`, (data) => {
             dispatch(futuresSlice.actions.setSells(data))
         })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
 
         return () => newSocket.disconnect()
     }, [symbol])
@@ -84,7 +93,7 @@ const Sell = ({ sell, theme }: { sell: ISellBuy, theme: any }) => {
                     </Text>
                 </View>
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={[styles.txtTotal, {color: theme.black}]} numberOfLines={1}>
+                    <Text style={[styles.txtTotal, { color: theme.black }]} numberOfLines={1}>
                         {kFormatter(sell.amount.toFixed(3))}
                     </Text>
                 </View>

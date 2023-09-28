@@ -15,7 +15,7 @@ const Spot = () => {
     const wallet = useAppSelector(walletSpotSelector)
     const coins = useAppSelector(coinsFuturesChartSelector)
     const profile: Profile = useAppSelector<any>(profileUserSelector)
-
+    
     const spot = convertToValueSpot(coins, wallet, profile)
 
     return (

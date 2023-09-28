@@ -6,7 +6,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TextInput } from 'react-native'
+import { Platform, TextInput } from 'react-native'
 import Animated from 'react-native-reanimated'
 import MarkOrLast from './MarkOrLast'
 
@@ -121,7 +121,7 @@ const ItemTPSL = ({
                         padding={4}
                         marginTop={5}
                         backgroundColor={theme.gray}
-                        height={40}
+                        height={Platform.OS === 'android' && 25}
                     >
                         <TextInput
                             keyboardType={'decimal-pad'}
@@ -135,6 +135,7 @@ const ItemTPSL = ({
                                 paddingRight: 4,
                                 color: theme.black,
                                 fontFamily: fonts.M23,
+                                paddingVertical: 0,
                             }}
                         />
                         <Txt color={theme.black} size={11}>USDT</Txt>

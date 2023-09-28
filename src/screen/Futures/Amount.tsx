@@ -2,7 +2,7 @@ import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { USDTFuturesSelector, amountFuturesSelector, currencyFuturesSelector, feeOrderFutureSelector } from '@selector/futuresSelector'
+import { USDTFuturesSelector, amountFuturesSelector, currencyFuturesSelector } from '@selector/futuresSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -11,7 +11,6 @@ import { Platform, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import Animated, { SharedValue, useAnimatedProps, useAnimatedStyle } from 'react-native-reanimated'
 import { WIDTH_SLIDE } from './Slider'
-import { IFeeOrderFuture } from 'src/model/futuresModel'
 
 interface Props {
     max: number;
@@ -38,31 +37,15 @@ const Amount = ({
     const USDT = useAppSelector(USDTFuturesSelector)
     const amount = useAppSelector(amountFuturesSelector)
     const currency = useAppSelector(currencyFuturesSelector)
-    const feeOrderFuture = useAppSelector(feeOrderFutureSelector)
-
-    const feeStart = feeOrderFuture[0]?.value || 0
-    const feeEnd = feeOrderFuture[1]?.value || 0
 
     const animatedProps: any = useAnimatedProps(() => {
         if (enter.value) {
-            let amountFee = amount
-            if ((Number(amountFee) * 100 / max) >= PERCENT_90) {
-                const start = Number(amountFee) * (feeStart / 100)
-                const end = Number(amountFee) * (feeEnd / 100)
-                amountFee = Number(amountFee) - start - end
-            }
             return {
-                text: `${amountFee}`
+                text: `${amount}`
             }
         } else {
             const percent = positionX.value * 100 / WIDTH_SLIDE
-            let amount = max * percent / 100
-
-            if ((Number(amount) * 100 / max) >= PERCENT_90) {
-                const start = Number(amount) * (feeStart / 100)
-                const end = Number(amount) * (feeEnd / 100)
-                amount = Number(amount) - start - end
-            }
+            const amount = max * percent / 100
 
             return {
                 text: hint.value ? '' : `${amount}`

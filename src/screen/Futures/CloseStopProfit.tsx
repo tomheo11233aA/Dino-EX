@@ -22,7 +22,7 @@ const CloseStopProfit = ({
         <Box row alignCenter justifySpaceBetween>
             <Txt></Txt>
             <Txt fontFamily={fonts.AS} size={18} color={theme.black}>
-                {t('Take Profit/Stop Loss')}
+                {`${t('Take Profit')}/${t('Stop Loss')}`}
             </Txt>
             <Btn
                 onPress={() => dispatch(

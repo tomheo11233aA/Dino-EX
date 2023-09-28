@@ -10,7 +10,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import contants from '@util/contants'
 import React, { useEffect } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { AppState, AppStateStatus, TouchableOpacity } from 'react-native'
 import { io } from 'socket.io-client'
 import { ITimeLimit } from 'src/model/tradeModel'
 
@@ -34,6 +34,15 @@ const TimeLimitChart = ({ setOpenChart }: Props) => {
                 newSocket.disconnect()
             }
         })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
 
         return () => newSocket.disconnect()
     }, [])

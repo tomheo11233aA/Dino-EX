@@ -9,7 +9,7 @@ import { colors } from "@theme/colors"
 import contants from "@util/contants"
 import { height, width } from "@util/responsive"
 import { useEffect } from "react"
-import { StyleSheet } from "react-native"
+import { AppState, AppStateStatus, StyleSheet } from "react-native"
 import { PanGestureHandler, PinchGestureHandler, PinchGestureHandlerGestureEvent } from "react-native-gesture-handler"
 import Animated, { runOnJS, useAnimatedGestureHandler, useSharedValue } from "react-native-reanimated"
 import { G, Svg } from "react-native-svg"
@@ -81,6 +81,15 @@ export default () => {
                 }))
             }
         })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
 
         return () => newSocket.disconnect()
     }, [])

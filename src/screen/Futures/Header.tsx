@@ -15,7 +15,7 @@ import contants from '@util/contants'
 import { screen } from '@util/screens'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Platform, TouchableOpacity } from 'react-native'
+import { AppState, AppStateStatus, Platform, TouchableOpacity } from 'react-native'
 import io from 'socket.io-client'
 import { ICoins } from 'src/model/futuresModel'
 import Symbol from './Symbol'
@@ -48,6 +48,15 @@ const Header = ({ drawerRef }: any) => {
         const focus = navigation.addListener('focus', () => {
             newSocket.connect()
         })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
 
         return () => {
             blur

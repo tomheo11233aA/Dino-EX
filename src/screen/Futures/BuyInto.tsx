@@ -9,7 +9,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import contants from '@util/contants'
 import React, { useEffect } from 'react'
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { Alert, AppState, AppStateStatus, StyleSheet, Text, View } from 'react-native'
 import io from 'socket.io-client'
 import { ISellBuy } from 'src/model/futuresModel'
 
@@ -29,6 +29,15 @@ const BuyInto = () => {
         newSocket.on(`${symbol}BUY`, (data) => {
             dispatch(futuresSlice.actions.setBuys(data))
         })
+
+        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            if (nextAppState === 'inactive') {
+                newSocket.disconnect()
+            }
+            if (nextAppState === 'active') {
+                newSocket.connect()
+            }
+        });
 
         return () => newSocket.disconnect()
     }, [symbol])

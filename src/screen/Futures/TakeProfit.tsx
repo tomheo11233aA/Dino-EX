@@ -75,7 +75,7 @@ const TakeProfit = ({ theme, t, tp, setTP, position }: any) => {
                             value={tp.value}
                             onPlus={handlePlus}
                             onMinus={handleMinus}
-                            placeholder={'Take (USDT)'}
+                            placeholder={`${t('Take Profit')} (USDT)`}
                             setValue={(txt: string) => setTP({ ...tp, value: txt })}
                         />
                         <Box
@@ -197,7 +197,7 @@ const TakeProfit = ({ theme, t, tp, setTP, position }: any) => {
                                 {`${t(' Market ')}`}
                             </Txt>
                             <Txt style={styles.textGray}>
-                                {`${t('order and the estimated PNL will be ')}`}
+                                {`${t('order and the estimated PNL will be')}`}
                             </Txt>
                             <Txt color={color} fontFamily={fonts.M17}>
                                 {` ${pnl} `}

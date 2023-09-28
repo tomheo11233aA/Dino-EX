@@ -10,7 +10,6 @@ import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PanGestureHandler, TextInput } from 'react-native-gesture-handler'
 import Animated, { SharedValue, runOnJS, useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated'
-import { Profile } from 'src/model/userModel'
 
 interface Props {
     max: number;
