@@ -59,7 +59,6 @@ export const getCoinsFromSocket = async () => {
     })
 
     AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
-      console.log(nextAppState)
       if (nextAppState === 'inactive') {
         newSocket.disconnect()
       }

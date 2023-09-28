@@ -27,8 +27,6 @@ const PositionHistoryDetail = () => {
         setListDetail(res.data.array)
     }
 
-    console.log(listDetail)
-
     return (
         <KeyBoardSafe bg={theme.gray5}>
             <TopBar />

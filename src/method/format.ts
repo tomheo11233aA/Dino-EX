@@ -54,14 +54,11 @@ export const converPostirions = (position: IPositions, coins: ICoins[], balance:
         let index = coins.findIndex((coin: ICoins) => coin.symbol === position.symbol)
         const close = coins[index]?.close || 0
 
-        if (position.side === 'buy') {
-            PNL = (close - position.entryPrice) * position.amountCoin
-        } else {
-            PNL = (position.entryPrice - close) * position.amountCoin
-        }
+        PNL = calcPNL(position, close)
 
         MARK_PRICE = close
-        ROE = PNL / position.margin * 100
+        // ROE = PNL / position.margin * 100
+        ROE = calcROE(PNL, position)
         SIZE = position.margin * position.core
         ROUND = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
 
@@ -202,7 +199,13 @@ export const calcPositions = (positions: IPositions[], coins: ICoins[]): ICalcPo
             let index = coins.findIndex((coin: ICoins) => coin.symbol === positions[i].symbol)
             const close = coins[index]?.close || 0
             PNL += calcPNL(positions[i], close)
-
+            // const pnl = calcPNL(positions[i], close)
+            // const ROE = pnl / positions[i].margin * 100
+            // console.log('pnl: ', pnl)
+            // console.log('ROE: ', ROE)
+            // console.log('core: ', positions[i].core)
+            // PNL += positions[i].margin * ROE * positions[i].core
+            // console.log('PNL: ', PNL)
             if (positions[i].regime === 'cross') {
                 MARGIN += positions[i].margin
             }
@@ -277,14 +280,10 @@ export const converPostirionsClose = (position: IPositionHistory, balance: numbe
 
     const close = position.closePrice
 
-    if (position.side === 'buy') {
-        PNL = (close - position.entryPrice) * position.amountCoin
-    } else {
-        PNL = (position.entryPrice - close) * position.amountCoin
-    }
+    PNL = calcPNL(position, close)
 
     MARK_PRICE = close
-    ROE = PNL / position.margin * 100
+    ROE = calcROE(PNL, position)
     SIZE = position.margin * position.core
     ROUND = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
 
@@ -317,14 +316,20 @@ export const converPostirionsClose = (position: IPositionHistory, balance: numbe
     }
 }
 
-export const calcPNL = (position: IPositions, close: number) => {
+export const calcPNL = (position: IPositions | IPositionHistory, close: number) => {
     let PNL = 0
     if (position.side === 'buy') {
-        PNL = (close - position.entryPrice) * position.amountCoin
+        PNL = (close - position.entryPrice) * position.amountCoin * position.core
     } else {
-        PNL = (position.entryPrice - close) * position.amountCoin
+        PNL = (position.entryPrice - close) * position.amountCoin * position.core
     }
     return PNL
+}
+
+export const calcROE = (PNL: number, position: IPositions | IPositionHistory,) => {
+    let ROE = 0
+    ROE = PNL / position.margin * 100
+    return ROE
 }
 
 export const calcReducerOnly = (typeTrade: string) => {

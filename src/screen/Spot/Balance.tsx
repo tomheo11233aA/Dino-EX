@@ -3,7 +3,7 @@ import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
-import { ISpot, numberCommasDot } from '@method/format'
+import { ISpot, calcPNL, calcROE, numberCommasDot } from '@method/format'
 import { navigate } from '@navigation/navigationRef'
 import { symbolFuturesSelector } from '@selector/futuresSelector'
 import { profileUserSelector, showBalanceSelector } from '@selector/userSelector'
@@ -76,12 +76,8 @@ const Balance = ({ spot }: Props) => {
         if (position) {
             let index = coins.findIndex((coin: ICoins) => coin.symbol === position[0].symbol)
             const close = coins[index]?.close || 0
-            if (position[0].side === 'buy') {
-                PNL = (close - position[0].entryPrice) * position[0].amountCoin
-            } else {
-                PNL = (position[0].entryPrice - close) * position[0].amountCoin
-            }
-            ROE = PNL / position[0].margin * 100
+            PNL = calcPNL(position[0], close)
+            ROE = calcROE(PNL, position[0])
         }
     }
 

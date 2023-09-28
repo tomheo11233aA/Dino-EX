@@ -76,7 +76,7 @@ const StopLoss = ({ theme, t, sl, setSL, position }: any) => {
                             value={sl.value}
                             onPlus={handlePlus}
                             onMinus={handleMinus}
-                            placeholder={'Stop (USDT)'}
+                            placeholder={`${t('Stop Loss')} (USDT)`}
                             setValue={(txt: string) => setSL({ ...sl, value: txt })}
                         />
                         <Box

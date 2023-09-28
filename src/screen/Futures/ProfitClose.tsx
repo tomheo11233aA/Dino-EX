@@ -1,7 +1,7 @@
 import Box from '@commom/Box'
 import Txt from '@commom/Txt'
 import { useAppSelector } from '@hooks/index'
-import { numberCommasDot } from '@method/format'
+import { calcPNL, numberCommasDot } from '@method/format'
 import { coinsFuturesChartSelector } from '@selector/futuresSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -22,11 +22,7 @@ const ProfitClose = ({ position, theme, t }: Props) => {
     if (coins.length > 0 && position) {
         let index = coins.findIndex(coin => coin.symbol === position.symbol)
         const close = coins[index]?.close || 0
-        if (position.side === 'buy') {
-            PNL = (close - position.entryPrice) * position.amountCoin
-        } else {
-            PNL = (position.entryPrice - close) * position.amountCoin
-        }
+        PNL = calcPNL(position, close)
         SIZE = position.margin * position.core
     }
 

@@ -2,7 +2,7 @@ import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { getCoinsFromSocket, useAppSelector, useTheme } from '@hooks/index'
-import { calcPNL, numberCommasDot } from '@method/format'
+import { calcPNL, calcROE, numberCommasDot } from '@method/format'
 import { coinsFuturesChartSelector, positionsFuturesSelector } from '@selector/futuresSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -24,7 +24,7 @@ const PNLToday = () => {
         const index = coins.findIndex(coin => coin.symbol == position.symbol)
         const close = coins[index]?.close || 0
         const PNL = calcPNL(position, close)
-        let ROE = PNL / position.margin * 100
+        let ROE = calcROE(PNL, position)
         totalROE += ROE
         totalPNL += PNL
     })

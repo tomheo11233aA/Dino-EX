@@ -40,7 +40,6 @@ const ItemPosition = ({
 }: Props) => {
 
     position = converPostirions(position, coins, profile.balance)
-    console.log(position)
     return (
         <Box
             marginTop={10}

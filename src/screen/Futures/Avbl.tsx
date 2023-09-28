@@ -13,14 +13,14 @@ import { Profile } from 'src/model/userModel'
 
 const Avbl = ({ theme }: any) => {
     const { t } = useTranslation()
-    const coins = useAppSelector(coinsFuturesChartSelector)
-    const positions = useAppSelector(positionsFuturesSelector)
+    // const coins = useAppSelector(coinsFuturesChartSelector)
+    // const positions = useAppSelector(positionsFuturesSelector)
     const profile: Profile = useAppSelector<any>(profileUserSelector)
 
-    let result = profile.balance
+    // let result = profile.balance
 
-    const positionObj = calcPositions(positions, coins)
-    result = profile.balance + positionObj.pnl + positionObj.margin
+    // const positionObj = calcPositions(positions, coins)
+    // result = profile.balance + positionObj.pnl + positionObj.margin
 
     return (
         <Box
@@ -35,7 +35,7 @@ const Avbl = ({ theme }: any) => {
 
             <Box row>
                 <Txt size={13} fontFamily={'Myfont21-Regular'} color={theme.black}>
-                    {numberCommasDot(result.toFixed(3))}
+                    {numberCommasDot(profile?.balance.toFixed(3))}
                     <Txt size={11} fontFamily={fonts.IBMPR} color={theme.black}>
                         {' USDT'}
                     </Txt>
