@@ -26,8 +26,8 @@ const FuturesHistory = () => {
       {tab === 'Open Orders' ?
         <OpenOrders /> : tab === 'Order History' ?
           <OrderHistory /> : tab === 'Position History' ?
-            // <PositionHistory /> : tab === 'Trade History' ?
-              // <TradeHistory /> : tab === 'TWAP History' ?
+            <PositionHistory /> : tab === 'Trade History' ?
+              <TradeHistory /> : tab === 'TWAP History' ?
                 <TWAPHistory /> : tab === 'Transaction History' ?
                   <TransactionHistory /> : <FundingFee />
       }

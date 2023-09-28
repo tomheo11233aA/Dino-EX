@@ -9,12 +9,13 @@ import { coinsFuturesChartSelector } from '@selector/futuresSelector'
 import { profileUserSelector } from '@selector/userSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { fonts } from '@theme/fonts'
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ScrollView } from 'react-native'
+import { Alert, ScrollView } from 'react-native'
 import { IPositions } from 'src/model/futuresModel'
 import { Profile } from 'src/model/userModel'
 import ItemPosition from './ItemPosition'
+import ModalCloseAllPosition from './ModalCloseAllPosition'
 
 interface Props {
     positions: IPositions[];
@@ -27,6 +28,8 @@ const Positions = ({ positions }: Props) => {
     const coins = useAppSelector(coinsFuturesChartSelector)
     const profile: Profile = useAppSelector<any>(profileUserSelector)
 
+    const [isShowModalCloseAllPosition, setShowModalCloseAllPosition] = useState(false)
+
     const handleClosePosition = async (id: number) => {
         const { payload } = await dispatch(closeMarketFutureThunk(id))
         if (payload.status) {
@@ -35,10 +38,18 @@ const Positions = ({ positions }: Props) => {
     }
 
     const handleCloseAll = async () => {
+        setShowModalCloseAllPosition(true)
+    }
+
+    const closeAllPosition = async () => {
         const { payload } = await dispatch(closeMarketFutureAllThunk())
         if (payload.status) {
             await dispatch(getProfileThunk())
         }
+        if (payload.error) {
+            Alert.alert(t(payload.message))
+        }
+        setShowModalCloseAllPosition(false)
     }
 
     const handleSetClosePosition = async (position: IPositions) => {
@@ -85,11 +96,11 @@ const Positions = ({ positions }: Props) => {
                             <Txt color={theme.black}>{t('Hide Other Symbols')}</Txt>
                         </Box>
                         <Btn
-                            onPress={handleCloseAll}
-                            paddingVertical={7}
-                            backgroundColor={theme.gray2}
                             radius={3}
+                            paddingVertical={7}
                             paddingHorizontal={10}
+                            onPress={handleCloseAll}
+                            backgroundColor={theme.gray2}
                         >
                             <Txt size={12} fontFamily={fonts.SGM} color={theme.black}>
                                 {t('Close All')}
@@ -97,7 +108,7 @@ const Positions = ({ positions }: Props) => {
                         </Btn>
                     </Box>
                     <ScrollView
-                        contentContainerStyle={{ 
+                        contentContainerStyle={{
                             backgroundColor: theme.bg,
                         }}
                     >
@@ -121,6 +132,11 @@ const Positions = ({ positions }: Props) => {
                 :
                 <NotPosition />
             }
+            <ModalCloseAllPosition
+                show={isShowModalCloseAllPosition}
+                setShow={setShowModalCloseAllPosition}
+                closeAllPosition={closeAllPosition}
+            />
         </>
     )
 }

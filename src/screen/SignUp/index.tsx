@@ -43,7 +43,7 @@ const SignUp = () => {
             setUsername('')
             setConfirmPassword('')
         }
-        console.log(res.message)
+        
         Alert.alert(t(res.message))
         setLoading(false)
     }

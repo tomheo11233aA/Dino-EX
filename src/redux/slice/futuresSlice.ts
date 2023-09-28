@@ -344,6 +344,7 @@ const futuresSlice = createSlice({
             }).addCase(closeMarketFutureAllThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {
                     state.PNL = 0
+                    state.core = 1
                 }
             }).addCase(closeMarketFutureThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {

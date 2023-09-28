@@ -208,7 +208,7 @@ const SliderCore = ({ setShow, t }: Props) => {
                             idPosition: position.id,
                             core: core,
                         }))
-                        console.log('payload: ', payload)
+                        
                         if (payload.status) {
                             await dispatch(getProfileThunk())
                             dispatch(futuresSlice.actions.setCore(

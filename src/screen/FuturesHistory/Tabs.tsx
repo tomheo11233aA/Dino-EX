@@ -24,7 +24,7 @@ const Tabs = ({ tab, setTab }: Props) => {
         // 'Trade History',
         'Transaction History',
         // 'TWAP History',
-        'Funding Fee',
+        // 'Funding Fee',
     ]
 
     return (

@@ -1,10 +1,10 @@
 import Box from '@commom/Box'
+import Icon from '@commom/Icon'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { delay } from '@method/alert'
 import { HEIGHT_BOTTOM_TAB, styles } from '@navigation/Container'
 import { useNavigation } from '@react-navigation/native'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
-import LoadingYellow from '@reuse/LoadingYellow'
 import Login from '@screen/Wallet/Login'
 import { loadingFuturesSelector } from '@selector/futuresSelector'
 import { isLoginUserSelector } from '@selector/userSelector'
@@ -16,7 +16,6 @@ import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
-import Icon from '@commom/Icon'
 
 const Futures = () => {
   const theme = useTheme()
