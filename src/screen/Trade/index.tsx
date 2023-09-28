@@ -6,7 +6,7 @@ import KeyBoardSafe from "@reuse/KeyBoardSafe"
 import { loadingTradeSelector } from "@selector/tradeSelector"
 import tradeSlice from "@slice/tradeSlice"
 import { colors } from "@theme/colors"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { AppState, AppStateStatus, StyleSheet, View } from "react-native"
 import Date from "./Date"
 import Diagram from "./Diagram"
@@ -40,9 +40,18 @@ export default () => {
     }
   }, [loading])
 
+  const handleRefesh = () => {
+    dispatch(tradeSlice.actions.setLoading(true))
+  }
+
   return (
     <View style={styles.container}>
-      <KeyBoardSafe bg={theme.bg} paddingBottom={10}>
+      <KeyBoardSafe
+        refesh={loading}
+        onRefesh={handleRefesh}
+        bg={theme.bg}
+        paddingBottom={10}
+      >
         {!loading ?
           <>
             <Header />

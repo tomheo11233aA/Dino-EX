@@ -2,7 +2,7 @@ import Box from '@commom/Box'
 import Scroll from '@commom/Scroll'
 import { useTheme } from '@hooks/index'
 import React from 'react'
-import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native'
+import { KeyboardAvoidingView, Platform, RefreshControl, SafeAreaView, ScrollView } from 'react-native'
 
 interface Props {
     bg?: string,
@@ -10,9 +10,13 @@ interface Props {
     paddingBottom?: number,
     paddingHorizontal?: number
     children: JSX.Element | JSX.Element[],
+    onRefesh?: () => void;
+    refesh?: any;
 }
 
 const KeyBoardSafe = ({
+    refesh,
+    onRefesh,
     bg,
     styles,
     children,
@@ -39,16 +43,25 @@ const KeyBoardSafe = ({
                     // isPaddingAdnroid
                     paddingTop={Platform.OS === 'android' ? 10 : 0}
                 >
-                    <Scroll
-                        flexGrow={1}
+                    <ScrollView
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                            paddingBottom: paddingBottom,
+                            paddingHorizontal: paddingHorizontal,
+                        }}
+                        refreshControl={
+                            onRefesh &&
+                            <RefreshControl
+                                refreshing={refesh || false}
+                                onRefresh={onRefesh}
+                            />
+                        }
                         nestedScrollEnabled={true}
-                        paddingBottom={paddingBottom}
                         showsVerticalScrollIndicator={false}
-                        paddingHorizontal={paddingHorizontal}
                         showsHorizontalScrollIndicator={false}
                     >
                         {children}
-                    </Scroll>
+                    </ScrollView>
                 </Box>
             </SafeAreaView>
         </KeyboardAvoidingView>

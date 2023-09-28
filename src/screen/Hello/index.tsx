@@ -10,6 +10,9 @@ import contants from '@util/contants'
 import { screen } from '@util/screens'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Hello = ({ navigation }: any) => {
     const { i18n } = useTranslation()

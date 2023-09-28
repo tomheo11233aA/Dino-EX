@@ -60,7 +60,14 @@ const Futures = () => {
                     height - HEIGHT_BOTTOM_TAB
                 }
               >
-                <KeyBoardSafe bg={theme.gray5} paddingBottom={0}>
+                <KeyBoardSafe
+                  bg={theme.gray5}
+                  paddingBottom={0}
+                  refesh={loading}
+                  onRefesh={() => {
+                    dispatch(futuresSlice.actions.setLoading(true))
+                  }}
+                >
                   <Header drawerRef={drawerRef} />
                   <Transaction />
                 </KeyBoardSafe>
