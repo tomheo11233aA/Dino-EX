@@ -1,9 +1,9 @@
-import { useTheme } from '@hooks/index'
+import { useAppDispatch, useTheme } from '@hooks/index'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import TabCustom from '@reuse/TabCustom'
 import { screen } from '@util/screens'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ImageRequireSource, StyleSheet } from 'react-native'
 import FuturesStack from './FuturesStack'
@@ -12,6 +12,9 @@ import MarketsStack from './MarketsStack'
 import TradesStack from './TradesStack'
 import WalletStack from './WalletStack'
 import { navigationRef } from './navigationRef'
+import { io } from 'socket.io-client'
+import contants from '@util/contants'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 interface ITab {
     name: string;
@@ -64,8 +67,20 @@ export const HEIGHT_BOTTOM_TAB = 70
 const Tab = createBottomTabNavigator()
 
 const Container = () => {
-    const { t } = useTranslation()
     const theme = useTheme()
+    const { t } = useTranslation()
+    const dispatch = useAppDispatch()
+
+    useEffect((): any => {
+        const newSocket = io(contants.HOSTING)
+
+        newSocket.on('deposit', (res) => {
+          console.log('depsitt')
+          dispatch(getProfileThunk())
+        })
+
+        return () => newSocket.disconnect()
+    }, [])
 
     return (
         <NavigationContainer ref={navigationRef}>
