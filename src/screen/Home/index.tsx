@@ -4,7 +4,7 @@ import { styles } from '@navigation/Container'
 import { useNavigation } from '@react-navigation/native'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import { isLoginUserSelector } from '@selector/userSelector'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, StatusBar } from 'react-native'
 import Balance from './Balance'
 import Coins from './Coins'
@@ -16,12 +16,16 @@ import TypeCoin from './TypeCoin'
 import { getValueConfig } from '@service/userService'
 import contants from '@util/contants'
 import { useTranslation } from 'react-i18next'
+import { delay } from '@method/alert'
+import LoadingYellow from '@reuse/LoadingYellow'
 
 const Home = () => {
   const theme = useTheme()
   const { t } = useTranslation()
   const navigation = useNavigation()
   const isLogin = useAppSelector(isLoginUserSelector)
+
+  const [refesh, setRefesh] = useState(false)
 
   useEffect((): any => {
     const focus = navigation.addListener('focus', () => {
@@ -53,20 +57,38 @@ const Home = () => {
     }
   }
 
+  const handleRefesh = async () => {
+    setRefesh(true)
+    await delay(2000)
+    setRefesh(false)
+  }
+
   return (
-    <KeyBoardSafe paddingBottom={100}>
-      <StatusBar barStyle={theme.bg === 'white' ? 'dark-content' : 'light-content'} />
-      <Box paddingHorizontal={15} paddingTop={10}>
-        <Header />
-        {!isLogin && <Login />}
-        {isLogin && <Balance />}
-        {/* <KYCStatus /> */}
-        <Options />
-        <Funding />
-        <TypeCoin />
-        <Coins />
-      </Box>
-    </KeyBoardSafe>
+    <>
+      {refesh ?
+        <Box flex={1} backgroundColor={theme.bg} alignCenter justifyCenter>
+          <LoadingYellow />
+        </Box>
+        :
+        <KeyBoardSafe
+          refesh={refesh}
+          onRefesh={handleRefesh}
+          paddingBottom={100}
+        >
+          <StatusBar barStyle={theme.bg === 'white' ? 'dark-content' : 'light-content'} />
+          <Box paddingHorizontal={15} paddingTop={10}>
+            <Header />
+            {!isLogin && <Login />}
+            {isLogin && <Balance />}
+            {/* <KYCStatus /> */}
+            <Options />
+            <Funding />
+            <TypeCoin />
+            <Coins />
+          </Box>
+        </KeyBoardSafe>
+      }
+    </>
   )
 }
 

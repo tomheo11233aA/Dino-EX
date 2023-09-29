@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { historyChangeBalanceFundingSeletor } from '@selector/fundingSelector'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Alert, FlatList } from 'react-native'
+import { Alert, FlatList, RefreshControl } from 'react-native'
 import Header from './Header'
 import Item from './Item'
 
@@ -31,22 +31,28 @@ const TransactionHistory = () => {
         }
     }
 
-    const renderItem = ({ item }: any) => {
-        return (
-            <Item
-                t={t}
-                key={item.id}
-                theme={theme}
-                item={item}
-            />
-        )
+    const hanldeRefesh = async () => {
+        handleGetHistoryChangeBalance()
     }
 
     return (
         <Box>
             <Header />
             <FlatList
-                renderItem={renderItem}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={hanldeRefesh}
+                    />
+                }
+                renderItem={
+                    ({ item }) =>
+                        <Item
+                            t={t}
+                            theme={theme}
+                            item={item}
+                        />
+                }
                 initialNumToRender={10}
                 data={historyChangeBalance.data}
                 removeClippedSubviews={true}

@@ -7,6 +7,7 @@ import ComingSoon from '@screen/ComingSoon'
 import Deposit from '@screen/Deposit'
 import DepositVND from '@screen/DepositVND'
 import Earn from '@screen/Earn'
+import ForgotPassword from '@screen/ForgotPassword'
 import Hello from '@screen/Hello'
 import Home from '@screen/Home'
 import KYC from '@screen/KYC'
@@ -47,6 +48,7 @@ const HomeStack = () => {
             <Stack.Screen name={screen.EARN} component={Earn} />
             <Stack.Screen name={screen.COMMING_SOON} component={ComingSoon} />
             <Stack.Screen name={screen.CHANGE_PASSWORD} component={ChangePassword} />
+            <Stack.Screen name={screen.FORGOT_PASSWORD} component={ForgotPassword} />
         </Stack.Navigator>
     )
 }

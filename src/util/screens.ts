@@ -46,5 +46,6 @@ export const screen = {
     DEPOSIT_DETAIL: 'DepositDetail',
     SIGN_UP: 'SignUp',
     DETAIL_WITHDRAW: 'DetailWithdraw',
-    POSITION_HISTORY_DETAIL: 'PositionHistoryDetail'
+    POSITION_HISTORY_DETAIL: 'PositionHistoryDetail',
+    FORGOT_PASSWORD: 'ForgotPassword'
 }

@@ -12,7 +12,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Alert } from 'react-native'
+import { Alert, RefreshControl, ScrollView } from 'react-native'
 import { IOpenOrder } from 'src/model/fundingModel'
 import DownItem from '../TransactionHistory/DownItem'
 import Item from './Item'
@@ -25,6 +25,7 @@ const OpenOrders = () => {
 
   const [type, setType] = useState('All')
   const [isShowModalAsset, setShowModalAsset] = useState(false)
+  const [refesh, setRefesh] = useState(false)
 
   const openOrders = useAppSelector(openOrdersFundingSelector)
   const loadingHistoryFuture = useAppSelector(loadingHistoryFutureSelector)
@@ -65,6 +66,12 @@ const OpenOrders = () => {
     if (payload.status) {
       handleSetType(type)
     }
+  }
+
+  const handleRefesh = async () => {
+    setRefesh(true)
+    getHistoryOpenOrderAll()
+    setRefesh(false)
   }
 
   return (
@@ -118,7 +125,18 @@ const OpenOrders = () => {
                 {t('Not positions')}
               </Txt>
             </Box> :
-            <Scroll flexGrow={1} paddingBottom={100}>
+            <ScrollView
+              style={{
+                flexGrow: 1,
+                paddingBottom: 100,
+              }}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refesh}
+                  onRefresh={handleRefesh}
+                />
+              }
+            >
               {openOrders.data.map((item) =>
                 <Item
                   t={t}
@@ -128,7 +146,7 @@ const OpenOrders = () => {
                   onCancelOpenOrder={handleCancelOpenOrder}
                 />
               )}
-            </Scroll>
+            </ScrollView>
           }
         </>
       }

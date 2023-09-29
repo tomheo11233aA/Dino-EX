@@ -154,6 +154,15 @@ const Login = () => {
             {t('Create a HotX Account')}
           </Txt>
         </Btn>
+
+        {/* <Btn
+          onPress={() => navigate(screen.FORGOT_PASSWORD)}
+          alignCenter={false}
+        >
+          <Txt marginTop={15} color={colors.grayBlue} fontFamily={fonts.IBMPM}>
+            {t('Forgot Password')}
+          </Txt>
+        </Btn> */}
       </Box>
 
       <ModalOTP2FA

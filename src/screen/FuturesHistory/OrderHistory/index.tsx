@@ -12,10 +12,8 @@ import { FlatList } from 'react-native-gesture-handler'
 import DownItem from '../TransactionHistory/DownItem'
 import ModalAsset from './ModalAsset'
 import ModalType from './ModalType'
-import { StyleSheet } from 'react-native'
+import { RefreshControl, StyleSheet } from 'react-native'
 import Btn from '@commom/Btn'
-import { navigate } from '@navigation/navigationRef'
-import { screen } from '@util/screens'
 
 const OrderHistory = () => {
   const theme = useTheme()
@@ -112,7 +110,6 @@ const OrderHistory = () => {
                 </Txt>
               </Box>
             }
-
           </Box>
         </Box>
 
@@ -172,6 +169,10 @@ const OrderHistory = () => {
     )
   }
 
+  const hanldeRefesh = () => {
+    handleSetType(type)
+  }
+
   return (
     <Box>
       <Box row justifySpaceBetween>
@@ -208,6 +209,12 @@ const OrderHistory = () => {
       </Box>
       {
         <FlatList
+          refreshControl={
+            <RefreshControl 
+              refreshing={false}
+              onRefresh={hanldeRefesh}
+            />
+          }
           renderItem={renderItem}
           initialNumToRender={10}
           data={orderHistory.data}

@@ -7,22 +7,30 @@ import { positionsHistoryFundingSelector } from '@selector/fundingSelector'
 import { profileUserSelector } from '@selector/userSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Profile } from 'src/model/userModel'
 import DownItem from '../TransactionHistory/DownItem'
 import Item from './Item'
+import { FlatList, RefreshControl } from 'react-native'
 
 const PositionHistory = () => {
   const theme = useTheme()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
+
+
+
   const profile: Profile = useAppSelector<any>(profileUserSelector)
   const positionsHistory = useAppSelector(positionsHistoryFundingSelector)
 
   useEffect(() => {
     dispatch(getListPositionCloseThunk())
   }, [])
+
+  const hanldeRefesh = async () => {
+    dispatch(getListPositionCloseThunk())
+  }
 
   return (
     <Box flex={1}>
@@ -43,19 +51,31 @@ const PositionHistory = () => {
           </Txt>
         </Txt>
       </Box>
-      <Scroll flexGrow={1} paddingBottom={200}>
-        {
-          positionsHistory.data.map((item) =>
-            <Item
-              t={t}
-              item={item}
-              theme={theme}
-              profile={profile}
-              key={Math.random()}
+      {
+        <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={false}
+              onRefresh={hanldeRefesh}
             />
-          )
-        }
-      </Scroll>
+          }
+          renderItem={
+            ({ item }) =>
+              <Item
+                t={t}
+                item={item}
+                theme={theme}
+                profile={profile}
+              />
+          }
+          initialNumToRender={10}
+          data={positionsHistory.data}
+          removeClippedSubviews={true}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item: any) => item.id.toString()}
+          contentContainerStyle={{ paddingBottom: 200 }}
+        />
+      }
     </Box>
   )
 }

@@ -120,7 +120,7 @@ const ChartPNl = ({
                   y={gap_x_line + 2}
                   fontFamily={FONT}
                 >
-                  {text_value.toFixed(indexColunm.fixed)}
+                  {numberCommasDot(text_value.toFixed(indexColunm.fixed))}
                 </TextSVG>
               </G>
             )

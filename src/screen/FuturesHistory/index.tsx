@@ -18,6 +18,7 @@ import { Profile } from 'src/model/userModel'
 import { getHistoryChangeBalanceThunk, getHistoryOpenOrderAllThunk } from '@asyncThunk/fundingAsyncThunk'
 import { AppState, AppStateStatus } from 'react-native'
 import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import KeyBoardSafe from '@reuse/KeyBoardSafe'
 
 const FuturesHistory = () => {
   const theme = useTheme()

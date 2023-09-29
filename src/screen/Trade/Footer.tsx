@@ -1,6 +1,7 @@
 import Img from '@commom/Img'
 import { useAppDispatch, useTheme } from '@hooks/index'
-import { navigate } from '@navigation/navigationRef'
+import { goBack, navigate } from '@navigation/navigationRef'
+import { useNavigation } from '@react-navigation/native'
 import futuresSlice from '@slice/futuresSlice'
 import { setSide } from '@slice/spotSlice'
 import { colors } from '@theme/colors'
@@ -20,6 +21,7 @@ const Footer = () => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
+    const navigation = useNavigation().getState()?.routes
 
     return (
         <View style={[styles.footer, { backgroundColor: theme.white5 }]}>
@@ -45,8 +47,13 @@ const Footer = () => {
             <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity
                     onPress={() => {
+                        const prevRoute = navigation[navigation.length - 2].name
                         dispatch(futuresSlice.actions.setSide('buy'))
-                        navigate(screen.FUTURES_STACK)
+                        if (prevRoute == 'Futures') {
+                            goBack()
+                        } else {
+                            navigate(screen.FUTURES_STACK)
+                        }
                     }}
                     style={[styles.buySellButton, { backgroundColor: '#2fbd85' }]}
                 >
@@ -54,8 +61,13 @@ const Footer = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
+                        const prevRoute = navigation[navigation.length - 2].name
                         dispatch(futuresSlice.actions.setSide('sell'))
-                        navigate(screen.FUTURES_STACK)
+                        if (prevRoute == 'Futures') {
+                            goBack()
+                        } else {
+                            navigate(screen.FUTURES_STACK)
+                        }
                     }}
                     style={[styles.buySellButton, { backgroundColor: '#f6465d' }]}
                 >
