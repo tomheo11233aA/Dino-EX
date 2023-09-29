@@ -93,14 +93,14 @@ export default ({ t }: any) => {
                         </Txt>
                     </Box>
                     <Box row alignCenter>
-                        {index === 3 &&
+                        {item.title === 'Clear Cache' &&
                             <Txt
                                 size={12}
                                 marginRight={10}
                                 fontFamily={fonts.RM}
                                 color={colors.grayBlue2}
                             >
-                                15.79 MB
+                                {contants.VERSION}
                             </Txt>
                         }
 

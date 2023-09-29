@@ -22,5 +22,6 @@ export const checKYCUserThunk = createAsyncThunk('user/checKYCUser', async () =>
 
 export const getProfileThunk = createAsyncThunk('user/getProfile', async () => {
     const res = await getProfile()
+    console.log('profile: ', res)
     return res
 })

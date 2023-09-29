@@ -58,6 +58,7 @@ interface IfuturesSlice {
     triggerTPSL: ITriggerTPSL;
     tpslPosition: ITpslPosition;
     loadingHistoryFuture: boolean;
+    fee: number[],
 }
 
 const initialState: IfuturesSlice = {
@@ -117,6 +118,7 @@ const initialState: IfuturesSlice = {
         showModal: false,
     },
     loadingHistoryFuture: false,
+    fee: [0, 0],
 }
 
 const futuresSlice = createSlice({
@@ -316,6 +318,9 @@ const futuresSlice = createSlice({
         setStopProfit: (state, { payload }) => {
             state.stopProfit = payload
         },
+        setFee: (state, { payload }) => {
+            state.fee = payload
+        }
     },
     extraReducers: builder => {
         builder.

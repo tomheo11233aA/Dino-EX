@@ -1,24 +1,36 @@
 import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
-import { useTheme } from '@hooks/index'
+import { useAppSelector, useTheme } from '@hooks/index'
 import { navigate } from '@navigation/navigationRef'
+import { profileUserSelector } from '@selector/userSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { width } from '@util/responsive'
 import { screen } from '@util/screens'
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import { Profile } from 'src/model/userModel'
 
 const Button = ({ t }: any) => {
     const theme = useTheme()
+    const profile: Profile = useAppSelector<any>(profileUserSelector)
+
     return (
         <Box>
             <Box row alignCenter marginVertical={10}>
                 <Btn
                     style={styles.btn}
                     backgroundColor={theme.gray2}
-                    onPress={() => navigate(screen.COIN_LIST)}
+                    onPress={() => navigate(screen.SPOT_COIN, {
+                        coin: {
+                            currency: 'USDT',
+                            balance: profile.balance,
+                            exchangeRate: profile.balance,
+                            id: 18092002,
+                            wallet: 'USDT'
+                        }
+                    })}
                 >
                     <Txt fontFamily={fonts.IBMPM} color={theme.black}>
                         {t('Deposit')}
@@ -26,6 +38,15 @@ const Button = ({ t }: any) => {
                 </Btn>
 
                 <Btn
+                    onPress={() => navigate(screen.SPOT_COIN, {
+                        coin: {
+                            currency: 'USDT',
+                            balance: profile.balance,
+                            exchangeRate: profile.balance,
+                            id: 18092002,
+                            wallet: 'USDT'
+                        }
+                    })}
                     marginLeft={10}
                     style={styles.btn}
                     backgroundColor={colors.yellow}

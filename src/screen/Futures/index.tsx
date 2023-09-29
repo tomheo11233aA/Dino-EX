@@ -16,6 +16,7 @@ import Drawer from './Drawer'
 import Header from './Header'
 import OpenCloseChart from './OpenCloseChart'
 import Transaction from './Transaction'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 const Futures = () => {
   const theme = useTheme()
@@ -65,6 +66,7 @@ const Futures = () => {
                   paddingBottom={0}
                   refesh={loading}
                   onRefesh={() => {
+                    dispatch(getProfileThunk())
                     dispatch(futuresSlice.actions.setLoading(true))
                   }}
                 >

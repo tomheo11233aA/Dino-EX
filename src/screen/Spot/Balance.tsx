@@ -158,7 +158,7 @@ const Balance = ({ spot }: Props) => {
             <Box row marginTop={15}>
                 <Btn
                     // onPress={() => navigate(screen.COIN_LIST)}
-                    onPress={() => navigate(screen.DEPOSIT_CRYPTO, {
+                    onPress={() => navigate(screen.SPOT_COIN, {
                         coin: {
                             currency: 'USDT',
                             balance: profile.balance,
@@ -190,7 +190,7 @@ const Balance = ({ spot }: Props) => {
                     <Txt fontFamily={fonts.IBMPM} size={13} color={theme.black}>{t('Withdraw')}</Txt>
                 </Btn>
                 <Btn
-                    onPress={() => navigate(screen.COIN_LIST_WITHDRAW)}
+                    onPress={() => navigate(screen.COMMING_SOON)}
                     style={styles.button}
                     backgroundColor={theme.gray2}
                 >

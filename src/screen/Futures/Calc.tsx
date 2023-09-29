@@ -2,12 +2,11 @@ import Box from '@commom/Box'
 import Txt from '@commom/Txt'
 import { useAppSelector } from '@hooks/index'
 import { numberCommasDot } from '@method/format'
-import { USDTFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, currencyFuturesSelector, symbolFuturesSelector, triggerTPSLFutureSelector } from '@selector/futuresSelector'
+import { USDTFuturesSelector, coinsFuturesChartSelector, coreFuturesSelector, currencyFuturesSelector, feeFuturesSelector, symbolFuturesSelector, triggerTPSLFutureSelector } from '@selector/futuresSelector'
 import { profileUserSelector } from '@selector/userSelector'
-import { getValueConfig } from '@service/userService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 import { Profile } from 'src/model/userModel'
@@ -23,28 +22,14 @@ const Calc = ({ theme }: any) => {
     const currency = useAppSelector(currencyFuturesSelector)
     const triggerTPSL = useAppSelector(triggerTPSLFutureSelector)
     const profile: Profile = useAppSelector<any>(profileUserSelector)
-
-    const [fee, setFee] = useState([0, 0])
-
-    useEffect(() => {
-        handleGetValueConfig()
-    }, [])
-
-    const handleGetValueConfig = async () => {
-        let data = [0, 0]
-        const resStart = await getValueConfig('FEEFUTURESTART')
-        const resClose = await getValueConfig('FEEFUTURECLOSE')
-        data[0] = resStart?.data[0]?.value || 0
-        data[1] = resClose?.data[0]?.value || 0
-        setFee(data)
-    }
+    const fee = useAppSelector(feeFuturesSelector)
 
     let symbol_coin = USDT ? 'USDT' : currency
 
     let BALANCE: number = profile.balance
 
     const exchangeRate = coins.filter(coin => coin.symbol == symbol)[0]?.close || 0
-    const size = profile.balance * core
+    const size = BALANCE * core
     const feeStart = size * (fee[0] / 100)
     const feeEnd = size * (fee[1] / 100)
     BALANCE = BALANCE - feeStart - feeEnd

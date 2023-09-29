@@ -1,5 +1,5 @@
 import Box from '@commom/Box'
-import { useAppSelector, useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { delay } from '@method/alert'
 import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
@@ -13,8 +13,10 @@ import { isLoginUserSelector } from '@selector/userSelector'
 import React, { useRef, useState } from 'react'
 import Login from './Login'
 import Tab from './Tab'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 const Wallet = () => {
+  const dispatch = useAppDispatch()
   const theme = useTheme()
   const toastTopRef = useRef(null)
   const [tab, setTab] = useState('Overview')
@@ -23,6 +25,7 @@ const Wallet = () => {
 
   const handleRefesh = async () => {
     setRefesh(true)
+    dispatch(getProfileThunk())
     await delay(2000)
     setRefesh(false)
   }
