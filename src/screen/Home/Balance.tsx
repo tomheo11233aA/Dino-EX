@@ -6,6 +6,7 @@ import Icon from "@commom/Icon";
 import Txt from "@commom/Txt";
 import { getCoinsFromSocket, useAppDispatch, useAppSelector, useTheme } from "@hooks/index";
 import { calcPositions, convertToValueSpot, numberCommasDot } from "@method/format";
+import { navigate } from "@navigation/navigationRef";
 import { coinsFuturesChartSelector, positionsFuturesSelector, symbolFuturesSelector } from "@selector/futuresSelector";
 import { walletSpotSelector } from "@selector/spotSelector";
 import { profileUserSelector } from "@selector/userSelector";
@@ -13,6 +14,7 @@ import { getListCoin } from "@service/tradeService";
 import futuresSlice from "@slice/futuresSlice";
 import { colors } from "@theme/colors";
 import { fonts } from "@theme/fonts";
+import { screen } from "@util/screens";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Profile } from "src/model/userModel";
@@ -132,6 +134,7 @@ export default () => {
             </Box>
 
             <Btn
+                onPress={() => navigate(screen.DEPOSIT_CRYPTO, { coin: { currency: 'USDT' } })}
                 width={80}
                 radius={4}
                 height={30}

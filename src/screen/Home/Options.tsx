@@ -6,14 +6,16 @@ import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { useAppSelector, useTheme } from '@hooks/index'
 import { useTranslation } from 'react-i18next'
-import { isLoginUserSelector } from '@selector/userSelector'
+import { isLoginUserSelector, profileUserSelector } from '@selector/userSelector'
 import { navigate } from '@navigation/navigationRef'
 import { screen } from '@util/screens'
+import { Profile } from 'src/model/userModel'
 
 const Options = () => {
     const theme = useTheme()
     const { t } = useTranslation()
     const isLogin = useAppSelector(isLoginUserSelector)
+    const profile: Profile = useAppSelector<any>(profileUserSelector)
 
     const handle = () => {
         if (!isLogin) {
@@ -36,7 +38,13 @@ const Options = () => {
                 icon={require('@images/home/hat.png')}
             />
             <ItemOption
-                onPress={handle}
+                onPress={() => {
+                    if (!isLogin) {
+                        navigate(screen.LOGIN)
+                    } else {
+                        navigate(screen.DEPOSIT_CRYPTO, { coin: { currency: 'USDT' } })
+                    }
+                }}
                 title={t('Deposit')}
                 icon={require('@images/home/mail.png')}
             />

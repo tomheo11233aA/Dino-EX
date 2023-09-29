@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { getBanking, getHistoryOpenOrder, getHistoryOpenOrderAll, getHistoryOrder, getListPositionClose } from "@service/fundingService"
-import { checkTransactionDepositVnd, getChartStatisticsUser, getHistoryChangeBalance } from "@service/walletService"
+import { checkTransactionDepositVnd, getChartStatisticsUser, getHistoryChangeBalance, getHistoryDeposit } from "@service/walletService"
 import { banking } from "@util/banking"
 import { ReqLimitPage } from "src/model/commomModel"
 import { IReqHistoryOpenOrder } from "src/model/fundingModel"
@@ -62,4 +62,10 @@ export const getChartStatisticsUserThunk =
     createAsyncThunk('funding/getChartStatisticsUser', async (data: any) => {
         const res = await getChartStatisticsUser(data)
         return { ...res, day: data.day }
+    })
+
+export const getHistoryDepositThunk =
+    createAsyncThunk('funding/getHistoryDeposit', async (data: any) => {
+        const res = await getHistoryDeposit(data)
+        return res
     })

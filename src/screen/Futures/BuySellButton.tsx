@@ -37,7 +37,6 @@ const BuySellButton = () => {
     const exchangeRate = coins.filter(item => item.symbol == symbol)[0]?.close || 0
 
     const handleOrderFuture = async () => {
-        return console.log(amount)
         setLoading(true)
         const res = await orderFuture({
             amount: USDT ? Number(amount) : Number(amount) * exchangeRate,

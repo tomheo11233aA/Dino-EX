@@ -5,6 +5,7 @@ import { useTheme } from "@hooks/index";
 import { colors } from "@theme/colors";
 import { fonts } from "@theme/fonts";
 import { width } from "@util/responsive";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     tab: string,
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default ({ tab, setTab }: Props) => {
+    const { t } = useTranslation()
     const theme = useTheme()
     const data = ['Deposit', 'Withdrawals', 'Buy', 'Sell', 'Convert', 'Trade']
 
@@ -39,7 +41,7 @@ export default ({ tab, setTab }: Props) => {
                             fontFamily={fonts.AS}
                             size={13}
                         >
-                            {item}
+                            {t(item)}
                         </Txt>
                         {item === tab &&
                             <Box width={20} height={3} backgroundColor={colors.yellow} marginTop={5} />

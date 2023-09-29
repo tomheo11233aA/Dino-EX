@@ -42,7 +42,7 @@ const Calc = ({ theme }: any) => {
 
             <Box row justifySpaceBetween marginTop={5}>
                 <Txt color={colors.gray5} size={12}>{t('Max')}</Txt>
-                <Txt size={14} fontFamily={'Myfont21-Regular'} color={theme.black}>{`${numberCommasDot(MAX)} `}
+                <Txt size={14} fontFamily={'Myfont21-Regular'} color={theme.black}>{`${numberCommasDot(MAX?.toFixed(2))} `}
                     <Txt size={11} fontFamily={fonts.IBMPR} color={theme.black}>{symbol_coin}</Txt>
                 </Txt>
             </Box>

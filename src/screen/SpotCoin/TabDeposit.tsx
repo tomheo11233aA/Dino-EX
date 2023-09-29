@@ -1,32 +1,34 @@
+import { getHistoryDepositThunk } from '@asyncThunk/fundingAsyncThunk'
 import Box from '@commom/Box'
 import Scroll from '@commom/Scroll'
-import { useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import ItemDepositHistory from '@screen/ChangeBalanceHistory/ItemDepositHistory'
-import { getHistoryDeposit } from '@service/walletService'
-import React, { useEffect, useState } from 'react'
+import { historyDepositsFundingSelector } from '@selector/fundingSelector'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { historyDeposit } from 'src/model/walletModel'
+import { Alert } from 'react-native'
 
 const TabDeposit = () => {
+  const dispatch = useAppDispatch()
   const theme = useTheme()
   const { t } = useTranslation()
-  const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([])
+  const historyDeposits = useAppSelector(historyDepositsFundingSelector)
 
   useEffect(() => {
     handleGetHistoryDeposit()
   }, [])
 
   const handleGetHistoryDeposit = async () => {
-    const res = await getHistoryDeposit({ limit: 1000, page: 1 })
-    if (res.status) {
-      setHistoryDeposit(res.data.array)
+    const { payload } = await dispatch(getHistoryDepositThunk({ limit: 1000, page: 1 }))
+    if (!payload.status) {
+      Alert.alert(t(payload.message))
     }
   }
 
   return (
     <Box maxHeight={400} marginTop={10}>
       <Scroll nestedScrollEnabled={true} paddingBottom={20}>
-        {historyDeposits.map((item, index) =>
+        {historyDeposits.data.map((item, index) =>
           <ItemDepositHistory
             t={t}
             theme={theme}

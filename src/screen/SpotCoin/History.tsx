@@ -32,7 +32,7 @@ export default () => {
                 </Btn>
             </Box>
 
-            <Box row alignStart marginBottom={10}>
+            <Box row alignStart>
                 {data.map((item) =>
                     <Btn
                         key={item}
@@ -58,71 +58,6 @@ export default () => {
                 <TabDeposit /> :
                 <TabWithdraw />
             }
-
-            {/* <Box row justifySpaceBetween marginTop={20}>
-                <Box row>
-                    <Box
-                        padding={7}
-                        backgroundColor={theme.gray}
-                        radius={50}
-                        alignSelf={'flex-start'}
-                        marginRight={10}
-                    >
-                        <Icon
-                            source={require('@images/future/cv.png')}
-                            tintColor={colors.grayBlue}
-                            size={14}
-                            resizeMode={'contain'}
-                        />
-                    </Box>
-                    <Box>
-                        <Txt fontFamily={fonts.RM} size={13} color={theme.black}>
-                            {t('Transfer')}
-                        </Txt>
-                        <Txt size={10} fontFamily={fonts.IBMPR} color={colors.grayBlue2}>
-                            {t('Cross Margin')}
-                        </Txt>
-                        <Txt size={10} fontFamily={fonts.IBMPR} color={colors.grayBlue2}>
-                            2023-05-20 14:31:24
-                        </Txt>
-                    </Box>
-                </Box>
-
-                <Txt fontFamily={fonts.M24} color={colors.red3}>
-                    -1.009,42
-                </Txt>
-            </Box>
-
-            <Box row justifySpaceBetween marginTop={30}>
-                <Box row>
-                    <Box
-                        padding={7}
-                        backgroundColor={theme.gray}
-                        radius={50}
-                        alignSelf={'flex-start'}
-                        marginRight={10}
-                    >
-                        <Icon
-                            size={14}
-                            resizeMode={'contain'}
-                            tintColor={colors.grayBlue}
-                            source={require('@images/future/download.png')}
-                        />
-                    </Box>
-                    <Box>
-                        <Txt fontFamily={fonts.RM} size={13} color={theme.black}>
-                            {t('Deposit')}
-                        </Txt>
-                        <Txt size={10} fontFamily={fonts.SGM} color={colors.grayBlue2}>
-                            {t('Crypto')}
-                        </Txt>
-                    </Box>
-                </Box>
-
-                <Txt fontFamily={fonts.M24} color={colors.greenCan}>
-                    +999,71
-                </Txt>
-            </Box> */}
         </Box>
     )
 }

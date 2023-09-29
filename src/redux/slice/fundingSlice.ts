@@ -1,8 +1,8 @@
-import { checkTransactionDepositVndThunk, getBankingThunk, getChartStatisticsUserThunk, getHistoryChangeBalanceThunk, getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk, getHistoryOrderThunk, getListPositionCloseThunk } from "@asyncThunk/fundingAsyncThunk";
+import { checkTransactionDepositVndThunk, getBankingThunk, getChartStatisticsUserThunk, getHistoryChangeBalanceThunk, getHistoryDepositThunk, getHistoryOpenOrderAllThunk, getHistoryOpenOrderThunk, getHistoryOrderThunk, getListPositionCloseThunk } from "@asyncThunk/fundingAsyncThunk";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { depositStep } from "@util/contants";
 import { IBank, IChartStatisticsUser, IHistoryChangeBalance, IOpenOrder, IOrderHistory } from "src/model/fundingModel";
-import { IDepositInfo } from "src/model/walletModel";
+import { IDepositInfo, historyDeposit } from "src/model/walletModel";
 
 interface IFundingSlice {
     banks: IBank[],
@@ -19,6 +19,9 @@ interface IFundingSlice {
     historyChangeBalance: {
         data: IHistoryChangeBalance[],
         page: number,
+    },
+    historyDeposits: {
+        data: historyDeposit[]
     },
     chartStatisticsUser: {
         day: string,
@@ -55,6 +58,9 @@ const initialState: IFundingSlice = {
         step: depositStep.PAYMENT,
         bankChoosed: null,
         transferInfo: null,
+    },
+    historyDeposits: {
+        data: []
     },
 }
 
@@ -131,6 +137,11 @@ const fundingSlice = createSlice({
                 if (payload.status) {
                     state.chartStatisticsUser.data = payload.data
                     state.chartStatisticsUser.day = payload.day
+                }
+            })
+            .addCase(getHistoryDepositThunk.fulfilled, (state, { payload }) => {
+                if (payload.status) {
+                    state.historyDeposits.data = payload.data.array
                 }
             })
     }

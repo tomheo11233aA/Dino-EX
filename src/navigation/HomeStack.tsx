@@ -5,6 +5,7 @@ import ChangeLanguage from '@screen/ChangeLanguage'
 import ChangePassword from '@screen/ChangePassword'
 import ComingSoon from '@screen/ComingSoon'
 import Deposit from '@screen/Deposit'
+import DepositCrypto from '@screen/DepositCrypto'
 import DepositVND from '@screen/DepositVND'
 import Earn from '@screen/Earn'
 import ForgotPassword from '@screen/ForgotPassword'
@@ -16,6 +17,7 @@ import P2pTab from '@screen/P2pTab'
 import Profile from '@screen/Profile'
 import Setting from '@screen/Setting'
 import SignUp from '@screen/SignUp'
+import SpotCoin from '@screen/SpotCoin'
 import Trade from '@screen/Trade'
 import Transfer from '@screen/Transfer'
 import TwoFA from '@screen/TwoFA'
@@ -49,6 +51,7 @@ const HomeStack = () => {
             <Stack.Screen name={screen.COMMING_SOON} component={ComingSoon} />
             <Stack.Screen name={screen.CHANGE_PASSWORD} component={ChangePassword} />
             <Stack.Screen name={screen.FORGOT_PASSWORD} component={ForgotPassword} />
+            <Stack.Screen name={screen.DEPOSIT_CRYPTO} component={DepositCrypto} />
         </Stack.Navigator>
     )
 }

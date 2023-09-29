@@ -15,6 +15,7 @@ import { navigationRef } from './navigationRef'
 import { io } from 'socket.io-client'
 import contants from '@util/contants'
 import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import { getHistoryDepositThunk } from '@asyncThunk/fundingAsyncThunk'
 
 interface ITab {
     name: string;
@@ -75,12 +76,17 @@ const Container = () => {
         const newSocket = io(contants.HOSTING)
 
         newSocket.on('deposit', (res) => {
-          console.log('depsitt')
-          dispatch(getProfileThunk())
+            console.log('depsitt')
+            dispatch(getProfileThunk())
+            handleGetHistoryDeposit()
         })
 
         return () => newSocket.disconnect()
     }, [])
+
+    const handleGetHistoryDeposit = () => {
+        dispatch(getHistoryDepositThunk({ limit: 1000, page: 1 }))
+    }
 
     return (
         <NavigationContainer ref={navigationRef}>

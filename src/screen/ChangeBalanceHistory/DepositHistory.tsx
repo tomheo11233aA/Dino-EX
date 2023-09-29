@@ -1,42 +1,32 @@
 import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { getHistoryDeposit } from '@service/walletService'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
 import { historyDeposit } from 'src/model/walletModel'
 import ItemDepositHistory from './ItemDepositHistory'
+import { historyDepositsFundingSelector } from '@selector/fundingSelector'
+import { getHistoryDepositThunk } from '@asyncThunk/fundingAsyncThunk'
 
 const DepositHistory = () => {
+    const dispatch = useAppDispatch()
     const theme = useTheme()
     const { t } = useTranslation()
-    const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([])
-
-    // const [historyDeposits, setHistoryDeposit] = useState<historyDeposit[]>([
-    //     {
-    //         id: 1,
-    //         amount: 50,
-    //         created_at: '0823443'
-    //     },
-    //     {
-    //         id: 2,
-    //         amount: 50,
-    //         created_at: '0823443'
-    //     },
-    // ])
+    const historyDeposits = useAppSelector(historyDepositsFundingSelector)
 
     useEffect(() => {
         handleGetHistoryDeposit()
     }, [])
 
     const handleGetHistoryDeposit = async () => {
-        const res = await getHistoryDeposit({ limit: 1000, page: 1 })
-        if (res.status) {
-            setHistoryDeposit(res.data.array)
+        const { payload } = await dispatch(getHistoryDepositThunk({ limit: 1000, page: 1 }))
+        if (!payload.status) {
+            Alert.alert(t(payload.message))
         }
     }
 
@@ -88,7 +78,7 @@ const DepositHistory = () => {
             </Box>
 
             <Box>
-                {historyDeposits.map((item: any) =>
+                {historyDeposits.data.map((item: any) =>
                     <ItemDepositHistory
                         t={t}
                         key={item.id}
