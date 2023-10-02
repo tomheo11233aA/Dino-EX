@@ -1,5 +1,5 @@
 import Box from '@commom/Box'
-import { useAppSelector, useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { styles } from '@navigation/Container'
 import { useNavigation } from '@react-navigation/native'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
@@ -18,10 +18,13 @@ import contants from '@util/contants'
 import { useTranslation } from 'react-i18next'
 import { delay } from '@method/alert'
 import LoadingYellow from '@reuse/LoadingYellow'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import KYCStatus from './KYCStatus'
 
 const Home = () => {
   const theme = useTheme()
   const { t } = useTranslation()
+  const dispatch = useAppDispatch()
   const navigation = useNavigation()
   const isLogin = useAppSelector(isLoginUserSelector)
 
@@ -59,6 +62,7 @@ const Home = () => {
 
   const handleRefesh = async () => {
     setRefesh(true)
+    dispatch(getProfileThunk())
     await delay(2000)
     setRefesh(false)
   }
@@ -80,7 +84,7 @@ const Home = () => {
             <Header />
             {!isLogin && <Login />}
             {isLogin && <Balance />}
-            {/* <KYCStatus /> */}
+            <KYCStatus />
             <Options />
             <Funding />
             <TypeCoin />
