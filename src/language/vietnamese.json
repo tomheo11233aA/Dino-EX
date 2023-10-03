@@ -485,6 +485,9 @@
         "Invalid date of birth": "Ngày sinh không hợp lệ",
         "Address is empty": "Địa chỉ trống",
         "City": "Thành phố",
-        "City is empty": "Thành phố trống"
+        "City is empty": "Thành phố trống",
+        "Awaiting verification": "Đang chờ xác minh",
+        "Your verification request is pending approval. This process can take up to 3 business days. Please wait for the results.": "Yêu cầu xác minh của bạn đang chờ phê duyệt. Quá trình này có thể mất tới 3 ngày làm việc. Hãy chờ đợi kết quả.",
+        "You have not KYC yet": "Bạn chưa KYC"
     }
 }

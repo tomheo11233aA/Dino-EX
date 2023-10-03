@@ -13,7 +13,7 @@ const contants = {
     BACK_ID_CARD: 'BackIDCard',
     SELFIE: 'Selfie',
     FORM_KYC: 'FormKYC',
-    VERSION: '1.0 (20)'
+    VERSION: '1.0 (21)'
 }
 
 export const depositStep = {

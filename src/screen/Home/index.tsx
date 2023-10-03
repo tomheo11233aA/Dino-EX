@@ -84,7 +84,7 @@ const Home = () => {
             <Header />
             {!isLogin && <Login />}
             {isLogin && <Balance />}
-            <KYCStatus />
+            {isLogin && <KYCStatus />}
             <Options />
             <Funding />
             <TypeCoin />

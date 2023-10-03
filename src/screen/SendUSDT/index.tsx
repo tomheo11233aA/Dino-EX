@@ -8,7 +8,7 @@ import Note from "./Note";
 import Tips from "./Tips";
 import Total from "./Total";
 import TypeSend from "./TypeSend";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Profile } from "src/model/userModel";
 import { useAppSelector, useTheme } from "@hooks/index";
 import { kycUserSelector, profileUserSelector } from "@selector/userSelector";
@@ -18,6 +18,10 @@ import Txt from "@commom/Txt";
 import { fonts } from "@theme/fonts";
 import Back from "@reuse/Back";
 import Safe from "@reuse/Safe";
+import { navigate } from "@navigation/navigationRef";
+import { screen } from "@util/screens";
+import Btn from "@commom/Btn";
+import { colors } from "@theme/colors";
 
 export default () => {
     const theme = useTheme()
@@ -39,6 +43,16 @@ export default () => {
                         <Txt color={theme.black} fontFamily={fonts.AS} size={16}>
                             {t('You have not KYC yet')}
                         </Txt>
+                        <Btn
+                            onPress={() => navigate(screen.KYC)}
+                            backgroundColor={colors.yellow}
+                            height={35}
+                            paddingHorizontal={20}
+                            radius={3}
+                            marginTop={10}
+                        >
+                            <Txt size={12} fontFamily={fonts.IBMPM}>KYC</Txt>
+                        </Btn>
                     </Box>
                 </Safe> :
                 <>
