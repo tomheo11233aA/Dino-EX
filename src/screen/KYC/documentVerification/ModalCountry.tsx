@@ -70,7 +70,7 @@ const ModalCountry = ({ show, setShow }: any) => {
                 bottom={0}
                 padding={20}
                 width={'100%'}
-                height={'50%'}
+                height={'70%'}
                 borderTopLeftRadius={15}
                 borderTopRightRadius={15}
                 backgroundColor={theme.bg}

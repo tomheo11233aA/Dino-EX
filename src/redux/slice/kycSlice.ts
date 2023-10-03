@@ -52,7 +52,7 @@ const kycSlice = createSlice({
         },
         setBackCard: (state, action: PayloadAction<string>) => {
             state.backCard.path = action.payload
-            state.step = contants.SELFIE
+            state.step = contants.FORM_KYC
         },
         setSelfiePhoto: (state, action: PayloadAction<string>) => {
             state.selfiePhoto.path = action.payload

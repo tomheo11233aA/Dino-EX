@@ -39,7 +39,7 @@ const Header = ({ coin, network, theme, address, t }: Props) => {
                     }}
                 >
                     <Icon
-                        size={14}
+                        size={18}
                         source={require('@images/back2.png')}
                         resizeMode={'contain'}
                     />

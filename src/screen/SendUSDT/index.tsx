@@ -11,8 +11,13 @@ import TypeSend from "./TypeSend";
 import { useState } from "react";
 import { Profile } from "src/model/userModel";
 import { useAppSelector, useTheme } from "@hooks/index";
-import { profileUserSelector } from "@selector/userSelector";
+import { kycUserSelector, profileUserSelector } from "@selector/userSelector";
 import { useTranslation } from "react-i18next";
+import contants from "@util/contants";
+import Txt from "@commom/Txt";
+import { fonts } from "@theme/fonts";
+import Back from "@reuse/Back";
+import Safe from "@reuse/Safe";
 
 export default () => {
     const theme = useTheme()
@@ -23,29 +28,42 @@ export default () => {
     const [toAddress, setToAddress] = useState('')
 
     const profile: Profile = useAppSelector<any>(profileUserSelector)
+    const kyc = useAppSelector(kycUserSelector)
 
     return (
         <Box flex={1}>
-            <KeyBoardSafe>
-                <Box paddingHorizontal={10}>
-                    <Header {...{ theme, t }} />
-                    <ID {...{ toAddress, setToAddress, theme, t }} />
-                    <TypeSend {...{ netWork, setNetWork, theme, t }} />
-                    <Amount {...{ amount, setAmount, profile, theme, t }} />
-                    <FromSend {...{ profile, theme, t }} />
-                    <Tips {...{ theme, t }} />
-                </Box>
-            </KeyBoardSafe>
-            <Total
-                {...{
-                    t,
-                    theme,
-                    symbol,
-                    amount,
-                    netWork,
-                    toAddress,
-                }}
-            />
+            {contants.KYC_APPROVED != kyc ?
+                <Safe paddingHorizontal={15}>
+                    <Back size={16} />
+                    <Box flex={1} alignCenter justifyCenter>
+                        <Txt color={theme.black} fontFamily={fonts.AS} size={16}>
+                            {t('You have not KYC yet')}
+                        </Txt>
+                    </Box>
+                </Safe> :
+                <>
+                    <KeyBoardSafe>
+                        <Box paddingHorizontal={10}>
+                            <Header {...{ theme, t }} />
+                            <ID {...{ toAddress, setToAddress, theme, t }} />
+                            <TypeSend {...{ netWork, setNetWork, theme, t }} />
+                            <Amount {...{ amount, setAmount, profile, theme, t }} />
+                            <FromSend {...{ profile, theme, t }} />
+                            <Tips {...{ theme, t }} />
+                        </Box>
+                    </KeyBoardSafe>
+                    <Total
+                        {...{
+                            t,
+                            theme,
+                            symbol,
+                            amount,
+                            netWork,
+                            toAddress,
+                        }}
+                    />
+                </>
+            }
         </Box>
     )
 }

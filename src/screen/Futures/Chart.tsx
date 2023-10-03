@@ -65,7 +65,7 @@ const Chart = ({ setOpenChart }: Props) => {
 
     useEffect((): any => {
         handleGetChart()
-        const newSocket = io(contants.HOSTING)
+        const newSocket = io(contants.HOSTING_CHART)
 
         let close = 0
         newSocket.on('listCoin', (coins: ICoins[]) => {
@@ -166,7 +166,7 @@ const Chart = ({ setOpenChart }: Props) => {
                     <Line
                         key={`l2_candles ${index}`}
                         x1={x_point}
-                        y1={item.closeSVG}
+                        y1={item.closeSVG == item.openSVG ? item.closeSVG + 1 : item.closeSVG}
                         x2={x_point}
                         y2={item.openSVG}
                         stroke={item.colorChart}

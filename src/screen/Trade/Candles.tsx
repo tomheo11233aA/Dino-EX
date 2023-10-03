@@ -65,7 +65,7 @@ export default ({
                             <Line
                                 key={`l2_candles ${index}`}
                                 x1={x_point}
-                                y1={item.closeSVG}
+                                y1={item.closeSVG == item.openSVG ? item.closeSVG + 1 : item.closeSVG}
                                 x2={x_point}
                                 y2={item.openSVG}
                                 stroke={item.colorChart}

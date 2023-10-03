@@ -28,7 +28,7 @@ const KYCStatus = () => {
 
     return (
         <>
-            {/* {kyc === contants.NOT_KYC &&
+            {kyc === contants.NOT_KYC &&
                 <LinearGradient
                     end={{ x: 1, y: 0 }}
                     start={{ x: 0.2, y: 0.5 }}
@@ -68,7 +68,7 @@ const KYCStatus = () => {
                         />
                     </Box>
                 </LinearGradient>
-            } */}
+            }
         </>
     )
 }

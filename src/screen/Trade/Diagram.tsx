@@ -54,7 +54,7 @@ export default () => {
     useEffect((): any => {
         handleGetChart()
 
-        const newSocket = io(contants.HOSTING)
+        const newSocket = io(contants.HOSTING_CHART)
 
         let close = 0
         newSocket.on('listCoin', (coins: ICoins[]) => {
@@ -99,7 +99,6 @@ export default () => {
         if (timeLimit.timeString) {
             time = convertTimeGetChart(timeLimit.timeString)
         }
-
         const res = await getChart({
             limit: 500,
             symbol: symbol,

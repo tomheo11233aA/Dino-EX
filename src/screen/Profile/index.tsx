@@ -12,6 +12,7 @@ import Infomation from './Infomation'
 import List from './List'
 import Menu from './Menu'
 import Referral from './Referral'
+import TokenBalance from './TokenBalance'
 
 const Profile = () => {
   const { t } = useTranslation()
@@ -25,6 +26,7 @@ const Profile = () => {
         <Infomation {...{ t }} />
         <Menu {...{ t }}/>
         <BinancePro />
+        <TokenBalance />
         <Referral {...{ t }} />
         <List {...{ t }} />
         <Txt

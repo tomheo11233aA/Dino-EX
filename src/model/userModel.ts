@@ -37,6 +37,7 @@ export interface Profile {
     updateLevel_at: string,
     userName: string,
     userNameParent: string,
+    tokenBalance: number,
 }
 
 export interface ChangePassword {
