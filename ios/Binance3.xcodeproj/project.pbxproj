@@ -276,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "HotX" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Binance3" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -583,7 +583,7 @@
 				DEVELOPMENT_TEAM = 8DM24YQ652;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Binance3/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = HotX;
+				INFOPLIST_KEY_CFBundleDisplayName = Binance3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,7 +614,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8DM24YQ652;
 				INFOPLIST_FILE = Binance3/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = HotX;
+				INFOPLIST_KEY_CFBundleDisplayName = Binance3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -791,7 +791,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "HotX" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Binance3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
