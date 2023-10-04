@@ -33,9 +33,9 @@ const Appearance = () => {
   return (
     <KeyBoardSafe>
       <Box padding={15}>
-        <Back />
+        <Back size={16} />
         <Txt
-          size={23}
+          size={18}
           fontFamily={fonts.AS}
           marginTop={18}
           marginBottom={20}
@@ -78,15 +78,15 @@ const Item = ({
   return (
     <Btn
       row
-      marginVertical={20}
+      marginVertical={18}
       justifySpaceBetween
       onPress={() => onChangeTheme(item)}
     >
-      <Txt size={16} fontFamily={fonts.SGM} color={color.black}>
+      <Txt size={12} fontFamily={fonts.SGM} color={color.black}>
         {t(item)}
       </Txt>
       {THEME === item &&
-        <Txt size={20} bold color={colors.yellow}>✓</Txt>
+        <Txt size={14} bold color={colors.yellow}>✓</Txt>
       }
     </Btn>
   )

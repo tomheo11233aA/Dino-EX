@@ -120,6 +120,9 @@ const Infomation = ({ withdrawItem }: any) => {
                 </Txt>
                 <Txt color={theme.black} fontFamily={fonts.M23}>
                     {numberCommasDot(withdrawItem.feeWidthdraw)}
+                    <Txt color={theme.black} size={11}>
+                        {' USDT'}
+                    </Txt>
                 </Txt>
             </Box>
 

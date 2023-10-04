@@ -22,13 +22,18 @@ import { navigate } from "@navigation/navigationRef";
 import { screen } from "@util/screens";
 import Btn from "@commom/Btn";
 import { colors } from "@theme/colors";
+import { useRoute } from "@react-navigation/native";
 
 export default () => {
     const theme = useTheme()
     const { t } = useTranslation()
-    const [netWork, setNetWork] = useState('TRC20')
+
+    const route = useRoute<any>()
+    const { coin } = route.params
+
+    const [netWork, setNetWork] = useState(coin.currency == contants.HX ? 'BEP20' : 'TRC20')
     const [amount, setAmount] = useState('')
-    const [symbol, setSymbol] = useState('USDT')
+    const [symbol, setSymbol] = useState(coin.currency)
     const [toAddress, setToAddress] = useState('')
 
     const profile: Profile = useAppSelector<any>(profileUserSelector)
@@ -58,11 +63,11 @@ export default () => {
                 <>
                     <KeyBoardSafe>
                         <Box paddingHorizontal={10}>
-                            <Header {...{ theme, t }} />
+                            <Header {...{ theme, t, coin }} />
                             <ID {...{ toAddress, setToAddress, theme, t }} />
-                            <TypeSend {...{ netWork, setNetWork, theme, t }} />
-                            <Amount {...{ amount, setAmount, profile, theme, t }} />
-                            <FromSend {...{ profile, theme, t }} />
+                            <TypeSend {...{ netWork, setNetWork, theme, t, coin }} />
+                            <Amount {...{ amount, setAmount, theme, t, coin }} />
+                            <FromSend {...{ profile, theme, t, coin }} />
                             <Tips {...{ theme, t }} />
                         </Box>
                     </KeyBoardSafe>

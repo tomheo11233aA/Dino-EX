@@ -15,6 +15,7 @@ interface Props {
     otpAuth: {
         link: string,
         secret: string,
+        otpAuth: string;
     };
     setShowModalQR: Function;
     onOpenModalInputTurn2FA: Function;
@@ -46,9 +47,9 @@ const ModalQRCode = ({
                     {t('Two-Factor Authentication (2FA)')}
                 </Txt>
                 <QRCode
-                    size={150}
+                    size={200}
                     color={theme.black}
-                    value={otpAuth.link}
+                    value={otpAuth.otpAuth}
                     backgroundColor={theme.bg}
                 />
                 <Txt bold color={theme.black} marginVertical={20} size={16} center>

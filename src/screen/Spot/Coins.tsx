@@ -5,15 +5,20 @@ import Txt from '@commom/Txt'
 import { useAppDispatch, useTheme } from '@hooks/index'
 import HideWallet from '@screen/Overview/HideWallet'
 import { fonts } from '@theme/fonts'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Coin } from 'src/model/tradeModel'
 import CoinItem from './CoinItem'
 import { useTranslation } from 'react-i18next'
+import { ICoins } from 'src/model/futuresModel'
+import { getWalletToSymbol } from '@service/fundingService'
+import { Alert } from 'react-native'
+import contants from '@util/contants'
 
 const Coins = ({ data }: any) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
+    const [coinHX, setCoinHX] = useState<any>({})
 
     useEffect(() => {
         handleGetWallet()
@@ -21,6 +26,16 @@ const Coins = ({ data }: any) => {
 
     const handleGetWallet = async () => {
         await dispatch(getWalletThunk())
+        let amount = 0
+        const res = await getWalletToSymbol({ symbol: 'HX.BEP20' })
+        if (res.status) {
+            amount = res.data.amount
+        }
+        setCoinHX({
+            currency: contants.HX,
+            balance: amount,
+            exchangeRate: amount,
+        })
     }
 
     return (
@@ -43,6 +58,10 @@ const Coins = ({ data }: any) => {
                         theme={theme}
                     />
                 )}
+                <CoinItem
+                    coin={coinHX}
+                    theme={theme}
+                />
             </Box>
         </Box>
     )

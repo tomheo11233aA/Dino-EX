@@ -4,6 +4,7 @@ import Scroll from '@commom/Scroll'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import ItemDepositHistory from '@screen/ChangeBalanceHistory/ItemDepositHistory'
 import { historyDepositsFundingSelector } from '@selector/fundingSelector'
+import { profileUserSelector } from '@selector/userSelector'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert } from 'react-native'
@@ -12,11 +13,12 @@ const TabDeposit = () => {
   const dispatch = useAppDispatch()
   const theme = useTheme()
   const { t } = useTranslation()
+  const profile = useAppSelector(profileUserSelector)
   const historyDeposits = useAppSelector(historyDepositsFundingSelector)
 
   useEffect(() => {
     handleGetHistoryDeposit()
-  }, [])
+  }, [profile])
 
   const handleGetHistoryDeposit = async () => {
     const { payload } = await dispatch(getHistoryDepositThunk({ limit: 1000, page: 1 }))

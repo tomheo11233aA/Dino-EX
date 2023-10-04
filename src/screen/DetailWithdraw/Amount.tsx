@@ -2,6 +2,7 @@ import Box from '@commom/Box'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
 import { useTheme } from '@hooks/index'
+import { convertCoinkey } from '@method/convert'
 import { numberCommasDot } from '@method/format'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -28,7 +29,7 @@ const Amount = ({ withdrawItem }: any) => {
                     {numberCommasDot(withdrawItem?.amount)}
                 </Txt>
                 <Txt color={theme.black} size={13} fontFamily={fonts.IBMPR}>
-                    {' USDT'}
+                    {` ${withdrawItem.symbol}`}
                 </Txt>
             </Box>
             <Box row alignCenter>

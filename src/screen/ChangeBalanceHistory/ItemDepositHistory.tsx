@@ -1,6 +1,7 @@
 import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
+import { convertCoinkey } from '@method/convert'
 import { navigate } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
@@ -17,7 +18,7 @@ const ItemDepositHistory = ({ item, theme, t }: any) => {
         >
             <Box row alignCenter justifySpaceBetween>
                 <Txt fontFamily={fonts.SGM} size={13} color={theme.black}>
-                    {'USDT'}
+                    {convertCoinkey(item.coin_key)}
                 </Txt>
 
                 <Txt fontFamily={fonts.M24} size={15} color={theme.black}>

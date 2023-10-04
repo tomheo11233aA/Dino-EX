@@ -17,10 +17,10 @@ export default ({ theme, t }: any) =>
             <Txt color={colors.grayBlue2} size={5} marginRight={5}>●</Txt>
             <Box row alignCenter>
                 <Txt color={colors.grayBlue2} size={10}>
-                    {`${t('24h Withdrawal limit')}: `}
+                    {`${t('Fee')}: `}
                 </Txt>
                 <Txt size={11} fontFamily={fonts.M24} color={theme.black}>
-                    {'8.000.000/8.000.000 '}
+                    {'1 '}
                     <Txt size={9} color={theme.black}>
                         USDT
                     </Txt>
@@ -28,10 +28,10 @@ export default ({ theme, t }: any) =>
             </Box>
         </Box>
 
-        <Box row alignCenter>
+        {/* <Box row alignCenter>
             <Txt color={colors.grayBlue2} size={5} marginRight={5}>●</Txt>
             <Txt color={colors.grayBlue2} size={10}>
                 {t('Withdrawals to HotX address will receive a refund for transaction fees')}
             </Txt>
-        </Box>
+        </Box> */}
     </Box>

@@ -6,9 +6,11 @@ import { colors } from "@theme/colors";
 import { fonts } from "@theme/fonts";
 import ModalTypeNetwork from "./ModalTypeNetwork";
 import { useState } from "react";
+import contants from "@util/contants";
 
 interface Props {
     t: any,
+    coin: any,
     theme: any,
     netWork: string,
     setNetWork: Function,
@@ -16,6 +18,7 @@ interface Props {
 
 export default ({
     t,
+    coin,
     theme,
     netWork,
     setNetWork,
@@ -43,9 +46,10 @@ export default ({
             </Box>
 
             <Btn
-                onPress={() => setShowModal(!showModal)}
+                onPress={() => coin.currency != contants.HX && setShowModal(!showModal)}
                 row
                 radius={5}
+                disabled={coin.currency == contants.HX}
                 alignCenter
                 height={40}
                 paddingHorizontal={10}

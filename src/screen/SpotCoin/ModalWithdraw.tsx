@@ -9,13 +9,15 @@ import { colors } from "@theme/colors"
 import { fonts } from "@theme/fonts"
 import { screen } from "@util/screens"
 import { useTranslation } from "react-i18next"
+import { ICoins } from "src/model/futuresModel"
 
 interface Props {
     isShow: boolean,
     setShow: Function,
+    coin: ICoins;
 }
 
-export default ({ isShow, setShow }: Props) => {
+export default ({ isShow, setShow, coin }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const data = [
@@ -24,7 +26,7 @@ export default ({ isShow, setShow }: Props) => {
             title: 'Send via crypto network',
             note: 'Send to a known crypto address over the crypto network',
             onPress: () => {
-                navigate(screen.SEND_USDT)
+                navigate(screen.SEND_USDT, { coin })
                 setShow(false)
             }
         },

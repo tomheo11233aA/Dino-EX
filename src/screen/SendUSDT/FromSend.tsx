@@ -7,11 +7,11 @@ import { Profile } from "src/model/userModel";
 
 interface Props {
     t: any;
+    coin: any;
     theme: any;
-    profile: Profile;
 }
 
-export default ({ profile, theme, t }: Props) =>
+export default ({ theme, t, coin }: Props) =>
     <Box>
         <Box row marginTop={25}>
             <Txt
@@ -23,7 +23,6 @@ export default ({ profile, theme, t }: Props) =>
                 {t('Send from')}
             </Txt>
         </Box>
-
 
         <Box
             row
@@ -46,8 +45,8 @@ export default ({ profile, theme, t }: Props) =>
             </Txt>
 
             <Txt fontFamily={fonts.M23} size={13} color={theme.black}>
-                {profile.balance.toFixed(2)}
-                <Txt size={10} color={theme.black}>{' USDT'}</Txt>
+                {coin.balance.toFixed(2)}
+                <Txt size={10} color={theme.black}>{` ${coin.currency}`}</Txt>
             </Txt>
         </Box>
     </Box>

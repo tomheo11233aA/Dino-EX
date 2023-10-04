@@ -30,9 +30,9 @@ const ChangeLanguage = () => {
   return (
     <KeyBoardSafe>
       <Box padding={15}>
-        <Back />
+        <Back size={16} />
         <Txt
-          size={23}
+          size={18}
           fontFamily={fonts.AS}
           marginTop={18}
           marginBottom={20}
@@ -79,7 +79,7 @@ const Item = ({
       marginVertical={20}
       onPress={() => onChangeLanguage(item)}
     >
-      <Txt size={16} fontFamily={fonts.SGM} color={color.black}>
+      <Txt size={12} fontFamily={fonts.SGM} color={color.black}>
         {t(converLanguage(item))}
       </Txt>
       {CHOOSE && <Txt size={20} bold color={colors.yellow}>✓</Txt>}

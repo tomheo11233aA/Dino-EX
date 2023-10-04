@@ -38,10 +38,11 @@ export default ({
             network: netWork,
             toAddress,
         })
-        
         Alert.alert(t(res.message))
         setLoading(false)
-        await dispatch(getProfileThunk())
+        if (res.status) {
+            dispatch(getProfileThunk())
+        }
     }
 
     const check = (amount.trim() !== '' && toAddress.trim() !== ''
@@ -66,9 +67,9 @@ export default ({
                     {t('Total amount')}
                 </Txt>
                 <Txt fontFamily={fonts.M24} size={20} color={theme.black}>
-                    {amount || 0}
+                    {Number(amount)?.toFixed(2) || 0}
                     <Txt fontFamily={fonts.RM} color={theme.black}>
-                        {' USDT'}
+                        {` ${symbol}`}
                     </Txt>
                 </Txt>
                 <Txt

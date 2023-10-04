@@ -8,6 +8,7 @@ import { useTheme } from '@hooks/index'
 import { colors } from '@theme/colors'
 import Icon from '@commom/Icon'
 import { fonts } from '@theme/fonts'
+import { convertCoinkey } from '@method/convert'
 
 const Amount = ({ depositItem }: any) => {
     const theme = useTheme()
@@ -29,7 +30,7 @@ const Amount = ({ depositItem }: any) => {
                     {numberCommasDot(depositItem?.usd_amount)}
                 </Txt>
                 <Txt color={theme.black} size={13} fontFamily={fonts.IBMPR}>
-                    {' USDT'}
+                    {` ${convertCoinkey(depositItem?.coin_key)}`}
                 </Txt>
             </Box>
             <Box row alignCenter>

@@ -52,8 +52,9 @@ const Footer = ({ coin }: any) => {
 
             <ModalWithdraw
                 {...{
+                    coin,
                     isShow: isShowModalWithdraw,
-                    setShow: setShowModalWithdraw
+                    setShow: setShowModalWithdraw,
                 }}
             />
         </Box>

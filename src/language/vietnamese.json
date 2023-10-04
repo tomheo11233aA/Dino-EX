@@ -487,6 +487,14 @@
         "City is empty": "Thành phố trống",
         "Awaiting verification": "Đang chờ xác minh",
         "Your verification request is pending approval. This process can take up to 3 business days. Please wait for the results.": "Yêu cầu xác minh của bạn đang chờ phê duyệt. Quá trình này có thể mất tới 3 ngày làm việc. Hãy chờ đợi kết quả.",
-        "You have not KYC yet": "Bạn chưa KYC"
+        "You have not KYC yet": "Bạn chưa KYC",
+
+        "Trade a certain volume and you will unlock a certain number of HX": "Trade volume nhất định thì sẽ mở khóa tương ứng được 1 số HX nhất định",
+        "Example": "Ví dụ",
+        "Your balance is insufficient": "Số dư của bạn không đủ",
+        "Minimum amount must be $50": "Số tiền tối thiểu phải là $50",
+        "Minimum amount must be 10 Token": "Số tiền tối thiểu là 10 Token",
+        "Unlock": "Mở khoá",
+        "Log out": "Đăng xuất"
     }
 }

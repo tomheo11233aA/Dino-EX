@@ -27,6 +27,7 @@ const TwoFA = () => {
   const [otpAuth, setOtpAuth] = useState({
     link: '',
     secret: '',
+    otpAuth: '',
   })
   const [loading, setLoading] = useState(false)
   const [isShowModalQR, setShowModalQR] = useState(false)
@@ -69,9 +70,9 @@ const TwoFA = () => {
     <KeyBoardSafe paddingHorizontal={15}>
       {!loading ?
         <>
-          <Back />
+          <Back size={16} />
           <Txt
-            size={23}
+            size={18}
             marginTop={18}
             marginBottom={20}
             color={theme.black}
@@ -130,13 +131,14 @@ const Item = ({
       row
       marginVertical={20}
       justifySpaceBetween
+      disabled={turn2FA === item}
       onPress={() => onCreateCode(item)}
     >
-      <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
+      <Txt size={12} fontFamily={fonts.SGM} color={theme.black}>
         {t(item)}
       </Txt>
       {turn2FA === item &&
-        <Txt size={20} bold color={colors.yellow}>✓</Txt>
+        <Txt size={16} bold color={colors.yellow}>✓</Txt>
       }
     </Btn>
   )

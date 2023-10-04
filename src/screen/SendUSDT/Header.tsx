@@ -6,9 +6,10 @@ import { navigate } from "@navigation/navigationRef";
 import Back from "@reuse/Back";
 import { colors } from "@theme/colors";
 import { fonts } from "@theme/fonts";
+import contants from "@util/contants";
 import { screen } from "@util/screens";
 
-export default ({ theme, t }: any) =>
+export default ({ theme, t, coin }: any) =>
     <Box marginTop={10}>
         <Box row alignCenter justifySpaceBetween>
             <Back size={16} color='#868d98' />
@@ -36,8 +37,9 @@ export default ({ theme, t }: any) =>
         >
             {t('Convert')}
         </Txt>
-
-        <Txt size={10} fontFamily={fonts.SGM} color={colors.grayBlue2}>
-            {t('Send USDT to HotX account')}
-        </Txt>
+        {coin.currency != contants.HX &&
+            <Txt size={10} fontFamily={fonts.SGM} color={colors.grayBlue2}>
+                {t('Send USDT to HotX account')}
+            </Txt>
+        }
     </Box>
