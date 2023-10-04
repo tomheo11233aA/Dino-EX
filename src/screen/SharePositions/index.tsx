@@ -7,6 +7,7 @@ import { profileUserSelector } from '@selector/userSelector'
 import { colors } from '@theme/colors'
 import { width } from '@util/responsive'
 import React, { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, PermissionsAndroid, Platform, Share } from 'react-native'
 import ViewShot from 'react-native-view-shot'
 import { RootStackParamList } from 'src/model/commomModel'
@@ -16,7 +17,6 @@ import PNLShare from './PNLShare'
 import Perpetual from './Perpetual'
 import Price from './Price'
 import QRReferral from './QRReferral'
-import { useTranslation } from 'react-i18next'
 
 const SharePositions = () => {
   const { t } = useTranslation()
@@ -100,7 +100,7 @@ const SharePositions = () => {
         options={{ fileName: "Your-File-Name", format: "jpg", quality: 1 }}
       >
         <Img
-          source={require('@images/future/snapedit.jpg')}
+          source={require('@images/future/snaphotx.png')}
           resizeMode={'contain'}
           width={width}
           height={width * 60 / 100}

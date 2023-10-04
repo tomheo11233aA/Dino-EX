@@ -7,6 +7,7 @@ import Safe from '@reuse/Safe'
 import { colors } from '@theme/colors'
 import { height, width } from '@util/responsive'
 import React from 'react'
+import { Platform, Text } from 'react-native'
 
 const ComingSoon = ({ showBack = true }) => {
     return (
@@ -30,7 +31,7 @@ const ComingSoon = ({ showBack = true }) => {
                     marginTop={-50}
                     color={colors.yellow}
                 >
-                    {applyLetterSpacing('COMING SOON', 10)}
+                    {applyLetterSpacing('COMING SOON', Platform.OS === 'ios' ? 10 : 5)}
                 </Txt>
             </Box>
         </Safe>
