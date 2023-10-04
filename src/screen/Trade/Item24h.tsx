@@ -4,19 +4,20 @@ import React from 'react'
 import { Text, View } from 'react-native'
 
 interface Props {
-    title: any | string,
-    value: string,
-    topValue?: number
+    title: any | string;
+    value: string;
+    topValue?: number;
+    marginTop?: number;
 }
 
-const Item24h = ({ title, value, topValue = 0 }: Props) => {
+const Item24h = ({ title, value, topValue = 0, marginTop = 0 }: Props) => {
     const theme = useTheme()
 
     const number = title.slice(0, 2)
     const text = title.slice(2, title.length)
 
     return (
-        <View style={{ marginVertical: 5 }}>
+        <View style={{ marginVertical: 5, marginTop }}>
             <Text
                 style={{
                     fontSize: 11,

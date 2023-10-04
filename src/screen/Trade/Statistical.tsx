@@ -5,7 +5,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import Item24h from './Item24h'
 
 const Statistical = () => {
@@ -57,24 +57,25 @@ const Statistical = () => {
                 <View>
                     <Item24h
                         title={t('24h High')}
-                        value={'0,2776'}
+                        value={'0,00'}
                         topValue={2}
                     />
                     <Item24h
                         title={t('24h Low')}
-                        value={'0,2622'}
+                        value={'0,00'}
                         topValue={2}
                     />
                 </View>
                 <View style={{ marginLeft: 10 }}>
                     <Item24h
-                        title={'24h Vol(BNB)'}
-                        value={'22,78M'}
+                        title={'24h Vol(USDT)'}
+                        value={'0,00M'}
                     />
                     <Item24h
                         title={'24h Vol(USDT)'}
-                        value={'6,13M'}
+                        value={'0,00M'}
                         topValue={-1}
+                        marginTop={Platform.OS === 'android' ? -3 : 0}
                     />
                 </View>
             </View>
