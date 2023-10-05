@@ -34,7 +34,7 @@ const Coins = ({ data }: any) => {
         setCoinHX({
             currency: contants.HX,
             balance: amount,
-            exchangeRate: amount * 0.06,
+            exchangeRate: amount * 0.006,
         })
     }
 
