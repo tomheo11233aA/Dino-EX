@@ -13,3 +13,5 @@ export const typeUserSelector = (state: RootState) => state.user.type
 export const showBalanceSelector = (state: RootState) => state.user.showBalance 
 
 export const themeUserSelector = (state: RootState) => state.user.theme
+
+export const userIDSelector = (state: RootState) => state.user.userID

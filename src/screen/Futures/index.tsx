@@ -28,11 +28,20 @@ const Futures = () => {
   const loading = useAppSelector(loadingFuturesSelector)
 
   useEffect(() => {
+    const focus = navigation.addListener('focus', () => {
+      dispatch(getProfileThunk())
+      dispatch(futuresSlice.actions.setLoading(true))
+    })
     AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      focus
+    }
   }, [])
 
   const handleAppStateChange = (nextAppState: AppStateStatus) => {
     if (nextAppState === 'active') {
+      dispatch(getProfileThunk())
       dispatch(futuresSlice.actions.setLoading(true))
     }
   }

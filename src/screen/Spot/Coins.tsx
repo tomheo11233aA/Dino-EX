@@ -29,17 +29,21 @@ const Coins = ({ data }: any) => {
         let amount = 0
         const res = await getWalletToSymbol({ symbol: 'HX.BEP20' })
         if (res.status) {
-            amount = res.data.amount
+            amount = res?.data?.amount || 0
         }
         setCoinHX({
             currency: contants.HX,
             balance: amount,
-            exchangeRate: amount,
+            exchangeRate: amount * 0.06,
         })
     }
 
     return (
-        <Box paddingHorizontal={15} paddingBottom={500}>
+        <Box
+            marginTop={15}
+            paddingHorizontal={15}
+            paddingBottom={500}
+        >
             <Box marginBottom={15} row justifySpaceBetween>
                 <Txt fontFamily={fonts.AS} size={16} color={theme.black}>{t('Balances')}</Txt>
                 <Icon

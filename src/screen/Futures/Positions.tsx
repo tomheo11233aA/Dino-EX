@@ -16,6 +16,8 @@ import { IPositions } from 'src/model/futuresModel'
 import { Profile } from 'src/model/userModel'
 import ItemPosition from './ItemPosition'
 import ModalCloseAllPosition from './ModalCloseAllPosition'
+import { navigate } from '@navigation/navigationRef'
+import { screen } from '@util/screens'
 
 interface Props {
     positions: IPositions[];
@@ -78,6 +80,14 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
+    const handleMoveOnTrade = async (position: IPositions) => {
+        dispatch(futuresSlice.actions.setSymbol({
+            symbol: position.symbol,
+            currency: position.symbol.replace('USDT', '')
+        }))
+        navigate(screen.TRADE)
+    }
+
     return (
         <>
             {positions.length > 0 ?
@@ -120,6 +130,7 @@ const Positions = ({ positions }: Props) => {
                                 theme={theme}
                                 key={item.id}
                                 profile={profile}
+                                onMoveOnTrade={handleMoveOnTrade}
                                 onClosePosition={handleClosePosition}
                                 onSetClosePosition={handleSetClosePosition}
                                 onSetShowModalCore={handleSetShowModalCore}

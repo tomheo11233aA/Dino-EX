@@ -6,7 +6,13 @@ import { fonts } from '@theme/fonts'
 import React from 'react'
 import { Platform, StyleSheet, TextInput } from 'react-native'
 
-const FindCoin = ({ theme }: any) => {
+interface Props {
+    theme: any;
+    search: string;
+    setSearch: Function;
+}
+
+const FindCoin = ({ theme, search, setSearch }: Props) => {
     return (
         <Box paddingHorizontal={15}>
             <Box
@@ -41,7 +47,14 @@ const FindCoin = ({ theme }: any) => {
                 />
                 <Box flex={1}>
                     <TextInput
-                        style={styles.input}
+                        value={search}
+                        onChangeText={(txt) => setSearch(txt)}
+                        style={[
+                            {
+                                color: theme.black,
+                            },
+                            styles.input
+                        ]}
                         placeholder={'Find'}
                     />
                 </Box>
@@ -58,8 +71,8 @@ const styles = StyleSheet.create({
         height: '100%',
         paddingLeft: 10,
         paddingRight: 20,
+        paddingVertical: 0,
         fontFamily: fonts.RM,
         fontSize: 13,
-        color: colors.black,
     }
 })

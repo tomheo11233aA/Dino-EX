@@ -3,7 +3,7 @@ import { getPositionThunk } from "@asyncThunk/futuresAsyncThunk";
 import { getProfileThunk } from "@asyncThunk/userAsyncThunk";
 import { styles } from "@navigation/Container";
 import { useNavigation } from "@react-navigation/native";
-import { profileUserSelector, themeUserSelector } from "@selector/userSelector";
+import { themeUserSelector, userIDSelector } from "@selector/userSelector";
 import futuresSlice from "@slice/futuresSlice";
 import { colors } from "@theme/colors";
 import contants from "@util/contants";
@@ -12,7 +12,6 @@ import { AppState, AppStateStatus } from "react-native";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { ICoins } from "src/model/futuresModel";
-import { Profile } from "src/model/userModel";
 import { AppDispatch, RootState } from "src/redux/store";
 
 export const useAppDispatch: () => AppDispatch = useDispatch
@@ -80,12 +79,11 @@ export const getCoinsFromSocket = async () => {
 
 export const socketLimitDeposit = async () => {
   const dispatch = useAppDispatch()
-  const profile: Profile = useAppSelector<any>(profileUserSelector)
+  const userID = useAppSelector(userIDSelector)
 
   useEffect(() => {
     const newSocket = io(contants.HOSTING)
-
-    newSocket.emit('joinUser', `${profile.id}`)
+    newSocket.emit('joinUser', `${userID}`)
 
     newSocket.on("limit", (res) => {
       console.log('limit hook')
@@ -108,5 +106,5 @@ export const socketLimitDeposit = async () => {
       dispatch(getProfileThunk())
       dispatch(getHistoryDepositThunk({ limit: 1000, page: 1 }))
     })
-  }, [])
+  }, [userID])
 }

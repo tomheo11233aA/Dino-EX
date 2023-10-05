@@ -47,19 +47,19 @@ const ModalExampleHX = ({ show, setShow }: Props) => {
                 <Box>
                     <Box backgroundColor={theme.gray2} padding={10} radius={2}>
                         <Txt color={colorText} fontFamily={fonts.IBMPM}>
-                            Size 1$/10 = 0.1HX
+                            Size 1$/50 = 0.02HX
                         </Txt>
                     </Box>
 
                     <Box backgroundColor={theme.gray2} padding={10} radius={2} marginVertical={5}>
                         <Txt color={colorText} fontFamily={fonts.IBMPM}>
-                            Size 100$/10 = 1HX
+                            Size 10$/50 = 0.2HX
                         </Txt>
                     </Box>
 
                     <Box backgroundColor={theme.gray2} padding={10} radius={2}>
                         <Txt color={colorText} fontFamily={fonts.IBMPM}>
-                            Size 1000$ = 10HX
+                            Size 100$/50 = 2HX
                         </Txt>
                     </Box>
                 </Box>

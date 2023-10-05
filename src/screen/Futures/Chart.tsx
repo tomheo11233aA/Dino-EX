@@ -96,9 +96,9 @@ const Chart = ({ setOpenChart }: Props) => {
             if (nextAppState === 'inactive') {
                 newSocket.disconnect()
             }
-            if (nextAppState === 'active') {
-                newSocket.connect()
-            }
+            // if (nextAppState === 'active') {
+            //     newSocket.connect()
+            // }
         });
 
         return () => newSocket.disconnect()

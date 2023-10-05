@@ -19,6 +19,7 @@ interface Props {
     coins: ICoins[];
     profile: Profile;
     item: IPositions;
+    onMoveOnTrade?: Function;
     onClosePosition?: Function;
     onSetClosePosition?: Function;
     onSetShowModalCore?: Function;
@@ -31,6 +32,7 @@ const ItemPosition = ({
     coins,
     theme,
     profile,
+    onMoveOnTrade,
     item: position,
     onClosePosition,
     onSetClosePosition,
@@ -43,27 +45,35 @@ const ItemPosition = ({
     return (
         <Box
             marginTop={10}
-            borderTopWidth={1}
             paddingTop={10}
+            borderTopWidth={1}
             borderColor={theme.gray}
         >
             <Box row justifySpaceBetween alignCenter>
                 <Box row alignCenter>
-                    <Box
-                        width={20}
-                        height={20}
+                    <Btn
+                        row
                         alignCenter
-                        justifyCenter
-                        marginRight={10}
-                        backgroundColor={position?.side === 'buy' ? colors.green2 : colors.red3}
+                        disabled={!onMoveOnTrade}
+                        onPress={() => onMoveOnTrade && onMoveOnTrade(position)}
                     >
-                        <Txt color={colors.white} size={13}>
-                            {capitalizeFirst(position?.side?.charAt(0))}
+                        <Box
+                            width={20}
+                            height={20}
+                            alignCenter
+                            justifyCenter
+                            marginRight={10}
+                            backgroundColor={position?.side === 'buy' ? colors.green2 : colors.red3}
+                        >
+                            <Txt color={colors.white} size={13}>
+                                {capitalizeFirst(position?.side?.charAt(0))}
+                            </Txt>
+                        </Box>
+                        <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
+                            {`${position.symbol} ${t('Perpetual')}`}
                         </Txt>
-                    </Box>
-                    <Txt size={16} fontFamily={fonts.SGM} color={theme.black}>
-                        {`${position.symbol} ${t('Perpetual')}`}
-                    </Txt>
+                    </Btn>
+
                     <Txt size={12} fontFamily={fonts.RM} color={colors.gray5} marginLeft={10}>
                         {capitalizeFirst(position.regime)}
                     </Txt>

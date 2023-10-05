@@ -1,4 +1,4 @@
-import { checKYCUserThunk, getProfileThunk, loginThunk } from "@asyncThunk/userAsyncThunk";
+import { checKYCUserThunk, getProfileThunk, getProfileThunkUserID, loginThunk } from "@asyncThunk/userAsyncThunk";
 import { PayloadAction, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import contants from "@util/contants";
 import { IPayloadUser, Profile } from "src/model/userModel";
@@ -6,6 +6,7 @@ import { IPayloadUser, Profile } from "src/model/userModel";
 interface IUserSlice {
     isLogin: boolean,
     profile: Profile | {},
+    userID: number | undefined,
     loading: boolean,
     kyc: string,
     type: string,
@@ -17,6 +18,7 @@ interface IUserSlice {
 const initialState: IUserSlice = {
     isLogin: false,
     profile: {},
+    userID: undefined,
     loading: false,
     kyc: '',
     type: 'live',
@@ -48,6 +50,7 @@ const userSlice = createSlice({
                 if (payload.status) {
                     state.isLogin = true
                     state.profile = payload.data
+                    state.userID = Number(payload.data.id)
                 }
             })
             .addCase(checKYCUserThunk.fulfilled, (state, { payload }: IPayloadUser<string>) => {
@@ -63,6 +66,13 @@ const userSlice = createSlice({
                 if (payload.status) {
                     state.isLogin = true
                     state.profile = payload.data
+                }
+            })
+            .addCase(getProfileThunkUserID.fulfilled, (state, { payload }) => {
+                if (payload.status) {
+                    state.isLogin = true
+                    state.profile = payload.data
+                    state.userID = payload.data.id
                 }
             })
             .addMatcher(isAnyOf(loginThunk.pending), (state) => {

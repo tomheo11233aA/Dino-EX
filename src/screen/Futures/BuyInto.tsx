@@ -24,24 +24,6 @@ const BuyInto = () => {
         handleGetTotalSell()
     }, [])
 
-    useEffect((): any => {
-        const newSocket = io(contants.HOSTING)
-        newSocket.on(`${symbol}BUY`, (data) => {
-            dispatch(futuresSlice.actions.setBuys(data))
-        })
-
-        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
-            if (nextAppState === 'inactive') {
-                newSocket.disconnect()
-            }
-            if (nextAppState === 'active') {
-                newSocket.connect()
-            }
-        });
-
-        return () => newSocket.disconnect()
-    }, [symbol])
-
     const handleGetTotalSell = async () => {
         const { payload } = await dispatch(
             getTotalBuyThunk({

@@ -41,28 +41,37 @@ const Header = ({ drawerRef }: any) => {
             dispatch(futuresSlice.actions.setCoins(coins))
         })
 
-        const blur = navigation.addListener('blur', () => {
-            newSocket.disconnect()
+        newSocket.on(`${symbol}SELL`, (data) => {
+            dispatch(futuresSlice.actions.setSells(data))
         })
 
-        const focus = navigation.addListener('focus', () => {
-            newSocket.connect()
+        newSocket.on(`${symbol}BUY`, (data) => {
+            dispatch(futuresSlice.actions.setBuys(data))
+        })
+
+        // const focus = navigation.addListener('focus', () => {
+        //     newSocket.connect()
+        // })
+
+        const blur = navigation.addListener('blur', () => {
+            newSocket.disconnect()
         })
 
         AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
             if (nextAppState === 'inactive') {
                 newSocket.disconnect()
             }
-            if (nextAppState === 'active') {
-                newSocket.connect()
-            }
+            // if (nextAppState === 'active') {
+            //     newSocket.connect()
+            // }
         });
 
         return () => {
+            newSocket.disconnect()
             blur
-            focus
+            // focus
         }
-    }, [symbol])
+    }, [])
 
     let coin: ICoins | null = null
     let percentChange: string = ''

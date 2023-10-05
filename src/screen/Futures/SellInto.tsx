@@ -3,6 +3,7 @@ import Box from '@commom/Box'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { kFormatter, numberCommasDot } from '@method/format'
+import { useNavigation } from '@react-navigation/native'
 import { colorSellPriceFuturesSelector, sellPriceFuturesSelector, sellsFuturesSelector, symbolFuturesSelector } from '@selector/futuresSelector'
 import futuresSlice from '@slice/futuresSlice'
 import { colors } from '@theme/colors'
@@ -17,6 +18,7 @@ const SellInto = () => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
+
     const symbol = useAppSelector(symbolFuturesSelector)
     const sells = useAppSelector(sellsFuturesSelector)
     const sellPrice = useAppSelector(sellPriceFuturesSelector)
@@ -25,24 +27,6 @@ const SellInto = () => {
     useEffect(() => {
         handleGetTotalSell()
     }, [])
-
-    useEffect((): any => {
-        const newSocket = io(contants.HOSTING)
-        newSocket.on(`${symbol}SELL`, (data) => {
-            dispatch(futuresSlice.actions.setSells(data))
-        })
-
-        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
-            if (nextAppState === 'inactive') {
-                newSocket.disconnect()
-            }
-            if (nextAppState === 'active') {
-                newSocket.connect()
-            }
-        });
-
-        return () => newSocket.disconnect()
-    }, [symbol])
 
     const handleGetTotalSell = async () => {
         const { payload } = await dispatch(

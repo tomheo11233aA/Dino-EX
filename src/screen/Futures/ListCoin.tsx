@@ -9,7 +9,12 @@ import React from 'react'
 import { ICoins } from 'src/model/futuresModel'
 import CoinItem from './CoinItem'
 
-const ListCoin = ({ close }: { close: Function }) => {
+interface Props {
+    close: Function;
+    search: String;
+}
+
+const ListCoin = ({ close, search }: Props) => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
     const coins = useAppSelector(coinsFuturesChartSelector)
@@ -21,6 +26,10 @@ const ListCoin = ({ close }: { close: Function }) => {
         }))
         close()
     }
+
+    const coinsFilter = coins.filter(
+        (coin) => coin.currency.toLocaleUpperCase().includes(search.toLocaleUpperCase())
+    )
 
     return (
         <Box paddingHorizontal={15}>
@@ -56,7 +65,7 @@ const ListCoin = ({ close }: { close: Function }) => {
             </Box>
 
             <Box marginTop={5}>
-                {coins.map((coin: ICoins) =>
+                {coinsFilter.map((coin: ICoins) =>
                     <CoinItem
                         key={coin.id}
                         coin={coin}

@@ -15,10 +15,13 @@ import Header from "./Header"
 import History from "./History"
 import Statistical from "./Statistical"
 import Times from "./Times"
+import { useNavigation } from "@react-navigation/native"
+import { styles as styled } from "@navigation/Container";
 
 export default () => {
   const theme = useTheme()
   const dispatch = useAppDispatch()
+  const navigation = useNavigation()
   const loading = useAppSelector(loadingTradeSelector)
 
   hideBottomTab()
@@ -36,7 +39,10 @@ export default () => {
 
   useEffect(() => {
     if (loading) {
-      delay(1000).then(() => dispatch(tradeSlice.actions.setLoading(false)))
+      delay(1000).then(() => {
+        dispatch(tradeSlice.actions.setLoading(false))
+        navigation.getParent()?.setOptions({ tabBarStyle: styled.noneContainer })
+      })
     }
   }, [loading])
 

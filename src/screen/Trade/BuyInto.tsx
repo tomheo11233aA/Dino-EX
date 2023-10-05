@@ -33,9 +33,9 @@ const BuyInto = () => {
             if (nextAppState === 'inactive') {
                 newSocket.disconnect()
             }
-            if (nextAppState === 'active') {
-                newSocket.connect()
-            }
+            // if (nextAppState === 'active') {
+            //     newSocket.connect()
+            // }
         });
 
         return () => newSocket.disconnect()

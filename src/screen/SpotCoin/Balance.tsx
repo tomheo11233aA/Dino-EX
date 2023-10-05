@@ -26,7 +26,7 @@ export default ({ theme, coin, t }: any) =>
             <Txt color={colors.grayBlue2} size={10}>
                 {'≈ '}
                 <Txt color={colors.grayBlue2} fontFamily={fonts.M23}>
-                {coin?.balance}
+                {coin?.exchangeRate?.toFixed(2)}
                 </Txt>
                 <Txt color={colors.grayBlue2} size={12}>
                     {' $'}

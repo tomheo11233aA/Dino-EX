@@ -24,3 +24,8 @@ export const getProfileThunk = createAsyncThunk('user/getProfile', async () => {
     const res = await getProfile()
     return res
 })
+
+export const getProfileThunkUserID = createAsyncThunk('user/getProfileUserID', async () => {
+    const res = await getProfile()
+    return res
+})

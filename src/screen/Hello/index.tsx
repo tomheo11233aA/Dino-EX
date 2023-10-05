@@ -1,4 +1,4 @@
-import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
+import { getProfileThunk, getProfileThunkUserID } from '@asyncThunk/userAsyncThunk'
 import Box from '@commom/Box'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
@@ -28,7 +28,7 @@ const Hello = ({ navigation }: any) => {
             const token = await AsyncStorage.getItem(contants.TOKEN) || null
             console.log(token)
             if (token) {
-                await dispatch(getProfileThunk())
+                await dispatch(getProfileThunkUserID())
             }
             navigation.replace(screen.HOME)
         }, 2000)
