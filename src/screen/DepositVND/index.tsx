@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import Payment from './payment/Payment'
+import { checkTransactionDepositVndThunk } from '@asyncThunk/fundingAsyncThunk'
+import Box from '@commom/Box'
 import { hideBottomTab, useAppDispatch, useAppSelector } from '@hooks/index'
+import KeyBoardSafe from '@reuse/KeyBoardSafe'
+import LoadingYellow from '@reuse/LoadingYellow'
 import { loadingFundingSelector, stepDepositFunddingSelector } from '@selector/fundingSelector'
 import { depositStep } from '@util/contants'
+import { heightBottomTab } from '@util/responsive'
+import React, { useEffect } from 'react'
 import ConfirmPayment from './confirmPayment/ConfirmPayment'
-import SendImage from './sendImage/SendImage'
 import Done from './done/Done'
-import Box from '@commom/Box'
-import LoadingYellow from '@reuse/LoadingYellow'
-import { checkTransactionDepositVndThunk } from '@asyncThunk/fundingAsyncThunk'
-import KeyBoardSafe from '@reuse/KeyBoardSafe'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
+import Payment from './payment/Payment'
+import SendImage from './sendImage/SendImage'
 
 const DepositVND = () => {
   const dispatch = useAppDispatch()
@@ -27,7 +27,7 @@ const DepositVND = () => {
   return (
     <>
       {loading ?
-        <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+        <KeyBoardSafe paddingBottom={heightBottomTab()}>
           <Box flex={1} alignCenter justifyCenter>
             <LoadingYellow />
           </Box>

@@ -2,16 +2,16 @@ import Box from '@commom/Box'
 import { hideBottomTab, useAppSelector, useTheme } from '@hooks/index'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import { coinsSpotSelector } from '@selector/spotSelector'
+import { heightBottomTab } from '@util/responsive'
 import React, { useState } from 'react'
+import { ICoins } from 'src/model/futuresModel'
 import FromCoin from './FromCoin'
 import Header from './Header'
 import Keyboard from './Keyboard'
 import MarketAndLimit from './MarketAndLimit'
 import ModalListCoin from './ModalListCoin'
-import ToCoin from './ToCoin'
-import { ICoins } from 'src/model/futuresModel'
 import ModalPreviewConversion from './ModalPreviewConversion'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
+import ToCoin from './ToCoin'
 
 const ConvertTrades = () => {
     const theme = useTheme()
@@ -77,7 +77,10 @@ const ConvertTrades = () => {
     }
 
     return (
-        <KeyBoardSafe bg={theme.bg} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+        <KeyBoardSafe
+            bg={theme.bg}
+            paddingBottom={heightBottomTab()}
+        >
             <Box flex={1} paddingHorizontal={15}>
                 <Header />
                 <MarketAndLimit />
@@ -114,7 +117,7 @@ const ConvertTrades = () => {
                     setShowModalListCoin,
                 }}
             />
-            <ModalPreviewConversion 
+            <ModalPreviewConversion
                 {...{
                     coinTo,
                     coinFrom,

@@ -1,19 +1,19 @@
+import Box from '@commom/Box'
+import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { useAppDispatch, useTheme } from '@hooks/index'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
-import React, { useState } from 'react'
-import Header from './Header'
-import RadioItem from './RadioItem'
-import { useTranslation } from 'react-i18next'
-import Box from '@commom/Box'
-import Btn from '@commom/Btn'
+import { setStep } from '@slice/kycSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import { setStep } from '@slice/kycSlice'
 import contants from '@util/contants'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
-import { Camera } from 'react-native-vision-camera'
+import { heightBottomTab } from '@util/responsive'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert } from 'react-native'
+import { Camera } from 'react-native-vision-camera'
+import Header from './Header'
+import RadioItem from './RadioItem'
 
 const DocumentVerification = () => {
   const theme = useTheme()
@@ -33,7 +33,7 @@ const DocumentVerification = () => {
 
   return (
     <Box flex={1} paddingHorizontal={15} backgroundColor={theme.bg}>
-      <KeyBoardSafe paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+      <KeyBoardSafe paddingBottom={heightBottomTab()}>
         <Header />
         <Txt marginTop={25} color={theme.black}>
           {t('Document Type')}

@@ -5,17 +5,19 @@ import Type from './Type'
 import Box from '@commom/Box'
 import SpotFutures from './SpotFutures'
 import Coins from './Coins'
-import { height } from '@util/responsive'
+import { height, heightBottomTab } from '@util/responsive'
 import { useTheme } from '@hooks/index'
 import { useTranslation } from 'react-i18next'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 
 const Markets = () => {
   const { t } = useTranslation()
   const theme = useTheme()
 
   return (
-    <KeyBoardSafe bg={theme.bg} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+    <KeyBoardSafe
+      bg={theme.bg}
+      paddingBottom={heightBottomTab()}
+    >
       <Search theme={theme} />
       <Type t={t} theme={theme}
       />

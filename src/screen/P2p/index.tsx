@@ -3,11 +3,14 @@ import { colors } from '@theme/colors'
 import React from 'react'
 import BuySell from './BuySell'
 import Header from './Header'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
+import { heightBottomTab } from '@util/responsive'
 
 const P2p = () => {
   return (
-    <KeyBoardSafe bg={colors.yellow2} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+    <KeyBoardSafe
+      bg={colors.yellow2}
+      paddingBottom={heightBottomTab()}
+    >
       <Header />
       <BuySell />
     </KeyBoardSafe>

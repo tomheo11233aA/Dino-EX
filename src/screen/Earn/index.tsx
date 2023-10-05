@@ -1,18 +1,20 @@
-import { hideBottomTab, useTheme } from '@hooks/index'
+import Box from '@commom/Box'
+import { useTheme } from '@hooks/index'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
+import { heightBottomTab } from '@util/responsive'
 import React from 'react'
 import Header from './Header'
-import Box from '@commom/Box'
-import Options from './Options'
 import ListCoin from './ListCoin'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
-import ComingSoon from '@screen/ComingSoon'
+import Options from './Options'
 
 const Earn = () => {
   const theme = useTheme()
 
   return (
-    <KeyBoardSafe bg={theme.gray5} paddingBottom={HEIGHT_BOTTOM_TAB / 2}>
+    <KeyBoardSafe
+      bg={theme.gray5}
+      paddingBottom={heightBottomTab()}
+    >
       <Header />
       <Box
         flex={1}

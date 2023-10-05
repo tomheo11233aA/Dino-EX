@@ -3,9 +3,9 @@ import Btn from '@commom/Btn'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
 import { useTheme } from '@hooks/index'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 import { navigate } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
+import { heightBottomTab } from '@util/responsive'
 import { screen } from '@util/screens'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -18,7 +18,7 @@ const Login = () => {
       flex={1}
       paddingHorizontal={10}
       backgroundColor={theme.bg}
-      paddingBottom={HEIGHT_BOTTOM_TAB}
+      paddingBottom={heightBottomTab()}
     >
       <Box flex={1} alignCenter justifyCenter marginTop={40}>
         <Box backgroundColor={colors.gray2} width={170} height={170} radius={170} alignCenter justifyCenter>

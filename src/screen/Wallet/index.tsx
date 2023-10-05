@@ -1,7 +1,7 @@
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 import Box from '@commom/Box'
 import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { delay } from '@method/alert'
-import { HEIGHT_BOTTOM_TAB } from '@navigation/Container'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import ToastTop from '@reuse/ToastTop'
 import Funding from '@screen/Funding'
@@ -10,10 +10,10 @@ import Margin from '@screen/Margin'
 import Overview from '@screen/Overview'
 import Spot from '@screen/Spot'
 import { isLoginUserSelector } from '@selector/userSelector'
+import { heightBottomTab } from '@util/responsive'
 import React, { useRef, useState } from 'react'
 import Login from './Login'
 import Tab from './Tab'
-import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 const Wallet = () => {
   const dispatch = useAppDispatch()
@@ -41,7 +41,7 @@ const Wallet = () => {
             refesh={refesh}
             bg={theme.gray2}
             onRefesh={handleRefesh}
-            paddingBottom={HEIGHT_BOTTOM_TAB / 2}
+            paddingBottom={heightBottomTab()}
           >
             <Tab {...{ tab, setTab }} />
             <>

@@ -1,4 +1,5 @@
-import { Dimensions } from 'react-native';
+import { HEIGHT_BOTTOM_TAB } from '@navigation/Container';
+import { Dimensions, Platform } from 'react-native';
 
 export const { width, height } = Dimensions.get('screen');
 
@@ -20,6 +21,10 @@ const verticalScale = (size: number): number => {
 const moderateScale = (size: number, factor: number = 0.5): number => {
     return size + (scale(size) - size) * factor;
 };
+
+export const heightBottomTab = () => {
+    return Platform.OS === 'ios' ? HEIGHT_BOTTOM_TAB / 2 : HEIGHT_BOTTOM_TAB 
+}
 
 /**
  * getSize.m(10) Responsive for padding - margin - fontSize.

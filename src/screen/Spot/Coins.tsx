@@ -42,7 +42,7 @@ const Coins = ({ data }: any) => {
         <Box
             marginTop={15}
             paddingHorizontal={15}
-            paddingBottom={500}
+            paddingBottom={100}
         >
             <Box marginBottom={15} row justifySpaceBetween>
                 <Txt fontFamily={fonts.AS} size={16} color={theme.black}>{t('Balances')}</Txt>
