@@ -47,5 +47,7 @@ export const screen = {
     SIGN_UP: 'SignUp',
     DETAIL_WITHDRAW: 'DetailWithdraw',
     POSITION_HISTORY_DETAIL: 'PositionHistoryDetail',
-    FORGOT_PASSWORD: 'ForgotPassword'
+    FORGOT_PASSWORD: 'ForgotPassword',
+    SIGN_UP_TRADER: 'SignUpTrader',
+    TRADER_DETAIL: 'TraderDetail'
 }

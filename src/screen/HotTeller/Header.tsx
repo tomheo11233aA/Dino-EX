@@ -2,18 +2,19 @@ import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 import Txt from '@commom/Txt'
-import { useTheme } from '@hooks/index'
 import { goBack } from '@navigation/navigationRef'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+
+interface Props {
+    theme: any;
+    t: any;
+}
 
 const IBMPM = fonts.IBMPM
 
-const Header = () => {
-    const theme = useTheme()
-    const { t } = useTranslation()
+const Header = ({ theme, t }: Props) => {
 
     return (
         <Box>
@@ -52,13 +53,41 @@ const Header = () => {
                 </Txt>
             </Box>
 
-            <Box row>
-                <Box>
-                    <Txt color={theme.black}>
-                        Contract
+            <Box
+                row
+                alignCenter
+                marginTop={15}
+                justifySpaceBetween
+            >
+                <Box row alignCenter>
+                    <Box
+                        radius={20}
+                        padding={10}
+                        backgroundColor={theme.gray2}
+                    >
+                        <Txt color={theme.black} fontFamily={fonts.IBMPM}>
+                            {t('Contract')}
+                        </Txt>
+                    </Box>
+                    <Txt color={colors.grayBlue} fontFamily={fonts.IBMPM} marginLeft={10}>
+                        {t('Spot')}
                     </Txt>
                 </Box>
-                <Txt>Spot</Txt>
+
+                <Box
+                    radius={50}
+                    alignCenter
+                    padding={10}
+                    justifyCenter
+                    backgroundColor={theme.gray2}
+                >
+                    <Icon
+                        size={15}
+                        resizeMode={'contain'}
+                        tintColor={theme.black}
+                        source={require('@images/home/search.png')}
+                    />
+                </Box>
             </Box>
         </Box>
     )

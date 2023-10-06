@@ -35,6 +35,7 @@ export const colors = {
         yellow4: '#faf7f0',
         yellow5: '#faf7f0',
         yellow6: '#f9f2d6',
+        yellow7: '#fff6d8'
     },
     dark: {
         black: 'white',
@@ -72,6 +73,7 @@ export const colors = {
         yellow4: '#313433',
         yellow5: '#36352f',
         yellow6: '#293240',
+        yellow7: '#36352f'
     },
     white: 'white',
     black: 'black',

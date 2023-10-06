@@ -58,11 +58,11 @@ const CoinItem = ({ coin, theme }: Props) => {
 
             <Box alignEnd>
                 <Txt size={15} fontFamily={'Myfont24-Regular'} color={theme.black}>
-                    {coin?.balance ? numberCommasDot(coin?.balance) : 0}
+                    {coin?.balance ? numberCommasDot(coin?.balance?.toFixed(2)) : 0}
                 </Txt>
                 <Box row alignCenter marginTop={5}>
                     <Txt size={12} fontFamily={'Myfont24-Regular'} color={colors.gray5}>
-                        {numberCommasDot(coin?.exchangeRate?.toFixed(round))}
+                        {numberCommasDot(coin?.exchangeRate?.toFixed(2))}
                     </Txt>
                     <Txt fontFamily={fonts.IBMPR} color={colors.gray5} size={11}>
                         {' $'}

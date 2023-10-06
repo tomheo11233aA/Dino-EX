@@ -35,7 +35,7 @@ const CountDown = () => {
         }, 1000)
 
         return () => clearInterval(interval)
-    }, [countDown])
+    }, [countDown, timeAgo])
 
     const handleFunding = async () => {
         const res = await funding()
@@ -63,8 +63,6 @@ const CountDown = () => {
         let nextFundingTime = coins[0]?.uMarginList[0]?.nextFundingTime
         const timeStamp = convertTimestamp(nextFundingTime)
 
-        // const subbed = new Date(timeStamp); 
-        // const newtime = subbed.getHours() + ':' + subbed.getMinutes() + ':' + subbed.getSeconds();
         if (timeAgo !== nextFundingTime) {
             setCountDown(timeStamp)
             setTimeAgo(nextFundingTime)
