@@ -53,6 +53,7 @@ export const formatDate = (input: string): string => {
 }
 
 export const getDateMD = (time: number): string => {
+    'worklet'
     const date = new Date(time)
     let month = date.getMonth() + 1
     let day = date.getDate()

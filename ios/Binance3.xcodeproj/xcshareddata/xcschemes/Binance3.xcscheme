@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "HotX EX.app"
-               BlueprintName = "HotX EX"
-               ReferencedContainer = "container:HotX EX.xcodeproj">
+               BlueprintName = "Binance3"
+               ReferencedContainer = "container:Binance3.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "HotX EXTests.xctest"
-               BlueprintName = "HotX EXTests"
-               ReferencedContainer = "container:HotX EX.xcodeproj">
+               BuildableName = "Binance3Tests.xctest"
+               BlueprintName = "Binance3Tests"
+               ReferencedContainer = "container:Binance3.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,8 +56,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "HotX EX.app"
-            BlueprintName = "HotX EX"
-            ReferencedContainer = "container:HotX EX.xcodeproj">
+            BlueprintName = "Binance3"
+            ReferencedContainer = "container:Binance3.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,8 +73,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "HotX EX.app"
-            BlueprintName = "HotX EX"
-            ReferencedContainer = "container:HotX EX.xcodeproj">
+            BlueprintName = "Binance3"
+            ReferencedContainer = "container:Binance3.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -5,29 +5,31 @@ import Txt from '@commom/Txt'
 import Icon from '@commom/Icon'
 import { fonts } from '@theme/fonts'
 import Btn from '@commom/Btn'
+import TwoDimensionalColumnChart from './TwoDimensionalColumnChart'
+import { colors } from '@theme/colors'
 
-const ROI = ({ theme, t }: any) => {
+const WeeklyProfit = ({ theme, t }: any) => {
     const [tabChoosed, setTabChoosed] = useState<string>('ROI')
 
     const tabs = ['ROI', 'Cumulative PnL', 'Account Assets']
     const data: any = {
         indexColumn: {
-            max: 15,
-            min: 0,
-            total: 5,
-            fixed: 2,
+            max: 300,
+            min: -250,
+            total: 6,
+            fixed: 1,
         },
-        lineYellow: [0, 5, 8.15, 8.97, 11.10, 11.72, 13.18, 13.14],
+        columns: [0, -20, 0, 100, 200, 150, -250, 300],
         indexRow: {
             total: 4,
             data: [1687348799999, 1687348799999, 1687348799999, 1687348799999, 1687348799999, 1687348799999, 1687348799999, 1687348799999]
         },
     }
     return (
-        <Box>
+        <Box marginTop={40}>
             <Box row alignCenter justifySpaceBetween>
                 <Txt color={theme.black} size={16} fontFamily={fonts.IBMPM}>
-                    ROI
+                    {t('Weekly Profit')}
                 </Txt>
                 <Box
                     row
@@ -48,29 +50,28 @@ const ROI = ({ theme, t }: any) => {
                 </Box>
             </Box>
 
-            <LineChartROI
+            <TwoDimensionalColumnChart
                 indexRow={data.indexRow}
-                lineYellow={data.lineYellow}
+                columns={data.columns}
                 indexColunm={data.indexColumn}
             />
 
-            <Box row alignCenter marginTop={20}>
-                {tabs.map((tab) =>
-                    <Btn
-                        key={tab}
-                        radius={20}
-                        paddingVertical={5}
-                        paddingHorizontal={10}
-                        backgroundColor={tab == tabChoosed ? theme.gray2 : theme.bg}
-                    >
-                        <Txt color={theme.black} size={12} fontFamily={fonts.IBMPR}>
-                            {tab}
-                        </Txt>
-                    </Btn>
-                )}
+            <Box row alignEnd justifyEnd marginTop={20}>
+                <Box row alignCenter>
+                    <Box width={10} height={4} backgroundColor={colors.green2} marginRight={5} />
+                    <Txt color={colors.grayBlue} size={12} fontFamily={fonts.IBMPR}>
+                        {t('Profit')}
+                    </Txt>
+                </Box>
+                <Box row alignCenter marginLeft={10}>
+                    <Box width={10} height={4} backgroundColor={colors.red3} marginRight={5} />
+                    <Txt color={colors.grayBlue} size={12} fontFamily={fonts.IBMPR}>
+                        {t('Loss')}
+                    </Txt>
+                </Box>
             </Box>
         </Box>
     )
 }
 
-export default ROI
+export default WeeklyProfit

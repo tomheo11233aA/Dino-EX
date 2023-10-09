@@ -6544,3 +6544,42 @@ export const pnls = [
         "created_at":1693612800000,
     },
 ]
+
+export const colors = [
+    {
+        value: 1,
+        color: '#26ae74',
+    },
+    {
+        value: 2,
+        color: '#3ac460',
+    },
+    {
+        value: 3,
+        color: '#72cc53',
+    },
+    {
+        value: 4,
+        color: '#a0df4f',
+    },
+    {
+        value: 5,
+        color: '#edd137',
+    },
+    {
+        value: 6,
+        color: '#ffb628',
+    },
+    {
+        value: 7,
+        color: '#f69532',
+    },
+    {
+        value: 8,
+        color: '#f27853',
+    },
+    {
+        value: 9,
+        color: '#f0616d',
+    },
+]
