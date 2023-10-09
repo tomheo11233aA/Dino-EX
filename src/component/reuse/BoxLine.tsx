@@ -12,6 +12,9 @@ interface Props {
     size2?: any;
     bottom?: any;
     numberOfLines?: any;
+    borderColor?: string;
+    paddingText?: number;
+    marginTop?: number;
 }
 
 const BoxLine = ({
@@ -22,12 +25,20 @@ const BoxLine = ({
     font = null,
     bottom = -2,
     numberOfLines = 10,
+    borderColor = colors.gray5,
+    paddingText = 0,
+    marginTop = 0,
 }: Props) => {
     const theme = useTheme()
 
     return (
-        <Box>
-            <View style={styles.txtContent}>
+        <Box marginTop={marginTop}>
+            <View
+                style={[
+                    styles.txtContent,
+                    { borderColor }
+                ]}
+            >
                 <Text
                     style={{
                         fontSize: size,
@@ -40,7 +51,12 @@ const BoxLine = ({
                 </Text>
             </View>
 
-            <View style={[styles.txtContent2, { backgroundColor: theme.bg}]}>
+            <View
+                style={[
+                    styles.txtContent2,
+                    { backgroundColor: theme.bg }
+                ]}
+            >
                 <Text
                     style={{
                         fontSize: size,
@@ -58,6 +74,7 @@ const BoxLine = ({
                         position: 'absolute',
                         bottom: bottom,
                         fontFamily: font,
+                        paddingVertical: paddingText,
                     }}
                     numberOfLines={numberOfLines}
                 >
@@ -77,7 +94,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         // width: '100%',
         height: 15,
-        borderColor: colors.gray5,
         position: 'absolute',
         left: Platform.OS === 'android' ? 1 : 0
     },
