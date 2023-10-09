@@ -281,7 +281,6 @@ const ColumnsChart = ({
                 extrapolateRight: Extrapolation.IDENTITY,
             }
         )
-
         return {
             transform: [
                 { translateX: withTiming(local) },
