@@ -79,7 +79,7 @@ const RiskAssessment = ({ theme, t }: any) => {
                         {t('180D Max. Loss')}
                     </Txt>
                     <Txt color={theme.black} fontFamily={fonts.M23} size={18} marginTop={10}>
-                        {`${numberCommasDot(-22.42)}%`}
+                        {`--`}
                     </Txt>
                     <Txt color={colors.grayBlue} marginTop={5} size={12}>
                         {t('Day')}
