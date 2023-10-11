@@ -15,7 +15,7 @@ const TabTradingData = ({ theme, t }: any) => {
     return (
         <Box>
             <StatisticsTradingData {...{ theme, t, hotTrader }} />
-            <ROI {...{ theme, t }} />
+            <ROI {...{ theme, t, hotTrader }} />
             <WeeklyProfit {...{ theme, t }} />
             <RiskAssessment {...{ theme, t }} />
             <Favorite {...{ theme, t }} />

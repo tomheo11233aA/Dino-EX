@@ -27,3 +27,21 @@ export const signUpCopyTrade = async () => {
         return callFailed()
     }
 }
+
+export const copyTradeFuture = async (data: any) => {
+    try {
+        const res = await axiosInstance.post('/api/copyTradeFuture/copyTradeFuture', data)
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}
+
+export const checkTrader = async () => {
+    try {
+        const res = await axiosInstance.post('/api/copyTradeFuture/checkTrader', {})
+        return callSuccess(res)
+    } catch (error) {
+        return callFailed()
+    }
+}

@@ -1,7 +1,7 @@
 import Box from '@commom/Box'
 import Input from '@commom/Input'
 import Txt from '@commom/Txt'
-import { hideBottomTab, useAppSelector, useTheme } from '@hooks/index'
+import { hideBottomTab, useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import Back from '@reuse/Back'
 import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import { hotTraderCopyTradeSelector } from '@selector/copyTradeSelector'
@@ -14,27 +14,68 @@ import { Profile } from 'src/model/userModel'
 import TPSL from './TPSL'
 import Pair from './Pair'
 import Leverage from './Leverage'
+import Btn from '@commom/Btn'
+import { copyTradeFuture } from '@service/copyTradeService'
+import { Alert } from 'react-native'
+import LoadingYellow from '@reuse/LoadingYellow'
+import TextError from '@reuse/TextError'
+import { goBack } from '@navigation/navigationRef'
+import LoadingBlack from '@reuse/LoadingBlack'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 const CopyTrade = () => {
   const theme = useTheme()
   const { t } = useTranslation()
+  const dispatch = useAppDispatch()
 
   const hotTrader = useAppSelector(hotTraderCopyTradeSelector)
   const profile: Profile = useAppSelector<any>(profileUserSelector)
 
   const [TP, setTP] = useState('')
   const [SL, setSL] = useState('')
-  const [arraySymbol, setArrSymbol] = useState([])
+  const [core, setCore] = useState(0)
   const [margin, setMargin] = useState('')
+  const [refresh, setRefresh] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [arraySymbol, setArrSymbol] = useState([])
 
   hideBottomTab()
+
+  const handleCopyTrade = async () => {
+    if (margin.trim() == '') return
+    setLoading(true)
+    const res = await copyTradeFuture({
+      ROETP: TP.trim() == '' ? undefined : TP,
+      ROESL: SL.trim() == '' ? undefined : SL,
+      amountDeposit: margin,
+      arraySymbol: arraySymbol.length < 1 ? null : arraySymbol,
+      core: core,
+      idCopy: hotTrader.id
+    })
+    Alert.alert(t(res.message))
+    if (res.status) {
+      goBack()
+    }
+    setLoading(false)
+  }
+
+  const handleRefresh = async () => {
+    setRefresh(true)
+    await dispatch(getProfileThunk())
+    setRefresh(false)
+  }
 
   return (
     <Box
       flex={1}
       backgroundColor={theme.bg}
     >
-      <KeyBoardSafe paddingHorizontal={15}>
+      <KeyBoardSafe
+        refesh={refresh}
+        paddingBottom={50}
+        paddingHorizontal={15}
+        onRefesh={handleRefresh}
+      >
         <Box row justifySpaceBetween>
           <Back size={16} color={theme.black} />
           <Txt color={theme.black} fontFamily={fonts.IBMPM} size={16}>
@@ -83,6 +124,7 @@ const CopyTrade = () => {
           keyboardType={'numeric'}
           borderColor={theme.gray2}
         />
+        {margin.trim() == '' ? <TextError text={t('Please enter margin')} /> : <></>}
         <Txt
           size={12}
           marginTop={10}
@@ -100,8 +142,26 @@ const CopyTrade = () => {
 
         <TPSL {...{ theme, t, TP, SL, setTP, setSL }} />
         <Pair {...{ theme, t, arraySymbol, setArrSymbol }} />
-        <Leverage {...{ theme, t }} />
+        <Leverage {...{ theme, t, core, setCore }} />
       </KeyBoardSafe>
+
+      <Box paddingHorizontal={15} paddingBottom={40}>
+        <Btn
+          radius={5}
+          disabled={loading}
+          height={40}
+          onPress={handleCopyTrade}
+          backgroundColor={colors.yellow}
+        >
+          {loading ?
+            <LoadingBlack />
+            :
+            <Txt fontFamily={fonts.IBMPM}>
+              {t('Copy Now')}
+            </Txt>
+          }
+        </Btn>
+      </Box>
     </Box>
   )
 }

@@ -6,14 +6,16 @@ import { screen } from '@util/screens';
 import React from 'react';
 import { FlatList } from 'react-native';
 import TraderItem from './TraderItem';
+import { RefreshControl } from 'react-native-gesture-handler';
 
 interface Props {
     t: any;
     theme: any;
     listUserTrade: any;
+    handleRefresh: () => void;
 }
 
-const HotTraders = ({ theme, t, listUserTrade }: Props) => {
+const HotTraders = ({ theme, t, listUserTrade, handleRefresh }: Props) => {
     const dispatch = useAppDispatch()
 
     const handleMoveDetailTrade = (item: any) => {
@@ -29,12 +31,12 @@ const HotTraders = ({ theme, t, listUserTrade }: Props) => {
     return (
         <Box marginTop={15}>
             <FlatList
-                //   refreshControl={
-                //     <RefreshControl
-                //       refreshing={false}
-                //       onRefresh={hanldeRefesh}
-                //     />
-                //   }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={handleRefresh}
+                    />
+                }
                 renderItem={
                     ({ item }) =>
                         <TraderItem

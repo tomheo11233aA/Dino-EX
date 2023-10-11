@@ -7,10 +7,16 @@ import Slider from './Slider'
 import Btn from '@commom/Btn'
 import Icon from '@commom/Icon'
 
-const Leverage = ({ theme, t }: any) => {
+interface Props {
+    theme: any;
+    t: any;
+    core: number;
+    setCore: Function;
+}
+
+const Leverage = ({ theme, t, core, setCore }: Props) => {
     const [show, setShow] = useState(false)
-    const [core, setCore] = useState(0)
-    console.log('core: ', core)
+
     return (
         <Box
             marginTop={20}

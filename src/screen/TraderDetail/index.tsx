@@ -8,12 +8,13 @@ import LoadingYellow from '@reuse/LoadingYellow'
 import { hotTraderCopyTradeSelector, positionToTraderCopyTraderSelector } from '@selector/copyTradeSelector'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Avatar from './Avatar'
 import Local from './Local'
 import Statistics from './Statistics'
 import TransactionData from './TransactionData'
+import { getProfileThunk } from '@asyncThunk/userAsyncThunk'
 
 const TraderDetail = () => {
   const theme = useTheme()
@@ -33,6 +34,11 @@ const TraderDetail = () => {
     dispatch(getPositionToTraderThunk(hotTrader.userid))
   }
 
+  const handleRefresh = async () => {
+    handleGetPositionToTrader()
+    await dispatch(getProfileThunk())
+  }
+
   return (
     <>
       {positionToTrader.loading ?
@@ -41,7 +47,10 @@ const TraderDetail = () => {
         </Box>
         :
         <Box flex={1} backgroundColor={theme.bg}>
-          <KeyBoardSafe paddingBottom={40}>
+          <KeyBoardSafe
+            paddingBottom={40}
+            onRefesh={handleRefresh}
+          >
             <Avatar {...{ theme, t, hotTrader }} />
             <Local {...{ theme, t }} />
             <Statistics {...{ theme, t }} />

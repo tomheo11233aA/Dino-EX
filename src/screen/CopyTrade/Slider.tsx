@@ -1,8 +1,7 @@
 import Box from '@commom/Box'
 import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
-import { useAppSelector, useTheme } from '@hooks/index'
-import { coreFuturesSelector } from '@selector/futuresSelector'
+import { useTheme } from '@hooks/index'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { width } from '@util/responsive'
@@ -12,7 +11,7 @@ import { PanGestureHandler, TextInput } from 'react-native-gesture-handler'
 import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 
 const MAX = 200
-const arrIndex = [1, 40, 80, 120, 160, 200]
+const arrIndex = [0, 40, 80, 120, 160, 200]
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
 
@@ -20,12 +19,13 @@ const Slider = ({ core, setCore }: any) => {
     const theme = useTheme()
 
     const widthSlider = width - 30
-    const onePercent = widthSlider * 1 / 100
+    // const onePercent = widthSlider * 1 / 100
 
     const percent = core * 100 / MAX
     const percentCore = widthSlider * percent / 100
 
-    const translateX = useSharedValue<number | string>(percentCore)
+    const translateX = useSharedValue<number | string>(0)
+    const plus = useSharedValue<number>(0)
 
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: (_, ctx: any) => {
@@ -37,8 +37,8 @@ const Slider = ({ core, setCore }: any) => {
 
             if (percent > MAX) {
                 translateX.value = widthSlider
-            } else if (percent <= 1) {
-                translateX.value = onePercent
+            } else if (percent <= 0) {
+                translateX.value = 0
             } else {
                 translateX.value = position
             }
@@ -60,16 +60,18 @@ const Slider = ({ core, setCore }: any) => {
 
     const textProps: any = useAnimatedProps(() => {
         const percent = Number(translateX.value) * 100 / widthSlider
-        const value = MAX * percent / 100
-
+        let value = MAX * percent / 100
+        plus.value
         return {
-            text: `${value.toFixed(0)}x`
+            text: `${value.toFixed(0)}`
         }
-    }, [translateX])
+    })
 
     const handleChangeTextCore = (txt: string) => {
-        let core = Number(txt.replace('x', '')) * (widthSlider / MAX)
-        translateX.value = core
+        let core = Number(txt) * (widthSlider / MAX)
+        translateX.value = Math.min(core, widthSlider)
+        Number(txt) > MAX ? setCore(MAX) : setCore(Number(txt)) 
+        plus.value += 1
     }
 
     return (
@@ -88,6 +90,7 @@ const Slider = ({ core, setCore }: any) => {
                         let core: any = (Number(translateX.value) * MAX / widthSlider).toFixed(0)
                         if (core > 1) {
                             core = core - 1
+                            setCore(core)
                             core = core * (widthSlider / MAX)
                             translateX.value = core
                         }
@@ -112,6 +115,7 @@ const Slider = ({ core, setCore }: any) => {
                         let core: number = Number((Number(translateX.value) * MAX / widthSlider).toFixed(0))
                         if (core < MAX) {
                             core = core + 1
+                            setCore(core)
                             core = core * (widthSlider / MAX)
                             translateX.value = core
                         }
