@@ -14,7 +14,7 @@ const Candles = ({
     maxHighChart,
     section,
     translateX,
-    piChartLage,
+    piChartLarge,
 }: any) => {
     return (
         <GAnimated
@@ -37,17 +37,14 @@ const Candles = ({
                             animatedProps={useAnimatedProps(() => {
                                 let x = GAP_CANDLE * index - PADING_RIGHT_CANDLES
                                 let close = HEIGHT_CANDLES - ((piChart.value[index]?.close - minHighChart.value) * section.value)
-                                const open = HEIGHT_CANDLES - ((piChart.value[index]?.open - minHighChart.value) * section.value)
-                                const opacity = piChart.value[index]?.close > piChart.value[index]?.open ? 1 : 0
+                                let open = HEIGHT_CANDLES - ((piChart.value[index]?.open - minHighChart.value) * section.value)
+                                let opacity = piChart.value[index]?.close > piChart.value[index]?.open ? 1 : 0
 
                                 // dao nguoc vi tri
                                 const positionReveser = LENGHT_CHART - (index + 1)
                                 // cot mhay ra phia sau
                                 if (translateX.value / GAP_CANDLE > positionReveser) {
                                     x = GAP_CANDLE * -(positionReveser + 1) - PADING_RIGHT_CANDLES
-                                    if (positionReveser + 1 == LENGHT_CHART) {
-                                        x = GAP_CANDLE * index - PADING_RIGHT_CANDLES
-                                    }
                                 }
 
                                 return {
