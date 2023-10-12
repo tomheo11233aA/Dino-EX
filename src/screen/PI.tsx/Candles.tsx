@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import Animated, { useAnimatedProps, useAnimatedStyle } from 'react-native-reanimated'
 import { G, Line } from 'react-native-svg'
 import { LENGHT_CHART } from '.'
-import { GAP_CANDLE, HEIGHT_CANDLES, WIDTH_CANDLE } from './PiChart'
+import { GAP_CANDLE, HEIGHT_CANDLES, PADING_RIGHT_CANDLES, WIDTH_CANDLE } from './PiChart'
 
 const LineAnimated = Animated.createAnimatedComponent(Line)
 const GAnimated = Animated.createAnimatedComponent(G)
@@ -14,13 +14,13 @@ const Candles = ({
     maxHighChart,
     section,
     translateX,
+    piChartLage,
 }: any) => {
-    console.log('render')
     return (
         <GAnimated
             style={useAnimatedStyle(() => {
                 return {
-                    transform: [{translateX: translateX.value}]
+                    transform: [{ translateX: translateX.value }]
                 }
             })}
         >
@@ -35,11 +35,21 @@ const Candles = ({
                             stroke={colors.green2}
                             strokeWidth={WIDTH_CANDLE}
                             animatedProps={useAnimatedProps(() => {
-                                const x = GAP_CANDLE * index
+                                let x = GAP_CANDLE * index - PADING_RIGHT_CANDLES
                                 let close = HEIGHT_CANDLES - ((piChart.value[index]?.close - minHighChart.value) * section.value)
                                 const open = HEIGHT_CANDLES - ((piChart.value[index]?.open - minHighChart.value) * section.value)
                                 const opacity = piChart.value[index]?.close > piChart.value[index]?.open ? 1 : 0
-                                translateX.value > 6 && (close = open)
+
+                                // dao nguoc vi tri
+                                const positionReveser = LENGHT_CHART - (index + 1)
+                                // cot mhay ra phia sau
+                                if (translateX.value / GAP_CANDLE > positionReveser) {
+                                    x = GAP_CANDLE * -(positionReveser + 1) - PADING_RIGHT_CANDLES
+                                    if (positionReveser + 1 == LENGHT_CHART) {
+                                        x = GAP_CANDLE * index - PADING_RIGHT_CANDLES
+                                    }
+                                }
+
                                 return {
                                     x1: x,
                                     y1: close,
@@ -64,10 +74,16 @@ const Candles = ({
                             stroke={colors.red3}
                             strokeWidth={WIDTH_CANDLE}
                             animatedProps={useAnimatedProps(() => {
-                                const x = GAP_CANDLE * index
-                                const close = HEIGHT_CANDLES - ((piChart.value[index]?.close - minHighChart.value) * section.value)
+                                let x = GAP_CANDLE * index - PADING_RIGHT_CANDLES
+                                let close = HEIGHT_CANDLES - ((piChart.value[index]?.close - minHighChart.value) * section.value)
                                 const open = HEIGHT_CANDLES - ((piChart.value[index]?.open - minHighChart.value) * section.value)
                                 const opacity = piChart.value[index]?.close < piChart.value[index]?.open ? 1 : 0
+
+                                const positionReveser = LENGHT_CHART - (index + 1)
+                                if (translateX.value / GAP_CANDLE > positionReveser) {
+                                    x = GAP_CANDLE * -(positionReveser + 1) - PADING_RIGHT_CANDLES
+                                }
+
                                 return {
                                     x1: x,
                                     y1: close,

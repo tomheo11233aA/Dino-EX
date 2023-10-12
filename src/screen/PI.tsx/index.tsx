@@ -8,12 +8,13 @@ import PiChart from './PiChart'
 import { io } from 'socket.io-client'
 import contants from '@util/contants'
 
-export const LENGHT_CHART = 30
+export const LENGHT_CHART = 20
 
 const PI = () => {
     const dispatch = useAppDispatch()
 
     const chart = useAppSelector((state: RootState) => state.pi.chart)
+    const chartLagre = useAppSelector((state: RootState) => state.pi.chartLagre)
 
     useEffect((): any => {
         handleGetChart()
@@ -31,7 +32,7 @@ const PI = () => {
 
     const handleGetChart = async () => {
         const res = await getChart({
-            limit: LENGHT_CHART,
+            limit: 500,
             symbol: 'BTCUSDT',
             time: 60,
         })
@@ -43,6 +44,7 @@ const PI = () => {
         <KeyBoardSafe>
                 <PiChart
                     data={chart}
+                    chartLagre={chartLagre}
                 /> 
         </KeyBoardSafe>
     )
