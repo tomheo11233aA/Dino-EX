@@ -6,10 +6,15 @@ import { fonts } from '@theme/fonts'
 import React, { useState } from 'react'
 import TabTradingData from './TabTradingData'
 import TabPositions from './TabPositions'
+import TabCopiers from './TabCopiers'
+
+const TRADING_DATA = 'Trading data'
+const POSITIONS = 'Positions'
+const COPIERS = 'Copiers'
 
 const TransactionData = ({ theme, t }: any) => {
-  const [tabChoosed, setTabChoosed] = useState('Trading data')
-  const tabs = ['Trading data', 'Positions', 'Copiers']
+  const [tabChoosed, setTabChoosed] = useState(TRADING_DATA)
+  const tabs = [TRADING_DATA, POSITIONS, COPIERS]
 
   return (
     <Box paddingHorizontal={15} marginTop={20}>
@@ -34,8 +39,10 @@ const TransactionData = ({ theme, t }: any) => {
           </Btn>
         )}
       </Box>
-      {tabChoosed == 'Trading data' ?
-        <TabTradingData {...{ theme, t }} /> : <TabPositions {...{ theme, t }} />
+      {tabChoosed == TRADING_DATA ?
+        <TabTradingData {...{ theme, t }} /> :
+        tabChoosed == POSITIONS ?
+          <TabPositions {...{ theme, t }} /> : <TabCopiers />
       }
     </Box>
   )
