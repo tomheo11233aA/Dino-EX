@@ -1,3 +1,4 @@
+import { useTheme } from '@hooks/index'
 import { colors } from '@theme/colors'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -5,7 +6,6 @@ import { StyleSheet, View } from 'react-native'
 import BuyInto from './BuyInto'
 import ItemHistory from './ItemHistory'
 import SellInto from './SellInto'
-import { useTheme } from '@hooks/index'
 
 const History = () => {
     const theme = useTheme()

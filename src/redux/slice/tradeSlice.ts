@@ -72,6 +72,12 @@ const tradeSlice = createSlice({
     name: 'trade',
     initialState,
     reducers: {
+        setBuys: (state, { payload }) => {
+            state.buys = payload.slice(0, 7)
+        },
+        setSells: (state, { payload }) => {
+            state.sells = payload.slice(0, 7)
+        },
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.loading = action.payload
         },
@@ -202,8 +208,8 @@ const handleSetChart = (state: WritableDraft<ITradeSlice>, payload: any) => {
             item?.close >= item?.open ? colors.greenCan : colors.red3
 
         let x = payload.gap_candle * index - payload.padding_right_candle
-        let x2 = x - (payload.width_candle / 2)
-        let x3 = x + (payload.width_candle / 2)
+        let x2 = x - (payload.width_candle / 2) + 0.5
+        let x3 = x + (payload.width_candle / 2) - 0.5
 
         const path = `
               M${x} ${highSVG} L${x} ${lowSVG}

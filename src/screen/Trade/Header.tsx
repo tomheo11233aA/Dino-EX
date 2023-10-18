@@ -23,14 +23,11 @@ const Header = () => {
                         marginRight={10}
                         tintColor={theme.black}
                     />
-                    {/* <Txt color={theme.black} bold size={16}>
-                        {coinChoose.currency + '/USDT'}
-                    </Txt> */}
                     <Box row alignCenter>
                         <Txt color={theme.black} bold size={15}>
                             {currency}
                         </Txt>
-                        <Txt bold size={13}>{'/'}</Txt>
+                        <Txt bold size={13} color={theme.black}>{'/'}</Txt>
                         <Txt color={theme.black} bold size={15}>USDT</Txt>
                     </Box>
                 </View>

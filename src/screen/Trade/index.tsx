@@ -68,7 +68,6 @@ export default () => {
             <History />
           </> :
           <Box flex={1} alignCenter justifyCenter>
-            {/* <LoadingYellow /> */}
             <Icon
               size={30}
               source={require('@images/logohx.png')}

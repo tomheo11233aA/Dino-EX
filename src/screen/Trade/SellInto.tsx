@@ -1,46 +1,28 @@
 import Img from '@commom/Img'
-import { useAppSelector, useTheme } from '@hooks/index'
+import { useAppDispatch, useAppSelector, useTheme } from '@hooks/index'
 import { numberCommasDot } from '@method/format'
 import { symbolFuturesSelector } from '@selector/futuresSelector'
+import { sellsTradeSelector } from '@selector/tradeSelector'
 import { getTotalSell } from '@service/tradeService'
+import tradeSlice from '@slice/tradeSlice'
 import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
-import contants from '@util/contants'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AppState, AppStateStatus, StyleSheet, Text, View } from 'react-native'
-import io from 'socket.io-client'
+import { StyleSheet, Text, View } from 'react-native'
+import { ISellBuy } from 'src/model/futuresModel'
 import { BuySell } from 'src/model/tradeModel'
 
 const SellInto = () => {
     const theme = useTheme()
     const { t } = useTranslation()
+    const dispatch = useAppDispatch()
     const symbol = useAppSelector(symbolFuturesSelector)
-    const [sells, setSells] = useState<BuySell[]>([])
+    const sells = useAppSelector(sellsTradeSelector)
 
     useEffect((): any => {
-        if (sells.length === 0) {
-            handleGetTotalSell()
-        }
-
-        const newSocket = io(contants.HOSTING)
-        newSocket.on(`${symbol}SELL`, (data) => {
-            if (data.array) {
-                setSells(data.array.slice(0, 7))
-            }
-        })
-
-        AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
-            if (nextAppState === 'inactive') {
-                newSocket.disconnect()
-            }
-            // if (nextAppState === 'active') {
-            //     newSocket.connect()
-            // }
-        });
-
-        return () => newSocket.disconnect()
-    }, [sells])
+        handleGetTotalSell()
+    }, [])
 
     const handleGetTotalSell = async () => {
         const res = await getTotalSell({
@@ -49,7 +31,7 @@ const SellInto = () => {
             symbol: symbol,
         })
         if (res.status) {
-            setSells(res.data.array)
+            dispatch(tradeSlice.actions.setBuys(res.data.array))
         }
     }
 
@@ -86,14 +68,14 @@ const SellInto = () => {
                     />
                 </View>
             </View>
-            {sells.map((sell: BuySell, index: number) =>
+            {sells.map((sell: ISellBuy, index: number) =>
                 <Sell key={index} sell={sell} theme={theme} />
             )}
         </View>
     )
 }
 
-const Sell = ({ sell, theme }: { sell: BuySell, theme: any }) => {
+const Sell = ({ sell, theme }: { sell: ISellBuy, theme: any }) => {
     const rndInt = Math.floor(Math.random() * 35) + 30
 
     return (

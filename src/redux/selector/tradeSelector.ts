@@ -42,4 +42,4 @@ export const dPathRedTradeSelector = (state: RootState) => state.trade.dPathRed
 
 export const buysTradeSelector = (state: RootState) => state.trade.buys
 
-export const sellTradeSelector = (state: RootState) => state.trade.sells 
+export const sellsTradeSelector = (state: RootState) => state.trade.sells 
