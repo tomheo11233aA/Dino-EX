@@ -35,3 +35,11 @@ export const loadingTradeSelector = (state: RootState) => state.trade.loading
 export const countDownTradeSelector = (state: RootState) => state.trade.countDown
 
 export const countCandlesTradeSelector = (state: RootState) => state.trade.countCandles
+
+export const dPathGreenTradeSelector = (state: RootState) => state.trade.dPathGreen 
+
+export const dPathRedTradeSelector = (state: RootState) => state.trade.dPathRed
+
+export const buysTradeSelector = (state: RootState) => state.trade.buys
+
+export const sellTradeSelector = (state: RootState) => state.trade.sells 
