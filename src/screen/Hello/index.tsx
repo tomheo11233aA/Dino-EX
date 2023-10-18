@@ -1,4 +1,4 @@
-import { getProfileThunk, getProfileThunkUserID } from '@asyncThunk/userAsyncThunk'
+import { getProfileThunkUserID } from '@asyncThunk/userAsyncThunk'
 import Box from '@commom/Box'
 import Img from '@commom/Img'
 import Txt from '@commom/Txt'
@@ -30,7 +30,7 @@ const Hello = ({ navigation }: any) => {
             if (token) {
                 await dispatch(getProfileThunkUserID())
             }
-            navigation.replace(screen.HOME)
+            navigation.replace(screen.PI)
         }, 2000)
 
         return () => clearTimeout(timer)

@@ -6466,9 +6466,9 @@ export const db = [
     {
         "close": 55,
         "closeTime": 1689137999999,
-        "high": 95,
+        "high": 90,
         "isFinal": true,
-        "low": 50,
+        "low": 52,
         "open": 90,
         "quoteVolume": "65884855.87013",
         "takerBuyBaseVolume": "17001.236",
@@ -6482,7 +6482,7 @@ export const db = [
         "closeTime": 1689141599999,
         "high": 95,
         "isFinal": true,
-        "low": 50,
+        "low": 40,
         "open": 90,
         "quoteVolume": "73964133.52479",
         "takerBuyBaseVolume": "19459.319",
@@ -6492,9 +6492,9 @@ export const db = [
         "volume": "39280.265"
     },
     {
-        "close": 86,
+        "close": 78.50,
         "closeTime": 1689145199999,
-        "high": 95,
+        "high": 90,
         "isFinal": false,
         "low": 50,
         "open": 65.75,
@@ -13003,7 +13003,7 @@ export const db2 = [
     {
         "close": 87,
         "closeTime": 1689145199999,
-        "high": 95,
+        "high": 90,
         "isFinal": false,
         "low": 50,
         "open": 65.75,
