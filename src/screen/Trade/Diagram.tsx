@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector, useTheme } from "@hooks/index"
 import { convertTimeGetChart } from "@method/format"
 import LogoChart from "@screen/Futures/LogoChart"
 import { symbolFuturesSelector } from "@selector/futuresSelector"
-import { candlesTradeSelector, closeTimestampTradeSelector, countCandlesTradeSelector, countDownTradeSelector, dPathMATradeSelector, heighValueChartTradeSelector, maxHighItemTradeSelector, minLowItemTradeSelector, timeLimitSelector } from "@selector/tradeSelector"
+import { candlesTradeSelector, countCandlesTradeSelector, countDownTradeSelector, dPathGreenTradeSelector, dPathMATradeSelector, dPathRedTradeSelector, heighValueChartTradeSelector, maxHighItemTradeSelector, minLowItemTradeSelector, timeLimitSelector } from "@selector/tradeSelector"
 import { getChart } from "@service/tradeService"
 import tradeSlice from "@slice/tradeSlice"
 import { colors } from "@theme/colors"
@@ -15,7 +15,6 @@ import Animated, { runOnJS, useAnimatedGestureHandler, useSharedValue } from "re
 import { G, Svg } from "react-native-svg"
 import { io } from "socket.io-client"
 import { ICoins } from "src/model/futuresModel"
-import Candles from "./Candles"
 import Cursor from "./Cursor"
 import LineX from "./LineX"
 import MinMaxLowHigh from "./MinMaxLowHigh"
@@ -35,7 +34,6 @@ export default () => {
     const dispatch = useAppDispatch()
     const symbol = useAppSelector(symbolFuturesSelector)
     const timeLimit = useAppSelector(timeLimitSelector)
-    const closeTimeStamp = useAppSelector(closeTimestampTradeSelector)
     const candles = useAppSelector(candlesTradeSelector)
     const minLowItem = useAppSelector(minLowItemTradeSelector)
     const maxHighItem = useAppSelector(maxHighItemTradeSelector)
@@ -43,6 +41,8 @@ export default () => {
     const dPathMA = useAppSelector(dPathMATradeSelector)
     const countDown = useAppSelector(countDownTradeSelector)
     const countCandles = useAppSelector(countCandlesTradeSelector)
+    const dPathGreen = useAppSelector(dPathGreenTradeSelector)
+    const dPathRed = useAppSelector(dPathRedTradeSelector)
 
     const count = useSharedValue(0)
     const scaleCount = useSharedValue(0)
@@ -77,8 +77,21 @@ export default () => {
                     heigh_candle,
                     dataSocket: data,
                     gap_candle: gapCandle.value,
+                    width_candle: widthCandle.value,
                     padding_right_candle: paddingRightCandles.value,
                 }))
+            }
+        })
+
+        newSocket.on(`${symbol}BUY`, (data) => {
+            if (data.array) {
+                dispatch(tradeSlice.actions.setBuys(data.array))
+            }
+        })
+
+        newSocket.on(`${symbol}SELL`, (data) => {
+            if (data.array) {
+                dispatch(tradeSlice.actions.setSells(data.array))
             }
         })
 
@@ -111,6 +124,7 @@ export default () => {
                 heigh_candle,
                 paddingTop,
                 gap_candle: gapCandle.value,
+                width_candle: widthCandle.value,
                 padding_right_candle: paddingRightCandles.value,
             }))
         }
@@ -123,6 +137,7 @@ export default () => {
             gap_candle: gapCandle.value,
             padding_right_candle: paddingRightCandles.value,
             paddingTop,
+            width_candle: widthCandle.value,
         }))
     }
 
@@ -133,6 +148,7 @@ export default () => {
             gap_candle: gapCandle.value,
             padding_right_candle: paddingRightCandles.value,
             paddingTop,
+            width_candle: widthCandle.value,
         }))
     }
 
@@ -164,6 +180,7 @@ export default () => {
             heigh_candle,
             padding_right_candle: paddingRightCandles.value,
             paddingTop,
+            width_candle: widthCandle.value,
         }))
     }
 
@@ -212,28 +229,18 @@ export default () => {
                                         }}
                                     />
 
-                                    <Candles
+                                    <MinMaxLowHigh
                                         {...{
                                             theme,
                                             candles,
-                                            gap_candle: gapCandle.value,
-                                            paddingTop,
-                                            width_candle: widthCandle.value,
-                                            height_container,
-                                            padding_right_candle: paddingRightCandles.value,
-                                        }}
-                                    />
-                                    <MinMaxLowHigh
-                                        {...{
-                                            candles,
                                             size_chart,
-                                            gap_candle: gapCandle.value,
                                             minLowItem,
                                             maxHighItem,
+                                            gap_candle: gapCandle.value,
                                             padding_right_candle: paddingRightCandles.value,
                                         }}
                                     />
-                                    <PathMA {...{ dPathMA }} />
+                                    <PathMA {...{ dPathMA, dPathGreen, dPathRed }} />
                                 </G>
                                 <Cursor
                                     {...{
