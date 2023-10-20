@@ -1,12 +1,9 @@
-import { ydmhm } from "@method/date";
-import { numberCommasDot } from "@method/format"
+import { numberCommasDot } from "@method/format";
 import { IChart } from "@screen/Futures/Chart";
-import { HEIGHT_SVG, PADDING_TOP } from "@screen/PI.tsx/PiChart";
 import { colors } from "@theme/colors";
-import { G, Line, Text as TextSVG } from "react-native-svg"
+import { G, Line, Text as TextSVG } from "react-native-svg";
 
 interface Props {
-    theme: any;
     candles: IChart[];
     size_chart: number;
     gap_candle: number;
@@ -16,7 +13,6 @@ interface Props {
 }
 
 export default ({
-    theme,
     candles,
     minLowItem,
     gap_candle,
@@ -37,8 +33,6 @@ export default ({
 
     const high = Number(candles[Number(maxHighItem?.position)].high).toFixed(2)
     const low = Number(candles[Number(minLowItem?.position)].low).toFixed(2)
-
-    const sizeDay = [15, 30, 45]
 
     return (
         <G key={'G_min_max_candle'}>
@@ -81,33 +75,6 @@ export default ({
             >
                 {numberCommasDot(low)}
             </TextSVG>
-            {sizeDay.map((item, index) => {
-                const x_point = gap_candle * item - padding_right_candle
-
-                return (
-                    <G key={'g_day' + item}>
-                        <Line
-                            key={`l2_candles_Y ${index}`}
-                            x1={x_point}
-                            y1={0}
-                            x2={x_point}
-                            y2={HEIGHT_SVG - PADDING_TOP}
-                            stroke={theme.line2}
-                            strokeWidth={0.5}
-                        />
-                        <TextSVG
-                            key={`T_l2_candles_Y ${index}`}
-                            x={x_point}
-                            y={HEIGHT_SVG - 10}
-                            fontSize={8}
-                            fill={colors.grayBlue}
-                            textAnchor={'middle'}
-                        >
-                            {ydmhm(candles[item].time)}
-                        </TextSVG>
-                    </G>
-                )
-            })}
         </G>
     )
 }

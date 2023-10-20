@@ -15,11 +15,13 @@ export default ({ dPathMA, dPathGreen, dPathRed }: Props) => {
     return (
         <G key={'G_Path'}>
             <Path
+                key={'G_Path_Candle_Green'}
                 d={dPathGreen}
                 stroke={colors.green2}
                 fill={colors.green2}
             />
             <Path
+                key={'G_Path_Candle_Red'}
                 d={dPathRed}
                 stroke={colors.red3}
                 fill={colors.red3}

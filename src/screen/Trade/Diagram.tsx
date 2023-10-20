@@ -20,7 +20,7 @@ import LineX from "./LineX"
 import MinMaxLowHigh from "./MinMaxLowHigh"
 import PathMA from "./PathMA"
 
-const height_container = height * 35 / 100
+export const height_container = height * 35 / 100
 export const heigh_candle = height_container - 40
 export const paddingTop = 20
 export const size_chart = 50
@@ -217,21 +217,21 @@ export default () => {
                 <PinchGestureHandler onGestureEvent={pinchHandle}>
                     <Animated.View>
                         {candles.length > 0 &&
-                            <Svg>
+                            <Svg height={height_container} width={width}>
                                 <G key={'G'}>
                                     <LineX
                                         {...{
                                             theme,
-                                            paddingTop,
+                                            candles,
                                             maxHighItem,
-                                            heigh_candle,
                                             heighValueChart,
+                                            gap_candle: gapCandle.value,
+                                            padding_right_candle: paddingRightCandles.value,
                                         }}
                                     />
 
                                     <MinMaxLowHigh
                                         {...{
-                                            theme,
                                             candles,
                                             size_chart,
                                             minLowItem,
