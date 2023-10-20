@@ -13,12 +13,12 @@ import { PanGestureHandler, PinchGestureHandler, PinchGestureHandlerGestureEvent
 import Reanimated, { runOnJS, useAnimatedGestureHandler, useSharedValue } from 'react-native-reanimated'
 import { G, Line, Path, Svg, Text as TextSVG } from 'react-native-svg'
 import { io } from 'socket.io-client'
+import { ICoins } from 'src/model/futuresModel'
 import { Trade } from 'src/model/tradeModel'
 import LogoChart from './LogoChart'
 import TimeLimitChart from './TimeLimitChart'
-import { ICoins } from 'src/model/futuresModel'
 
-export const HEIGH_CONTAINER = height * 80 / 100
+export const HEIGH_CONTAINER = height * 30 / 100
 export const SIZE_CHART = 50
 const HEIGH_SVG = HEIGH_CONTAINER - 30
 const HEIGH_CANDLES = HEIGH_SVG - 20
@@ -130,58 +130,6 @@ const Chart = ({ setOpenChart }: Props) => {
         }
     }
 
-    const render_candle = () => {
-        return candles.map((item: IChart, index) => {
-            const x_point = gapCandle.value * index - paddingRightCandles.value
-            return (
-                <G key={`G_candles_${index}`}>
-                    {(index == 15 || index == 30 || index == 45) &&
-                        <>
-                            <Line
-                                key={`l2_candles_Y ${index}`}
-                                x1={x_point}
-                                y1={0}
-                                x2={x_point}
-                                y2={HEIGH_CANDLES}
-                                stroke={theme.gray2}
-                                strokeWidth={1}
-                            />
-                            <TextSVG
-                                key={`T_candles ${index}`}
-                                x={x_point}
-                                y={HEIGH_SVG - 10}
-                                fontSize={9}
-                                fill={colors.grayBlue}
-                                textAnchor={'middle'}
-                            >
-                                {ydmhm(item.time)}
-                            </TextSVG>
-                        </>
-                    }
-
-                    <Line
-                        key={`L_candles_${index}`}
-                        x1={x_point}
-                        y1={item.highSVG}
-                        x2={x_point}
-                        y2={item.lowSVG}
-                        stroke={item.colorChart}
-                        strokeWidth={1}
-                    />
-                    <Line
-                        key={`l2_candles ${index}`}
-                        x1={x_point}
-                        y1={item.closeSVG == item.openSVG ? item.closeSVG + 1 : item.closeSVG}
-                        x2={x_point}
-                        y2={item.openSVG}
-                        stroke={item.colorChart}
-                        strokeWidth={widthCandle.value}
-                    />
-                </G>
-            )
-        })
-    }
-
     const render_x_line = () => {
         return TIMES.map(
             (item: any, index: number) => {
@@ -192,7 +140,7 @@ const Chart = ({ setOpenChart }: Props) => {
 
                 const textValue = Number(maxHighItem?.high) - (heighValueChart / (TOTAL_X_LINE - 1)) * index
 
-                const x_point = gapCandle.value * index - paddingRightCandles.value
+                const x_point = gapCandle.value * item - paddingRightCandles.value
 
                 return (
                     <G key={`G_x_line_${index}`}>
@@ -514,7 +462,6 @@ const Chart = ({ setOpenChart }: Props) => {
                             <Svg height={HEIGH_SVG}>
                                 <G key={'G_candle_pathMA'}>
                                     {render_x_line()}
-                                    {/* {render_candle()} */}
                                     {render_pathMA()}
                                     {render_max_min_candle()}
                                     {render_cursor()}
