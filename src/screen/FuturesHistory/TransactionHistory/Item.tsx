@@ -14,7 +14,7 @@ interface Props {
 }
 
 const IBMPR = fonts.IBMPR
-const SIZE_13 = 13
+const SIZE_12 = 12
 
 const Item = ({
     t,
@@ -28,37 +28,37 @@ const Item = ({
             paddingVertical={20}
         >
             <Box row alignCenter justifySpaceBetween>
-                <Txt color={theme.black} fontFamily={fonts.IBMPM} size={15}>
+                <Txt color={theme.black} fontFamily={fonts.IBMPM}>
                     {item.title}
                 </Txt>
-                <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={13}>
+                <Txt color={colors.grayBlue} fontFamily={fonts.M24} size={12}>
                     {item.created_at}
                 </Txt>
             </Box>
 
             <Box row alignCenter justifySpaceBetween marginVertical={10}>
-                <Txt style={styles.textGray}>
+                <Txt style={styles.textGray} size={12}>
                     {'Type'}
                 </Txt>
-                <Txt color={theme.black} fontFamily={IBMPR} size={SIZE_13}>
+                <Txt color={theme.black} fontFamily={IBMPR} size={SIZE_12}>
                     {item.type}
                 </Txt>
             </Box>
 
             <Box row alignCenter justifySpaceBetween marginBottom={10}>
-                <Txt style={styles.textGray} >
+                <Txt style={styles.textGray} size={SIZE_12}>
                     {'Code'}
                 </Txt>
-                <Txt color={theme.black} fontFamily={IBMPR} size={SIZE_13}>
+                <Txt color={theme.black} fontFamily={IBMPR} size={SIZE_12}>
                     {`${item.symbol} ${t('Perpetual')}`}
                 </Txt>
             </Box>
 
             <Box row alignCenter justifySpaceBetween>
-                <Txt style={styles.textGray}>
+                <Txt style={styles.textGray} size={SIZE_12}>
                     {'Amount'}
                 </Txt>
-                <Txt color={theme.black} fontFamily={fonts.M23} size={15}>
+                <Txt color={theme.black} fontFamily={fonts.M23}>
                     {numberCommasDot(item.amount)}
                 </Txt>
             </Box>
