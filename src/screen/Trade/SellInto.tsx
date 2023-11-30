@@ -11,7 +11,6 @@ import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 import { ISellBuy } from 'src/model/futuresModel'
-import { BuySell } from 'src/model/tradeModel'
 
 const SellInto = () => {
     const theme = useTheme()
@@ -25,13 +24,14 @@ const SellInto = () => {
     }, [])
 
     const handleGetTotalSell = async () => {
+        dispatch(tradeSlice.actions.setSells([]))
         const res = await getTotalSell({
             limit: 7,
             page: 1,
             symbol: symbol,
         })
         if (res.status) {
-            dispatch(tradeSlice.actions.setBuys(res.data.array))
+            dispatch(tradeSlice.actions.setSells(res.data.array))
         }
     }
 

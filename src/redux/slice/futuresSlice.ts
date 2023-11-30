@@ -328,11 +328,20 @@ const futuresSlice = createSlice({
                     state.leverAdjustment.idPosition = -1
                     state.leverAdjustment.core = payload.core
                 }
-            }).addCase(getTotalSellThunk.fulfilled, (state, { payload }) => {
+            })
+            .addCase(getTotalSellThunk.pending, (state) => {
+                state.sells = []
+            })
+            .addCase(getTotalSellThunk.fulfilled, (state, { payload }) => {
+                if (state.symbol === 'XRPUSDT') return
                 if (payload.status) {
                     setSellOrBuy(state, payload.data.array, 'sell')
                 }
-            }).addCase(getTotalBuyThunk.fulfilled, (state, { payload }) => {
+            })
+            .addCase(getTotalBuyThunk.pending, (state) => {
+                state.buys = []
+            })
+            .addCase(getTotalBuyThunk.fulfilled, (state, { payload }) => {
                 if (payload.status) {
                     setSellOrBuy(state, payload.data.array, 'buy')
                 }

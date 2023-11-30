@@ -1,7 +1,6 @@
 import { callFailed, callSuccess } from "@method/requestResult"
 import { ReqGetTotalBuy, ReqOrderFuture } from "src/model/commomModel"
 import axiosInstance from "./axios"
-import contants from "@util/contants"
 import axiosDomain2 from "./axiosDomain2"
 
 export const getListCoin = async () => {
@@ -15,7 +14,6 @@ export const getListCoin = async () => {
 
 export const getChart = async (data: any) => {
     try {
-        // const res = await axiosInstance.post('/api/binaryOption/getChart', data)
         const res = await axiosDomain2.post('/api/binaryOption/getChart', data)
         return callSuccess(res)
     } catch (error) {

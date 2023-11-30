@@ -68,7 +68,7 @@ const Chart = ({ setOpenChart }: Props) => {
 
     useEffect((): any => {
         handleGetChart()
-        const newSocket = io(contants.HOSTING_CHART)
+        const newSocket = io(contants.HOSTING)
 
         let close = 0
         newSocket.on('listCoin', (coins: ICoins[]) => {

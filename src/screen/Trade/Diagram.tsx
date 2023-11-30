@@ -54,7 +54,7 @@ export default () => {
     useEffect((): any => {
         handleGetChart()
 
-        const newSocket = io(contants.HOSTING_CHART)
+        const newSocket = io(contants.HOSTING)
 
         let close = 0
         newSocket.on('listCoin', (coins: ICoins[]) => {
@@ -99,9 +99,6 @@ export default () => {
             if (nextAppState === 'inactive') {
                 newSocket.disconnect()
             }
-            // if (nextAppState === 'active') {
-            //     newSocket.connect()
-            // }
         });
 
         return () => newSocket.disconnect()

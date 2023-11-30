@@ -23,6 +23,7 @@ const BuyInto = () => {
     }, [])
 
     const handleGetTotalBuy = async () => {
+        dispatch(tradeSlice.actions.setBuys([]))
         const res = await getTotalBuy({
             limit: 7,
             page: 1,
