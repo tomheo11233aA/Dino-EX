@@ -73,10 +73,12 @@ const tradeSlice = createSlice({
     initialState,
     reducers: {
         setBuys: (state, { payload }) => {
-            state.buys = payload.slice(0, 7)
+            const data = payload.sort((p1: any, p2: any) => (p1.price < p2.price) ? 1 : (p1.price > p2.price) ? -1 : 0)
+            state.buys = data.slice(0, 7)
         },
         setSells: (state, { payload }) => {
-            state.sells = payload.slice(0, 7)
+            const data = payload.sort((p1: any, p2: any) => (p1.price < p2.price) ? 1 : (p1.price > p2.price) ? -1 : 0)
+            state.sells = data.slice(0, 7)
         },
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.loading = action.payload

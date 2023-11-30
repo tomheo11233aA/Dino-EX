@@ -2,6 +2,8 @@ import Box from "@commom/Box"
 import Icon from "@commom/Icon"
 import { hideBottomTab, useAppDispatch, useAppSelector, useTheme } from "@hooks/index"
 import { delay } from "@method/alert"
+import { styles as styled } from "@navigation/Container"
+import { useNavigation } from "@react-navigation/native"
 import KeyBoardSafe from "@reuse/KeyBoardSafe"
 import { loadingTradeSelector } from "@selector/tradeSelector"
 import tradeSlice from "@slice/tradeSlice"
@@ -15,8 +17,6 @@ import Header from "./Header"
 import History from "./History"
 import Statistical from "./Statistical"
 import Times from "./Times"
-import { useNavigation } from "@react-navigation/native"
-import { styles as styled } from "@navigation/Container";
 
 export default () => {
   const theme = useTheme()
@@ -27,8 +27,14 @@ export default () => {
   hideBottomTab()
 
   useEffect(() => {
-    dispatch(tradeSlice.actions.setLoading(true))
+    const focus = navigation.addListener('focus', () => {
+      dispatch(tradeSlice.actions.setLoading(true))
+    })
     AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      focus
+    }
   }, [])
 
   const handleAppStateChange = (nextAppState: AppStateStatus) => {
