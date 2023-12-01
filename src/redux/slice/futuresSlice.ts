@@ -331,6 +331,7 @@ const futuresSlice = createSlice({
             })
             .addCase(getTotalSellThunk.pending, (state) => {
                 state.sells = []
+                state.sellPrice = 0
             })
             .addCase(getTotalSellThunk.fulfilled, (state, { payload }) => {
                 if (state.symbol === 'XRPUSDT') return
