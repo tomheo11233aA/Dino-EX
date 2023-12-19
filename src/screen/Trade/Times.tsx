@@ -27,15 +27,18 @@ const Times = () => {
 
         newSocket.on(`${symbol}UPDATESPOT`, (times: ITimeLimit[]) => {
             if (times.length > 0 && listTimeLimit.length === 0) {
+                // set list time | 1m 2m 3m
                 dispatch(tradeSlice.actions.setListTimeLimit(times))
                 newSocket.disconnect()
             }
         })
 
         AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
+            // app ở chế độ inactive thì socket disconnect
             if (nextAppState === 'inactive') {
                 newSocket.disconnect()
             }
+            // app ở chế độ active thì socket connect
             if (nextAppState === 'active') {
                 newSocket.connect()
             }
@@ -59,6 +62,7 @@ const Times = () => {
                     {t('Line')}
                 </Text>
                 {listTimeLimit.slice(0, 5).map((time: ITimeLimit) => {
+                    // timeNumber là số trong chuỗi timeString | vd: 1m => timeNumber = 1, timeStr = m
                     const timeNumber = time?.timeString?.slice(0, time?.timeString?.length - 1)
                     const timeStr = time?.timeString?.slice(time?.timeString?.length - 1, time?.timeString?.length)
                     return (

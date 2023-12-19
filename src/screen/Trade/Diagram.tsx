@@ -20,43 +20,43 @@ import LineX from "./LineX"
 import MinMaxLowHigh from "./MinMaxLowHigh"
 import PathMA from "./PathMA"
 
-export const height_container = height * 35 / 100
-export const heigh_candle = height_container - 40
+export const height_container = height * 35 / 100 // Chiều cao của SVG, cao 35% so với chiều cao màn hình
+export const heigh_candle = height_container - 40 // Chiều cao của Nến trong chart
 export const paddingTop = 20
-export const size_chart = 50
-const gap_candle = width * 2.55 / 100
-const width_candle = width * 2.052 / 100
-const width_candles = (width * 2.55 / 100) * 30 - width_candle
-const padding_right_candle = size_chart * gap_candle - width_candle - width_candles
+export const size_chart = 50 // Số lượng Nến được hiển thị trong chart | 50 = 50 nến
+const gap_candle = width * 2.55 / 100 // Khoảng cách các nến | bằng 2.55% của của chiều rộng màn hình
+const width_candle = width * 2.052 / 100 // Chiều rộng của 1 nến | bằng 2.052% của chiều rộng màn hình
+const width_candles = (width * 2.55 / 100) * 30 - width_candle // Tổng chiều rộng của 30 cây nến
+const padding_right_candle = size_chart * gap_candle - width_candle - width_candles // padding right của chart nến
 
 export default () => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const symbol = useAppSelector(symbolFuturesSelector)
-    const timeLimit = useAppSelector(timeLimitSelector)
-    const candles = useAppSelector(candlesTradeSelector)
-    const minLowItem = useAppSelector(minLowItemTradeSelector)
-    const maxHighItem = useAppSelector(maxHighItemTradeSelector)
-    const heighValueChart = useAppSelector(heighValueChartTradeSelector)
-    const dPathMA = useAppSelector(dPathMATradeSelector)
-    const countDown = useAppSelector(countDownTradeSelector)
+    const symbol = useAppSelector(symbolFuturesSelector) // symbol hiện tại mà user chọn | BTCUSDT or ETHUSDT
+    const timeLimit = useAppSelector(timeLimitSelector) // Thời gian giới hạn | Nếu hết thời gian thì thêm nến mới
+    const candles = useAppSelector(candlesTradeSelector) // Mảng Nến
+    const minLowItem = useAppSelector(minLowItemTradeSelector) // Object chứa vị trí của item có low thấp nhất trong candles
+    const maxHighItem = useAppSelector(maxHighItemTradeSelector) // Object chứa vị trí của item có high cao nhất trong candles
+    const heighValueChart = useAppSelector(heighValueChartTradeSelector) // Là chiều dài của Nến | vd: chart Nến có high cao nhất = 36000, low thấp nhất = 30000 => heighValueChart = high - low = 6000
+    const dPathMA = useAppSelector(dPathMATradeSelector) // ma7, ma25, ma99 của chart
+    const countDown = useAppSelector(countDownTradeSelector) // Thời gian đếm ngược
     const countCandles = useAppSelector(countCandlesTradeSelector)
-    const dPathGreen = useAppSelector(dPathGreenTradeSelector)
-    const dPathRed = useAppSelector(dPathRedTradeSelector)
+    const dPathGreen = useAppSelector(dPathGreenTradeSelector) // Nến xanh
+    const dPathRed = useAppSelector(dPathRedTradeSelector) // Nến đỏ
 
-    const count = useSharedValue(0)
-    const scaleCount = useSharedValue(0)
-    const scaleSum = useSharedValue(2)
-    const widthCandle = useSharedValue(width_candle)
-    const gapCandle = useSharedValue(gap_candle)
-    const paddingRightCandles = useSharedValue(padding_right_candle)
+    const count = useSharedValue(0) // Tăng lên hoặc giảm xuống khi user trượt trên chart
+    const scaleCount = useSharedValue(0) // Scale của chart
+    const scaleSum = useSharedValue(2) // Tổng scale
+    const widthCandle = useSharedValue(width_candle) // Chiều rộng của 1 nến
+    const gapCandle = useSharedValue(gap_candle) // Khoảng cách giữa các nến
+    const paddingRightCandles = useSharedValue(padding_right_candle) // padding right của chart nến
 
     useEffect((): any => {
         handleGetChart()
 
         const newSocket = io(contants.HOSTING)
 
-        let close = 0
+        let close = 0 // Giá đóng của coin được user chọn
         newSocket.on('listCoin', (coins: ICoins[]) => {
             if (coins.length > 0) {
                 for (let i = 0; i < coins.length; i++) {
@@ -68,6 +68,7 @@ export default () => {
             }
         })
 
+        // Lấy data nến
         newSocket.on(`${symbol}UPDATESPOT`, data => {
             if (data.length > 0) {
                 dispatch(tradeSlice.actions.setChart({
@@ -83,12 +84,13 @@ export default () => {
             }
         })
 
+        // lấy buy
         newSocket.on(`${symbol}BUY`, (data) => {
             if (data.array) {
                 dispatch(tradeSlice.actions.setBuys(data.array))
             }
         })
-
+        // lấy sell
         newSocket.on(`${symbol}SELL`, (data) => {
             if (data.array) {
                 dispatch(tradeSlice.actions.setSells(data.array))
@@ -149,15 +151,17 @@ export default () => {
         }))
     }
 
+    // Bắt sự kiện khi user lướt trên màn hình
     const handleGestureEvent = useAnimatedGestureHandler({
         onActive(event, context) {
+            // Lướt từ trái sang phải
             if (event.velocityX >= 0) {
                 count.value++
                 if (count.value > 4) {
                     count.value = 0
                     runOnJS(handChartTranslate)()
                 }
-            } else {
+            } else { // Lướt từ phải sang trái
                 count.value--
                 if (count.value < -4) {
                     count.value = 0
@@ -171,6 +175,7 @@ export default () => {
         },
     })
 
+    // Phóng to, thu nhỏ màn hình
     const handleZoom = () => {
         dispatch(tradeSlice.actions.setZoom({
             gap_candle: gapCandle.value,
@@ -181,25 +186,27 @@ export default () => {
         }))
     }
 
+    // Bắt sự kiện khi user dùng 2 ngón tay phóng to, thu nhỏ trên màn hình 
     const pinchHandle = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent>({
         onActive(event, context) {
+            // Phóng to
             if (event.velocity >= 0) {
                 scaleCount.value++
                 if (scaleCount.value > 5) {
                     scaleCount.value = 0
-                    scaleSum.value = (scaleSum.value + 1 <= 10) ? (scaleSum.value + 1) : 10
-                    gapCandle.value = width * (scaleSum.value + 0.55) / 100
-                    widthCandle.value = width * (scaleSum.value + 0.052) / 100
-                    paddingRightCandles.value = size_chart * gapCandle.value - widthCandle.value - width_candles
+                    scaleSum.value = (scaleSum.value + 1 <= 10) ? (scaleSum.value + 1) : 10 // Giá trị zoom
+                    gapCandle.value = width * (scaleSum.value + 0.55) / 100 // Tăng khoảng cách giữa các nến
+                    widthCandle.value = width * (scaleSum.value + 0.052) / 100 // Tăng chiều rộng của 1 nến
+                    paddingRightCandles.value = size_chart * gapCandle.value - widthCandle.value - width_candles // Tăng padding right của chart nến
                     runOnJS(handleZoom)()
                 }
-            } else {
+            } else { // thu nhỏ
                 scaleCount.value--
                 if (scaleCount.value < -5) {
                     scaleCount.value = 0
-                    scaleSum.value = (scaleSum.value - 1 >= 1) ? (scaleSum.value - 1) : 1
-                    gapCandle.value = width * (scaleSum.value + 0.55) / 100
-                    widthCandle.value = width * (scaleSum.value + 0.052) / 100
+                    scaleSum.value = (scaleSum.value - 1 >= 1) ? (scaleSum.value - 1) : 1 // Giá trị zoom
+                    gapCandle.value = width * (scaleSum.value + 0.55) / 100 // Giảm khoảng cách giữa các nến
+                    widthCandle.value = width * (scaleSum.value + 0.052) / 100 // Giảm chiều rộng của 1 nến
                     paddingRightCandles.value = size_chart * gapCandle.value - widthCandle.value - width_candles
                     runOnJS(handleZoom)()
                 }

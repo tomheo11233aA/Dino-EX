@@ -9,6 +9,7 @@ interface Props {
     title: string;
 }
 
+// Header có tiêu đề và có sẵn nút back
 export default ({ title }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()

@@ -6,6 +6,7 @@ type Props = {
     size: number,
 }
 
+// Component AnimatedLottieView, truyền vào link source 
 const LottieAnimation = ({ source, size = 100 }: Props) => {
     return (
         <AnimatedLottieView

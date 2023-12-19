@@ -26,12 +26,13 @@ const Home = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const navigation = useNavigation()
-  const isLogin = useAppSelector(isLoginUserSelector)
+  const isLogin = useAppSelector(isLoginUserSelector) // user đã login chưa
 
   const [refesh, setRefesh] = useState(false)
 
   useEffect((): any => {
     const focus = navigation.addListener('focus', () => {
+      // Nếu màn hình được focus thì hiện bottom tab
       navigation.getParent()?.setOptions({
         tabBarStyle: [
           styles.container,
@@ -48,10 +49,12 @@ const Home = () => {
   }, [])
 
   const handleGetValueConfig = async () => {
+      // Lấy version app từ server
     const res = await getValueConfig('VERSIONAPP')
     if (res.status) {
       const versionCurren = res.data[0].data
       const versionInApp = contants.VERSION
+      // Nếu versionInApp != versionCurren thì thông báo cho user cập nhật app
       if (versionCurren != versionInApp) {
         Alert.alert(t('You are using the old version, please update the application to the new version for the best experience.'))
       }
@@ -60,6 +63,7 @@ const Home = () => {
     }
   }
 
+  // Refesh lại trang khi trượt scroll xuống
   const handleRefesh = async () => {
     setRefesh(true)
     dispatch(getProfileThunk())

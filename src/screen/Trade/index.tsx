@@ -27,6 +27,7 @@ export default () => {
   hideBottomTab()
 
   useEffect(() => {
+    // Khi màn hình focus set loading = true
     const focus = navigation.addListener('focus', () => {
       dispatch(tradeSlice.actions.setLoading(true))
     })
@@ -44,14 +45,17 @@ export default () => {
   }
 
   useEffect(() => {
+    // Nếu loading = true, sau 1 giây set loading = false
     if (loading) {
       delay(1000).then(() => {
         dispatch(tradeSlice.actions.setLoading(false))
+        // ẩn bottom tab
         navigation.getParent()?.setOptions({ tabBarStyle: styled.noneContainer })
       })
     }
   }, [loading])
 
+  // refesh lại màn hình khi kéo component
   const handleRefesh = () => {
     dispatch(tradeSlice.actions.setLoading(true))
   }

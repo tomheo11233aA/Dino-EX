@@ -14,10 +14,10 @@ import { io } from "socket.io-client";
 import { ICoins } from "src/model/futuresModel";
 import { AppDispatch, RootState } from "src/redux/store";
 
-export const useAppDispatch: () => AppDispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useAppDispatch: () => AppDispatch = useDispatch // dùng useAppDispatch thay cho useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector // useAppSelector thay cho useSelector
 
-// hide or show bottomtab
+// Ẩn bottom tab khi vào màn hình và hiện lại bottom tab khi thoát ra khỏi màn hình
 export const hideBottomTab = () => {
   const navigation = useNavigation()
   const theme = useTheme()
@@ -35,11 +35,13 @@ export const hideBottomTab = () => {
   }, [])
 }
 
+// Trả về THEME | THEME là một object chứa các field màu theo dark/light
 export const useTheme = () => {
   const THEME = colors[useAppSelector(themeUserSelector)]
   return THEME
 }
 
+// socket lấy list coin và set vào state redux
 export const getCoinsFromSocket = async () => {
   const dispatch = useAppDispatch()
   const navigation = useNavigation()
@@ -77,6 +79,7 @@ export const getCoinsFromSocket = async () => {
   }, [])
 }
 
+// Dispatch lại các action khi socket limit hoặc socket deposit trả về data 
 export const socketLimitDeposit = async () => {
   const dispatch = useAppDispatch()
   const userID = useAppSelector(userIDSelector)
@@ -86,6 +89,7 @@ export const socketLimitDeposit = async () => {
     newSocket.emit('joinUser', `${userID}`)
 
     newSocket.on("limit", (res) => {
+      // khi có data trả về sẽ dispatch lại các action trong function
       console.log('limit hook')
       dispatch(getProfileThunk())
       dispatch(getPositionThunk('BTCUSDT'))
@@ -102,6 +106,7 @@ export const socketLimitDeposit = async () => {
     })
 
     newSocket.on('deposit', (res) => {
+      // khi có data trả về sẽ dispatch lại các action trong function
       console.log('depsit hook')
       dispatch(getProfileThunk())
       dispatch(getHistoryDepositThunk({ limit: 1000, page: 1 }))

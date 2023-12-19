@@ -16,25 +16,31 @@ const Hello = ({ navigation }: any) => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        // Ẩn bottom tab
         navigation.getParent()?.setOptions({ tabBarStyle: styles.noneContainer })
+        // function sẽ thực thi sau 2 giây
         const timer = setTimeout(async () => {
+            // lấy ngôn ngữ được lưu trong storage
             const lng = await AsyncStorage.getItem(contants.LANGUAGE) || 'en'
-            i18n.changeLanguage(lng)
+            i18n.changeLanguage(lng) // thay đổi ngôn ngữ
 
-            // set theme color
+            // lấy theme được lưu trong storage
             const theme = await AsyncStorage.getItem(contants.THEME) || 'light'
-            dispatch(userSlice.actions.setTheme(theme))
+            dispatch(userSlice.actions.setTheme(theme)) // set theme
 
+            // lấy token được lưu trong storage
             const token = await AsyncStorage.getItem(contants.TOKEN) || null
+            // nết có token thì lấy profile từ API của server và set state profile trong redux
             if (token) {
                 await dispatch(getProfileThunkUserID())
             }
-            navigation.replace(screen.HOME)
+            navigation.replace(screen.HOME) // chuyển đến màn hình home
         }, 2000)
 
         return () => clearTimeout(timer)
     }, [])
 
+    // Tăng khoảng cách các chữ cái trong chữ "HOTX" => "H O T X"
     const applyLetterSpacing = (string: string, count = 3) => {
         return string?.split('')?.join('\u200A'.repeat(count));
     }

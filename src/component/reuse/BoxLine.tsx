@@ -17,6 +17,7 @@ interface Props {
     marginTop?: number;
 }
 
+// Component trả về 1 Text có dấu gạch chân đứt nối phía dưới
 const BoxLine = ({
     title,
     size = 12,

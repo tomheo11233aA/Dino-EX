@@ -8,6 +8,7 @@ interface Props {
     color?: string,
 }
 
+// Component nút trở lại
 const Back = ({ size = 20, color }: Props) => {
     return (
         <Btn

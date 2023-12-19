@@ -7,7 +7,7 @@ import Icon from '@commom/Icon'
 import { colors } from '@theme/colors'
 import { applyLetterSpacing } from '@method/format'
 import { useTheme } from '@hooks/index'
-
+// logo app
 const LogoChart = ({ color, height }: any) => {
     const theme = useTheme()
     const COLOR = color || theme.gray

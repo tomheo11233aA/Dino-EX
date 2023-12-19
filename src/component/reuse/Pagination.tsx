@@ -3,12 +3,12 @@ import Btn from '@commom/Btn'
 import Txt from '@commom/Txt'
 import { colors } from '@theme/colors'
 import React from 'react'
-
+// Component dùng để làm phân trang
 const Pagination = ({
-    indexPage,
-    total,
-    onNext,
-    onBack,
+    indexPage, // số trang hiện tại
+    total, // tổng số trang
+    onNext, // function bắt sự kiện chuyển đến trang tiếp theo
+    onBack, // function bắt sự kiện trờ lại trang phía trước
     marginTop = 20,
     alignSefl = 'flex-end',
 }: any) => {

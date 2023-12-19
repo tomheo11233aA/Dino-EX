@@ -4,7 +4,7 @@ import { useTheme } from '@hooks/index'
 import { colors } from '@theme/colors'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-
+// Cho người biết không có position nào
 const NotPosition = () => {
     const theme = useTheme()
     const { t } = useTranslation()

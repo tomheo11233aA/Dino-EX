@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@commom/Box'
 import LottieAnimation from './LottieAnimation'
 
+// Component có biểu tượng loading màu trắng
 const LoadingWhite = () => {
     return (
         <Box alignCenter>

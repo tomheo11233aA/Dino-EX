@@ -6,17 +6,17 @@ import React, { forwardRef, useCallback, useImperativeHandle } from 'react'
 import { StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue, withDelay, withSpring } from 'react-native-reanimated'
-
+// Tạo một Component thông báo trượt từ phía trên màn hình xuống
 const ToastTop = forwardRef((_, ref) => {
     const theme = useTheme()
-    const topStart = -80
+    const topStart = -80 // vị trí component ban đầu
     const topAnimation = useSharedValue(topStart)
 
-    const opacityImageCheck = useSharedValue(0)
-    const opacityImageRemove = useSharedValue(0)
-    const opacityAnimated = useSharedValue(0)
+    const opacityImageCheck = useSharedValue(0) // opacity của icon check
+    const opacityImageRemove = useSharedValue(0) // opacity của icon remove
+    const opacityAnimated = useSharedValue(0) // opacity của animated
 
-    const messageToast = useSharedValue('')
+    const messageToast = useSharedValue('') // nội dung thông báo
 
     const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
 

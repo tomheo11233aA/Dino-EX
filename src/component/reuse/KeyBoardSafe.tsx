@@ -14,6 +14,8 @@ interface Props {
     refesh?: any;
 }
 
+// Tránh bị bàn phím che ô input
+// Tạo vùng an toàn trên màn hình
 const KeyBoardSafe = ({
     refesh,
     onRefesh,

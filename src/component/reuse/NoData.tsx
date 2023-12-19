@@ -5,6 +5,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 
+// Component cho người dùng biết không có dữ liệu
 const NoData = ({ message }: { message: string }) => {
     return (
         <Box alignCenter paddingTop={30}>

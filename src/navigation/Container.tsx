@@ -67,6 +67,7 @@ const Container = () => {
     const theme = useTheme()
     const { t } = useTranslation()
 
+    // Hook
     socketLimitDeposit()
 
     return (

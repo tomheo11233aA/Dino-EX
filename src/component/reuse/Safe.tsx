@@ -10,7 +10,8 @@ interface Props {
     paddingHorizontal?: number;
     children: JSX.Element | JSX.Element[],
 }
-
+// Tránh bị bàn phím che ô input
+// Tạo vùng an toàn trên màn hình
 const Safe = ({
     bg,
     styles,

@@ -12,7 +12,7 @@ type Props = {
     title: any,
     forcus: boolean,
 }
-
+// Component trả về một Ảnh và một tiêu đề ở bên dưới ảnh
 const TabCustom = ({ icon, title, size = 20, forcus }: Props) => {
     return (
         <Box alignCenter>

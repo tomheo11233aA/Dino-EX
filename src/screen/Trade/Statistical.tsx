@@ -18,9 +18,11 @@ const Statistical = () => {
 
     let [close, percentChange, color, round] = [0, '0', colors.greenCan, 1]
     if (coins.length > 0) {
+        // Tìm vị trí trong mảng
         const index = coins.findIndex(coin => coin.symbol === symbol)
         if (index >= 0) {
-            close = coins[index]?.close
+            close = coins[index]?.close // giá đóng của coin
+            // Hiển thị bao nhiêu số thập phân
             round = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
             percentChange = coins[index]?.percentChange >= 0 ? `+${coins[index]?.percentChange}` : `${coins[index]?.percentChange}`
             color = coins[index]?.percentChange >= 0 ? colors.greenCan : colors.redCan

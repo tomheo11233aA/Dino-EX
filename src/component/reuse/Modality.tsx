@@ -9,7 +9,8 @@ interface Props {
     children: JSX.Element | JSX.Element[],
     close?: boolean,
 }
-
+// Component config sẵn modal
+// Có thể ẩn modal nếu nhấn vào bên ngoài model
 const Modality = ({
     show,
     setShow,
