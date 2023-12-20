@@ -9,18 +9,19 @@ import { fonts } from '@theme/fonts'
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { ISellBuy } from 'src/model/futuresModel'
-
+// Show data bán của đồng coin được chọn
 const BuyInto = () => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const buys = useAppSelector(buysFuturesSelector)
+    const buys = useAppSelector(buysFuturesSelector) // data bán
     const symbol = useAppSelector(symbolFuturesSelector)
-    const priceSell = useAppSelector(sellPriceFuturesSelector)
+    const priceSell = useAppSelector(sellPriceFuturesSelector) // Giá bán hiện tại
 
     useEffect(() => {
         handleGetTotalSell()
     }, [])
 
+      // Get data bán từ API
     const handleGetTotalSell = async () => {
         const { payload } = await dispatch(
             getTotalBuyThunk({

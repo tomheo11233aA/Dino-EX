@@ -34,7 +34,7 @@ export const numberCommasDot = (n: any) => {
         return x1
     }
 }
-
+// Viết hoa chữ cái đầu
 export const capitalizeFirst = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
@@ -42,26 +42,26 @@ export const capitalizeFirst = (str: string) => {
 export const comma = (number: any) => {
     return number.replace('.', ',')
 };
-
+// Tăng khoảng cách giữa các chữ
 export const applyLetterSpacing = (string: string, count = 3) => {
     return string?.split('')?.join('\u200A'.repeat(count));
 }
-
+// Tính position
 export const converPostirions = (position: IPositions, coins: ICoins[], balance: number) => {
     let [PNL, ROE, RISK, SIZE, MARK_PRICE, LIQ_PRICE, ROUND] = [0, 0, 0, 0, 0, 0, 1]
 
     if (coins.length > 0 && position) {
         let index = coins.findIndex((coin: ICoins) => coin.symbol === position.symbol)
-        const close = coins[index]?.close || 0
+        const close = coins[index]?.close || 0 // Giá đóng
 
-        PNL = calcPNL(position, close)
+        PNL = calcPNL(position, close) // Tính PNL
 
-        MARK_PRICE = close
-        // ROE = PNL / position.margin * 100
-        ROE = calcROE(PNL, position)
-        SIZE = position.margin * position.core
+        MARK_PRICE = close // MARK_PRICE = Giá đóng
+        ROE = calcROE(PNL, position) // Tính ROE
+        SIZE = position.margin * position.core // SIZE = margin * đòn bẫy
         ROUND = close < 10 ? 4 : (close > 9 && close < 51) ? 3 : 1
 
+        // Tính RISK (rủi ro)
         if (position.regime === 'isolated' && position.liquidationPrice !== 0) {
             RISK = (SIZE * close * (1 / position.core)) / position.liquidationPrice
             RISK = RISK / 1000
@@ -70,16 +70,19 @@ export const converPostirions = (position: IPositions, coins: ICoins[], balance:
             } else {
                 RISK = RISK - ROE
             }
-            if (RISK > 64) RISK = 64
+            if (RISK > 64) RISK = 64 // Nếu RISK > 64 thì RISK = 64
         }
 
+        // Tính LIQ_PRICE
         if (position.regime === 'cross' && position.side === 'sell') {
+            // LIQ_PRICE = số dư / (margin * đòn bẫy) * entryPrice
             LIQ_PRICE = balance / (position.margin * position.core) * position.entryPrice
         } else {
             LIQ_PRICE = position.liquidationPrice
         }
     }
 
+    // Trả về một object có các field mới
     return {
         ...position,
         PNL,
@@ -225,6 +228,11 @@ export const converLanguage = (language: string) => {
     }
 }
 
+// Tính TPSL cho item open order
+/// Lịch sử openOrder nếu typeTrade ="Take Profit Market" hoặc typeTrade="Stop Market" và idPositon == 0 thì cho user View TP/SL (CALL API viewTPSL), data view TP/SL nếu có TP thì show giao diện TP Data Side = data.side, Data amount = PnL ở giá TP, Stop Price = TP, Trigger = data.triggerTP, Reduce Only auto là true .( SL cũng tương tự như TP nếu có data thì show)
+/// Lịch sử openOrder nếu typeTrade ="Limit" và có data TP hoặc SL thì cho user View TP/SL (amount TP sẽ là : amountPnL_TP) (amount SL sẽ là : amountPnL_SL)
+/// Lịch sử openOrder nếu typeTrade ="Take Profit Market" hoặc typeTrade="Stop Market" thì Reduce Only sẽ auto là Yes ngược lại là No, nếu là TP và side == sell Trigger Conditions sẽ là : `${data.triggerTP} Price >= ${TP}` nếu side là == buy là : `${data.triggerTP} Price <= ${TP}` SL ngược lại tương tự                  /// 
+/// Lịch sử openOrder nếu typeTrade ="Take Profit Market" hoặc typeTrade="Stop Market"  có amount ==0 thì show amount là : "Close Position" và không xem đc TP/SL trong open order 
 export const convertTPSL = (item: IOpenOrder, t: any): IOpenOrderConver => {
     let showTPSL = false
     let amount = item.amount
@@ -309,16 +317,20 @@ export const converPostirionsClose = (position: IPositionHistory, balance: numbe
     }
 }
 
+// Tính PNL của position
 export const calcPNL = (position: IPositions | IPositionHistory, close: number) => {
     let PNL = 0
     if (position.side === 'buy') {
+        // PNL = (Giá đóng - entryPrice) * số lượng * đòn bẫy
         PNL = (close - position.entryPrice) * position.amountCoin * position.core
     } else {
+        // PNL = (entryPrice - giá đóng) * số lượng * đòn bẫy
         PNL = (position.entryPrice - close) * position.amountCoin * position.core
     }
     return PNL
 }
 
+// Tính ROE
 export const calcROE = (PNL: number, position: IPositions | IPositionHistory,) => {
     let ROE = 0
     ROE = PNL / position.margin * 100

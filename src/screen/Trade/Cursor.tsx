@@ -14,7 +14,7 @@ interface Props {
     gap_candle: number;
     padding_right_candle: number;
 }
-
+// Show close hiện tại, ma7, ma25, ma99
 export default ({
     theme,
     candles,
@@ -26,9 +26,9 @@ export default ({
     const lastChart = candles[candles.length - 1]
     let closeSVG = lastChart.closeSVG
 
-    const ma7 = numberCommasDot(lastChart?.ma7?.toFixed(2)) || 0
-    const ma25 = numberCommasDot(lastChart?.ma25?.toFixed(2)) || 0
-    const ma99 = numberCommasDot(lastChart?.ma99?.toFixed(2)) || 0
+    const ma7 = numberCommasDot(lastChart?.ma7?.toFixed(2)) || 0 // ma7 của item chart cuối cùng
+    const ma25 = numberCommasDot(lastChart?.ma25?.toFixed(2)) || 0 // ma25 của item chart cuối cùng
+    const ma99 = numberCommasDot(lastChart?.ma99?.toFixed(2)) || 0 // ma99 của item chart cuối cùng
 
     const x_text_ma7 = 7
 

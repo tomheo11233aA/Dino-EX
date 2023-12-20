@@ -16,7 +16,7 @@ interface Props {
     maxHighItem: IChart | null;
     padding_right_candle: number;
 }
-
+// Tạo được đường thẳng trục x trong chart
 export default ({
     theme,
     candles,
@@ -28,10 +28,10 @@ export default ({
     return (
         <G key={'G_Line_X'}>
             {data.map((item, index) => {
-                let gap_x_line = (heigh_candle / (data.length - 1)) * index + paddingTop
-                const textValue = Number(maxHighItem?.high) - (heighValueChart / (data.length - 1)) * index
+                let gap_x_line = (heigh_candle / (data.length - 1)) * index + paddingTop // Tính điểm y1, y2 của Line
+                const textValue = Number(maxHighItem?.high) - (heighValueChart / (data.length - 1)) * index // Giá trị của Line
                 
-                const x_point = gap_candle * item - padding_right_candle
+                const x_point = gap_candle * item - padding_right_candle // Tính x1, x2 của Line
 
                 return (
                     <G key={`G_Line_X_${index}`}>

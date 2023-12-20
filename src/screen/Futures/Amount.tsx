@@ -39,6 +39,7 @@ const Amount = ({
     const currency = useAppSelector(currencyFuturesSelector)
 
     const animatedProps: any = useAnimatedProps(() => {
+        // Nếu user nhập giá trị từ bàn phím
         if (enter.value) {
             return {
                 text: `${amount}`

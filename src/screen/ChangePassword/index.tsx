@@ -12,7 +12,7 @@ import { fonts } from '@theme/fonts'
 import LoadingBlack from '@reuse/LoadingBlack'
 import { Alert } from 'react-native'
 import { changePassword } from '@service/userService'
-
+// Đổi mật khẩu
 const ChangePassword = () => {
     const theme = useTheme()
     const { t } = useTranslation()

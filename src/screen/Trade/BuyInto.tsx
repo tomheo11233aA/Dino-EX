@@ -10,7 +10,7 @@ import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 import { ISellBuy } from 'src/model/futuresModel'
-
+// Data mua của đồng coin hiện tại
 const BuyInto = () => {
     const theme = useTheme()
     const { t } = useTranslation()

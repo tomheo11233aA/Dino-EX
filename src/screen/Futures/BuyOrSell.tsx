@@ -9,7 +9,7 @@ import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ImageBackground, StyleSheet } from 'react-native'
-
+// Nút mua hoặc bán
 const BuyOrSell = ({theme}: any) => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()

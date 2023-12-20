@@ -18,16 +18,17 @@ const LIGHT = 'Light Mode'
 const DARK = 'Dark Mode'
 
 const themes = [LIGHT, DARK]
-
+// Chuyển đổi chế độ dark/light
 const Appearance = () => {
   const color = useTheme()
   const { t } = useTranslation()
   const theme = useSelector(themeUserSelector)
 
+  // Chuyển đổi chế độ dark/light
   const handleChangeTheme = async (value: string) => {
     const payload = value === LIGHT ? 'light' : 'dark'
     await AsyncStorage.setItem(contants.THEME, payload)
-    RNRestart.Restart()
+    RNRestart.Restart() // restart lại app
   }
 
   return (

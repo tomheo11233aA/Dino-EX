@@ -11,7 +11,7 @@ import Trending from './Trending'
 import { useTheme } from '@hooks/index'
 import { useTranslation } from 'react-i18next'
 import ComingSoon from '@screen/ComingSoon'
-
+// Show danh sách coin
 const CoinList = () => {
     const theme = useTheme()
     const { t } = useTranslation()
@@ -21,7 +21,8 @@ const CoinList = () => {
     useEffect(() => {
         handleGetListCoin()
     }, [])
-
+    
+    // Get list coin từ API
     const handleGetListCoin = async () => {
         const res = await getListCoin()
         if (res.status) {

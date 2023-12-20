@@ -29,10 +29,10 @@ const Calc = ({ theme }: any) => {
     let BALANCE: number = profile.balance
 
     const exchangeRate = coins.filter(coin => coin.symbol == symbol)[0]?.close || 0
-    const size = BALANCE * core
-    const feeStart = size * (fee[0] / 100)
-    const feeEnd = size * (fee[1] / 100)
-    BALANCE = BALANCE - feeStart - feeEnd
+    const size = BALANCE * core // Banlance * đòn bẫy
+    const feeStart = size * (fee[0] / 100) // Phí bắt đầu
+    const feeEnd = size * (fee[1] / 100) // Phí kết thúc
+    BALANCE = BALANCE - feeStart - feeEnd // BALANCE còn lại sau khi tính phí
     const MAX = USDT ? BALANCE * core : BALANCE * core / exchangeRate
 
     return (

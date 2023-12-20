@@ -13,7 +13,7 @@ interface Props {
     core: number;
     setCore: Function;
 }
-
+// Đòn bẫy
 const Leverage = ({ theme, t, core, setCore }: Props) => {
     const [show, setShow] = useState(false)
 

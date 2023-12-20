@@ -15,7 +15,7 @@ const dates = [
     { day: '180 days', value: -19.71 },
     { day: '1 year', value: -82.45 },
 ]
-
+// Show ngày và data cứng
 const Date = () => {
     const theme = useTheme()
     const type: string = 'MA'

@@ -13,7 +13,7 @@ interface Props {
     show: boolean,
     setShow: Function,
 }
-
+// Modal đòn bẫy
 const ModalCore = ({ show, setShow }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()

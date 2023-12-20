@@ -190,7 +190,7 @@ export default tradeSlice
 
 const handleSetChart = (state: WritableDraft<ITradeSlice>, payload: any) => {
     state.dPathGreen = '' // Nến xanh
-    state.dPathRed = '' // Nế đỏ
+    state.dPathRed = '' // Nến đỏ
 
     // High cao nhất trong candles, low thấp nhất trong candles
     let [maxHighItem, minLowItem]: any =

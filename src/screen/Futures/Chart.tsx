@@ -18,15 +18,15 @@ import { Trade } from 'src/model/tradeModel'
 import LogoChart from './LogoChart'
 import TimeLimitChart from './TimeLimitChart'
 
-export const HEIGH_CONTAINER = height * 30 / 100
-export const SIZE_CHART = 50
-const HEIGH_SVG = HEIGH_CONTAINER - 30
-const HEIGH_CANDLES = HEIGH_SVG - 20
-const GAP_CANDLES = width * 2.55 / 100
-const WIDTH_CANDLE = width * 2.052 / 100
-const WIDTH_CANDLES = (width * 2.55 / 100) * 30 - WIDTH_CANDLE
-const TOTAL_X_LINE = 4
-const PADDING_RIGHT_CANDLE = SIZE_CHART * GAP_CANDLES - WIDTH_CANDLE - WIDTH_CANDLES
+export const HEIGH_CONTAINER = height * 30 / 100 // Chiều cao của Container, cao 35% so với chiều cao màn hình
+export const SIZE_CHART = 50 // Số lượng Nến được hiển thị trong chart | 50 = 50 nến
+const HEIGH_SVG = HEIGH_CONTAINER - 30 // Chiều cao của SVG
+const HEIGH_CANDLES = HEIGH_SVG - 20 // Chiểu cao của chart nến
+const GAP_CANDLES = width * 2.55 / 100 // Khoảng cách các nến | bằng 2.55% của của chiều rộng màn hình
+const WIDTH_CANDLE = width * 2.052 / 100 // Chiều rộng của 1 nến | bằng 2.052% của chiều rộng màn hình
+const WIDTH_CANDLES = (width * 2.55 / 100) * 30 - WIDTH_CANDLE  // Tổng chiều rộng của 30 cây nến
+const TOTAL_X_LINE = 4 // Số lượng đường thẳng gạch ngang
+const PADDING_RIGHT_CANDLE = SIZE_CHART * GAP_CANDLES - WIDTH_CANDLE - WIDTH_CANDLES // Padding right chart nến
 const TIMES = [0, 15, 30, 45]
 
 export interface IChart extends Trade {
@@ -44,33 +44,33 @@ export interface IChart extends Trade {
 interface Props {
     setOpenChart: Function
 }
-
+// Biểu đồ nến
 const Chart = ({ setOpenChart }: Props) => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const symbol = useAppSelector(symbolFuturesSelector)
-    const timeLimit = useAppSelector(timeLimitFuturesSelector)
-    const candles = useAppSelector(candlesFuturesSelector)
-    const heighValueChart = useAppSelector(heighValueChartFuturesSelector)
-    const maxHighItem = useAppSelector(maxHighItemFuturesSelector)
-    const minLowItem = useAppSelector(minLowItemFuturesSelector)
-    const dPathMA = useAppSelector(dPathMAFuturesSelector)
+    const symbol = useAppSelector(symbolFuturesSelector) // symbol hiện tại mà user chọn | BTCUSDT or ETHUSDT
+    const timeLimit = useAppSelector(timeLimitFuturesSelector) // Thời gian giới hạn | Nếu hết thời gian thì thêm nến mới
+    const candles = useAppSelector(candlesFuturesSelector) // Mảng Nến
+    const heighValueChart = useAppSelector(heighValueChartFuturesSelector) // Là chiều dài của Nến | vd: chart Nến có high cao nhất = 36000, low thấp nhất = 30000 => heighValueChart = high - low = 6000
+    const maxHighItem = useAppSelector(maxHighItemFuturesSelector) // Object chứa vị trí của item có high cao nhất trong candles
+    const minLowItem = useAppSelector(minLowItemFuturesSelector) // Object chứa vị trí của item có low thấp nhất trong candles
+    const dPathMA = useAppSelector(dPathMAFuturesSelector) // ma7, ma25, ma99 của chart
     const countCandles = useAppSelector(countCandlesFuturesSelector)
-    const dPathGreen = useAppSelector(dPathGreenFuturesSelector)
-    const dPathRed = useAppSelector(dPathRedFuturesSelector)
+    const dPathGreen = useAppSelector(dPathGreenFuturesSelector) // Nến xanh
+    const dPathRed = useAppSelector(dPathRedFuturesSelector)  // Nến đỏ
 
-    const count = useSharedValue(0)
-    const scaleCount = useSharedValue(0)
-    const scaleSum = useSharedValue(2)
-    const widthCandle = useSharedValue(WIDTH_CANDLE)
-    const gapCandle = useSharedValue(GAP_CANDLES)
-    const paddingRightCandles = useSharedValue(PADDING_RIGHT_CANDLE)
+    const count = useSharedValue(0) // Tăng lên hoặc giảm xuống khi user trượt trên chart
+    const scaleCount = useSharedValue(0) // Scale của chart
+    const scaleSum = useSharedValue(2) // Tổng scale
+    const widthCandle = useSharedValue(WIDTH_CANDLE) // Chiều rộng của 1 nến
+    const gapCandle = useSharedValue(GAP_CANDLES) // Khoảng cách giữa các nến
+    const paddingRightCandles = useSharedValue(PADDING_RIGHT_CANDLE) // padding right của chart nến
 
     useEffect((): any => {
         handleGetChart()
         const newSocket = io(contants.HOSTING)
 
-        let close = 0
+        let close = 0 // Giá đóng của coin được user chọn
         newSocket.on('listCoin', (coins: ICoins[]) => {
             if (coins.length > 0) {
                 for (let i = 0; i < coins.length; i++) {
@@ -82,6 +82,7 @@ const Chart = ({ setOpenChart }: Props) => {
             }
         })
 
+        // Lấy data nến
         newSocket.on(`${symbol}UPDATESPOT`, data => {
             if (data.length > 0) {
                 dispatch(futuresSlice.actions.setChart({
@@ -130,17 +131,18 @@ const Chart = ({ setOpenChart }: Props) => {
         }
     }
 
+    // Tạo được đường thẳng trục x trong chart
     const render_x_line = () => {
         return TIMES.map(
             (item: any, index: number) => {
-                let gap_x_line = (HEIGH_CANDLES / (TOTAL_X_LINE - 1)) * index
+                let gap_x_line = (HEIGH_CANDLES / (TOTAL_X_LINE - 1)) * index // Tính điểm y1, y2 của Line
                 gap_x_line =
                     index === 3 ? gap_x_line - 1 : index === 0 ?
                         gap_x_line + 1 : gap_x_line
 
-                const textValue = Number(maxHighItem?.high) - (heighValueChart / (TOTAL_X_LINE - 1)) * index
+                const textValue = Number(maxHighItem?.high) - (heighValueChart / (TOTAL_X_LINE - 1)) * index // Giá trị của Line
 
-                const x_point = gapCandle.value * item - paddingRightCandles.value
+                const x_point = gapCandle.value * item - paddingRightCandles.value // Tính x1, x2 của Line
 
                 return (
                     <G key={`G_x_line_${index}`}>
@@ -187,16 +189,16 @@ const Chart = ({ setOpenChart }: Props) => {
                 )
             })
     }
-
+    // Show close hiện tại, ma7, ma25, ma99
     const render_cursor = () => {
         const lastChart = candles[candles.length - 1]
         const close = Number(maxHighItem?.high) - lastChart.close
         const percentClose = (close * 100 / heighValueChart)
         let closeSVG = (HEIGH_CANDLES * percentClose / 100)
 
-        const ma7 = numberCommasDot(lastChart?.ma7?.toFixed(2)) || 0
-        const ma25 = numberCommasDot(lastChart?.ma25?.toFixed(2)) || 0
-        const ma99 = numberCommasDot(lastChart?.ma99?.toFixed(2)) || 0
+        const ma7 = numberCommasDot(lastChart?.ma7?.toFixed(2)) || 0 // ma7 của item chart cuối cùng
+        const ma25 = numberCommasDot(lastChart?.ma25?.toFixed(2)) || 0 // ma25 của item chart cuối cùng
+        const ma99 = numberCommasDot(lastChart?.ma99?.toFixed(2)) || 0 // ma99 của item chart cuối cùng
 
         const x_text_ma7 = 7
 
@@ -273,21 +275,21 @@ const Chart = ({ setOpenChart }: Props) => {
             </G>
         )
     }
-
+    // Show giá đóng cao nhất, thấp nhất của chart
     const render_max_min_candle = () => {
         const gap_x1_x2_line_max =
-            SIZE_CHART / 2 < Number(maxHighItem?.position) ? -20 : 20
+            SIZE_CHART / 2 < Number(maxHighItem?.position) ? -20 : 20 // khoảng cách x1 x2 đường thẳng cao nhất
         const gap_x1_x2_line_min =
-            SIZE_CHART / 2 < Number(minLowItem?.position) ? -20 : 20
+            SIZE_CHART / 2 < Number(minLowItem?.position) ? -20 : 20 // Khoảng cách x1 x2 thấp nhất
 
-        const x_line_max = gapCandle.value * Number(maxHighItem?.position) - paddingRightCandles.value
-        const y_line_max = candles[Number(maxHighItem?.position)].highSVG
+        const x_line_max = gapCandle.value * Number(maxHighItem?.position) - paddingRightCandles.value // Tính x1, x2 cao nhất của đường thẳng
+        const y_line_max = candles[Number(maxHighItem?.position)].highSVG // Tính y1, y2 cao nhất của đường thẳng
 
-        const x_line_min = gapCandle.value * Number(minLowItem?.position) - paddingRightCandles.value
-        const y_line_min = candles[Number(minLowItem?.position)].lowSVG
+        const x_line_min = gapCandle.value * Number(minLowItem?.position) - paddingRightCandles.value // Tính x1, x2 thấp nhất của đường thẳng
+        const y_line_min = candles[Number(minLowItem?.position)].lowSVG // Tính x1, x2 thấp nhất của đường thẳng
 
-        const high = Number(candles[Number(maxHighItem?.position)].high).toFixed(2)
-        const low = Number(candles[Number(minLowItem?.position)].low).toFixed(2)
+        const high = Number(candles[Number(maxHighItem?.position)].high).toFixed(2) // Value hight cao nhất của chart
+        const low = Number(candles[Number(minLowItem?.position)].low).toFixed(2) // Value low thấp nhất của chart
 
         return (
             <G key={'G_min_max_candle'}>
@@ -333,22 +335,25 @@ const Chart = ({ setOpenChart }: Props) => {
             </G>
         )
     }
-
+    // Show nến và các đường ma7, ma25, ma99
     const render_pathMA = () => {
         return (
             <G key={'G_Path'}>
+                {/* Tạo nến xanh */}
                 <Path
                     key={'G_Path_Candle_Green'}
                     d={dPathGreen}
                     stroke={colors.green2}
                     fill={colors.green2}
                 />
+                {/* Tạo nến đỏ */}
                 <Path
                     key={'G_Path_Candle_Red'}
                     d={dPathRed}
                     stroke={colors.red3}
                     fill={colors.red3}
                 />
+                {/* Tạo đường ma7 */}
                 <Path
                     key={'P_MA7'}
                     d={dPathMA.ma7}
@@ -356,6 +361,7 @@ const Chart = ({ setOpenChart }: Props) => {
                     stroke={colors.yellow}
                     fill={'none'}
                 />
+                {/* Tạo đường ma25 */}
                 <Path
                     key={'P_MA25'}
                     d={dPathMA.ma25}
@@ -363,6 +369,7 @@ const Chart = ({ setOpenChart }: Props) => {
                     stroke={colors.ma25}
                     fill={'none'}
                 />
+                {/* Tạo đường ma99 */}
                 <Path
                     key={'P_MA99'}
                     d={dPathMA.ma99}
@@ -393,7 +400,7 @@ const Chart = ({ setOpenChart }: Props) => {
             padding_right_candle: paddingRightCandles.value,
         }))
     }
-
+    // Phóng to, thu nhỏ màn hình
     const handleZoom = () => {
         dispatch(futuresSlice.actions.setZoom({
             gap_candles: gapCandle.value,
@@ -424,26 +431,27 @@ const Chart = ({ setOpenChart }: Props) => {
             }
         },
     })
-
+    // Bắt sự kiện khi user dùng 2 ngón tay phóng to, thu nhỏ trên màn hình 
     const pinchHandle = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent>({
         onActive(event, context) {
+            // Phóng to
             if (event.velocity >= 0) {
                 scaleCount.value++
                 if (scaleCount.value > 5) {
                     scaleCount.value = 0
-                    scaleSum.value = (scaleSum.value + 1 <= 10) ? (scaleSum.value + 1) : 10
-                    gapCandle.value = width * (scaleSum.value + 0.55) / 100
-                    widthCandle.value = width * (scaleSum.value + 0.052) / 100
-                    paddingRightCandles.value = SIZE_CHART * gapCandle.value - widthCandle.value - WIDTH_CANDLES
+                    scaleSum.value = (scaleSum.value + 1 <= 10) ? (scaleSum.value + 1) : 10 // Giá trị zoom
+                    gapCandle.value = width * (scaleSum.value + 0.55) / 100 // Tăng khoảng cách giữa các nến
+                    widthCandle.value = width * (scaleSum.value + 0.052) / 100 // Tăng chiều rộng của 1 nến
+                    paddingRightCandles.value = SIZE_CHART * gapCandle.value - widthCandle.value - WIDTH_CANDLES // Tăng padding right của chart nến
                     runOnJS(handleZoom)()
                 }
-            } else {
+            } else { // thu nhỏ
                 scaleCount.value--
                 if (scaleCount.value < -5) {
                     scaleCount.value = 0
-                    scaleSum.value = (scaleSum.value - 1 >= 1) ? (scaleSum.value - 1) : 1
-                    gapCandle.value = width * (scaleSum.value + 0.55) / 100
-                    widthCandle.value = width * (scaleSum.value + 0.052) / 100
+                    scaleSum.value = (scaleSum.value - 1 >= 1) ? (scaleSum.value - 1) : 1 // Giá trị zoom
+                    gapCandle.value = width * (scaleSum.value + 0.55) / 100 // Giảm khoảng cách giữa các nến
+                    widthCandle.value = width * (scaleSum.value + 0.052) / 100 // Giảm chiều rộng của 1 nến
                     paddingRightCandles.value = SIZE_CHART * gapCandle.value - widthCandle.value - WIDTH_CANDLES
                     runOnJS(handleZoom)()
                 }

@@ -36,19 +36,19 @@ const Header = ({ drawerRef }: any) => {
 
     useEffect((): any => {
         const newSocket = io(contants.HOSTING)
-
+        // get list con từ socket
         newSocket.on('listCoin', (coins: ICoins[]) => {
             dispatch(futuresSlice.actions.setCoins(coins))
         })
-
+        // get data bán của đồng coin từ socket
         newSocket.on(`${symbol}SELL`, (data) => {
             dispatch(futuresSlice.actions.setSells(data))
         })
-
+        // get data mua của đồng coin từ socket
         newSocket.on(`${symbol}BUY`, (data) => {
             dispatch(futuresSlice.actions.setBuys(data))
         })
-
+        
         const blur = navigation.addListener('blur', () => {
             newSocket.disconnect()
         })

@@ -9,7 +9,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import { styled } from '@theme/styled'
 import React, { useState } from 'react'
-
+// Show Limit or Market
 const Limit = ({ theme }: any) => {
     const dispatch = useAppDispatch()
     const [down, setDown] = useState<boolean>(false)

@@ -15,17 +15,17 @@ import ModalTPSLPosition from './ModalTPSLPosition'
 import OpenOrders from './OpenOrders'
 import Positions from './Positions'
 import TabHistory from './TabHistory'
-
+// Lịch sử position và open order
 const History = () => {
     const dispatch = useAppDispatch()
     const [tab, setTab] = useState<'open' | 'position'>('open')
 
     const symbol = useAppSelector(symbolFuturesSelector)
-    const position = useAppSelector(positionFuturesSelector)
-    const positions = useAppSelector(positionsFuturesSelector)
-    const stopProfit = useAppSelector(stopProfitFuturesSelector)
-    const openOrders = useAppSelector(openOrdersFundingSelector)
-    const tpslPosition = useAppSelector(tpslPositionFutureSelector)
+    const position = useAppSelector(positionFuturesSelector) // 1 position
+    const positions = useAppSelector(positionsFuturesSelector) // Tất cả positon của user
+    const stopProfit = useAppSelector(stopProfitFuturesSelector) // isShow modal TP/SL
+    const openOrders = useAppSelector(openOrdersFundingSelector) // Open order của user
+    const tpslPosition = useAppSelector(tpslPositionFutureSelector) // TP/SL
     const profile: Profile = useAppSelector<any>(profileUserSelector)
     const loadingHistoryFuture = useAppSelector(loadingHistoryFutureSelector)
 
@@ -33,6 +33,7 @@ const History = () => {
         handleGetPosition()
     }, [profile])
 
+    // Get positions và openOrder
     const handleGetPosition = async () => {
         await dispatch(getPositionThunk(symbol))
         await dispatch(getHistoryOpenOrderAllThunk({

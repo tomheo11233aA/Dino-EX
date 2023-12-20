@@ -10,7 +10,7 @@ import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Profile } from 'src/model/userModel'
-
+// Show balance
 const Avbl = ({ theme }: any) => {
     const { t } = useTranslation()
     // const coins = useAppSelector(coinsFuturesChartSelector)

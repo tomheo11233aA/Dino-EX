@@ -25,20 +25,20 @@ const MAX = 125
 const arrIndex = [1, 25, 50, 75, 100, 125]
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
-
+// Animation đòn bẫy
 const SliderCore = ({ setShow, t }: Props) => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
 
-    const core = useAppSelector(coreFuturesSelector)
+    const core = useAppSelector(coreFuturesSelector) // Value đòn bẫy
     const symbol = useAppSelector(symbolFuturesSelector)
     const positions = useAppSelector(positionsFuturesSelector)
 
-    const widthSlider = width - 45
-    const onePercent = widthSlider * 1 / 100
+    const widthSlider = width - 45 // Chiều rộng của slider
+    const onePercent = widthSlider * 1 / 100 // value của 1 %
 
-    const percent = core * 100 / MAX
-    const percentCore = widthSlider * percent / 100
+    const percent = core * 100 / MAX // % hiện tại
+    const percentCore = widthSlider * percent / 100 // % đòn bẫy hiện tại
 
     const translateX = useSharedValue<number | string>(percentCore)
 
@@ -48,7 +48,7 @@ const SliderCore = ({ setShow, t }: Props) => {
         },
         onActive: (e, ctx) => {
             const position = ctx.startX + e.translationX
-            const percent = position * MAX / widthSlider
+            const percent = position * MAX / widthSlider // Tính % dựa trên position
 
             if (percent > MAX) {
                 translateX.value = widthSlider
@@ -59,24 +59,25 @@ const SliderCore = ({ setShow, t }: Props) => {
             }
         },
     })
-
+    // tranfirm đòn bẫy
     const pointAnimtedStyle = useAnimatedStyle(() => ({
         transform: [{ translateX: Number(translateX.value) }],
     }))
-
+    // value chiều rộng đòn bẫy dựa theo translateX
     const barAnimatedStyle = useAnimatedStyle(() => ({
         width: translateX.value
     }))
-
+    // Show value hiện tại
     const textProps: any = useAnimatedProps(() => {
-        const percent = Number(translateX.value) * 100 / widthSlider
-        const value = MAX * percent / 100
+        const percent = Number(translateX.value) * 100 / widthSlider // Tính % dựa theo translateX
+        const value = MAX * percent / 100 // Tính value
 
         return {
             text: `${value.toFixed(0)}x`
         }
     }, [translateX])
 
+    // Bắt sự kiện khi nhập số trong đòn modal đòn bẫy
     const handleChangeTextCore = (txt: string) => {
         let core = Number(txt.replace('x', '')) * (widthSlider / MAX)
         translateX.value = core

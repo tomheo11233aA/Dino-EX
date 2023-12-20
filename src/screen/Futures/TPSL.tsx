@@ -18,7 +18,7 @@ interface Props {
     theme: any;
     triggerTPSL: ITriggerTPSL;
 }
-
+// TP => Lấy lời, SL => Dừng lỗ
 const TPSL = ({ triggerTPSL, theme }: Props) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()

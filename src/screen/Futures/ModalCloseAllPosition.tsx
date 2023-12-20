@@ -8,7 +8,7 @@ import { colors } from '@theme/colors'
 import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-
+// Modal đóng tất cả position
 const ModalCloseAllPosition = ({ show, setShow, closeAllPosition }: any) => {
     const theme = useTheme()
     const { t } = useTranslation()

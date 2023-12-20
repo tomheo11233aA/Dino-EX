@@ -13,7 +13,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const themes = ['en', 'vn', 'kp', 'jp', 'cn', 'th', 'kh', 'la', 'id']
-
+// Đổi ngôn ngữ
 const ChangeLanguage = () => {
   const color = useTheme()
   const { t, i18n } = useTranslation()
@@ -21,10 +21,11 @@ const ChangeLanguage = () => {
 
   const language = i18n.language
 
+  // Đổi ngôn ngữ
   const handleChangeLanguage = async (value: string) => {
     i18n.changeLanguage(value)
-    await AsyncStorage.setItem(contants.LANGUAGE, value)
-    setRender(!render)
+    await AsyncStorage.setItem(contants.LANGUAGE, value) // Lưu ngôn ngữ vừa đổi vào storage
+    setRender(!render) // Render lại component này
   }
 
   return (

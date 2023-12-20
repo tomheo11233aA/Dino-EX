@@ -19,7 +19,7 @@ interface Props {
     positions: IPositions[];
     tab: 'open' | 'position';
 }
-
+// Tab history
 const TabHistory = ({ tab, setTab, positions, openOrders }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()

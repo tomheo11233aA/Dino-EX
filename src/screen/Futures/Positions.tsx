@@ -22,7 +22,7 @@ import { screen } from '@util/screens'
 interface Props {
     positions: IPositions[];
 }
-
+// Show position
 const Positions = ({ positions }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
@@ -32,6 +32,7 @@ const Positions = ({ positions }: Props) => {
 
     const [isShowModalCloseAllPosition, setShowModalCloseAllPosition] = useState(false)
 
+    // Đóng tất cả postion sau đó get lại profile
     const handleClosePosition = async (id: number) => {
         const { payload } = await dispatch(closeMarketFutureThunk(id))
         if (payload.status) {
@@ -40,11 +41,13 @@ const Positions = ({ positions }: Props) => {
             Alert.alert(payload.message)
         }
     }
-
+    
+    // Đóng tất cả postion
     const handleCloseAll = async () => {
         setShowModalCloseAllPosition(true)
     }
 
+    // Đóng tất cả postion sau đó get lại profile
     const closeAllPosition = async () => {
         const { payload } = await dispatch(closeMarketFutureAllThunk())
         if (payload.status) {
@@ -56,10 +59,12 @@ const Positions = ({ positions }: Props) => {
         setShowModalCloseAllPosition(false)
     }
 
+    // Đóng position
     const handleSetClosePosition = async (position: IPositions) => {
         dispatch(futuresSlice.actions.setPosition(position))
     }
 
+    // Show modal đòn bẫy
     const handleSetShowModalCore = async (position: IPositions) => {
         dispatch(futuresSlice.actions.setLeverAdjustment({
             showModal: true,
@@ -68,6 +73,7 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
+    // Show modal TP/SL
     const handleShowModalStopProfit = async (position: IPositions) => {
         dispatch(futuresSlice.actions.setStopProfit({
             showModal: true,
@@ -75,6 +81,7 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
+    // Show modal tpsl position
     const handleShowModalTPSLPosition = async (position: IPositions) => {
         dispatch(futuresSlice.actions.setTPSLPosition({
             position,
@@ -82,6 +89,7 @@ const Positions = ({ positions }: Props) => {
         }))
     }
 
+    // Di chuyển đến màn hình trade, màn hình có biểu đồ nến
     const handleMoveOnTrade = async (position: IPositions) => {
         dispatch(futuresSlice.actions.setSymbol({
             symbol: position.symbol,

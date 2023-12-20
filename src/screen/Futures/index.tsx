@@ -29,6 +29,7 @@ const Futures = () => {
 
   useEffect(() => {
     const focus = navigation.addListener('focus', () => {
+      // Nếu màn hình được focus thì get lại profile từ server và set loading = true
       dispatch(getProfileThunk())
       dispatch(futuresSlice.actions.setLoading(true))
     })
@@ -40,20 +41,24 @@ const Futures = () => {
   }, [])
 
   const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    // Nếu app ở chế độ active thì get lại profile từ server và set loading = true
     if (nextAppState === 'active') {
       dispatch(getProfileThunk())
       dispatch(futuresSlice.actions.setLoading(true))
     }
   }
-
+  // Bắt sự kiện khi loading thay đổi
   useEffect(() => {
+    // Nếu loading = true
     if (loading) {
+      // Show bottom tab
       navigation.getParent()?.setOptions({
         tabBarStyle: [
           styles.container,
           { backgroundColor: theme.bg }
         ]
       })
+      // sau 1 giây set loading = false
       delay(1000).then(() => dispatch(futuresSlice.actions.setLoading(false)))
     }
   }, [loading])

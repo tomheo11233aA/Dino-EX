@@ -11,7 +11,7 @@ interface Props {
     maxHighItem: IChart | null;
     padding_right_candle: number;
 }
-
+// Show giá đóng cao nhất, thấp nhất của chart
 export default ({
     candles,
     minLowItem,
@@ -21,18 +21,18 @@ export default ({
     padding_right_candle,
 }: Props) => {
     const gap_x1_x2_line_max =
-        size_chart / 2 < Number(maxHighItem?.position) ? -20 : 20
+        size_chart / 2 < Number(maxHighItem?.position) ? -20 : 20 // khoảng cách x1 x2 đường thẳng cao nhất
     const gap_x1_x2_line_min =
-        size_chart / 2 < Number(minLowItem?.position) ? -20 : 20
+        size_chart / 2 < Number(minLowItem?.position) ? -20 : 20 // Khoảng cách x1 x2 thấp nhất
 
-    const x_line_max = gap_candle * Number(maxHighItem?.position) - padding_right_candle
-    const y_line_max = candles[Number(maxHighItem?.position)].highSVG
+    const x_line_max = gap_candle * Number(maxHighItem?.position) - padding_right_candle // Tính x1, x2 cao nhất của đường thẳng
+    const y_line_max = candles[Number(maxHighItem?.position)].highSVG // Tính y1, y2 cao nhất của đường thẳng
 
-    const x_line_min = gap_candle * Number(minLowItem?.position) - padding_right_candle
-    const y_line_min = candles[Number(minLowItem?.position)].lowSVG
+    const x_line_min = gap_candle * Number(minLowItem?.position) - padding_right_candle // Tính x1, x2 thấp nhất của đường thẳng
+    const y_line_min = candles[Number(minLowItem?.position)].lowSVG // Tính x1, x2 thấp nhất của đường thẳng
 
-    const high = Number(candles[Number(maxHighItem?.position)].high).toFixed(2)
-    const low = Number(candles[Number(minLowItem?.position)].low).toFixed(2)
+    const high = Number(candles[Number(maxHighItem?.position)].high).toFixed(2) // Value hight cao nhất của chart
+    const low = Number(candles[Number(minLowItem?.position)].low).toFixed(2) // Value low thấp nhất của chart
 
     return (
         <G key={'G_min_max_candle'}>

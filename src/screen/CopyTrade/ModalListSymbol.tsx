@@ -21,7 +21,7 @@ interface Props {
     arraySymbol: string[];
     setArrSymbol: Function;
 }
-
+// Modal hiển thị danh sách coin
 const ModalListSymbol = ({
     show,
     coins,

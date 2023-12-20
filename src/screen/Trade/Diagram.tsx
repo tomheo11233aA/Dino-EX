@@ -28,7 +28,7 @@ const gap_candle = width * 2.55 / 100 // Khoảng cách các nến | bằng 2.55
 const width_candle = width * 2.052 / 100 // Chiều rộng của 1 nến | bằng 2.052% của chiều rộng màn hình
 const width_candles = (width * 2.55 / 100) * 30 - width_candle // Tổng chiều rộng của 30 cây nến
 const padding_right_candle = size_chart * gap_candle - width_candle - width_candles // padding right của chart nến
-
+// Biểu đồ nến
 export default () => {
     const theme = useTheme()
     const dispatch = useAppDispatch()

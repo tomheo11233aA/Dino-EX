@@ -9,7 +9,7 @@ import { fonts } from '@theme/fonts'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Platform, StyleSheet, TextInput } from 'react-native'
-
+// Giá đóng hiện tại
 const Price = ({ theme }: any) => {
   const dispatch = useAppDispatch()
   const price = useAppSelector(priceFuturesSelector)
@@ -17,11 +17,11 @@ const Price = ({ theme }: any) => {
   const coins = useAppSelector(coinsFuturesChartSelector)
   const symbol = useAppSelector(symbolFuturesSelector)
   const { t } = useTranslation()
-
+  // Bắt sự kiện khi người dùng chọn đồng coin khác
   useEffect(() => {
     let price = 0
     if (coins.length > 0) {
-      price = coins.filter(coin => coin.symbol === symbol)[0].close
+      price = coins.filter(coin => coin.symbol === symbol)[0].close // Lấy giá đóng hiện tại
     }
     dispatch(futuresSlice.actions.setPrice(price))
   }, [symbol])

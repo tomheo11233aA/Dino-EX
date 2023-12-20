@@ -16,11 +16,11 @@ import ModalCore from './ModalCore'
 const Cross = () => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const [isShowRegime, setShowRegime] = useState<boolean>(false)
-    const [isShowCore, setShowCore] = useState<boolean>(false)
+    const [isShowRegime, setShowRegime] = useState<boolean>(false) // Show popup regime
+    const [isShowCore, setShowCore] = useState<boolean>(false) // Show popup đòn bẫy
 
     const regime = useAppSelector(regimeFuturesSelector)
-    const core = useAppSelector(coreFuturesSelector)
+    const core = useAppSelector(coreFuturesSelector) // Đòn bẫy
 
     return (
         <Box row justifySpaceBetween zIndex={10}>

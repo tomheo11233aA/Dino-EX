@@ -11,7 +11,7 @@ import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 import { ISellBuy } from 'src/model/futuresModel'
-
+// Data bán của đồng coin hiện tại
 const SellInto = () => {
     const theme = useTheme()
     const { t } = useTranslation()

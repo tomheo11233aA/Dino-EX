@@ -22,7 +22,7 @@ import Leverage from './Leverage'
 import Pair from './Pair'
 import TPSL from './TPSL'
 import { numberCommasDot } from '@method/format'
-
+// sao chép giao dich viên
 const CopyTrade = () => {
   const theme = useTheme()
   const { t } = useTranslation()

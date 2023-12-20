@@ -11,12 +11,13 @@ import { IFunding, IMarginList } from 'src/model/futuresModel'
 const CountDown = () => {
     const theme = useTheme()
     const { t } = useTranslation()
-    const currency = useAppSelector(currencyFuturesSelector)
+    const currency = useAppSelector(currencyFuturesSelector) // Đồng coin hiện tại
     const [db, setDb] = useState<IFunding[]>([])
-    const [countDown, setCountDown] = useState<number | null>()
-    const [timeAgo, setTimeAgo] = useState<number>(0)
+    const [countDown, setCountDown] = useState<number | null>() // Thời gian còn lại
+    const [timeAgo, setTimeAgo] = useState<number>(0) // Thời gian trước đó
 
     useEffect(() => {
+        // Hàm sẽ chạy nếu user khi user chọn đồng coin khác
         handleFunding()
     }, [currency])
 
@@ -59,8 +60,8 @@ const CountDown = () => {
 
         setDb(coins)
 
-        let nextFundingTime = coins[0]?.uMarginList[0]?.nextFundingTime
-        const timeStamp = convertTimestamp(nextFundingTime)
+        let nextFundingTime = coins[0]?.uMarginList[0]?.nextFundingTime 
+        const timeStamp = convertTimestamp(nextFundingTime) // Thời gian đếm ngược
 
         if (timeAgo !== nextFundingTime) {
             setCountDown(timeStamp)
@@ -68,6 +69,7 @@ const CountDown = () => {
         }
     }
 
+    // Return về timestamp
     const convertTimestamp = (nextFundingTime: any) => {
         const olddate: any = new Date(nextFundingTime);
         const now = new Date()
@@ -78,6 +80,7 @@ const CountDown = () => {
         return timeStamp
     }
 
+    // return hh:mm:ss
     const time = (time: number): string => {
         const date = new Date(Number(time))
         const hour = date.getHours() < 10 ? `${'0' + date.getHours()}` : date.getHours()

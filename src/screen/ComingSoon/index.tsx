@@ -8,7 +8,7 @@ import { colors } from '@theme/colors'
 import { height, width } from '@util/responsive'
 import React from 'react'
 import { Platform, Text } from 'react-native'
-
+// Show coming soon
 const ComingSoon = ({ showBack = true }) => {
     return (
         <Safe paddingHorizontal={15}>
