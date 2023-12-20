@@ -7,7 +7,7 @@ import { funding } from '@service/futureService'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IFunding, IMarginList } from 'src/model/futuresModel'
-
+// Đếm ngược futures
 const CountDown = () => {
     const theme = useTheme()
     const { t } = useTranslation()

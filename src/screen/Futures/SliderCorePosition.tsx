@@ -21,7 +21,7 @@ const MAX = 125
 const arrIndex = [1, 25, 50, 75, 100, 125]
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
-
+// Side đón bẫy vị thế
 const SliderCorePosition = () => {
     const theme = useTheme()
     const { t } = useTranslation()

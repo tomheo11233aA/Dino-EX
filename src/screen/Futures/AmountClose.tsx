@@ -25,7 +25,7 @@ const AmountClose = ({
     setPercent,
 }: Props) => {
     let equivalent = 0
-
+    // Nếu có position
     if (position) {
         const SIZE = position.margin * position.core
         equivalent = SIZE * (percent / 100)

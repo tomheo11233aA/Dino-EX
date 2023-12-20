@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import EditText from './EditText';
 import { StyleSheet, TextInput } from 'react-native';
 import { calcPNL, numberCommasDot } from '@method/format';
-
+// Lấy lời
 const TakeProfit = ({ theme, t, tp, setTP, position }: any) => {
     const [show, setShow] = useState(true)
 

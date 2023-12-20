@@ -25,7 +25,7 @@ import Statistical from './Statistical'
 import { useTranslation } from 'react-i18next'
 
 const size_text_button = 13
-
+// Tab future trong bottom tab wallet
 const Future = () => {
     const theme = useTheme()
     const { t } = useTranslation()
@@ -75,7 +75,7 @@ const Future = () => {
 
     const positionObj = calcPositions(positions, coins)
 
-    balance = profile.balance + positionObj.pnl + positionObj.margin
+    balance = profile.balance + positionObj.pnl + positionObj.margin // Balance sau khi cộng pnl, margin
     wallet_balance = profile.balance + positionObj.margin
     totalPNL = positionObj.pnl
 

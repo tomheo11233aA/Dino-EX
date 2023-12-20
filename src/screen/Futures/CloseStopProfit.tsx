@@ -12,7 +12,7 @@ interface Props {
     theme: any;
     dispatch: ThunkDispatch<{}, undefined, AnyAction>;
 }
-
+// Đóng TP/SL
 const CloseStopProfit = ({
     t,
     theme,

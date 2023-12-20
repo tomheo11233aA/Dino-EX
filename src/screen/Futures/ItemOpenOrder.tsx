@@ -19,7 +19,7 @@ interface Props {
 }
 
 const WIDTH = 80
-
+// Item open order
 const ItemOpenOrder = ({
     t,
     item,

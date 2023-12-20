@@ -11,7 +11,7 @@ import ConfirmPayment from './confirmPayment/ConfirmPayment'
 import Done from './done/Done'
 import Payment from './payment/Payment'
 import SendImage from './sendImage/SendImage'
-
+// Nạp tiền VNĐ
 const DepositVND = () => {
   const dispatch = useAppDispatch()
   const step = useAppSelector(stepDepositFunddingSelector)

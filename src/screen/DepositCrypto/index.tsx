@@ -15,7 +15,7 @@ import Header from './Header'
 import ModalNetwork from './ModalNetwork'
 import { useTranslation } from 'react-i18next'
 import Clipboard from '@react-native-clipboard/clipboard'
-
+// Nạp tiền ảo
 const DepositCrypto = () => {
     const theme = useTheme()
     const route = useRoute<any>()

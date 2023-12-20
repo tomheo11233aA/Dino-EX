@@ -12,7 +12,7 @@ interface Props {
     theme: any;
     dispatch: ThunkDispatch<{}, undefined, AnyAction>;
 }
-
+// Đóng position
 const ClosePosition = ({ 
     t,
     theme,

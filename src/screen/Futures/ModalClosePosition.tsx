@@ -28,7 +28,7 @@ interface Props {
 }
 
 const RADIUS_CONTENT = 10
-
+// Modal close position
 const ModalClosePosition = ({ show = true, setShow }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
@@ -36,9 +36,9 @@ const ModalClosePosition = ({ show = true, setShow }: Props) => {
 
     const position = useAppSelector(positionFuturesSelector)
 
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState('') // Giá
     const [loading, setLoading] = useState(false)
-    const [percent, setPercent] = useState<number>(100)
+    const [percent, setPercent] = useState<number>(100) // Phần trăm
     const [typeTrade, setTypeTrade] = useState<'Market' | 'Limit'>('Market')
 
     const handleClosePosition = async () => {
@@ -65,8 +65,8 @@ const ModalClosePosition = ({ show = true, setShow }: Props) => {
 
                 if (!res.status) Alert.alert(t(cannotConnect()))
             }
-            await dispatch(getProfileThunk())
-            dispatch(futuresSlice.actions.setPosition(null))
+            await dispatch(getProfileThunk()) // Get lại profile sau khi order
+            dispatch(futuresSlice.actions.setPosition(null)) // Ẩn modal
         }
         setLoading(false)
     }

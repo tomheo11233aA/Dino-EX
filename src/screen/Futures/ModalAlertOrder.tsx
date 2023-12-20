@@ -14,7 +14,7 @@ interface Props {
     setShow: Function;
     setMessage: Function,
 }
-
+// Modal thông báo sau khi user order xong
 const ModalAlertOrder = ({
     show,
     setShow,
@@ -27,6 +27,7 @@ const ModalAlertOrder = ({
         handleTimeOut()
     }, [])
 
+    // Sau 2 giây ẩn modal
     const handleTimeOut = async () => {
         await delay(2000)
         setShow(false)

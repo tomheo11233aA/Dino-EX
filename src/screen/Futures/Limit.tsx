@@ -12,7 +12,7 @@ import React, { useState } from 'react'
 // Show Limit or Market
 const Limit = ({ theme }: any) => {
     const dispatch = useAppDispatch()
-    const [down, setDown] = useState<boolean>(false)
+    const [down, setDown] = useState<boolean>(false) // show popup down
     const typeTrade = useAppSelector(typeTradeFuturesSelector)
 
     return (

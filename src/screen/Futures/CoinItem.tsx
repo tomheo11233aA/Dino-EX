@@ -11,7 +11,7 @@ interface Props {
     theme: any;
     onChooseCoin: Function;
 }
-
+// Item coin
 const CoinItem = ({ coin, onChooseCoin, theme }: Props) => {
     let percentChange: string = ''
     let colorPercentChange: string = '#f1485f'

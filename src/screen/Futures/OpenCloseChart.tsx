@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { Pressable } from 'react-native'
 import Chart from './Chart'
 import { useNavigation } from '@react-navigation/native'
-
+// Ẩn hoặc show biểu đồ chart trong futures
 const OpenCloseChart = () => {
     const theme = useTheme()
     const { t } = useTranslation()

@@ -24,7 +24,7 @@ interface Props {
 }
 
 const RADIUS_CONTENT = 10
-
+// Modal TP/SL
 const ModalStopFrofit = ({ stopProfit }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
@@ -32,11 +32,12 @@ const ModalStopFrofit = ({ stopProfit }: Props) => {
 
     const [loading, setLoading] = useState<boolean>(false)
 
-    const [tp, setTP] = useState<any>({ value: '', type: 'Mark', down: false })
-    const [sl, setSL] = useState<any>({ value: '', type: 'Mark', down: false })
+    const [tp, setTP] = useState<any>({ value: '', type: 'Mark', down: false }) // TP
+    const [sl, setSL] = useState<any>({ value: '', type: 'Mark', down: false }) // SL
 
     const position = stopProfit.position
 
+    // Set TP/SL sau khi khởi tạo component
     useEffect(() => {
         setTP({ value: '', type: 'Mark' })
         setTP({ value: '', type: 'Mark' })
@@ -48,6 +49,7 @@ const ModalStopFrofit = ({ stopProfit }: Props) => {
         }
     }, [])
 
+    // set TP/SL
     const handleSetTPSL = async () => {
         setLoading(true)
         const res = await setTPSLPosition({

@@ -9,7 +9,7 @@ import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IPositions } from 'src/model/futuresModel'
 import { Profile } from 'src/model/userModel'
-
+// Position
 const PositionsFuture = () => {
     const theme = useTheme()
     const { t } = useTranslation()

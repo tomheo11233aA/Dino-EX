@@ -6,7 +6,7 @@ import React from 'react'
 import Header from './Header'
 import ListCoin from './ListCoin'
 import Options from './Options'
-
+// Màn hình earn
 const Earn = () => {
   const theme = useTheme()
 

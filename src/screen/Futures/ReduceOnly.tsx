@@ -13,7 +13,7 @@ interface Props {
     theme: any;
     triggerTPSL: ITriggerTPSL;
 }
-
+// Chỉ giảm
 const ReduceOnly = ({
     t,
     theme,

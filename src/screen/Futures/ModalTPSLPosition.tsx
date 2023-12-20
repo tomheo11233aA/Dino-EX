@@ -26,18 +26,18 @@ interface Props {
 }
 
 const RADIUS_CONTENT = 10
-
+// Modal TP/SL position
 const ModalTPSLPosition = ({ tpslPosition }: Props) => {
     const theme = useTheme()
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
 
     const [loading, setLoading] = useState<boolean>(false)
-    const [tp, setTP] = useState<any>({ value: '', type: 'Mark', down: false })
-    const [sl, setSL] = useState<any>({ value: '', type: 'Mark', down: false })
+    const [tp, setTP] = useState<any>({ value: '', type: 'Mark', down: false }) // TP
+    const [sl, setSL] = useState<any>({ value: '', type: 'Mark', down: false }) // SL
 
     const position = tpslPosition.position
-
+    // Set TP/SL sau khi khởi tạo component
     useEffect(() => {
         const position = tpslPosition.position
         if (position?.amountPnL_TP) {
@@ -47,7 +47,7 @@ const ModalTPSLPosition = ({ tpslPosition }: Props) => {
             setSL({ value: '', type: position?.triggerSL })
         }
     }, [])
-
+    // set TPSL position
     const handleSetTPSLPosition = async () => {
         setLoading(true)
         const res = await setTPSLPosition({
@@ -64,16 +64,17 @@ const ModalTPSLPosition = ({ tpslPosition }: Props) => {
         }
         setLoading(false)
     }
-
+    // Đóng modal
     const handleCloseModal = async () => {
-        setTP({ value: '', type: 'Mark', down: false })
-        setSL({ value: '', type: 'Mark', down: false })
+        setTP({ value: '', type: 'Mark', down: false }) // set TP về value ban đầu
+        setSL({ value: '', type: 'Mark', down: false }) // set SL về value ban đầu
         dispatch(futuresSlice.actions.setTPSLPosition({
             showModal: false,
             position: tpslPosition.position,
         }))
     }
 
+    // Reset TP/SL position
     const handleResetPositionTPSL = async () => {
         const res = await getPosition('BTCUSDT')
         if (res.status) {
@@ -88,6 +89,7 @@ const ModalTPSLPosition = ({ tpslPosition }: Props) => {
         }
     }
 
+    // Hủy TP
     const handleCancelTP = async () => {
         const res = await setCancelTPPosition(position?.id)
         if (res.status) {
@@ -96,7 +98,7 @@ const ModalTPSLPosition = ({ tpslPosition }: Props) => {
             Alert.alert(t(res.message))
         }
     }
-
+    // Hủy SL
     const handleCancelSL = async () => {
         const res = await setCancelSLPosition(position?.id)
         if (res.status) {

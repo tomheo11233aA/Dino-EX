@@ -9,17 +9,17 @@ import Icon from '@commom/Icon';
 import Btn from '@commom/Btn';
 import { StyleSheet, TextInput } from 'react-native';
 import { calcPNL, numberCommasDot } from '@method/format';
-
+// Dưng lỗ
 const StopLoss = ({ theme, t, sl, setSL, position }: any) => {
     const [show, setShow] = useState(true)
-
+    // Bắt sự kiện khi giảm
     const handleMinus = () => {
         const value = Number(sl.value) - 1
         if (!isNaN(Number(value)) && Number(value) >= 0) {
             setSL({ ...sl, value })
         }
     }
-
+    // Bắt sự kiện khi tăng
     const handlePlus = () => {
         const value = Number(sl.value) + 1
         if (!isNaN(Number(value))) {

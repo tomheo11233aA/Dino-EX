@@ -28,13 +28,13 @@ const NoteModalTPSLPosition = ({
 
     let ROUND = 1
     if (!isNaN(pnl)) {
-        ROUND = Number(pnl) < 10 ? 4 : (Number(pnl) > 9 && Number(pnl) < 51) ? 3 : 1
+        ROUND = Number(pnl) < 10 ? 4 : (Number(pnl) > 9 && Number(pnl) < 51) ? 3 : 1 // Hiển thị bao nhiêu số thập phân
     }
 
-    const color = Number(pnl) >= 0 ? colors.green : colors.red3
+    const color = Number(pnl) >= 0 ? colors.green : colors.red3 // Màu
 
-    level = !isNaN(Number(level)) ? numberCommasDot(Number(level).toFixed(ROUND)) : level
-    pnl = !isNaN(pnl) ? numberCommasDot(Number(pnl).toFixed(ROUND)) : pnl
+    level = !isNaN(Number(level)) ? numberCommasDot(Number(level).toFixed(ROUND)) : level // cấp độ
+    pnl = !isNaN(pnl) ? numberCommasDot(Number(pnl).toFixed(ROUND)) : pnl // TÍnh PNL
 
     return (
         <Box marginTop={marginTop}>

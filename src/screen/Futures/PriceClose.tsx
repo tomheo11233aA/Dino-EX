@@ -16,7 +16,7 @@ interface Props {
 }
 
 const TEXT_SIZE = 12
-
+// Giá đóng
 const PriceClose = ({ position, t, theme }: Props) => {
     const coins = useAppSelector(coinsFuturesChartSelector)
 

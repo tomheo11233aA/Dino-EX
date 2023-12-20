@@ -10,7 +10,7 @@ import { fonts } from '@theme/fonts'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import SliderCorePosition from './SliderCorePosition'
-
+// Modal đòn bẫy của position
 const ModalCorePosition = () => {
     const theme = useTheme()
     const { t } = useTranslation()

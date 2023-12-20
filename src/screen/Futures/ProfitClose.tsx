@@ -13,7 +13,7 @@ interface Props {
     theme: any;
     position: IPositions | null;
 }
-
+// Lợi nhuận giá đóng
 const ProfitClose = ({ position, theme, t }: Props) => {
     const coins = useAppSelector(coinsFuturesChartSelector)
 

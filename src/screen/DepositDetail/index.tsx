@@ -4,7 +4,7 @@ import KeyBoardSafe from '@reuse/KeyBoardSafe'
 import Amount from './Amount'
 import Infomation from './Infomation'
 import { useRoute } from '@react-navigation/native'
-
+// Chi tiết nạp tiền
 const DepositDetail = () => {
   const route = useRoute<any>()
   const { depositItem } = route.params

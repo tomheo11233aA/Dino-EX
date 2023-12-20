@@ -11,7 +11,7 @@ interface Props {
     search: string;
     setSearch: Function;
 }
-
+// Tìm coin
 const FindCoin = ({ theme, search, setSearch }: Props) => {
     return (
         <Box paddingHorizontal={15}>

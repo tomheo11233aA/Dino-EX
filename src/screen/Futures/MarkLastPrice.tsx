@@ -25,7 +25,7 @@ const MarkLastPrice = () => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
 
-    const triggerTPSL = useAppSelector(triggerTPSLFutureSelector)
+    const triggerTPSL = useAppSelector(triggerTPSLFutureSelector) // TP/SL
 
     return (
         <Box flex={1} alignEnd>

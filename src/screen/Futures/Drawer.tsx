@@ -28,7 +28,7 @@ const Drawer = forwardRef((_, ref) => {
             left: leftFore.value
         }
     })
-
+    // Đóng drawer
     const close = useCallback(() => {
         'worklet'
         left.value = withSpring(-width, {
@@ -44,7 +44,7 @@ const Drawer = forwardRef((_, ref) => {
             ]
         })
     }, [])
-
+    // Show drawer
     const slide = useCallback(() => {
         'worklet'
         navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } })

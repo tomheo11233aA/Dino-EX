@@ -22,8 +22,8 @@ const TimeLimitChart = ({ setOpenChart }: Props) => {
     const theme = useTheme()
     const dispatch = useAppDispatch()
     const symbol = useAppSelector(symbolFuturesSelector)
-    const timeLimit = useAppSelector(timeLimitFuturesSelector)
-    const listTimeLimit = useAppSelector(listTimeLimitFuturesSelector)
+    const timeLimit = useAppSelector(timeLimitFuturesSelector) // Thời gian giới hạn
+    const listTimeLimit = useAppSelector(listTimeLimitFuturesSelector) // Danh sách thòi gian
 
     useEffect((): any => {
         const newSocket = io(contants.HOSTING)
