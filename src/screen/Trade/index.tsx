@@ -79,7 +79,7 @@ export default () => {
           </> :
           <Box flex={1} alignCenter justifyCenter>
             <Icon
-              size={30}
+              size={100}
               source={require('@images/logohx.png')}
             />
           </Box>

@@ -22,7 +22,7 @@ const LogoChart = ({ color, height }: any) => {
         >
             <Icon
                 source={require('@images/logohx.png')}
-                size={25}
+                size={100}
                 tintColor={COLOR}
             />
             <Text style={{ fontSize: 20, marginLeft: 10, fontWeight: 'bold', color: COLOR }}>

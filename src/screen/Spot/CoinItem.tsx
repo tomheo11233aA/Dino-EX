@@ -46,7 +46,7 @@ const CoinItem = ({ coin, theme }: Props) => {
                         { uri: contants.HOSTING + '/' + coin.image } :
                         coin.currency == contants.HX ? require('@images/logohx.png') : require('@images/future/usdt.png')
                     }
-                    size={18}
+                    size={100}
                 />
                 <Box marginLeft={10}>
                     <Txt size={14} color={theme.black}>{coin.currency}</Txt>

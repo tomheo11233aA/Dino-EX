@@ -14,7 +14,7 @@ export default () => {
             <Box row alignCenter>
                 <Icon
                     source={require('@images/logohx.png')}
-                    size={19}
+                    size={100}
                     // tintColor={'#90929E'}
                     marginRight={10}
                     resizeMode={'contain'}

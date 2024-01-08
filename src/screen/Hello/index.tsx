@@ -49,8 +49,8 @@ const Hello = ({ navigation }: any) => {
         <Box flex={1} backgroundColor={'#11181e'} alignCenter justifyCenter>
             <Img
                 source={require('@images/logohx.png')}
-                width={100}
-                height={100}
+                width={200}
+                height={200}
             />
             <Txt color={'#ecb800'} marginTop={20} size={30} bold>{applyLetterSpacing('HOTX')}</Txt>
         </Box>

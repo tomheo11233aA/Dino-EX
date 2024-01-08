@@ -94,7 +94,7 @@ const Futures = () => {
             <Box flex={1} alignCenter justifyCenter backgroundColor={theme.bg}>
               {/* <LoadingYellow /> */}
               <Icon
-                size={30}
+                size={100}
                 source={require('@images/logohx.png')}
               />
             </Box>

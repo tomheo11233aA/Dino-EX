@@ -20,7 +20,7 @@ export default ({ theme, coin }: any) =>
                     coin.currency == contants.HX ? require('@images/logohx.png') :
                         require('@images/future/usdt.png')
                 }
-                size={14}
+                size={100}
                 marginRight={7}
             />
             <Txt bold color={theme.black}>{coin?.currency}</Txt>
