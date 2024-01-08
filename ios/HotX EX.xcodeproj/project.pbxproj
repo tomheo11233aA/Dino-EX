@@ -9,17 +9,17 @@
 /* Begin PBXBuildFile section */
 		0062A0794EB64E6FBE02A0EA /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14B4F1A0840C491FBC51A162 /* Oswald-SemiBold.ttf */; };
 		00E356F31AD99517003FC87E /* Binance3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* Binance3Tests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-Binance3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Binance3.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		159E5A9ED4C8490D94F0AFE2 /* Outfit-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B804BA15CB94950AD39EDAE /* Outfit-SemiBold.ttf */; };
 		1705AD798B0D4ABA97DAED8A /* Outfit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A4FF751218A4674B3375853 /* Outfit-Light.ttf */; };
+		2418BD24025F3ABB60A3A530 /* libPods-HotX EX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3C46806E0A305629C403F0 /* libPods-HotX EX.a */; };
 		2F3012C434B84565940DB128 /* Myfont17-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA0A96EE943645EAA09691A6 /* Myfont17-Regular.ttf */; };
 		35C0F5B71D3D4D8893521FB3 /* Myfont20-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6DFF28FAA7D4140969819AE /* Myfont20-Regular.ttf */; };
 		5755C8C2661C4CE0BA228029 /* Myfont24-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CA7345EF5BC4C4096756EE5 /* Myfont24-Regular.ttf */; };
+		6CB0935794B35E0E71EA2607 /* libPods-HotX EX-HotX EXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0D156325FF06F22441F074 /* libPods-HotX EX-HotX EXTests.a */; };
 		6FB36E8213BD4FBC8E727D77 /* SchibstedGrotesk-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE89203C3A9346B986224119 /* SchibstedGrotesk-Medium.ttf */; };
-		7699B88040F8A987B510C191 /* libPods-Binance3-Binance3Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Binance3-Binance3Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8CA4B908B8D249E9A1AB80B3 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50892F3C1BCE4928AB6E3C4B /* Lato-Regular.ttf */; };
 		92B4A21ED4174B65BFB50A25 /* Myfont16-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6760B7883F1E40D78475A0D8 /* Myfont16-Regular.ttf */; };
@@ -56,14 +56,14 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Binance3/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Binance3/main.m; sourceTree = "<group>"; };
 		14B4F1A0840C491FBC51A162 /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-SemiBold.ttf"; path = "../src/assets/fonts/Oswald-SemiBold.ttf"; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Binance3-Binance3Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Binance3-Binance3Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4FF751218A4674B3375853 /* Outfit-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Light.ttf"; path = "../src/assets/fonts/Outfit-Light.ttf"; sourceTree = "<group>"; };
 		2B415488BA2D4B81A4C00D16 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../src/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
+		39729B24B9D66E8A47B7CEB4 /* Pods-HotX EX-HotX EXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotX EX-HotX EXTests.release.xcconfig"; path = "Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Binance3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Binance3.debug.xcconfig"; path = "Target Support Files/Pods-Binance3/Pods-Binance3.debug.xcconfig"; sourceTree = "<group>"; };
+		45A0893048AE44F6163B80A6 /* Pods-HotX EX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotX EX.debug.xcconfig"; path = "Target Support Files/Pods-HotX EX/Pods-HotX EX.debug.xcconfig"; sourceTree = "<group>"; };
 		50892F3C1BCE4928AB6E3C4B /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../src/assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Binance3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Binance3.release.xcconfig"; path = "Target Support Files/Pods-Binance3/Pods-Binance3.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Binance3-Binance3Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Binance3-Binance3Tests.debug.xcconfig"; path = "Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-Binance3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Binance3.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6760B7883F1E40D78475A0D8 /* Myfont16-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Myfont16-Regular.ttf"; path = "../src/assets/fonts/Myfont16-Regular.ttf"; sourceTree = "<group>"; };
 		6CA7345EF5BC4C4096756EE5 /* Myfont24-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Myfont24-Regular.ttf"; path = "../src/assets/fonts/Myfont24-Regular.ttf"; sourceTree = "<group>"; };
 		716B59D8598543179205C6E1 /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Regular.ttf"; path = "../src/assets/fonts/IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -73,6 +73,7 @@
 		8861A4C9EBFF4FA89869823D /* FiraSansCondensed-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSansCondensed-Regular.ttf"; path = "../src/assets/fonts/FiraSansCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Binance3-Binance3Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Binance3-Binance3Tests.release.xcconfig"; path = "Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9BDCBECFA0724495A802DAB9 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../src/assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9E3C46806E0A305629C403F0 /* libPods-HotX EX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HotX EX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16D963C01B947F3811AFDFB /* Myfont23-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Myfont23-Regular.ttf"; path = "../src/assets/fonts/Myfont23-Regular.ttf"; sourceTree = "<group>"; };
 		A82588B4B9DB48DB90E927D4 /* Myfont22-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Myfont22-Regular.ttf"; path = "../src/assets/fonts/Myfont22-Regular.ttf"; sourceTree = "<group>"; };
 		AEACF1C56D73478A976A725E /* Anuphan-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Anuphan-SemiBold.ttf"; path = "../src/assets/fonts/Anuphan-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -81,7 +82,10 @@
 		BE89203C3A9346B986224119 /* SchibstedGrotesk-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SchibstedGrotesk-Medium.ttf"; path = "../src/assets/fonts/SchibstedGrotesk-Medium.ttf"; sourceTree = "<group>"; };
 		C91F60D0FAF14A36A95CEB0E /* Myfont21-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Myfont21-Regular.ttf"; path = "../src/assets/fonts/Myfont21-Regular.ttf"; sourceTree = "<group>"; };
 		D1CD707DCE20413A996FE7DA /* Jost-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-Regular.ttf"; path = "../src/assets/fonts/Jost-Regular.ttf"; sourceTree = "<group>"; };
+		DE0D156325FF06F22441F074 /* libPods-HotX EX-HotX EXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HotX EX-HotX EXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFA51A7C555EF862EE212D04 /* Pods-HotX EX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotX EX.release.xcconfig"; path = "Target Support Files/Pods-HotX EX/Pods-HotX EX.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FB252E98B872081F1C9DA374 /* Pods-HotX EX-HotX EXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HotX EX-HotX EXTests.debug.xcconfig"; path = "Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-Binance3-Binance3Tests.a in Frameworks */,
+				6CB0935794B35E0E71EA2607 /* libPods-HotX EX-HotX EXTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-Binance3.a in Frameworks */,
+				2418BD24025F3ABB60A3A530 /* libPods-HotX EX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-Binance3.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Binance3-Binance3Tests.a */,
+				9E3C46806E0A305629C403F0 /* libPods-HotX EX.a */,
+				DE0D156325FF06F22441F074 /* libPods-HotX EX-HotX EXTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,6 +213,10 @@
 				5709B34CF0A7D63546082F79 /* Pods-Binance3.release.xcconfig */,
 				5B7EB9410499542E8C5724F5 /* Pods-Binance3-Binance3Tests.debug.xcconfig */,
 				89C6BE57DB24E9ADA2F236DE /* Pods-Binance3-Binance3Tests.release.xcconfig */,
+				45A0893048AE44F6163B80A6 /* Pods-HotX EX.debug.xcconfig */,
+				DFA51A7C555EF862EE212D04 /* Pods-HotX EX.release.xcconfig */,
+				FB252E98B872081F1C9DA374 /* Pods-HotX EX-HotX EXTests.debug.xcconfig */,
+				39729B24B9D66E8A47B7CEB4 /* Pods-HotX EX-HotX EXTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -356,15 +364,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3/Pods-Binance3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX/Pods-HotX EX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3/Pods-Binance3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX/Pods-HotX EX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Binance3/Pods-Binance3-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HotX EX/Pods-HotX EX-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -382,7 +390,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Binance3-Binance3Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-HotX EX-HotX EXTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -404,7 +412,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Binance3-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-HotX EX-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -417,15 +425,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
@@ -434,15 +442,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3/Pods-Binance3-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX/Pods-HotX EX-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3/Pods-Binance3-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX/Pods-HotX EX-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Binance3/Pods-Binance3-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HotX EX/Pods-HotX EX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -451,15 +459,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Binance3-Binance3Tests/Pods-Binance3-Binance3Tests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HotX EX-HotX EXTests/Pods-HotX EX-HotX EXTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -514,7 +522,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Binance3-Binance3Tests.debug.xcconfig */;
+			baseConfigurationReference = FB252E98B872081F1C9DA374 /* Pods-HotX EX-HotX EXTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -545,7 +553,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-Binance3-Binance3Tests.release.xcconfig */;
+			baseConfigurationReference = 39729B24B9D66E8A47B7CEB4 /* Pods-HotX EX-HotX EXTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -573,7 +581,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Binance3.debug.xcconfig */;
+			baseConfigurationReference = 45A0893048AE44F6163B80A6 /* Pods-HotX EX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -605,7 +613,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Binance3.release.xcconfig */;
+			baseConfigurationReference = DFA51A7C555EF862EE212D04 /* Pods-HotX EX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
