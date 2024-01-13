@@ -100,7 +100,7 @@ const SharePositions = () => {
         options={{ fileName: "Your-File-Name", format: "jpg", quality: 1 }}
       >
         <Img
-          source={require('@images/future/snaphotx.png')}
+          source={require('@images/future/snapdinoex.png')}
           resizeMode={'contain'}
           width={width}
           height={width * 60 / 100}

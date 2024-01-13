@@ -40,7 +40,7 @@ const Hello = ({ navigation }: any) => {
         return () => clearTimeout(timer)
     }, [])
 
-    // Tăng khoảng cách các chữ cái trong chữ "HOTX" => "H O T X"
+    // Tăng khoảng cách các chữ cái trong chữ "Dino EX" => "H O T X"
     const applyLetterSpacing = (string: string, count = 3) => {
         return string?.split('')?.join('\u200A'.repeat(count));
     }
@@ -52,7 +52,7 @@ const Hello = ({ navigation }: any) => {
                 width={200}
                 height={200}
             />
-            <Txt color={'#ecb800'} marginTop={20} size={30} bold>{applyLetterSpacing('HOTX')}</Txt>
+            <Txt color={'#ecb800'} marginTop={20} size={30} bold>{applyLetterSpacing('Dino EX')}</Txt>
         </Box>
     )
 }

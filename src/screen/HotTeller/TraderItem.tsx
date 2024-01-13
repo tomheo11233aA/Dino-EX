@@ -49,7 +49,7 @@ const TraderItem = ({
 
                     <Box rotateZ={'-90deg'}>
                         <Txt color={colors.grayBlue} fontFamily={fonts.AS} marginBottom={20}>
-                            HotX
+                            Dino EX
                         </Txt>
                     </Box>
                 </Box>
@@ -81,7 +81,7 @@ const TraderItem = ({
                                         color={theme.black}
                                         fontFamily={fonts.IBMPR}
                                     >
-                                        {t(`HotX HD standard`)}
+                                        {t(`Dino EX HD standard`)}
                                     </Txt>
                                 </Box>
                             </Box>

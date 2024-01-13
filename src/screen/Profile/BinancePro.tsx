@@ -20,7 +20,7 @@ export default () => {
                     resizeMode={'contain'}
                 />
                 <Txt fontFamily={fonts.IBMPR} size={12} color={theme.black}>
-                    HotX
+                Dino EX
                 </Txt>
             </Box>
             <Switch

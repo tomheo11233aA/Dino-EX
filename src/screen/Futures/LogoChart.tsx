@@ -26,7 +26,7 @@ const LogoChart = ({ color, height }: any) => {
                 tintColor={COLOR}
             />
             <Text style={{ fontSize: 20, marginLeft: 10, fontWeight: 'bold', color: COLOR }}>
-                {applyLetterSpacing('HOTX')}
+                {applyLetterSpacing('Dino EX')}
             </Text>
         </Box>
     )

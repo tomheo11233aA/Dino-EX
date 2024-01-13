@@ -39,7 +39,7 @@ const Line = () => {
             height={30}
           />
           <Text style={{ fontSize: 25, marginLeft: 10, fontWeight: 'bold', color: colors.line }}>
-            {applyLetterSpacing('HOTX')}
+            {applyLetterSpacing('Dino EX')}
           </Text>
         </View>
       </View>

@@ -1,7 +1,9 @@
 const contants = { 
-    HOSTING: 'https://trade.dk-tech.vn',
+    // HOSTING: 'https://trade.dk-tech.vn',
     // HOSTING: 'https://hotx.fun',
+    HOSTING: 'https://dinocoin.co',
     HOSTING_CHART: 'https://trade.dk-tech.vn',
+    // HOSTING_CHART: 'https://dinocoin.co',
     TOKEN: 'token',
     NOT_KYC: 'NOT_KYC',
     KYC_PENDING: 'PENDING',
