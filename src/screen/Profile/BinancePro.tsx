@@ -19,9 +19,7 @@ export default () => {
                     marginRight={10}
                     resizeMode={'contain'}
                 />
-                <Txt fontFamily={fonts.IBMPR} size={12} color={theme.black}>
-                Dino EX
-                </Txt>
+
             </Box>
             <Switch
                 value={true}

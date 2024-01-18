@@ -41,7 +41,7 @@ const ModalExampleHX = ({ show, setShow }: Props) => {
             >
                 <Box alignCenter marginBottom={10}>
                     <Txt color={colors.yellow} fontFamily={fonts.AS} size={16}>
-                        HX {t('Unlock')}
+                        Dino EX {t('Unlock')}
                     </Txt>
                 </Box>
                 <Box>

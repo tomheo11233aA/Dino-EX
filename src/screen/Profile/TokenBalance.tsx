@@ -49,9 +49,9 @@ const TokenBalance = () => {
                         color={theme.bg == 'white' ? colors.yellowBold : colors.yellow}
                         marginTop={5}
                     >
-                        {t('Trade a certain volume and you will unlock a certain number of HX')}
+                        {t('Trade a certain volume and you will unlock a certain number of Dino EX')}
                     </Txt>
-                    <Btn
+                    {/* <Btn
                         onPress={() => setShowModalHX(true)}
                         alignSelf={'flex-start'}
                         backgroundColor={colors.yellow}
@@ -63,7 +63,7 @@ const TokenBalance = () => {
                         <Txt size={12} fontFamily={fonts.AS}>
                             {t('Example')}
                         </Txt>
-                    </Btn>
+                    </Btn> */}
                 </Box>
             }
             <ModalExampleHX
