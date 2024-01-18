@@ -44,9 +44,9 @@ const Home = () => {
     return () => { focus }
   }, [theme])
 
-  useEffect(() => {
-    handleGetValueConfig()
-  }, [])
+  // useEffect(() => {
+  //   handleGetValueConfig()
+  // }, [])
 
   const handleGetValueConfig = async () => {
       // Lấy version app từ server
