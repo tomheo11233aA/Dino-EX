@@ -50,10 +50,14 @@ const CoinItem = ({ coin, theme }: Props) => {
                         size={coin.currency == contants.HX ? 40 : 30}
                     />
                     <Box marginLeft={10}>
-                        {coin.currency != contants.HX && <Txt size={14} color={theme.black}>{coin.currency}</Txt>}
+                        {/* {coin.currency != contants.HX && <Txt size={14} color={theme.black}>{coin.currency}</Txt>}
                         {coin.currency != contants.HX && <Txt color={colors.gray2} size={11}>
                             {coin.currency}
-                        </Txt>}
+                        </Txt>} */}
+                        <Txt size={14} color={theme.black}>{coin.currency}</Txt>
+                        <Txt color={colors.gray2} size={11}>
+                            {coin.currency}
+                        </Txt>
                     </Box>
                 </Box>
 
