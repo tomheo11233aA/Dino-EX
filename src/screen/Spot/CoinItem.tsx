@@ -66,12 +66,12 @@ const CoinItem = ({ coin, theme }: Props) => {
                         {coin?.balance ? numberCommasDot(coin?.balance?.toFixed(2)) : 0}
                     </Txt>
                     <Box row alignCenter marginTop={5}>
-                        <Txt size={12} fontFamily={'Myfont24-Regular'} color={colors.gray5}>
+                        {coin.currency != contants.HX && <Txt size={12} fontFamily={'Myfont24-Regular'} color={colors.gray5}>
                             {numberCommasDot(coin?.exchangeRate?.toFixed(2))}
-                        </Txt>
-                        <Txt fontFamily={fonts.IBMPR} color={colors.gray5} size={11}>
+                        </Txt>}
+                        {coin.currency != contants.HX && <Txt fontFamily={fonts.IBMPR} color={colors.gray5} size={11}>
                             {' $'}
-                        </Txt>
+                        </Txt>}
                     </Box>
                 </Box>
             </Btn>
