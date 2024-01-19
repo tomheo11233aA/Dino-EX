@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Dino EX</string>
+    <!-- appCenterAnalytics_whenToEnableAnalytics -->
+    <string name="appCenterAnalytics_whenToEnableAnalytics">ALWAYS_SEND</string>
+    <!-- appCenterCrashes_whenToSendCrashes -->
+    <string name="appCenterCrashes_whenToSendCrashes">ALWAYS_SEND</string>
 </resources>
