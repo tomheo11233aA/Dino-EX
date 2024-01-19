@@ -29,47 +29,56 @@ const CoinItem = ({ coin, theme }: Props) => {
     }
 
     return (
-        <Btn
-            onPress={() => {
-                if (coin.currency == 'USDT' || coin.currency == contants.HX) {
-                    navigate(screen.SPOT_COIN, { coin })
-                }
-            }}
-            row
-            alignCenter
-            justifySpaceBetween
-            marginVertical={10}
-        >
-            <Box row>
-                <Icon
-                    source={coin.image ?
-                        { uri: contants.HOSTING + '/' + coin.image } :
-                        coin.currency == contants.HX ? require('@images/logohx.png') : require('@images/future/usdt.png')
+        <>
+            <Btn
+                onPress={() => {
+                    if (coin.currency == 'USDT' || coin.currency == contants.HX) {
+                        navigate(screen.SPOT_COIN, { coin })
                     }
-                    size={100}
-                />
-                <Box marginLeft={10}>
-                    <Txt size={14} color={theme.black}>{coin.currency}</Txt>
-                    <Txt color={colors.gray2} size={11}>
-                        {coin.currency}
-                    </Txt>
+                }}
+                row
+                alignCenter
+                justifySpaceBetween
+                marginVertical={10}
+            >
+                <Box row>
+                    <Icon
+                        source={coin.image ?
+                            { uri: contants.HOSTING + '/' + coin.image } :
+                            // coin.currency == contants.HX ? require('@images/logohx.png') : require('@images/future/usdt.png')
+                            coin.currency == contants.HX ? require('@images/logohx.png') : require('@images/future/usdt.png')
+                        }
+                        // size={30}
+                        size={coin.currency == contants.HX ? 30 : 50}
+                    />
+                    <Box marginLeft={10}>
+                        {coin.currency != contants.HX && <Txt size={14} color={theme.black}>{coin.currency}</Txt>}
+                        {coin.currency != contants.HX && <Txt color={colors.gray2} size={11}>
+                            {coin.currency}
+                        </Txt>}
+                    </Box>
                 </Box>
-            </Box>
 
-            <Box alignEnd>
-                <Txt size={15} fontFamily={'Myfont24-Regular'} color={theme.black}>
-                    {coin?.balance ? numberCommasDot(coin?.balance?.toFixed(2)) : 0}
-                </Txt>
-                <Box row alignCenter marginTop={5}>
-                    <Txt size={12} fontFamily={'Myfont24-Regular'} color={colors.gray5}>
-                        {numberCommasDot(coin?.exchangeRate?.toFixed(2))}
+                <Box alignEnd>
+                    <Txt size={15} fontFamily={'Myfont24-Regular'} color={theme.black}>
+                        {coin?.balance ? numberCommasDot(coin?.balance?.toFixed(2)) : 0}
                     </Txt>
-                    <Txt fontFamily={fonts.IBMPR} color={colors.gray5} size={11}>
-                        {' $'}
-                    </Txt>
+                    <Box row alignCenter marginTop={5}>
+                        <Txt size={12} fontFamily={'Myfont24-Regular'} color={colors.gray5}>
+                            {numberCommasDot(coin?.exchangeRate?.toFixed(2))}
+                        </Txt>
+                        <Txt fontFamily={fonts.IBMPR} color={colors.gray5} size={11}>
+                            {' $'}
+                        </Txt>
+                    </Box>
                 </Box>
-            </Box>
-        </Btn>
+            </Btn>
+            <Box
+                height={1}
+                backgroundColor={theme.gray3}
+                marginHorizontal={15}
+            />
+        </>
     )
 }
 

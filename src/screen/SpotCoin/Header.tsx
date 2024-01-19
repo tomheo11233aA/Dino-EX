@@ -23,7 +23,7 @@ export default ({ theme, coin }: any) =>
                 size={100}
                 marginRight={7}
             />
-            <Txt bold color={theme.black}>{coin?.currency}</Txt>
+            {coin.currency != contants.HX && <Txt bold color={theme.black}>{coin?.currency}</Txt>}
         </Box>
         <Box />
     </Box>
