@@ -45,11 +45,9 @@ const CoinItem = ({ coin, theme }: Props) => {
                     <Icon
                         source={coin.image ?
                             { uri: contants.HOSTING + '/' + coin.image } :
-                            // coin.currency == contants.HX ? require('@images/logohx.png') : require('@images/future/usdt.png')
-                            coin.currency == contants.HX ? require('@images/logohx.png') : require('@images/future/usdt.png')
+                            coin.currency == contants.HX ? require('@images/dinocoin.png') : require('@images/future/usdt.png')
                         }
-                        // size={30}
-                        size={coin.currency == contants.HX ? 30 : 50}
+                        size={coin.currency == contants.HX ? 40 : 30}
                     />
                     <Box marginLeft={10}>
                         {coin.currency != contants.HX && <Txt size={14} color={theme.black}>{coin.currency}</Txt>}
