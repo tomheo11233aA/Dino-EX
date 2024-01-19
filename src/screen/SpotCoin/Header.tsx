@@ -17,7 +17,7 @@ export default ({ theme, coin }: any) =>
             <Icon
                 source={coin.image ?
                     { uri: contants.HOSTING + '/' + coin?.image } :
-                    coin.currency == contants.HX ? require('@images/logohx.png') :
+                    coin.currency == contants.HX ? require('@images/dinocoin.png') :
                         require('@images/future/usdt.png')
                 }
                 size={100}
