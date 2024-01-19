@@ -1,4 +1,4 @@
-# lưu ý quan trọng: nếu npm/yarn android không được thì chạy theo cú pháp cd android -> ./gradlew clean -> ./gradlew assembledebug -> cd .. -> yarn/npm android 
+### lưu ý quan trọng: nếu npm/yarn android không được thì chạy theo cú pháp cd android -> ./gradlew clean -> ./gradlew assembledebug -> cd .. -> yarn/npm android 
 
 # using yarn, typescript
 
